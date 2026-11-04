@@ -1,0 +1,191 @@
+{
+  "heroui": {
+    "background": {
+      "$type": "color",
+      "$value": "{color.throat.50}"
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "surface": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "surface-secondary": {
+      "$type": "color",
+      "$value": "{color.throat.100}"
+    },
+    "surface-tertiary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9154,
+          0.013,
+          266.7
+        ],
+        "hex": "#dfe3ec"
+      },
+      "$description": "color-mix(in oklab, throat-100 50%, throat-200 50%)"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{color.throat.600}"
+    },
+    "default": {
+      "$type": "color",
+      "$value": "{color.throat.100}"
+    },
+    "default-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "{color.niltava.600}"
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "field-background": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "field-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "field-placeholder": {
+      "$type": "color",
+      "$value": "{color.throat.500}"
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{color.leaf.600}"
+    },
+    "success-foreground": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{color.gold.400}"
+    },
+    "warning-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "danger": {
+      "$type": "color",
+      "$value": "{color.berry.600}"
+    },
+    "danger-foreground": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "info": {
+      "$type": "color",
+      "$value": "{color.glossy.600}"
+    },
+    "info-foreground": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "rufous": {
+      "$type": "color",
+      "$value": "{color.rufous.600}"
+    },
+    "rufous-foreground": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "segment": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "segment-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.throat.200}"
+    },
+    "separator": {
+      "$type": "color",
+      "$value": "{color.throat.100}"
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{color.niltava.500}"
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{color.niltava.600}"
+    },
+    "accent-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.niltava.700}"
+    },
+    "success-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.leaf.700}"
+    },
+    "warning-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.gold.700}"
+    },
+    "danger-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.berry.700}"
+    },
+    "info-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.glossy.700}"
+    },
+    "rufous-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.rufous.700}"
+    }
+  },
+  "chart": {
+    "1": {
+      "$type": "color",
+      "$value": "{color.niltava.600}"
+    },
+    "2": {
+      "$type": "color",
+      "$value": "{color.rufous.500}"
+    },
+    "3": {
+      "$type": "color",
+      "$value": "{color.leaf.500}"
+    },
+    "4": {
+      "$type": "color",
+      "$value": "{color.violet.700}"
+    },
+    "5": {
+      "$type": "color",
+      "$value": "{color.gold.700}"
+    },
+    "6": {
+      "$type": "color",
+      "$value": "{color.berry.800}"
+    },
+    "7": {
+      "$type": "color",
+      "$value": "{color.glossy.700}"
+    },
+    "8": {
+      "$type": "color",
+      "$value": "{color.throat.500}"
+    }
+  }
+}

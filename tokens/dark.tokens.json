@@ -1,0 +1,227 @@
+{
+  "heroui": {
+    "background": {
+      "$type": "color",
+      "$value": "{color.throat.975}"
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "{color.throat.50}"
+    },
+    "surface": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "surface-secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2825,
+          0.037,
+          266.5
+        ],
+        "hex": "#21293c"
+      },
+      "$description": "color-mix(in oklab, throat-950 65%, throat-900 35%)"
+    },
+    "surface-tertiary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2994,
+          0.036,
+          268.58
+        ],
+        "hex": "#262d40"
+      },
+      "$description": "color-mix(in oklab, throat-950 40%, throat-900 60%)"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2752,
+          0.0368,
+          268.4
+        ],
+        "hex": "#20273a"
+      },
+      "$description": "color-mix(in oklab, throat-950 75%, throat-900 25%)"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{color.throat.400}"
+    },
+    "default": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2994,
+          0.036,
+          268.58
+        ],
+        "hex": "#262d40"
+      },
+      "$description": "color-mix(in oklab, throat-950 40%, throat-900 60%)"
+    },
+    "default-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.50}"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "{color.niltava.400}"
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "{color.niltava.975}"
+    },
+    "field-background": {
+      "$type": "color",
+      "$value": "{color.throat.950}"
+    },
+    "field-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.50}"
+    },
+    "field-placeholder": {
+      "$type": "color",
+      "$value": "{color.throat.500}"
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{color.leaf.400}"
+    },
+    "success-foreground": {
+      "$type": "color",
+      "$value": "{color.leaf.975}"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{color.gold.300}"
+    },
+    "warning-foreground": {
+      "$type": "color",
+      "$value": "{color.gold.975}"
+    },
+    "danger": {
+      "$type": "color",
+      "$value": "{color.berry.400}"
+    },
+    "danger-foreground": {
+      "$type": "color",
+      "$value": "{color.berry.975}"
+    },
+    "info": {
+      "$type": "color",
+      "$value": "{color.glossy.400}"
+    },
+    "info-foreground": {
+      "$type": "color",
+      "$value": "{color.glossy.975}"
+    },
+    "rufous": {
+      "$type": "color",
+      "$value": "{color.rufous.400}"
+    },
+    "rufous-foreground": {
+      "$type": "color",
+      "$value": "{color.rufous.975}"
+    },
+    "segment": {
+      "$type": "color",
+      "$value": "{color.throat.900}"
+    },
+    "segment-foreground": {
+      "$type": "color",
+      "$value": "{color.throat.50}"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.throat.900}"
+    },
+    "separator": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2914,
+          0.0363,
+          268.53
+        ],
+        "hex": "#242b3e"
+      },
+      "$description": "color-mix(in oklab, throat-950 50%, throat-900 50%)"
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{color.niltava.400}"
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{color.niltava.300}"
+    },
+    "accent-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.niltava.300}"
+    },
+    "success-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.leaf.300}"
+    },
+    "warning-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.gold.300}"
+    },
+    "danger-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.berry.300}"
+    },
+    "info-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.glossy.300}"
+    },
+    "rufous-soft-foreground": {
+      "$type": "color",
+      "$value": "{color.rufous.300}"
+    }
+  },
+  "chart": {
+    "1": {
+      "$type": "color",
+      "$value": "{color.niltava.400}"
+    },
+    "2": {
+      "$type": "color",
+      "$value": "{color.rufous.300}"
+    },
+    "3": {
+      "$type": "color",
+      "$value": "{color.leaf.200}"
+    },
+    "4": {
+      "$type": "color",
+      "$value": "{color.violet.500}"
+    },
+    "5": {
+      "$type": "color",
+      "$value": "{color.gold.500}"
+    },
+    "6": {
+      "$type": "color",
+      "$value": "{color.berry.400}"
+    },
+    "7": {
+      "$type": "color",
+      "$value": "{color.glossy.300}"
+    },
+    "8": {
+      "$type": "color",
+      "$value": "{color.throat.400}"
+    }
+  }
+}

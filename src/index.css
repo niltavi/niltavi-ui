@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+@import "./theme/palette.css";
+@import "./theme/niltava.css";

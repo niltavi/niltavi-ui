@@ -184,6 +184,20 @@ CHART = {
 }
 SOFT_PCT = {"light": 15, "dark": 12}  # matches HeroUI's soft background mix
 
+# Shared HeroUI variables. Component styles derive their geometry and states here.
+FONT_SANS = '"DM Sans", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif'
+COMMON_THEME = {
+    "radius": "0.25rem",
+    "field-radius": "calc(var(--radius) * 1.5)",
+    "border-width": "1px",
+    "field-border-width": "var(--border-width)",
+    "field-border-hover": "var(--muted)",
+    "field-border-focus": "var(--focus)",
+    "surface-shadow": "0 0 0 var(--border-width) var(--border)",
+    "overlay-shadow": "0 0 0 var(--border-width) var(--border)",
+    "field-shadow": "0 0 0 0 transparent",
+}
+
 def resolve(v):
     if isinstance(v, tuple):
         _, a, b, pct = v
@@ -257,17 +271,6 @@ def theme_block(mode, mapping):
     out = []
     for k, v in mapping.items():
         out.append(f"    --{k}: {css_value(v)};")
-    # Keep these in each mode block so switching themes cannot restore defaults.
-    out.extend([
-        "    --radius: 0.25rem;",
-        "    --field-radius: 0.375rem;",
-        "    --field-border-width: 1px;",
-        "    --field-border-hover: var(--muted);",
-        "    --field-border-focus: var(--focus);",
-        "    --surface-shadow: 0 0 0 1px var(--border);",
-        "    --overlay-shadow: 0 0 0 1px var(--border);",
-        "    --field-shadow: 0 0 0 0 transparent;",
-    ])
     pct = SOFT_PCT[mode]
     for c in ["info", "rufous"]:
         out.append(f"    --{c}-hover: color-mix(in oklab, var(--{c}) 90%, var(--{c}-foreground) 10%);")
@@ -280,15 +283,27 @@ def theme_block(mode, mapping):
     return "\n".join(out)
 
 def write_theme_css():
+    common = "\n".join(f"    --{key}: {value};" for key, value in COMMON_THEME.items())
     css = f"""{HEADER}/*
- * HeroUI v3 theme. Import after @heroui/styles and palette.css:
- *   @import "tailwindcss";
- *   @import "@heroui/styles";
- *   @import "./theme/palette.css";
- *   @import "./theme/niltava.css";
+ * HeroUI v3 theme. Import ./theme/index.css for the complete theme.
  * Light / dark follow HeroUI's own switch: class="dark" or data-theme="dark" on <html>.
  */
+@theme {{
+  --font-sans: {FONT_SANS};
+}}
+
 @layer base {{
+  :root,
+  :host {{
+{common}
+  }}
+
+  body {{
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }}
+
   :root,
   .light,
   [data-theme="light"] {{
@@ -346,8 +361,10 @@ def write_app_json():
 
 def write_card():
     files = {
+        "index.css": (ROOT / "src/theme/index.css").read_text(),
         "niltava.css": (ROOT / "src/theme/niltava.css").read_text(),
         "palette.css": (ROOT / "src/theme/palette.css").read_text(),
+        "components.css": (ROOT / "src/theme/components.css").read_text(),
         **{f"{n}.tokens.json": (ROOT / f"tokens/{n}.tokens.json").read_text() for n in ("primitives", "light", "dark")},
     }
     app = json.loads((ROOT / "src/theme/tokens.json").read_text())
@@ -355,6 +372,12 @@ def write_card():
     data["files"] = files
     body = (ROOT / "scripts/palette-card.template.html").read_text().replace(
         "__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
+    for placeholder, value in {
+        "__FONT_SANS__": FONT_SANS,
+        "__RADIUS__": COMMON_THEME["radius"],
+        "__FIELD_RADIUS__": COMMON_THEME["field-radius"],
+    }.items():
+        body = body.replace(placeholder, value)
     card_vars = {
         "bg": "background", "surface": "surface", "surface-2": "default", "line": "border",
         "ink": "foreground", "ink-2": "muted", "ink-3": "muted", "blue": "accent",

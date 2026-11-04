@@ -13,20 +13,19 @@
 - **轻量极简风格：** 充分留白，克制使用字体，阅读顺序明确。
 - **平面风格：** 纯色色块、细分隔线、适度圆角，以及低起伏的表面。
 
-浅色主题用暖纸（`#F5F1E6`）和森林墨色（`#283E38`）承接原有八组羽色色阶。深色主题采用喉墨色阶的深蓝灰背景与表面，搭配暖纸色文字。两种模式统一采用 4px 基础圆角、6px 输入框圆角、1px 输入框边线，以及平面轮廓。这些设置随两份主题样式表交付；预览页布局放在 `src/index.css`。木刻细节用于插画，表单控件保留清楚的焦点和状态提示。
+浅色主题用暖纸（`#F5F1E6`）和森林墨色（`#283E38`）承接原有八组羽色色阶。深色主题采用喉墨色阶的深蓝灰背景与表面，搭配暖纸色文字。两种模式统一采用 4px 基础圆角、6px 输入框圆角、1px 输入框边线，以及平面轮廓。这些设置由 `src/theme/index.css` 统一引入；预览页布局放在 `src/preview.css`。木刻细节用于插画，表单控件保留清楚的焦点和状态提示。
 
 预览页只保留有用的组件、色阶、图表和对比度值。含义明确的操作使用常见图标，并提供无障碍名称。移除装饰文案、重复导航、空视图和无用列。全局 `niltavi-design` Skill 同步记录这些偏好和共同设计语言。
 
 ## 接入
 
-把 `src/theme/palette.css` 和 `src/theme/niltava.css` 复制到项目里，在全局样式中按顺序引入：
+把 `src/theme/` 中的 CSS 文件复制到项目里，在全局样式中引入主题入口：
 
 ```css
-@import "tailwindcss";
-@import "@heroui/styles";
-@import "./theme/palette.css";
-@import "./theme/niltava.css";
+@import "./theme/index.css";
 ```
+
+沿用 [HeroUI v3 的 CSS 变量和 BEM 主题方式](https://heroui.com/en/docs/react/getting-started/theming)。入口统一加载 HeroUI 及其 Tailwind v4 构建依赖、色阶、语义变量和共享组件扩展。保留 HeroUI 所需的 Tailwind v4 构建集成，无需额外配置一套 Tailwind 主题。
 
 明暗切换沿用 HeroUI 的方式：`<html class="dark" data-theme="dark">`。
 
@@ -34,8 +33,10 @@
 
 | 文件 | 内容 |
 | --- | --- |
+| `src/theme/index.css` | 唯一主题入口 |
+| `src/theme/components.css` | 引用语义变量的共享 HeroUI BEM 扩展 |
 | `src/theme/palette.css` | 8 组 × 12 阶色阶（Tailwind v4 `@theme`，OKLCH），以及 `info`、`rufous`、`chart-1…8` 工具类 |
-| `src/theme/niltava.css` | HeroUI v3 主题变量，浅色 / 深色 |
+| `src/theme/niltava.css` | HeroUI v3 语义变量、共享尺寸、字体、浅色 / 深色 |
 | `tokens/primitives.tokens.json` | 色阶，W3C Design Tokens 格式 |
 | `tokens/light.tokens.json` / `dark.tokens.json` | 语义 token，引用色阶 |
 | `docs/palette.html` | 色卡，浏览器直接打开 |
@@ -44,19 +45,22 @@
 
 | 用途 | 写法 |
 | --- | --- |
-| 橙色按钮 | `<Button className="[--button-bg:var(--rufous)] [--button-bg-hover:var(--rufous-hover)] [--button-bg-pressed:var(--rufous-hover)] [--button-fg:var(--rufous-foreground)]">` |
-| 信息色 | `bg-info` `text-info-foreground` `bg-info-soft` `text-info-soft-foreground` |
+| 橙色按钮 | `<Button className="button--rufous">` |
+| 信息标签 | `<Chip className="chip--info" variant="soft">` |
+| 橙色标签 | `<Chip className="chip--rufous" variant="soft">` |
 | 图表 | `var(--chart-1)` … `var(--chart-8)`，深色主题自动换阶 |
 
 状态色在红绿色盲下会接近，Alert、Toast 保留 HeroUI 自带图标，不要只靠颜色区分状态。
 
-## 修改颜色
+## 维护主题
 
-色值全部由 `scripts/generate_tokens.py` 生成，改脚本后运行：
+色阶、明暗语义颜色、共享圆角 / 边线 / 阴影变量，以及字体，都在 `scripts/generate_tokens.py` 中定义。改脚本后运行：
 
 ```bash
 npm run tokens
 ```
+
+尺寸和变体优先使用 HeroUI 组件属性。可复用的扩展放在 `src/theme/components.css` 的 `@layer components` 中，使用组件文档中的 BEM 类和语义变量。布局放在 `src/preview.css`，避免在页面中单独覆盖 HeroUI 组件的圆角、颜色和状态。顶部使用 HeroUI 的 `ToggleButtonGroup` 处理选择、键盘导航、圆角和焦点。
 
 脚本会检查 62 组前景 / 背景对比度，有不达标的会报错退出。生成器测试运行 `npm test`。
 

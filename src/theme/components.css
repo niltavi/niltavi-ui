@@ -1,0 +1,19 @@
+/* HeroUI BEM extensions. Colors and states come from the semantic theme. */
+@layer components {
+  .button--rufous {
+    --button-bg: var(--rufous);
+    --button-bg-hover: var(--rufous-hover);
+    --button-bg-pressed: var(--rufous-hover);
+    --button-fg: var(--rufous-foreground);
+  }
+
+  .chip--rufous.chip--soft {
+    --chip-bg: var(--rufous-soft);
+    --chip-fg: var(--rufous-soft-foreground);
+  }
+
+  .chip--info.chip--soft {
+    --chip-bg: var(--info-soft);
+    --chip-fg: var(--info-soft-foreground);
+  }
+}

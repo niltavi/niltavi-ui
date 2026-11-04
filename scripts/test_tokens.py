@@ -1,5 +1,9 @@
-"""Check color math and the public token export contract without writing files."""
+"""Check color math and exported tokens without changing workspace files."""
+import json
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 import generate_tokens as tokens
 
@@ -17,20 +21,23 @@ class TokenTests(unittest.TestCase):
                 self.assertEqual(tokens.resolve(("mix", material, "white", 100)), "#FFFFFF")
 
     def test_semantic_exports_resolve_to_the_audited_colors(self):
-        primitives = {"white": tokens.dtcg_color("#FFFFFF")}
-        primitives.update({name: tokens.dtcg_color(hx) for name, hx in tokens.MATERIALS.items()})
-        primitives.update({name: {str(step): tokens.dtcg_color(hx) for step, hx in scale.items()}
-                           for name, scale in tokens.palette.items()})
-        for mode, mapping in (("light", tokens.LIGHT), ("dark", tokens.DARK)):
-            for name, value in mapping.items():
-                with self.subTest(mode=mode, token=name):
-                    exported = tokens.dtcg_alias(value, mode)["$value"]
-                    if isinstance(exported, str):
-                        node = {"color": primitives}
-                        for key in exported.strip("{}").split("."):
-                            node = node[key]
-                        exported = node["$value"]
-                    self.assertEqual(exported["hex"].upper(), tokens.resolved[mode][name])
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "tokens").mkdir()
+            with patch.object(tokens, "ROOT", root):
+                tokens.write_dtcg()
+            primitives = json.loads((root / "tokens/primitives.tokens.json").read_text())
+            for mode in ("light", "dark"):
+                semantic = json.loads((root / f"tokens/{mode}.tokens.json").read_text())
+                for name, token in semantic["heroui"].items():
+                    with self.subTest(mode=mode, token=name):
+                        exported = token["$value"]
+                        if isinstance(exported, str):
+                            node = primitives
+                            for key in exported.strip("{}").split("."):
+                                node = node[key]
+                            exported = node["$value"]
+                        self.assertEqual(exported["hex"].upper(), tokens.resolved[mode][name])
 
     def test_all_theme_contrasts_meet_their_targets(self):
         for row in tokens.audit:

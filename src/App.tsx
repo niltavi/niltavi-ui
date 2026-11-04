@@ -13,6 +13,8 @@ import {
   Switch,
   Table,
   TextField,
+  ToggleButton,
+  ToggleButtonGroup,
   Toast,
   toast,
 } from "@heroui/react";
@@ -43,9 +45,6 @@ const CVD_MATRIX: Record<Exclude<Vision, "normal">, number[][]> = {
 
 const VISION_LABEL: Record<Vision, string> = {normal: "正常", protan: "红色盲", deutan: "绿色盲", tritan: "蓝色盲"};
 
-const RUFOUS_BUTTON =
-  "[--button-bg:var(--rufous)] [--button-bg-hover:var(--rufous-hover)] [--button-bg-pressed:var(--rufous-hover)] [--button-fg:var(--rufous-foreground)]";
-
 const CHART_DATA = [
   {month: "7月", values: [32, 18, 24, 12, 9, 6, 14, 5]},
   {month: "8月", values: [36, 22, 20, 15, 11, 8, 12, 6]},
@@ -73,21 +72,28 @@ function Segmented<T extends string>({value, options, icons, onChange, label}: {
   label: string;
 }) {
   return (
-    <div aria-label={label} className="preview-segmented" role="group">
+    <ToggleButtonGroup
+      aria-label={label}
+      selectionMode="single"
+      disallowEmptySelection
+      selectedKeys={[value]}
+      onSelectionChange={(keys) => {
+        const next = [...keys][0];
+        if (typeof next === "string" && next in options) onChange(next as T);
+      }}
+      size="sm"
+    >
       {(Object.keys(options) as T[]).map((key) => (
-        <Button
+        <ToggleButton
           key={key}
-          size="sm"
-          variant={key === value ? "primary" : "ghost"}
-          className={icons ? "w-9 px-0" : undefined}
+          id={key}
+          isIconOnly={!!icons}
           aria-label={options[key]}
-          aria-pressed={key === value}
-          onPress={() => onChange(key)}
         >
           {icons ? icons[key] : options[key]}
-        </Button>
+        </ToggleButton>
       ))}
-    </div>
+    </ToggleButtonGroup>
   );
 }
 
@@ -115,29 +121,29 @@ function Scales() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="preview-stack--wide">
       {Object.entries(tokens.scales).map(([name, steps]) => (
-        <div key={name} className="grid gap-3 md:grid-cols-[150px_1fr]">
+        <div key={name} className="palette__scale">
           <div>
-            <div className="font-semibold">{SCALE_NAMES[name]}</div>
-            <div className="font-mono text-xs text-muted">{name}</div>
+            <div className="palette__name">{SCALE_NAMES[name]}</div>
+            <div className="preview-code">{name}</div>
           </div>
-          <div className="grid grid-cols-6 gap-1 sm:grid-cols-12">
+          <div className="palette__steps">
             {Object.entries(steps).map(([step, hex]) => (
               <button
                 key={step}
                 type="button"
-                className="group flex flex-col gap-1 text-left"
+                className="palette__step"
                 aria-label={`${name}-${step} ${hex}`}
                 onClick={() => copy(hex)}
               >
                 <span
-                  className="flex h-12 items-end rounded-md p-1.5 font-mono text-[10px] transition-transform group-hover:-translate-y-0.5"
-                  style={{background: hex, color: Number(step) >= 500 ? "#fff" : "var(--color-throat-950)"}}
+                  className="palette__swatch"
+                  style={{background: hex, color: Number(step) >= 500 ? "var(--white)" : "var(--color-throat-950)"}}
                 >
                   {step}
                 </span>
-                <span className="font-mono text-[10px] text-muted">{hex}</span>
+                <span className="palette__hex">{hex}</span>
               </button>
             ))}
           </div>
@@ -149,21 +155,21 @@ function Scales() {
 
 function Components() {
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="component-examples">
       <Card>
         <Card.Header>
           <Card.Title>按钮</Card.Title>
         </Card.Header>
-        <Card.Content className="flex flex-col gap-3">
-          <div className="flex flex-wrap gap-2">
+        <Card.Content className="preview-stack">
+          <div className="preview-row">
             <Button>保存记录</Button>
-            <Button className={RUFOUS_BUTTON}>上传照片</Button>
+            <Button className="button--rufous">上传照片</Button>
             <Button variant="secondary">次要</Button>
             <Button variant="tertiary">三级</Button>
             <Button variant="outline">描边</Button>
             <Button variant="ghost">幽灵</Button>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="preview-row">
             <Button variant="danger">删除</Button>
             <Button variant="danger-soft">移除</Button>
             <Button isDisabled>禁用</Button>
@@ -178,9 +184,9 @@ function Components() {
         <Card.Header>
           <Card.Title>标签</Card.Title>
         </Card.Header>
-        <Card.Content className="flex flex-col gap-3">
+        <Card.Content className="preview-stack">
           {(["primary", "secondary", "soft"] as const).map((variant) => (
-            <div key={variant} className="flex flex-wrap gap-2">
+            <div key={variant} className="preview-row">
               <Chip variant={variant}>默认</Chip>
               <Chip color="accent" variant={variant}>
                 仙鹟属
@@ -196,18 +202,18 @@ function Components() {
               </Chip>
             </div>
           ))}
-          <div className="flex flex-wrap gap-2">
-            <span className="rounded-full bg-rufous-soft px-2.5 py-0.5 text-xs font-medium text-rufous-soft-foreground">
+          <div className="preview-row">
+            <Chip className="chip--rufous" variant="soft">
               新物种 +2
-            </span>
-            <span className="rounded-full bg-info-soft px-2.5 py-0.5 text-xs font-medium text-info-soft-foreground">
+            </Chip>
+            <Chip className="chip--info" variant="soft">
               迁徙季
-            </span>
+            </Chip>
           </div>
         </Card.Content>
       </Card>
 
-      <div className="flex flex-col gap-3">
+      <div className="preview-stack">
         <Alert status="accent">
           <Alert.Indicator />
           <Alert.Content>
@@ -241,7 +247,7 @@ function Components() {
           <Card.Title>观鸟记录 · 11 月</Card.Title>
           <Card.Description>大帽山 · 6 次出行</Card.Description>
         </Card.Header>
-        <Card.Content className="flex flex-col gap-4">
+        <Card.Content className="preview-stack--medium">
           <Meter aria-label="年度目标" value={68}>
             <Label>年度目标</Label>
             <Meter.Output />
@@ -259,7 +265,7 @@ function Components() {
             <Input />
             <FieldError>数量必须大于 0</FieldError>
           </TextField>
-          <div className="flex flex-wrap gap-6">
+          <div className="preview-controls-row">
             <Switch defaultSelected>
               <Switch.Content>
                 <Switch.Control>
@@ -276,12 +282,12 @@ function Components() {
             </Checkbox>
           </div>
         </Card.Content>
-        <Card.Footer className="flex flex-wrap gap-2">
+        <Card.Footer className="preview-row">
           <Modal>
             <Button variant="secondary">删除记录</Button>
             <Modal.Backdrop>
-              <Modal.Container>
-                <Modal.Dialog className="sm:max-w-[380px]">
+              <Modal.Container size="sm">
+                <Modal.Dialog>
                   <Modal.CloseTrigger />
                   <Modal.Header>
                     <Modal.Heading>删除这条记录？</Modal.Heading>
@@ -310,11 +316,11 @@ function Components() {
         </Card.Footer>
       </Card>
 
-      <Card className="lg:col-span-2">
-        <Card.Content className="flex flex-col gap-4">
+      <Card className="component-examples__table">
+        <Card.Content className="preview-stack--medium">
           <Table>
             <Table.ScrollContainer>
-              <Table.Content aria-label="观鸟记录" className="min-w-[520px]">
+              <Table.Content aria-label="观鸟记录" className="records-table">
                 <Table.Header>
                   <Table.Column isRowHeader>物种</Table.Column>
                   <Table.Column>学名</Table.Column>
@@ -330,7 +336,7 @@ function Components() {
                   ].map(([zh, la, n, color, status]) => (
                     <Table.Row key={String(la)}>
                       <Table.Cell>{zh}</Table.Cell>
-                      <Table.Cell className="italic text-muted">{la}</Table.Cell>
+                      <Table.Cell className="species-name">{la}</Table.Cell>
                       <Table.Cell>{n}</Table.Cell>
                       <Table.Cell>
                         <Chip color={color as "success" | "warning" | "danger"} variant="soft">
@@ -360,9 +366,9 @@ function Charts() {
 
   return (
     <Card>
-      <Card.Content className="flex flex-col gap-6">
-        <div className="overflow-x-auto">
-          <svg viewBox={`0 0 ${w} ${h}`} className="w-full min-w-[520px]" role="img" aria-label="各科鸟类月度记录数">
+      <Card.Content className="preview-stack--wide">
+        <div className="chart-scroll">
+          <svg viewBox={`0 0 ${w} ${h}`} className="chart" role="img" aria-label="各科鸟类月度记录数">
             {[0, 10, 20, 30, 40, 50].map((t) => (
               <g key={t}>
                 <line x1={pad.l} x2={w} y1={y(t)} y2={y(t)} stroke="var(--separator)" />
@@ -391,29 +397,29 @@ function Charts() {
             ))}
           </svg>
         </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        <div className="chart-legend">
           {SERIES.map((s, i) => (
-            <span key={s} className="flex items-center gap-1.5">
-              <span className="size-3 rounded-sm" style={{background: `var(--chart-${i + 1})`}} />
+            <span key={s} className="chart-legend__item">
+              <span className="chart-legend__swatch" style={{background: `var(--chart-${i + 1})`}} />
               {s}
-              <span className="font-mono text-xs text-muted">chart-{i + 1}</span>
+              <span className="preview-code">chart-{i + 1}</span>
             </span>
           ))}
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="flex flex-col gap-1.5">
-            <span className="text-sm text-muted">顺序 · niltava 100 → 900</span>
-            <div className="flex h-6 overflow-hidden rounded-md">
+        <div className="chart-ramps">
+          <div className="chart-ramps__item">
+            <span className="chart-ramps__label">顺序 · niltava 100 → 900</span>
+            <div className="chart-ramps__strip">
               {[100, 200, 300, 400, 500, 600, 700, 800, 900].map((s) => (
-                <span key={s} className="flex-1" style={{background: `var(--color-niltava-${s})`}} />
+                <span key={s} className="chart-ramps__step" style={{background: `var(--color-niltava-${s})`}} />
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-1.5">
-            <span className="text-sm text-muted">发散 · rufous ↔ niltava</span>
-            <div className="flex h-6 overflow-hidden rounded-md">
+          <div className="chart-ramps__item">
+            <span className="chart-ramps__label">发散 · rufous ↔ niltava</span>
+            <div className="chart-ramps__strip">
               {["rufous-700", "rufous-500", "rufous-300", "rufous-100", "throat-100", "niltava-100", "niltava-300", "niltava-500", "niltava-700"].map((r) => (
-                <span key={r} className="flex-1" style={{background: `var(--color-${r})`}} />
+                <span key={r} className="chart-ramps__step" style={{background: `var(--color-${r})`}} />
               ))}
             </div>
           </div>
@@ -429,7 +435,7 @@ function Audit({mode}: {mode: Mode}) {
   return (
     <Table>
       <Table.ScrollContainer>
-        <Table.Content aria-label="对比度" className="min-w-[480px]">
+        <Table.Content aria-label="对比度" className="contrast-table">
           <Table.Header>
             <Table.Column isRowHeader>前景</Table.Column>
             <Table.Column>背景</Table.Column>
@@ -439,9 +445,9 @@ function Audit({mode}: {mode: Mode}) {
             {rows.map((r) => (
               <Table.Row key={`${r.fg}-${r.bg}`}>
                 <Table.Cell>
-                  <span className="flex items-center gap-2 font-mono text-xs">
+                  <span className="contrast-label">
                     <span
-                      className="flex size-6 items-center justify-center rounded text-[10px] font-semibold"
+                      className="contrast-sample"
                       style={{background: res[r.bg] ?? "var(--surface)", color: res[r.fg] ?? `var(--${r.fg})`}}
                     >
                       Aa
@@ -449,8 +455,8 @@ function Audit({mode}: {mode: Mode}) {
                     {r.fg}
                   </span>
                 </Table.Cell>
-                <Table.Cell className="font-mono text-xs">{r.bg}</Table.Cell>
-                <Table.Cell className="font-mono text-xs tabular-nums">{r.ratio.toFixed(2)}</Table.Cell>
+                <Table.Cell className="contrast-value">{r.bg}</Table.Cell>
+                <Table.Cell className="contrast-ratio">{r.ratio.toFixed(2)}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -475,7 +481,7 @@ export default function App() {
 
   return (
     <>
-      <svg aria-hidden="true" className="absolute size-0">
+      <svg aria-hidden="true" className="vision-filters">
         {(Object.keys(CVD_MATRIX) as Exclude<Vision, "normal">[]).map((k) => (
           <filter key={k} id={`cvd-${k}`}>
             <feColorMatrix
@@ -518,7 +524,11 @@ export default function App() {
           <Audit mode={mode} />
         </Section>
         <footer className="preview-footer">
-          <a href="#page-top" aria-label="回到顶部" title="回到顶部"><Icon name="arrow-up" /></a>
+          <Button isIconOnly variant="ghost" aria-label="回到顶部" onPress={() => {
+            const top = document.getElementById("page-top");
+            top?.scrollIntoView();
+            top?.focus({preventScroll: true});
+          }}><Icon name="arrow-up" /></Button>
         </footer>
       </main>
     </>

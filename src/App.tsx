@@ -88,7 +88,7 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
           {pages.map((page) => <a key={page.id} href={routeHref(page.id)} aria-current={route.page === page.id ? "page" : undefined} onClick={(event) => navigateLink(event, page.id)}>{text(page.en, page.zh)}</a>)}
         </nav>
         <Surface className="surface--controls preview-controls">
-          <ButtonLink className={buttonVariants({isIconOnly: true, size: "sm", variant: "ghost"})} href="https://github.com/niltavi/niltavi-ui" target="_blank" rel="noopener noreferrer" aria-label={text("GitHub repository", "GitHub 仓库")}><LogoGithub aria-hidden="true" width={18} height={18} /></ButtonLink>
+          <Button isIconOnly size="sm" variant="ghost" aria-label={mode === "light" ? text("Dark theme", "切换深色") : text("Light theme", "切换浅色")} onPress={() => setMode(mode === "light" ? "dark" : "light")}><Icon name={mode === "light" ? "moon" : "sun"} /></Button>
           <Dropdown>
             <Button isIconOnly size="sm" variant="ghost" aria-label={text("Language", "语言")}><Globe aria-hidden="true" width={18} height={18} /></Button>
             <Dropdown.Popover placement="bottom end">
@@ -98,7 +98,7 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
               </Dropdown.Menu>
             </Dropdown.Popover>
           </Dropdown>
-          <Button isIconOnly size="sm" variant="ghost" aria-label={mode === "light" ? text("Dark theme", "切换深色") : text("Light theme", "切换浅色")} onPress={() => setMode(mode === "light" ? "dark" : "light")}><Icon name={mode === "light" ? "moon" : "sun"} /></Button>
+          <ButtonLink className={buttonVariants({isIconOnly: true, size: "sm", variant: "ghost"})} href="https://github.com/niltavi/niltavi-ui" target="_blank" rel="noopener noreferrer" aria-label={text("GitHub repository", "GitHub 仓库")}><LogoGithub aria-hidden="true" width={18} height={18} /></ButtonLink>
         </Surface>
       </div>
     </header>

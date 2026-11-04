@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {toast} from "@heroui/react";
 import {FloppyDisk} from "@gravity-ui/icons";
 import {
@@ -16,6 +17,7 @@ import {
 import React from "react";
 
 export function OnSurface() {
+  const t = useCopy();
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -26,7 +28,7 @@ export function OnSurface() {
       data[key] = value.toString();
     });
 
-    toast.success("Form submitted successfully!");
+    toast.success(t("Form submitted successfully!"));
   };
 
   return (
@@ -34,27 +36,27 @@ export function OnSurface() {
       <Surface className="w-full min-w-0">
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
-            <Fieldset.Legend>Profile Settings</Fieldset.Legend>
-            <Description>Update your profile information.</Description>
+            <Fieldset.Legend>{t("Profile Settings")}</Fieldset.Legend>
+            <Description>{t("Update your profile information.")}</Description>
             <Fieldset.Group>
               <TextField
                 isRequired
                 name="name"
                 validate={(value) => {
                   if (value.length < 3) {
-                    return "Name must be at least 3 characters";
+                    return t("Name must be at least 3 characters");
                   }
 
                   return null;
                 }}
               >
-                <Label>Name</Label>
-                <Input placeholder="John Doe" variant="secondary" />
+                <Label>{t("Name")}</Label>
+                <Input placeholder={t("John Doe")} variant="secondary" />
                 <FieldError />
               </TextField>
               <TextField isRequired name="email" type="email">
-                <Label>Email</Label>
-                <Input placeholder="john@example.com" variant="secondary" />
+                <Label>{t("Email")}</Label>
+                <Input placeholder={t("john@example.com")} variant="secondary" />
                 <FieldError />
               </TextField>
               <TextField
@@ -62,26 +64,24 @@ export function OnSurface() {
                 name="bio"
                 validate={(value) => {
                   if (value.length < 10) {
-                    return "Bio must be at least 10 characters";
+                    return t("Bio must be at least 10 characters");
                   }
 
                   return null;
                 }}
               >
-                <Label>Bio</Label>
-                <TextArea placeholder="Tell us about yourself..." variant="secondary" />
-                <Description>Minimum 10 characters</Description>
+                <Label>{t("Bio")}</Label>
+                <TextArea placeholder={t("Tell us about yourself...")} variant="secondary" />
+                <Description>{t("Minimum 10 characters")}</Description>
                 <FieldError />
               </TextField>
             </Fieldset.Group>
             <Fieldset.Actions>
               <Button type="submit">
                 <FloppyDisk />
-                Save changes
-              </Button>
+                {t("Save changes")}</Button>
               <Button type="reset" variant="tertiary">
-                Cancel
-              </Button>
+                {t("Cancel")}</Button>
             </Fieldset.Actions>
           </Fieldset>
         </Form>

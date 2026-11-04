@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "test": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "test": "python3 -m unittest discover -s scripts -p 'test_*.py' && node --test scripts/test_site.mjs",
     "tokens": "python3 scripts/generate_tokens.py",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

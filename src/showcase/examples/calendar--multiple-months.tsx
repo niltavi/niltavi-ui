@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Calendar} from "@heroui/react";
 
 export function MultipleMonths() {
+  const t = useCopy();
   return (
     <Calendar
-      aria-label="Trip dates"
+      aria-label={t("Trip dates")}
       className="@container-normal w-full max-w-none overflow-x-auto"
       visibleDuration={{months: 2}}
     >
@@ -17,7 +19,7 @@ export function MultipleMonths() {
           </Calendar.Header>
           <Calendar.Grid>
             <Calendar.GridHeader>
-              {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+              {(day) => <Calendar.HeaderCell>{t(day)}</Calendar.HeaderCell>}
             </Calendar.GridHeader>
             <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
           </Calendar.Grid>
@@ -30,7 +32,7 @@ export function MultipleMonths() {
           </Calendar.Header>
           <Calendar.Grid offset={{months: 1}}>
             <Calendar.GridHeader>
-              {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+              {(day) => <Calendar.HeaderCell>{t(day)}</Calendar.HeaderCell>}
             </Calendar.GridHeader>
             <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
           </Calendar.Grid>

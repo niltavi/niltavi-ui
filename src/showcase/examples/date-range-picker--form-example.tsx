@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {DateValue} from "@internationalized/date";
 
 import {
@@ -20,6 +21,7 @@ type DateRange = {
 };
 
 export function FormExample() {
+  const t = useCopy();
   const [value, setValue] = useState<DateRange | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const currentDate = today(getLocalTimeZone());
@@ -50,7 +52,7 @@ export function FormExample() {
         value={value}
         onChange={setValue}
       >
-        <Label>Trip dates</Label>
+        <Label>{t("Trip dates")}</Label>
         <DateField.Group fullWidth>
           <DateField.Input slot="start">
             {(segment) => <DateField.Segment segment={segment} />}
@@ -65,13 +67,13 @@ export function FormExample() {
             </DateRangePicker.Trigger>
           </DateField.Suffix>
         </DateField.Group>
-        {isInvalid ? (
-          <FieldError>Please choose a valid range in the future.</FieldError>
+        {t(isInvalid ? (
+          <FieldError>{t("Please choose a valid range in the future.")}</FieldError>
         ) : (
-          <Description>Select your check-in and check-out dates.</Description>
-        )}
+          <Description>{t("Select your check-in and check-out dates.")}</Description>
+        ))}
         <DateRangePicker.Popover>
-          <RangeCalendar aria-label="Trip dates">
+          <RangeCalendar aria-label={t("Trip dates")}>
             <RangeCalendar.Header>
               <RangeCalendar.YearPickerTrigger>
                 <RangeCalendar.YearPickerTriggerHeading />
@@ -82,7 +84,7 @@ export function FormExample() {
             </RangeCalendar.Header>
             <RangeCalendar.Grid>
               <RangeCalendar.GridHeader>
-                {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+                {(day) => <RangeCalendar.HeaderCell>{t(day)}</RangeCalendar.HeaderCell>}
               </RangeCalendar.GridHeader>
               <RangeCalendar.GridBody>
                 {(date) => <RangeCalendar.Cell date={date} />}
@@ -102,7 +104,7 @@ export function FormExample() {
         isPending={isSubmitting}
         type="submit"
       >
-        {isSubmitting ? "Submitting..." : "Submit"}
+        {t(isSubmitting ? "Submitting..." : "Submit")}
       </Button>
     </Form>
   );

@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Avatar, AvatarGroup} from "@heroui/react";
 
 const users = [
@@ -30,22 +31,23 @@ const users = [
 ];
 
 export function Count() {
+  const t = useCopy();
   const total = 12;
 
   return (
     <AvatarGroup size="sm">
       {users.slice(0, 3).map((user) => (
         <Avatar key={user.id}>
-          <Avatar.Image alt={user.name} src={user.image} />
+          <Avatar.Image alt={t(user.name)} src={user.image} />
           <Avatar.Fallback>
-            {user.name
+            {t(user.name
               .split(" ")
               .map((n) => n[0])
-              .join("")}
+              .join(""))}
           </Avatar.Fallback>
         </Avatar>
       ))}
-      <AvatarGroup.Count>+{total - 3}</AvatarGroup.Count>
+      <AvatarGroup.Count>{t("+")}{t(total - 3)}</AvatarGroup.Count>
     </AvatarGroup>
   );
 }

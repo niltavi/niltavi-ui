@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {DateValue} from "@internationalized/date";
 
 import {CircleQuestion} from "@gravity-ui/icons";
@@ -7,6 +8,7 @@ import {parseDate, parseZonedDateTime} from "@internationalized/date";
 import {useState} from "react";
 
 export function Granularity() {
+  const t = useCopy();
   const granularityOptions = [
     {id: "day", label: "Day"},
     {id: "hour", label: "Hour"},
@@ -34,29 +36,27 @@ export function Granularity() {
         granularity={granularity}
         name="granularity-date"
       >
-        <Label>Appointment Date</Label>
+        <Label>{t("Appointment Date")}</Label>
         <DateField.Group>
           <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         </DateField.Group>
       </DateField>
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <Label>Granularity</Label>
+          <Label>{t("Granularity")}</Label>
           <Tooltip delay={0}>
-            <Tooltip.Trigger aria-label="Granularity information">
+            <Tooltip.Trigger aria-label={t("Granularity information")}>
               <CircleQuestion className="size-4 text-muted" />
             </Tooltip.Trigger>
             <Tooltip.Content placement="bottom start">
               <p>
-                Determines the smallest unit displayed in the date picker. By default, this is "day"
-                for dates, and "minute" for times.
-              </p>
+                {t("Determines the smallest unit displayed in the date picker. By default, this is \"day\" for dates, and \"minute\" for times.")}</p>
             </Tooltip.Content>
           </Tooltip>
         </div>
         <Select
           className="w-[110px]"
-          placeholder="Select granularity"
+          placeholder={t("Select granularity")}
           value={granularity}
           variant="secondary"
           onChange={(value) => setGranularity(value as typeof granularity)}
@@ -68,8 +68,8 @@ export function Granularity() {
           <Select.Popover>
             <ListBox>
               {granularityOptions.map((option) => (
-                <ListBox.Item key={option.id} id={option.id} textValue={option.label}>
-                  {option.label}
+                <ListBox.Item key={option.id} id={option.id} textValue={t(option.label)}>
+                  {t(option.label)}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
               ))}

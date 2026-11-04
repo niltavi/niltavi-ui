@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {DateValue} from "@internationalized/date";
 
 import {
@@ -15,6 +16,7 @@ import {getLocalTimeZone, today} from "@internationalized/date";
 import {useState} from "react";
 
 export function FormExample() {
+  const t = useCopy();
   const [value, setValue] = useState<DateValue | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const currentDate = today(getLocalTimeZone());
@@ -45,7 +47,7 @@ export function FormExample() {
         value={value}
         onChange={setValue}
       >
-        <Label>Appointment date</Label>
+        <Label>{t("Appointment date")}</Label>
         <DateField.Group fullWidth>
           <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
           <DateField.Suffix>
@@ -54,13 +56,13 @@ export function FormExample() {
             </DatePicker.Trigger>
           </DateField.Suffix>
         </DateField.Group>
-        {isInvalid ? (
-          <FieldError>Date must be today or in the future.</FieldError>
+        {t(isInvalid ? (
+          <FieldError>{t("Date must be today or in the future.")}</FieldError>
         ) : (
-          <Description>Choose a valid appointment date.</Description>
-        )}
+          <Description>{t("Choose a valid appointment date.")}</Description>
+        ))}
         <DatePicker.Popover>
-          <Calendar aria-label="Event date">
+          <Calendar aria-label={t("Event date")}>
             <Calendar.Header>
               <Calendar.YearPickerTrigger>
                 <Calendar.YearPickerTriggerHeading />
@@ -71,7 +73,7 @@ export function FormExample() {
             </Calendar.Header>
             <Calendar.Grid>
               <Calendar.GridHeader>
-                {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+                {(day) => <Calendar.HeaderCell>{t(day)}</Calendar.HeaderCell>}
               </Calendar.GridHeader>
               <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
             </Calendar.Grid>
@@ -89,7 +91,7 @@ export function FormExample() {
         isPending={isSubmitting}
         type="submit"
       >
-        {isSubmitting ? "Submitting..." : "Submit"}
+        {t(isSubmitting ? "Submitting..." : "Submit")}
       </Button>
     </Form>
   );

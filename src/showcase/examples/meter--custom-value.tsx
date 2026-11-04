@@ -1,7 +1,9 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Label, Meter} from "@heroui/react";
 
 export function CustomValue() {
+  const t = useCopy();
   return (
     <Meter
       className="w-full max-w-64"
@@ -10,7 +12,7 @@ export function CustomValue() {
       minValue={0}
       value={750}
     >
-      <Label>Revenue</Label>
+      <Label>{t("Revenue")}</Label>
       <Meter.Output />
       <Meter.Track>
         <Meter.Fill />

@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {DateValue} from "@internationalized/date";
 
 import {DateField, Description, FieldError, Label} from "@heroui/react";
@@ -6,6 +7,7 @@ import {getLocalTimeZone, today} from "@internationalized/date";
 import {useState} from "react";
 
 export function WithValidation() {
+  const t = useCopy();
   const [value, setValue] = useState<DateValue | null>(null);
   const todayDate = today(getLocalTimeZone());
   const isInvalid = value !== null && value.compare(todayDate) < 0;
@@ -21,15 +23,15 @@ export function WithValidation() {
         value={value}
         onChange={setValue}
       >
-        <Label>Date</Label>
+        <Label>{t("Date")}</Label>
         <DateField.Group>
           <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         </DateField.Group>
-        {isInvalid ? (
-          <FieldError>Date must be today or in the future</FieldError>
+        {t(isInvalid ? (
+          <FieldError>{t("Date must be today or in the future")}</FieldError>
         ) : (
-          <Description>Enter a date from today onwards</Description>
-        )}
+          <Description>{t("Enter a date from today onwards")}</Description>
+        ))}
       </DateField>
     </div>
   );

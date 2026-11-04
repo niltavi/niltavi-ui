@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {DateValue} from "@internationalized/date";
 
 import {Calendar, DateField, DatePicker, FieldError, Label} from "@heroui/react";
@@ -6,6 +7,7 @@ import {getLocalTimeZone, today} from "@internationalized/date";
 import {useState} from "react";
 
 export function WithValidation() {
+  const t = useCopy();
   const [value, setValue] = useState<DateValue | null>(null);
   const currentDate = today(getLocalTimeZone());
   const isInvalid = value != null && value.compare(currentDate) < 0;
@@ -20,7 +22,7 @@ export function WithValidation() {
       value={value}
       onChange={setValue}
     >
-      <Label>Appointment date</Label>
+      <Label>{t("Appointment date")}</Label>
       <DateField.Group fullWidth>
         <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         <DateField.Suffix>
@@ -29,9 +31,9 @@ export function WithValidation() {
           </DatePicker.Trigger>
         </DateField.Suffix>
       </DateField.Group>
-      <FieldError>Date must be today or in the future.</FieldError>
+      <FieldError>{t("Date must be today or in the future.")}</FieldError>
       <DatePicker.Popover>
-        <Calendar aria-label="Event date">
+        <Calendar aria-label={t("Event date")}>
           <Calendar.Header>
             <Calendar.YearPickerTrigger>
               <Calendar.YearPickerTriggerHeading />
@@ -42,7 +44,7 @@ export function WithValidation() {
           </Calendar.Header>
           <Calendar.Grid>
             <Calendar.GridHeader>
-              {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+              {(day) => <Calendar.HeaderCell>{t(day)}</Calendar.HeaderCell>}
             </Calendar.GridHeader>
             <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
           </Calendar.Grid>

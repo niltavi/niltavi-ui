@@ -1,25 +1,27 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Bell, Comment, Envelope} from "@gravity-ui/icons";
 import {Checkbox, CheckboxGroup, Description, Label} from "@heroui/react";
 
 export function FeaturesAndAddOns() {
+  const t = useCopy();
   const addOns = [
     {
-      description: "Receive updates via email",
+      description: t("Receive updates via email"),
       icon: Envelope,
-      title: "Email Notifications",
+      title: t("Email Notifications"),
       value: "email",
     },
     {
-      description: "Get instant SMS notifications",
+      description: t("Get instant SMS notifications"),
       icon: Comment,
-      title: "SMS Alerts",
+      title: t("SMS Alerts"),
       value: "sms",
     },
     {
-      description: "Browser and mobile push alerts",
+      description: t("Browser and mobile push alerts"),
       icon: Bell,
-      title: "Push Notifications",
+      title: t("Push Notifications"),
       value: "push",
     },
   ];
@@ -27,8 +29,8 @@ export function FeaturesAndAddOns() {
   return (
     <CheckboxGroup className="checkbox-group--cards" name="notification-preferences">
       <div className="choice-group__heading">
-        <Label>Notification preferences</Label>
-        <Description>Choose how you want to receive updates</Description>
+        <Label>{t("Notification preferences")}</Label>
+        <Description>{t("Choose how you want to receive updates")}</Description>
       </div>
       <div className="choice-list">
         {addOns.map((addon) => (
@@ -39,8 +41,8 @@ export function FeaturesAndAddOns() {
               </Checkbox.Control>
               <addon.icon aria-hidden="true" className="choice-card__icon" />
               <div className="choice-card__body">
-                <span>{addon.title}</span>
-                <Description>{addon.description}</Description>
+                <span>{t(addon.title)}</span>
+                <Description>{t(addon.description)}</Description>
               </div>
             </Checkbox.Content>
           </Checkbox>

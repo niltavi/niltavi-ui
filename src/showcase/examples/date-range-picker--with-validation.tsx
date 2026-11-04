@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {DateValue} from "@internationalized/date";
 
 import {DateField, DateRangePicker, FieldError, Label, RangeCalendar} from "@heroui/react";
@@ -11,6 +12,7 @@ type DateRange = {
 };
 
 export function WithValidation() {
+  const t = useCopy();
   const [value, setValue] = useState<DateRange | null>(null);
   const currentDate = today(getLocalTimeZone());
   const isInvalid =
@@ -27,7 +29,7 @@ export function WithValidation() {
       value={value}
       onChange={setValue}
     >
-      <Label>Booking period</Label>
+      <Label>{t("Booking period")}</Label>
       <DateField.Group fullWidth>
         <DateField.Input slot="start">
           {(segment) => <DateField.Segment segment={segment} />}
@@ -42,9 +44,9 @@ export function WithValidation() {
           </DateRangePicker.Trigger>
         </DateField.Suffix>
       </DateField.Group>
-      <FieldError>Select a valid range starting today or later.</FieldError>
+      <FieldError>{t("Select a valid range starting today or later.")}</FieldError>
       <DateRangePicker.Popover>
-        <RangeCalendar aria-label="Booking period">
+        <RangeCalendar aria-label={t("Booking period")}>
           <RangeCalendar.Header>
             <RangeCalendar.YearPickerTrigger>
               <RangeCalendar.YearPickerTriggerHeading />
@@ -55,7 +57,7 @@ export function WithValidation() {
           </RangeCalendar.Header>
           <RangeCalendar.Grid>
             <RangeCalendar.GridHeader>
-              {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+              {(day) => <RangeCalendar.HeaderCell>{t(day)}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
             <RangeCalendar.GridBody>
               {(date) => <RangeCalendar.Cell date={date} />}

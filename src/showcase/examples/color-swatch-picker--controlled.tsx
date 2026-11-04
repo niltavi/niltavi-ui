@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {ColorSwatchPicker, parseColor} from "@heroui/react";
 import {useState} from "react";
 
 const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function Controlled() {
+  const t = useCopy();
   const [value, setValue] = useState(parseColor("#F43F5E"));
 
   return (
@@ -18,7 +20,7 @@ export function Controlled() {
         ))}
       </ColorSwatchPicker>
       <p className="text-sm text-muted">
-        Selected: <span className="font-medium">{value.toString("hex")}</span>
+        {t("Selected:")}<span className="font-medium">{t(value.toString("hex"))}</span>
       </p>
     </div>
   );

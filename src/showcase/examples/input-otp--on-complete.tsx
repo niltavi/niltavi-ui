@@ -1,8 +1,10 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Button, Form, InputOTP, Label, Spinner} from "@heroui/react";
 import React from "react";
 
 export function OnComplete() {
+  const t = useCopy();
   const [value, setValue] = React.useState("");
   const [isComplete, setIsComplete] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -27,7 +29,7 @@ export function OnComplete() {
 
   return (
     <Form className="flex w-full max-w-[280px] flex-col gap-2" onSubmit={handleSubmit}>
-      <Label>Verify account</Label>
+      <Label>{t("Verify account")}</Label>
       <InputOTP
         maxLength={6}
         value={value}
@@ -56,14 +58,13 @@ export function OnComplete() {
         type="submit"
         variant="primary"
       >
-        {isSubmitting ? (
+        {t(isSubmitting ? (
           <>
             <Spinner color="current" size="sm" />
-            Verifying...
-          </>
+            {t("Verifying...")}</>
         ) : (
           "Verify Code"
-        )}
+        ))}
       </Button>
     </Form>
   );

@@ -1,7 +1,9 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Description, Label, NumberField} from "@heroui/react";
 
 export function WithFormatOptions() {
+  const t = useCopy();
   return (
     <div className="flex w-full max-w-64 flex-col gap-4">
       <NumberField
@@ -14,13 +16,13 @@ export function WithFormatOptions() {
           style: "currency",
         }}
       >
-        <Label>Currency (EUR - Accounting)</Label>
+        <Label>{t("Currency (EUR - Accounting)")}</Label>
         <NumberField.Group>
           <NumberField.DecrementButton />
           <NumberField.Input className="w-[120px]" />
           <NumberField.IncrementButton />
         </NumberField.Group>
-        <Description>Accounting format with EUR currency</Description>
+        <Description>{t("Accounting format with EUR currency")}</Description>
       </NumberField>
       <NumberField
         defaultValue={99.99}
@@ -31,13 +33,13 @@ export function WithFormatOptions() {
           style: "currency",
         }}
       >
-        <Label>Currency (USD)</Label>
+        <Label>{t("Currency (USD)")}</Label>
         <NumberField.Group>
           <NumberField.DecrementButton />
           <NumberField.Input className="w-[120px]" />
           <NumberField.IncrementButton />
         </NumberField.Group>
-        <Description>Standard USD currency format</Description>
+        <Description>{t("Standard USD currency format")}</Description>
       </NumberField>
       <NumberField
         defaultValue={0.5}
@@ -47,13 +49,13 @@ export function WithFormatOptions() {
         name="percentage"
         step={0.01}
       >
-        <Label>Percentage</Label>
+        <Label>{t("Percentage")}</Label>
         <NumberField.Group>
           <NumberField.DecrementButton />
           <NumberField.Input className="w-[120px]" />
           <NumberField.IncrementButton />
         </NumberField.Group>
-        <Description>Percentage format (0-1, where 0.5 = 50%)</Description>
+        <Description>{t("Percentage format (0-1, where 0.5 = 50%)")}</Description>
       </NumberField>
       <NumberField
         defaultValue={1234.56}
@@ -65,13 +67,13 @@ export function WithFormatOptions() {
           style: "decimal",
         }}
       >
-        <Label>Decimal (2 decimal places)</Label>
+        <Label>{t("Decimal (2 decimal places)")}</Label>
         <NumberField.Group>
           <NumberField.DecrementButton />
           <NumberField.Input className="w-[120px]" />
           <NumberField.IncrementButton />
         </NumberField.Group>
-        <Description>Decimal format with 2 decimal places</Description>
+        <Description>{t("Decimal format with 2 decimal places")}</Description>
       </NumberField>
       <NumberField
         defaultValue={1000}
@@ -83,13 +85,13 @@ export function WithFormatOptions() {
           unitDisplay: "short",
         }}
       >
-        <Label>Unit (Kilograms)</Label>
+        <Label>{t("Unit (Kilograms)")}</Label>
         <NumberField.Group>
           <NumberField.DecrementButton />
           <NumberField.Input className="w-[120px]" />
           <NumberField.IncrementButton />
         </NumberField.Group>
-        <Description>Unit format with kilograms</Description>
+        <Description>{t("Unit format with kilograms")}</Description>
       </NumberField>
     </div>
   );

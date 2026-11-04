@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Typography} from "@heroui/react";
 
 const scale = [
@@ -65,15 +66,16 @@ const scale = [
 ] as const;
 
 export const TypographyScale = () => {
+  const t = useCopy();
   return (
     <div className="flex w-full flex-col divide-y divide-border">
       {scale.map((row) => (
         <div key={row.label} className="grid grid-cols-1 items-center gap-3 py-5 sm:grid-cols-[160px_1fr] sm:gap-8">
           <div className="flex shrink-0 flex-col gap-0.5">
-            <span className="text-sm font-semibold text-foreground">{row.label}</span>
-            <span className="text-xs whitespace-nowrap text-muted">{row.meta}</span>
+            <span className="text-sm font-semibold text-foreground">{t(row.label)}</span>
+            <span className="text-xs whitespace-nowrap text-muted">{t(row.meta)}</span>
           </div>
-          <Typography type={row.type}>{row.sample}</Typography>
+          <Typography type={row.type}>{t(row.sample)}</Typography>
         </div>
       ))}
     </div>

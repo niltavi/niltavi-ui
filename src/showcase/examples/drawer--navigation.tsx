@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {ComponentType, SVGProps} from "react";
 
 import {Bars, Bell, Envelope, Gear, House, Magnifier, Person} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 
 export function Navigation() {
+  const t = useCopy();
   const navItems: {icon: ComponentType<SVGProps<SVGSVGElement>>; label: string}[] = [
     {icon: House, label: "Home"},
     {icon: Magnifier, label: "Search"},
@@ -18,14 +20,13 @@ export function Navigation() {
     <Drawer>
       <Button variant="secondary">
         <Bars />
-        Menu
-      </Button>
+        {t("Menu")}</Button>
       <Drawer.Backdrop>
         <Drawer.Content placement="left">
           <Drawer.Dialog>
             <Drawer.CloseTrigger />
             <Drawer.Header>
-              <Drawer.Heading>Navigation</Drawer.Heading>
+              <Drawer.Heading>{t("Navigation")}</Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
               <nav className="flex flex-col gap-1">
@@ -36,7 +37,7 @@ export function Navigation() {
                     type="button"
                   >
                     <item.icon className="size-5 text-muted" />
-                    {item.label}
+                    {t(item.label)}
                   </button>
                 ))}
               </nav>

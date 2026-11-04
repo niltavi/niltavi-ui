@@ -1,8 +1,10 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Description, Kbd, Label, SearchField} from "@heroui/react";
 import React from "react";
 
 export function WithKeyboardShortcut() {
+  const t = useCopy();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [value, setValue] = React.useState("");
 
@@ -33,22 +35,22 @@ export function WithKeyboardShortcut() {
     <div className="flex flex-col gap-4">
       <div>
         <SearchField name="search" value={value} onChange={setValue}>
-          <Label>Search</Label>
+          <Label>{t("Search")}</Label>
           <SearchField.Group>
             <SearchField.SearchIcon />
-            <SearchField.Input ref={inputRef} className="w-[280px]" placeholder="Search..." />
+            <SearchField.Input ref={inputRef} className="w-[280px]" placeholder={t("Search...")} />
             <SearchField.ClearButton />
           </SearchField.Group>
-          <Description>Use keyboard shortcut to quickly focus this field</Description>
+          <Description>{t("Use keyboard shortcut to quickly focus this field")}</Description>
         </SearchField>
       </div>
       <div className="text-muted flex items-center gap-2 text-sm">
-        <span>Press</span>
+        <span>{t("Press")}</span>
         <Kbd>
           <Kbd.Abbr keyValue="shift" />
-          <Kbd.Content>S</Kbd.Content>
+          <Kbd.Content>{t("S")}</Kbd.Content>
         </Kbd>
-        <span>to focus the search field</span>
+        <span>{t("to focus the search field")}</span>
       </div>
     </div>
   );

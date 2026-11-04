@@ -1,34 +1,28 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Button, Sheet} from "@heroui/react";
 
 const snapPointValues = ["148px", "355px"];
 
 export function SnapPoints() {
+  const t = useCopy();
   return (
     <Sheet snapPoints={snapPointValues}>
       <Sheet.Trigger>
-        <Button variant="secondary">Snap Points</Button>
+        <Button variant="secondary">{t("Snap Points")}</Button>
       </Sheet.Trigger>
       <Sheet.Backdrop>
         <Sheet.Content>
           <Sheet.Dialog>
             <Sheet.Handle />
             <Sheet.Header>
-              <Sheet.Heading>Snap Points</Sheet.Heading>
+              <Sheet.Heading>{t("Snap Points")}</Sheet.Heading>
             </Sheet.Header>
             <Sheet.Body>
               <div className="flex flex-col gap-4">
                 <p className="text-sm text-muted">
-                  This sheet opens at 148px and snaps again at 355px. Dragging past the last detent
-                  reveals the full sheet, and the backdrop fades in after that point.
-                </p>
-                {Array.from({length: 6}).map((_, i) => (
-                  <p key={i} className="text-sm text-muted">
-                    {i === 0
-                      ? "Swipe up to reveal more content and fade the backdrop in."
-                      : `More content at this level (${i + 1}).`}
-                  </p>
-                ))}
+                  {t("This sheet opens at 148px and snaps again at 355px. Dragging past the last detent reveals the full sheet, and the backdrop fades in after that point.")}</p>
+                {["Dawn by the stream", "A kingfisher at the bridge", "Rest beneath the pines", "Lunch on the ridge", "Home before dusk"].map((stop) => <p key={stop} className="text-sm text-muted">{t(stop)}</p>)}
               </div>
             </Sheet.Body>
           </Sheet.Dialog>

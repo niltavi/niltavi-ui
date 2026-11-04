@@ -1,9 +1,11 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {toast} from "@heroui/react";
 import {Button, Description, Form, InputOTP, Label} from "@heroui/react";
 import React from "react";
 
 export function WithValidation() {
+  const t = useCopy();
   const [value, setValue] = React.useState("");
   const [isInvalid, setIsInvalid] = React.useState(false);
 
@@ -21,7 +23,7 @@ export function WithValidation() {
     setIsInvalid(false);
     setValue("");
 
-    toast.success("Code verified successfully!");
+    toast.success(t("Code verified successfully!"));
   };
 
   const handleChange = (val: string) => {
@@ -32,8 +34,8 @@ export function WithValidation() {
   return (
     <div className="flex w-full max-w-[280px] flex-col gap-2">
       <Form className="flex flex-col gap-2" onSubmit={onSubmit}>
-        <Label>Verify account</Label>
-        <Description>Hint: The code is 123456</Description>
+        <Label>{t("Verify account")}</Label>
+        <Description>{t("Hint: The code is 123456")}</Description>
         <InputOTP
           aria-describedby={isInvalid ? "code-error" : undefined}
           isInvalid={isInvalid}
@@ -55,11 +57,9 @@ export function WithValidation() {
           </InputOTP.Group>
         </InputOTP>
         <span className="field-error" data-visible={isInvalid} id="code-error">
-          Invalid code. Please try again.
-        </span>
+          {t("Invalid code. Please try again.")}</span>
         <Button isDisabled={value.length !== 6} type="submit">
-          Submit
-        </Button>
+          {t("Submit")}</Button>
       </Form>
     </div>
   );

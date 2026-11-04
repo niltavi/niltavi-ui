@@ -1,46 +1,45 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Bell} from "@gravity-ui/icons";
 import {Avatar, Badge} from "@heroui/react";
 
 const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgeWithContent() {
+  const t = useCopy();
   return (
     <div className="flex items-center gap-6">
       <Badge.Anchor>
         <Avatar>
           <Avatar.Image src={AVATAR_URL} />
-          <Avatar.Fallback>JD</Avatar.Fallback>
+          <Avatar.Fallback>{t("JD")}</Avatar.Fallback>
         </Avatar>
         <Badge color="danger" size="sm">
-          5
-        </Badge>
+          {t("5")}</Badge>
       </Badge.Anchor>
 
       <Badge.Anchor>
         <Avatar>
           <Avatar.Image src={AVATAR_URL} />
-          <Avatar.Fallback>JD</Avatar.Fallback>
+          <Avatar.Fallback>{t("JD")}</Avatar.Fallback>
         </Avatar>
         <Badge color="danger" size="sm">
-          New
-        </Badge>
+          {t("New")}</Badge>
       </Badge.Anchor>
 
       <Badge.Anchor>
         <Avatar>
           <Avatar.Image src={AVATAR_URL} />
-          <Avatar.Fallback>JD</Avatar.Fallback>
+          <Avatar.Fallback>{t("JD")}</Avatar.Fallback>
         </Avatar>
         <Badge color="danger" size="sm">
-          99+
-        </Badge>
+          {t("99+")}</Badge>
       </Badge.Anchor>
 
       <Badge.Anchor>
         <Avatar>
           <Avatar.Image src={AVATAR_URL} />
-          <Avatar.Fallback>JD</Avatar.Fallback>
+          <Avatar.Fallback>{t("JD")}</Avatar.Fallback>
         </Avatar>
         <Badge color="accent" size="sm">
           <Bell className="size-2.5" />

@@ -1,8 +1,10 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Pagination} from "@heroui/react";
 import {useState} from "react";
 
 export function PaginationWithEllipsis() {
+  const t = useCopy();
   const [page, setPage] = useState(1);
   const totalPages = 12;
 
@@ -38,7 +40,7 @@ export function PaginationWithEllipsis() {
           <Pagination.Item>
             <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
               <Pagination.PreviousIcon />
-              <span>Previous</span>
+              <span>{t("Previous")}</span>
             </Pagination.Previous>
           </Pagination.Item>
           {getPageNumbers().map((p, i) =>
@@ -49,14 +51,14 @@ export function PaginationWithEllipsis() {
             ) : (
               <Pagination.Item key={p}>
                 <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
-                  {p}
+                  {t(p)}
                 </Pagination.Link>
               </Pagination.Item>
             ),
           )}
           <Pagination.Item>
             <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
-              <span>Next</span>
+              <span>{t("Next")}</span>
               <Pagination.NextIcon />
             </Pagination.Next>
           </Pagination.Item>

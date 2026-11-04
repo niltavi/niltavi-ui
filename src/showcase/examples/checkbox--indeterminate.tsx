@@ -1,8 +1,10 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Checkbox, Description} from "@heroui/react";
 import {useState} from "react";
 
 export function Indeterminate() {
+  const t = useCopy();
   const [isIndeterminate, setIsIndeterminate] = useState(true);
   const [isSelected, setIsSelected] = useState(false);
 
@@ -20,9 +22,8 @@ export function Indeterminate() {
         <Checkbox.Control>
           <Checkbox.Indicator />
         </Checkbox.Control>
-        Select all
-      </Checkbox.Content>
-      <Description>Shows indeterminate state (dash icon)</Description>
+        {t("Select all")}</Checkbox.Content>
+      <Description>{t("Shows indeterminate state (dash icon)")}</Description>
     </Checkbox>
   );
 }

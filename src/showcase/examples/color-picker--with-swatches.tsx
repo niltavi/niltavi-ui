@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {
   ColorArea,
   ColorPicker,
@@ -9,6 +10,7 @@ import {
 } from "@heroui/react";
 
 export function WithSwatches() {
+  const t = useCopy();
   const presets = [
     "#ef4444",
     "#f97316",
@@ -25,11 +27,11 @@ export function WithSwatches() {
     <ColorPicker defaultValue="#F43F5E">
       <ColorPicker.Trigger>
         <ColorSwatch size="lg" />
-        <Label>Brand Color</Label>
+        <Label>{t("Brand Color")}</Label>
       </ColorPicker.Trigger>
       <ColorPicker.Popover>
         <ColorArea
-          aria-label="Color area"
+          aria-label={t("Color area")}
           className="max-w-full"
           colorSpace="hsb"
           xChannel="saturation"
@@ -37,8 +39,8 @@ export function WithSwatches() {
         >
           <ColorArea.Thumb />
         </ColorArea>
-        <ColorSlider aria-label="Hue slider" channel="hue" className="gap-1 px-1" colorSpace="hsb">
-          <Label>Hue</Label>
+        <ColorSlider aria-label={t("Hue slider")} channel="hue" className="gap-1 px-1" colorSpace="hsb">
+          <Label>{t("Hue")}</Label>
           <ColorSlider.Output className="text-muted" />
           <ColorSlider.Track>
             <ColorSlider.Thumb />

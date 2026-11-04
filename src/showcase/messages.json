@@ -1,0 +1,3010 @@
+{
+  "5": [
+    "5",
+    "5"
+  ],
+  "21": [
+    "21",
+    "21"
+  ],
+  "892": [
+    "892",
+    "892"
+  ],
+  "Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase.": [
+    "Bring binoculars, a notebook, and water. Walk a familiar path slowly. Listen first, then look among the leaves.",
+    "带上望远镜、一本手记和饮用水。沿熟悉的小路慢慢走，先听鸟声，再寻找枝叶间的身影。"
+  ],
+  "How do I place an order?": [
+    "What should I bring for my first bird walk?",
+    "第一次观鸟，需要准备什么？"
+  ],
+  "Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes.": [
+    "Of course. Note its colors, shape, call, and surroundings. A careful observation is worth keeping, even before it has a name.",
+    "当然可以。记下羽色、体形、叫声和停留的地方，日后再慢慢辨认。每一次认真观察，都值得留下。"
+  ],
+  "Can I modify or cancel my order?": [
+    "Can I record a bird I cannot identify?",
+    "没认出名字的鸟，也可以记录吗？"
+  ],
+  "General": [
+    "First steps",
+    "初识山野"
+  ],
+  "You can purchase a license directly from our website. Select the license type that fits your needs and proceed to checkout.": [
+    "Start with the time, place, and weather, then add species, counts, and photographs. Read it again at dusk; small details often return.",
+    "把时间、地点与天气写在页首，再补上鸟种、数量和照片。黄昏时翻一遍，遗漏的细节往往会自己浮现。"
+  ],
+  "How do I purchase a license?": [
+    "How do I organize a day of observations?",
+    "怎样整理一天的观察？"
+  ],
+  "A standard license is for personal use or small projects, while a pro license includes commercial use rights and priority support.": [
+    "Credit the photographer and keep sensitive nest locations private. Share the wonder while leaving the woods a little quiet.",
+    "保留拍摄者署名，分享敏感鸟种时隐去巢址。让更多人看见自然，也为林间的小生命留一份安静。"
+  ],
+  "What is the difference between a standard and a pro license?": [
+    "What should I check before sharing photographs?",
+    "分享照片前，需要留意什么？"
+  ],
+  "Licensing": [
+    "Notes and sharing",
+    "记录与分享"
+  ],
+  "You can reach our support team through the contact form on our website, or email us directly at support@example.com.": [
+    "Share the notebook with a walking companion. Your morning and their evening can give the same day a fuller story.",
+    "可以把手记分享给同行的朋友。你记下的清晨，他补上的晚霞，会让同一天有更完整的模样。"
+  ],
+  "How do I get support?": [
+    "Can friends write in the same notebook?",
+    "能和朋友一起写手记吗？"
+  ],
+  "Support": [
+    "Walking together",
+    "同行之间"
+  ],
+  "Frequently Asked Questions": [
+    "A field guide",
+    "山野小问"
+  ],
+  "Everything you need to know about licensing and usage.": [
+    "A few notes on setting out, observing, and sharing.",
+    "关于出发、记录与分享的几件小事。"
+  ],
+  "Getting Started": [
+    "Before setting out",
+    "出发之前"
+  ],
+  "Learn the basics of HeroUI and how to integrate it into your React project. This section covers installation, setup, and your first component.": [
+    "The morning path is still wet with dew. Pack a map, adjust your binoculars, and leave a page open for today.",
+    "清晨的山路还带着露水。收好地图，调好望远镜，给今天留一页空白。"
+  ],
+  "Core Concepts": [
+    "Look closely",
+    "留心观察"
+  ],
+  "Understand the fundamental concepts behind HeroUI, including the compound component pattern, styling with Tailwind CSS, and accessibility features.": [
+    "Take your time with the name. First notice the wings, the tail, and the call threading through the breeze.",
+    "不急着寻找名字。先看翅膀的形状、尾羽的长短，再听它怎样穿过风声。"
+  ],
+  "Advanced Usage": [
+    "Follow the sound",
+    "循声而行"
+  ],
+  "Explore advanced features like custom variants, theme customization, and integration with other libraries in your React ecosystem.": [
+    "A short call comes from the canopy. Look up along the sound; a small silhouette catches the morning light.",
+    "树冠里传来一声短鸣。沿着声音抬头，枝梢上的小小身影正好迎着晨光。"
+  ],
+  "Best Practices": [
+    "Pass gently",
+    "轻轻经过"
+  ],
+  "Follow our recommended best practices for building performant, accessible, and maintainable applications with HeroUI components.": [
+    "Stay on the path and give nests plenty of space. Leave the woods as quiet as you found them.",
+    "沿现有步道行走，与鸟巢保持距离。离开时，林间仍和来时一样安静。"
+  ],
+  "New features available": [
+    "New features available",
+    "林间有新消息"
+  ],
+  "Check out our latest updates including dark mode support and improved accessibility features.": [
+    "Check out our latest updates including dark mode support and improved accessibility features.",
+    "这一季的观察已经整理好，翻开手记看看。"
+  ],
+  "Update available": [
+    "Update available",
+    "手记有更新"
+  ],
+  "A new version of the application is available. Please refresh to get the latest features and bug fixes.": [
+    "A new version of the application is available. Please refresh to get the latest features and bug fixes.",
+    "同行的朋友补上了新的记录，刷新后查看。"
+  ],
+  "Refresh": [
+    "Refresh",
+    "刷新"
+  ],
+  "Unable to connect to server": [
+    "Unable to connect to server",
+    "暂时无法连接"
+  ],
+  "We're experiencing connection issues. Please try the following:": [
+    "We're experiencing connection issues. Please try the following:",
+    "连接暂时中断，可以试试："
+  ],
+  "Check your internet connection": [
+    "Check your internet connection",
+    "检查网络连接"
+  ],
+  "Refresh the page": [
+    "Refresh the page",
+    "刷新页面"
+  ],
+  "Clear your browser cache": [
+    "Clear your browser cache",
+    "清理浏览器缓存"
+  ],
+  "Retry": [
+    "Retry",
+    "重试"
+  ],
+  "Profile updated successfully": [
+    "Profile updated successfully",
+    "个人资料已保存"
+  ],
+  "Processing your request": [
+    "Processing your request",
+    "正在整理记录"
+  ],
+  "Please wait while we sync your data. This may take a few moments.": [
+    "Please wait while we sync your data. This may take a few moments.",
+    "正在同步今天的观察，请稍等片刻。"
+  ],
+  "Scheduled maintenance": [
+    "Scheduled maintenance",
+    "手记暂歇"
+  ],
+  "Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for scheduled maintenance.": [
+    "Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for scheduled maintenance.",
+    "今晚整理书架，手记会暂时合上。明早再来，山野仍在。"
+  ],
+  "California": [
+    "California",
+    "加利福尼亚"
+  ],
+  "Texas": [
+    "Texas",
+    "得克萨斯"
+  ],
+  "Florida": [
+    "Florida",
+    "佛罗里达"
+  ],
+  "New York": [
+    "New York",
+    "纽约"
+  ],
+  "Illinois": [
+    "Illinois",
+    "伊利诺伊"
+  ],
+  "Pennsylvania": [
+    "Pennsylvania",
+    "宾夕法尼亚"
+  ],
+  "Select states": [
+    "Select states",
+    "选择地区"
+  ],
+  "States": [
+    "States",
+    "地区"
+  ],
+  "Search states": [
+    "Search states",
+    "搜索地区"
+  ],
+  "Search states...": [
+    "Search states...",
+    "搜索地区…"
+  ],
+  "No results found": [
+    "No results found",
+    "没有找到结果"
+  ],
+  "Selected:": [
+    "Selected:",
+    "已选择："
+  ],
+  "Select a country": [
+    "Select a country",
+    "选择国家"
+  ],
+  "Country": [
+    "Country",
+    "国家"
+  ],
+  "Search countries": [
+    "Search countries",
+    "搜索国家"
+  ],
+  "Search countries...": [
+    "Search countries...",
+    "搜索国家…"
+  ],
+  "North America": [
+    "North America",
+    "北美洲"
+  ],
+  "United States": [
+    "United States",
+    "美国"
+  ],
+  "Canada": [
+    "Canada",
+    "加拿大"
+  ],
+  "Mexico": [
+    "Mexico",
+    "墨西哥"
+  ],
+  "Europe": [
+    "Europe",
+    "欧洲"
+  ],
+  "United Kingdom": [
+    "United Kingdom",
+    "英国"
+  ],
+  "France": [
+    "France",
+    "法国"
+  ],
+  "Germany": [
+    "Germany",
+    "德国"
+  ],
+  "Spain": [
+    "Spain",
+    "西班牙"
+  ],
+  "Italy": [
+    "Italy",
+    "意大利"
+  ],
+  "Asia": [
+    "Asia",
+    "亚洲"
+  ],
+  "Japan": [
+    "Japan",
+    "日本"
+  ],
+  "China": [
+    "China",
+    "中国"
+  ],
+  "India": [
+    "India",
+    "印度"
+  ],
+  "South Korea": [
+    "South Korea",
+    "韩国"
+  ],
+  "DF": [
+    "DF",
+    "DF"
+  ],
+  "AC": [
+    "AC",
+    "AC"
+  ],
+  "SC": [
+    "SC",
+    "SC"
+  ],
+  "WR": [
+    "WR",
+    "WR"
+  ],
+  "DG": [
+    "DG",
+    "DG"
+  ],
+  "JD": [
+    "JD",
+    "JD"
+  ],
+  "Delayed Avatar": [
+    "Delayed Avatar",
+    "稍后载入头像"
+  ],
+  "NA": [
+    "NA",
+    "NA"
+  ],
+  "GB": [
+    "GB",
+    "GB"
+  ],
+  "John Doe": [
+    "John Doe",
+    "林间客"
+  ],
+  "Kate Wilson": [
+    "Kate Wilson",
+    "听溪"
+  ],
+  "Emily Chen": [
+    "Emily Chen",
+    "青禾"
+  ],
+  "Michael Brown": [
+    "Michael Brown",
+    "远山"
+  ],
+  "Olivia Davis": [
+    "Olivia Davis",
+    "知秋"
+  ],
+  "+": [
+    "+",
+    "+"
+  ],
+  "New": [
+    "New",
+    "新"
+  ],
+  "99+": [
+    "99+",
+    "99+"
+  ],
+  "Home": [
+    "Home",
+    "首页"
+  ],
+  "Products": [
+    "Products",
+    "山野"
+  ],
+  "Electronics": [
+    "Electronics",
+    "林间"
+  ],
+  "Laptop": [
+    "Laptop",
+    "晨间手记"
+  ],
+  "Category": [
+    "Category",
+    "分类"
+  ],
+  "Current Page": [
+    "Current Page",
+    "当前页"
+  ],
+  "Primary": [
+    "Primary",
+    "主要按钮"
+  ],
+  "Secondary": [
+    "Secondary",
+    "次要按钮"
+  ],
+  "Tertiary": [
+    "Tertiary",
+    "三级按钮"
+  ],
+  "Outline": [
+    "Outline",
+    "描边按钮"
+  ],
+  "Ghost": [
+    "Ghost",
+    "轻触按钮"
+  ],
+  "Danger": [
+    "Danger",
+    "删除记录"
+  ],
+  "Danger Soft": [
+    "Danger Soft",
+    "移出手记"
+  ],
+  "上传照片": [
+    "Upload photos",
+    "上传照片"
+  ],
+  "Horizontal": [
+    "Horizontal",
+    "横向"
+  ],
+  "Align left": [
+    "Align left",
+    "左对齐"
+  ],
+  "Align center": [
+    "Align center",
+    "居中"
+  ],
+  "Align right": [
+    "Align right",
+    "右对齐"
+  ],
+  "Justify": [
+    "Justify",
+    "两端对齐"
+  ],
+  "Vertical": [
+    "Vertical",
+    "纵向"
+  ],
+  "With icons": [
+    "With icons",
+    "带图标"
+  ],
+  "Search": [
+    "Search",
+    "搜索"
+  ],
+  "Add": [
+    "Add",
+    "添加"
+  ],
+  "Delete": [
+    "Delete",
+    "删除"
+  ],
+  "Icon only buttons": [
+    "Icon only buttons",
+    "纯图标按钮"
+  ],
+  "Trip dates": [
+    "Trip dates",
+    "出行日期"
+  ],
+  "Event date": [
+    "Event date",
+    "活动日期"
+  ],
+  "Cherries": [
+    "Cherries",
+    "枝头的樱桃"
+  ],
+  "Become an ACME Creator!": [
+    "Keep a field notebook",
+    "一起记录山野"
+  ],
+  "Lorem ipsum dolor sit amet consectetur. Sed arcu donec id aliquam dolor sed amet faucibus etiam.": [
+    "Morning birdsong and afternoon shadows are worth a page. Share what you notice with a fellow wanderer.",
+    "清晨的鸟鸣、午后的树影，都可以成为一页手记。把你看见的自然，分享给同行的人。"
+  ],
+  "Close banner": [
+    "Close banner",
+    "关闭邀请"
+  ],
+  "Only 10 spots": [
+    "Only 10 spots",
+    "还可加入 10 人"
+  ],
+  "Submission ends Oct 10.": [
+    "Submission ends Oct 10.",
+    "报名截至 10 月 10 日。"
+  ],
+  "Apply Now": [
+    "Join the walk",
+    "报名同行"
+  ],
+  "Form submitted successfully!": [
+    "Form submitted successfully!",
+    "记录已收好"
+  ],
+  "Login": [
+    "Return to your notebook",
+    "回到手记"
+  ],
+  "Enter your credentials to access your account": [
+    "Sign in and continue today’s observations.",
+    "登录后，接着写下今天的见闻。"
+  ],
+  "Email": [
+    "Email",
+    "邮箱"
+  ],
+  "email@example.com": [
+    "email@example.com",
+    "email@example.com"
+  ],
+  "Password": [
+    "Password",
+    "密码"
+  ],
+  "••••••••": [
+    "••••••••",
+    "••••••••"
+  ],
+  "Sign In": [
+    "Sign In",
+    "登录"
+  ],
+  "Forgot password?": [
+    "Forgot password?",
+    "忘记密码？"
+  ],
+  "Select all": [
+    "Select all",
+    "全选"
+  ],
+  "Shows indeterminate state (dash icon)": [
+    "Shows indeterminate state (dash icon)",
+    "已有部分记录被选中"
+  ],
+  "Email notifications": [
+    "Email notifications",
+    "邮件通知"
+  ],
+  "Get notified when someone mentions you in a comment": [
+    "Get notified when someone mentions you in a comment",
+    "有人在手记中提到你时，发一封邮件。"
+  ],
+  "Receive updates via email": [
+    "Receive updates via email",
+    "把新消息寄到邮箱"
+  ],
+  "Email Notifications": [
+    "Email Notifications",
+    "邮件通知"
+  ],
+  "Get instant SMS notifications": [
+    "Get instant SMS notifications",
+    "重要消息及时送达"
+  ],
+  "SMS Alerts": [
+    "SMS Alerts",
+    "短信提醒"
+  ],
+  "Browser and mobile push alerts": [
+    "Browser and mobile push alerts",
+    "在浏览器与手机上接收提醒"
+  ],
+  "Push Notifications": [
+    "Push Notifications",
+    "推送通知"
+  ],
+  "Notification preferences": [
+    "Notification preferences",
+    "消息偏好"
+  ],
+  "Choose how you want to receive updates": [
+    "Choose how you want to receive updates",
+    "选择林间来信的送达方式"
+  ],
+  "Preferences": [
+    "Preferences",
+    "通知方式"
+  ],
+  "SMS notifications": [
+    "SMS notifications",
+    "短信通知"
+  ],
+  "Push notifications": [
+    "Push notifications",
+    "推送通知"
+  ],
+  "Please select at least one notification method.": [
+    "Please select at least one notification method.",
+    "请选择至少一种通知方式。"
+  ],
+  "Submit": [
+    "Submit",
+    "提交"
+  ],
+  "Default": [
+    "Default",
+    "默认"
+  ],
+  "Active": [
+    "Active",
+    "已记录"
+  ],
+  "Pending": [
+    "Pending",
+    "待确认"
+  ],
+  "Inactive": [
+    "Inactive",
+    "已归档"
+  ],
+  "New Feature": [
+    "New Feature",
+    "新发现"
+  ],
+  "Available": [
+    "Available",
+    "可查看"
+  ],
+  "Beta": [
+    "Beta",
+    "初见"
+  ],
+  "Deprecated": [
+    "Deprecated",
+    "旧记录"
+  ],
+  "新物种 +2": [
+    "New species +2",
+    "新物种 +2"
+  ],
+  "迁徙季": [
+    "Migration season",
+    "迁徙季"
+  ],
+  "Information": [
+    "Information",
+    "提示"
+  ],
+  "Completed": [
+    "Completed",
+    "已完成"
+  ],
+  "Failed": [
+    "Failed",
+    "未完成"
+  ],
+  "Label": [
+    "Label",
+    "标签"
+  ],
+  "Current color:": [
+    "Current color:",
+    "当前颜色："
+  ],
+  "RGB": [
+    "RGB",
+    "RGB"
+  ],
+  "HSL": [
+    "HSL",
+    "HSL"
+  ],
+  "HSB": [
+    "HSB",
+    "HSB"
+  ],
+  "Hue": [
+    "Hue",
+    "色相"
+  ],
+  "Saturation": [
+    "Saturation",
+    "饱和度"
+  ],
+  "Brightness": [
+    "Brightness",
+    "亮度"
+  ],
+  "Lightness": [
+    "Lightness",
+    "明度"
+  ],
+  "Red": [
+    "Red",
+    "红"
+  ],
+  "Green": [
+    "Green",
+    "绿"
+  ],
+  "Blue": [
+    "Blue",
+    "蓝"
+  ],
+  "Color Space": [
+    "Color Space",
+    "色彩空间"
+  ],
+  "X Axis": [
+    "X Axis",
+    "横轴"
+  ],
+  "Y Axis": [
+    "Y Axis",
+    "纵轴"
+  ],
+  "Edit individual HSL channels:": [
+    "Edit individual HSL channels:",
+    "分别调整 HSL 通道"
+  ],
+  "%": [
+    "%",
+    "%"
+  ],
+  "Current:": [
+    "Current:",
+    "当前："
+  ],
+  "Brand Color": [
+    "Brand Color",
+    "手记颜色"
+  ],
+  "#000000": [
+    "#000000",
+    "#000000"
+  ],
+  "Choose your brand's primary color": [
+    "Choose your brand's primary color",
+    "选一抹喜欢的颜色，留给这本手记。"
+  ],
+  "Pick a color": [
+    "Pick a color",
+    "选择颜色"
+  ],
+  "Color space": [
+    "Color space",
+    "色彩空间"
+  ],
+  "Color area": [
+    "Color area",
+    "颜色区域"
+  ],
+  "Hue slider": [
+    "Hue slider",
+    "色相滑块"
+  ],
+  "Alpha": [
+    "Alpha",
+    "透明度"
+  ],
+  "Circle (default)": [
+    "Circle (default)",
+    "圆形（默认）"
+  ],
+  "Square": [
+    "Square",
+    "方形"
+  ],
+  "Favorite Animals": [
+    "Favorite Animals",
+    "喜欢的动物"
+  ],
+  "Search animals...": [
+    "Search animals...",
+    "搜索动物…"
+  ],
+  "No animals selected": [
+    "No animals selected",
+    "尚未选择动物"
+  ],
+  "Aardvark": [
+    "Aardvark",
+    "土豚"
+  ],
+  "Cat": [
+    "Cat",
+    "猫"
+  ],
+  "Dog": [
+    "Dog",
+    "狗"
+  ],
+  "Kangaroo": [
+    "Kangaroo",
+    "袋鼠"
+  ],
+  "Panda": [
+    "Panda",
+    "熊猫"
+  ],
+  "Snake": [
+    "Snake",
+    "蛇"
+  ],
+  "Day": [
+    "Day",
+    "日"
+  ],
+  "Hour": [
+    "Hour",
+    "时"
+  ],
+  "Minute": [
+    "Minute",
+    "分"
+  ],
+  "Second": [
+    "Second",
+    "秒"
+  ],
+  "Appointment Date": [
+    "Appointment Date",
+    "出发日期"
+  ],
+  "Granularity": [
+    "Granularity",
+    "时间精度"
+  ],
+  "Granularity information": [
+    "Granularity information",
+    "时间精度说明"
+  ],
+  "Determines the smallest unit displayed in the date picker. By default, this is \"day\" for dates, and \"minute\" for times.": [
+    "Determines the smallest unit displayed in the date picker. By default, this is \"day\" for dates, and \"minute\" for times.",
+    "决定日期控件显示的最小单位。日期默认精确到天，时间默认精确到分钟。"
+  ],
+  "Select granularity": [
+    "Select granularity",
+    "选择时间精度"
+  ],
+  "Date": [
+    "Date",
+    "日期"
+  ],
+  "Date must be today or in the future": [
+    "Date must be today or in the future",
+    "请选择今天或之后的日期"
+  ],
+  "Enter a date from today onwards": [
+    "Enter a date from today onwards",
+    "从今天起，选一个出发的日子。"
+  ],
+  "Appointment date": [
+    "Appointment date",
+    "出发日期"
+  ],
+  "Date must be today or in the future.": [
+    "Date must be today or in the future.",
+    "请选择今天或之后的日期。"
+  ],
+  "Choose a valid appointment date.": [
+    "Choose a valid appointment date.",
+    "请选择有效的出发日期。"
+  ],
+  "Please choose a valid range in the future.": [
+    "Please choose a valid range in the future.",
+    "请选择有效的未来日期范围。"
+  ],
+  "Select your check-in and check-out dates.": [
+    "Select your check-in and check-out dates.",
+    "选好出发和归来的日子。"
+  ],
+  "Booking period": [
+    "Booking period",
+    "行程日期"
+  ],
+  "Select a valid range starting today or later.": [
+    "Select a valid range starting today or later.",
+    "请选择从今天或之后开始的有效日期范围。"
+  ],
+  "Preview HeroUI Native": [
+    "Preview HeroUI Native",
+    "预览 HeroUI Native"
+  ],
+  "Scan this QR code with your camera app to preview the HeroUI native components.": [
+    "Scan this QR code with your camera app to preview the HeroUI native components.",
+    "用相机扫描二维码，预览 HeroUI 原生组件。"
+  ],
+  "Expo Go QR Code": [
+    "Expo Go QR Code",
+    "移动端预览二维码"
+  ],
+  "Expo must be installed on your device.": [
+    "Expo must be installed on your device.",
+    "请先安装 Expo Go。"
+  ],
+  "Download on App Store": [
+    "Download on App Store",
+    "前往 App Store"
+  ],
+  "Preview on Expo Go": [
+    "Preview on Expo Go",
+    "打开移动端预览"
+  ],
+  "Download HeroUI Native": [
+    "Download HeroUI Native",
+    "下载 HeroUI Native"
+  ],
+  "Download App": [
+    "Download App",
+    "下载应用"
+  ],
+  "Download the HeroUI native app to explore our mobile components directly on your device.": [
+    "Download the HeroUI native app to explore our mobile components directly on your device.",
+    "下载 HeroUI Native，在手机上查看组件效果。"
+  ],
+  "App Store QR Code": [
+    "App Store QR Code",
+    "应用下载二维码"
+  ],
+  "Available on iOS and Android devices.": [
+    "Available on iOS and Android devices.",
+    "支持 iOS 和 Android。"
+  ],
+  "HeroUI Native": [
+    "HeroUI Native",
+    "HeroUI Native"
+  ],
+  "Previous disclosure": [
+    "Previous disclosure",
+    "上一项"
+  ],
+  "Next disclosure": [
+    "Next disclosure",
+    "下一项"
+  ],
+  "Notifications": [
+    "Notifications",
+    "通知"
+  ],
+  "Messages": [
+    "Messages",
+    "来信"
+  ],
+  "Profile": [
+    "Profile",
+    "个人资料"
+  ],
+  "Settings": [
+    "Settings",
+    "设置"
+  ],
+  "Menu": [
+    "Menu",
+    "菜单"
+  ],
+  "Navigation": [
+    "Navigation",
+    "导航"
+  ],
+  "Edit Profile": [
+    "Edit Profile",
+    "编辑资料"
+  ],
+  "Name": [
+    "Name",
+    "名字"
+  ],
+  "Enter your name": [
+    "Enter your name",
+    "你希望如何被称呼"
+  ],
+  "Enter your email": [
+    "Enter your email",
+    "用于接收回信的邮箱"
+  ],
+  "Bio": [
+    "Bio",
+    "个人简介"
+  ],
+  "Tell us about yourself": [
+    "A little about you and the outdoors",
+    "写一点你与自然的故事"
+  ],
+  "Cancel": [
+    "Cancel",
+    "取消"
+  ],
+  "Save Changes": [
+    "Save Changes",
+    "保存修改"
+  ],
+  "Actions": [
+    "Actions",
+    "操作"
+  ],
+  "N": [
+    "N",
+    "N"
+  ],
+  "Open": [
+    "Open",
+    "打开"
+  ],
+  "O": [
+    "O",
+    "O"
+  ],
+  "Save": [
+    "Save",
+    "保存"
+  ],
+  "S": [
+    "S",
+    "S"
+  ],
+  "D": [
+    "D",
+    "D"
+  ],
+  "Share": [
+    "Share",
+    "分享"
+  ],
+  "Copy Link": [
+    "Copy Link",
+    "复制链接"
+  ],
+  "Facebook": [
+    "Facebook",
+    "Facebook"
+  ],
+  "X / Twitter": [
+    "X / Twitter",
+    "X / Twitter"
+  ],
+  "Other": [
+    "Other",
+    "其他"
+  ],
+  "WhatsApp": [
+    "WhatsApp",
+    "WhatsApp"
+  ],
+  "Telegram": [
+    "Telegram",
+    "Telegram"
+  ],
+  "Discord": [
+    "Discord",
+    "Discord"
+  ],
+  "Work email": [
+    "Work email",
+    "工作邮箱"
+  ],
+  "Personal email": [
+    "Personal email",
+    "个人邮箱"
+  ],
+  "Profile Settings": [
+    "Profile Settings",
+    "个人资料"
+  ],
+  "Update your profile information.": [
+    "Update your profile information.",
+    "让同行的人认识你。"
+  ],
+  "Name must be at least 3 characters": [
+    "Name must be at least 3 characters",
+    "名字至少需要 3 个字符"
+  ],
+  "john@example.com": [
+    "john@example.com",
+    "john@example.com"
+  ],
+  "Bio must be at least 10 characters": [
+    "Bio must be at least 10 characters",
+    "简介至少需要 10 个字符"
+  ],
+  "Tell us about yourself...": [
+    "A little about you and the outdoors…",
+    "写一点你与自然的故事…"
+  ],
+  "Minimum 10 characters": [
+    "Minimum 10 characters",
+    "至少 10 个字符"
+  ],
+  "Save changes": [
+    "Save changes",
+    "保存修改"
+  ],
+  "Please enter a valid email address": [
+    "Please enter a valid email address",
+    "请输入有效的邮箱地址"
+  ],
+  "Password must be at least 8 characters": [
+    "Password must be at least 8 characters",
+    "密码至少需要 8 个字符"
+  ],
+  "Password must contain at least one uppercase letter": [
+    "Password must contain at least one uppercase letter",
+    "密码需要包含至少一个大写字母"
+  ],
+  "Password must contain at least one number": [
+    "Password must contain at least one number",
+    "密码需要包含至少一个数字"
+  ],
+  "Enter your password": [
+    "Enter your password",
+    "输入密码"
+  ],
+  "Must be at least 8 characters with 1 uppercase and 1 number": [
+    "Must be at least 8 characters with 1 uppercase and 1 number",
+    "至少 8 个字符，包含大写字母和数字"
+  ],
+  "Reset": [
+    "Reset",
+    "重置"
+  ],
+  "Website": [
+    "Website",
+    "网站"
+  ],
+  "Copy": [
+    "Copy",
+    "复制"
+  ],
+  "Verify account": [
+    "Verify account",
+    "验证账号"
+  ],
+  "Verifying...": [
+    "Verifying...",
+    "正在验证…"
+  ],
+  "Code verified successfully!": [
+    "Code verified successfully!",
+    "验证通过"
+  ],
+  "Hint: The code is 123456": [
+    "Hint: The code is 123456",
+    "本次验证码为 123456"
+  ],
+  "Invalid code. Please try again.": [
+    "Invalid code. Please try again.",
+    "验证码不正确，请重试。"
+  ],
+  "Icon at end (default)": [
+    "Icon at end (default)",
+    "图标在末尾（默认）"
+  ],
+  "Icon at start": [
+    "Icon at start",
+    "图标在开头"
+  ],
+  "Default hover underline": [
+    "Default hover underline",
+    "悬停时显示下划线"
+  ],
+  "Hover to see the underline": [
+    "Follow the sound of the stream",
+    "循着溪声去看看"
+  ],
+  "Always visible underline": [
+    "Always visible underline",
+    "始终显示下划线"
+  ],
+  "Underline always visible": [
+    "Open the field notebook",
+    "翻开山野手记"
+  ],
+  "No underline": [
+    "No underline",
+    "无下划线"
+  ],
+  "Link without any underline": [
+    "Step into the woods",
+    "走进林间"
+  ],
+  "Changing the underline offset": [
+    "Changing the underline offset",
+    "调整下划线间距"
+  ],
+  "Offset 1 (1px space)": [
+    "Offset 1 (1px space)",
+    "间距 1 像素"
+  ],
+  "Offset 2 (2px space)": [
+    "Offset 2 (2px space)",
+    "间距 2 像素"
+  ],
+  "Offset 3 (3px space)": [
+    "Offset 3 (3px space)",
+    "间距 3 像素"
+  ],
+  "Offset 4 (4px space)": [
+    "Offset 4 (4px space)",
+    "间距 4 像素"
+  ],
+  "Users": [
+    "Users",
+    "同行的人"
+  ],
+  "Bob": [
+    "Bob",
+    "听风"
+  ],
+  "B": [
+    "B",
+    "B"
+  ],
+  "bob@heroui.com": [
+    "bob@heroui.com",
+    "bob@heroui.com"
+  ],
+  "Fred": [
+    "Fred",
+    "寻溪"
+  ],
+  "F": [
+    "F",
+    "F"
+  ],
+  "fred@heroui.com": [
+    "fred@heroui.com",
+    "fred@heroui.com"
+  ],
+  "Martha": [
+    "Martha",
+    "见山"
+  ],
+  "M": [
+    "M",
+    "M"
+  ],
+  "martha@heroui.com": [
+    "martha@heroui.com",
+    "martha@heroui.com"
+  ],
+  "File actions": [
+    "File actions",
+    "手记操作"
+  ],
+  "New file": [
+    "New file",
+    "新建手记"
+  ],
+  "Create a new file": [
+    "Create a new file",
+    "给今天留一页空白"
+  ],
+  "Edit file": [
+    "Edit file",
+    "编辑手记"
+  ],
+  "Make changes": [
+    "Make changes",
+    "补上沿途的见闻"
+  ],
+  "E": [
+    "E",
+    "E"
+  ],
+  "Danger zone": [
+    "Danger zone",
+    "删除操作"
+  ],
+  "Delete file": [
+    "Delete file",
+    "删除手记"
+  ],
+  "Move to trash": [
+    "Move to trash",
+    "移入废纸篓"
+  ],
+  "Accent": [
+    "Accent",
+    "强调色"
+  ],
+  "Success": [
+    "Success",
+    "成功"
+  ],
+  "Warning": [
+    "Warning",
+    "提醒"
+  ],
+  "Revenue": [
+    "Revenue",
+    "本季记录"
+  ],
+  "Inside": [
+    "Inside",
+    "内部滚动"
+  ],
+  "Outside": [
+    "Outside",
+    "外部滚动"
+  ],
+  "Open Modal (": [
+    "Open Modal (",
+    "打开长篇手记（"
+  ],
+  ")": [
+    ")",
+    ")"
+  ],
+  "Scroll:": [
+    "Scroll:",
+    "滚动方式："
+  ],
+  "Compare scroll behaviors - inside keeps content scrollable within the modal, outside allows page scrolling": [
+    "Compare scroll behaviors - inside keeps content scrollable within the modal, outside allows page scrolling",
+    "选择让正文在窗口内滚动，或让整个窗口随页面滚动。"
+  ],
+  "Paragraph": [
+    "Paragraph",
+    "手记"
+  ],
+  ": Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor quam.": [
+    ": At a bend in the path, a bird settles on a branch. It shakes the dew from its feathers, then disappears into the green.",
+    "：山路拐弯的地方，一只小鸟落在枝头。它停了片刻，抖去羽毛上的露水，又飞进更深的绿意里。"
+  ],
+  "Confirm": [
+    "Confirm",
+    "确认"
+  ],
+  "Open Contact Form": [
+    "Write a letter",
+    "寄一封信"
+  ],
+  "Contact Us": [
+    "To a fellow wanderer",
+    "写给同行的人"
+  ],
+  "Fill out the form below and we'll get back to you. The modal adapts automatically when the keyboard appears on mobile.": [
+    "Leave a few words and an address for a reply.",
+    "把想说的话写下来，也请留下回信的地址。"
+  ],
+  "Phone": [
+    "Phone",
+    "电话"
+  ],
+  "Enter your phone number": [
+    "Enter your phone number",
+    "填写联系电话"
+  ],
+  "Company": [
+    "Walking group",
+    "同行小组"
+  ],
+  "Enter your company name": [
+    "Your walking group",
+    "你所在的小组"
+  ],
+  "Message": [
+    "Message",
+    "来信内容"
+  ],
+  "Enter your message": [
+    "What did you find in the woods today?",
+    "今天在林间遇见了什么"
+  ],
+  "Send Message": [
+    "Send Message",
+    "寄出"
+  ],
+  "Quantity": [
+    "Quantity",
+    "数量"
+  ],
+  "Quantity must be greater than or equal to 0": [
+    "Quantity must be greater than or equal to 0",
+    "数量不能小于 0"
+  ],
+  "Percentage": [
+    "Percentage",
+    "百分比"
+  ],
+  "Percentage must be between 0 and 100": [
+    "Percentage must be between 0 and 100",
+    "百分比应在 0 到 100 之间"
+  ],
+  "Currency (EUR - Accounting)": [
+    "Currency (EUR - Accounting)",
+    "欧元（会计格式）"
+  ],
+  "Accounting format with EUR currency": [
+    "Accounting format with EUR currency",
+    "使用欧元的会计格式"
+  ],
+  "Currency (USD)": [
+    "Currency (USD)",
+    "美元"
+  ],
+  "Standard USD currency format": [
+    "Standard USD currency format",
+    "标准美元格式"
+  ],
+  "Percentage format (0-1, where 0.5 = 50%)": [
+    "Percentage format (0-1, where 0.5 = 50%)",
+    "数值范围 0–1，0.5 表示 50%"
+  ],
+  "Decimal (2 decimal places)": [
+    "Decimal (2 decimal places)",
+    "小数（保留两位）"
+  ],
+  "Decimal format with 2 decimal places": [
+    "Decimal format with 2 decimal places",
+    "保留两位小数"
+  ],
+  "Unit (Kilograms)": [
+    "Unit (Kilograms)",
+    "重量（千克）"
+  ],
+  "Unit format with kilograms": [
+    "Unit format with kilograms",
+    "以千克为单位"
+  ],
+  "Previous": [
+    "Previous",
+    "上一页"
+  ],
+  "Next": [
+    "Next",
+    "下一页"
+  ],
+  "Showing": [
+    "Showing",
+    "当前"
+  ],
+  "-": [
+    "-",
+    "-"
+  ],
+  "of": [
+    "of",
+    "共"
+  ],
+  "results": [
+    "results",
+    "条记录"
+  ],
+  "Previous page": [
+    "Previous page",
+    "上一页"
+  ],
+  "Next page": [
+    "Next page",
+    "下一页"
+  ],
+  "User profile": [
+    "User profile",
+    "个人资料"
+  ],
+  "Sarah Johnson": [
+    "Sarah Johnson",
+    "林间客"
+  ],
+  "SJ": [
+    "SJ",
+    "SJ"
+  ],
+  "@sarahj": [
+    "@sarahj",
+    "@sarahj"
+  ],
+  "Product designer and creative director. Building beautiful experiences that matter.": [
+    "Product designer and creative director. Building beautiful experiences that matter.",
+    "喜欢沿溪慢行，收集鸟鸣和叶子的名字。"
+  ],
+  "Following": [
+    "Following",
+    "关注"
+  ],
+  "12.5K": [
+    "12.5K",
+    "12.5K"
+  ],
+  "Followers": [
+    "Followers",
+    "同行者"
+  ],
+  "With Arrow": [
+    "With Arrow",
+    "带箭头"
+  ],
+  "Popover with Arrow": [
+    "Popover with Arrow",
+    "林间消息"
+  ],
+  "The arrow shows which element triggered the popover.": [
+    "The arrow shows which element triggered the popover.",
+    "枝头有了动静，抬头看看。"
+  ],
+  "More options": [
+    "More options",
+    "更多选项"
+  ],
+  "Loading": [
+    "Loading",
+    "载入中"
+  ],
+  "Loading...": [
+    "Loading...",
+    "载入中…"
+  ],
+  "75% Complete": [
+    "75% Complete",
+    "已完成 75%"
+  ],
+  "4-10 business days": [
+    "4-10 business days",
+    "4–10 个工作日"
+  ],
+  "Standard": [
+    "Standard",
+    "平邮"
+  ],
+  "2-5 business days": [
+    "2-5 business days",
+    "2–5 个工作日"
+  ],
+  "Express": [
+    "Express",
+    "快递"
+  ],
+  "1 business day": [
+    "1 business day",
+    "1 个工作日"
+  ],
+  "Super Fast": [
+    "Super Fast",
+    "次日送达"
+  ],
+  "Exp. on 01/2026": [
+    "Exp. on 01/2026",
+    "有效期至 2026 年 1 月"
+  ],
+  "Pay with PayPal": [
+    "Pay with PayPal",
+    "使用 PayPal 支付"
+  ],
+  "PayPal": [
+    "PayPal",
+    "PayPal"
+  ],
+  "Delivery method": [
+    "Delivery method",
+    "手记寄送方式"
+  ],
+  "Payment method": [
+    "Payment method",
+    "支付方式"
+  ],
+  "Subscription plan": [
+    "Subscription plan",
+    "同行计划"
+  ],
+  "Starter": [
+    "Starter",
+    "初见"
+  ],
+  "For side projects and small teams": [
+    "For side projects and small teams",
+    "从一本手记开始，慢慢认识山野。"
+  ],
+  "Pro": [
+    "Pro",
+    "深行"
+  ],
+  "Advanced reporting and analytics": [
+    "Advanced reporting and analytics",
+    "整理长久的观察，找出季节的线索。"
+  ],
+  "Teams": [
+    "Teams",
+    "结伴"
+  ],
+  "Share access with up to 10 teammates": [
+    "Share access with up to 10 teammates",
+    "与十位朋友一起，记下不同的风景。"
+  ],
+  "Choose a subscription before continuing.": [
+    "Choose a subscription before continuing.",
+    "请先选择一个同行计划。"
+  ],
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor quam. Morbi accumsan cursus enim, sed ultricies sapien.": [
+    "As the morning mist lifts, the stones in the stream come into view. A kingfisher flashes blue across the water. We pause by the bridge and write it down.",
+    "晨雾慢慢散去，溪水露出石头的轮廓。一只翠鸟掠过水面，蓝色的翅影转瞬就落进了树荫。我们在桥边停下，把这一刻写进手记。"
+  ],
+  "Lorem Card": [
+    "Notes by the stream",
+    "溪边手记"
+  ],
+  "Bridging the Future": [
+    "A breeze by the bridge",
+    "桥边等一阵风"
+  ],
+  "Today, 6:30 PM": [
+    "Today, 6:30 PM",
+    "今天，傍晚六点半"
+  ],
+  "Terms and Conditions": [
+    "Terms and Conditions",
+    "山野同行约定"
+  ],
+  "Please review before proceeding": [
+    "Please review before proceeding",
+    "出发前，请读一读这份约定。"
+  ],
+  "Accept": [
+    "Accept",
+    "同意"
+  ],
+  "Search...": [
+    "Search...",
+    "搜索…"
+  ],
+  "Current value:": [
+    "Current value:",
+    "当前内容："
+  ],
+  "Clear": [
+    "Clear",
+    "清空"
+  ],
+  "Set example": [
+    "Set example",
+    "写入一条记录"
+  ],
+  "Use keyboard shortcut to quickly focus this field": [
+    "Use keyboard shortcut to quickly focus this field",
+    "也可以用快捷键开始搜索"
+  ],
+  "Press": [
+    "Press",
+    "按下"
+  ],
+  "to focus the search field": [
+    "to focus the search field",
+    "聚焦搜索框"
+  ],
+  "States (controlled multiple)": [
+    "States (controlled multiple)",
+    "地区（受控多选）"
+  ],
+  "Snap Points": [
+    "Snap Points",
+    "展开行程"
+  ],
+  "This sheet opens at 148px and snaps again at 355px. Dragging past the last detent reveals the full sheet, and the backdrop fades in after that point.": [
+    "From the stream to the ridge, then home through the pines. Pull up to see the full route.",
+    "从溪边走到山脊，再沿着松林归来。向上展开，可以查看完整行程。"
+  ],
+  "Range": [
+    "Range",
+    "范围"
+  ],
+  "Volume": [
+    "Volume",
+    "音量"
+  ],
+  "Current": [
+    "Current",
+    "当前颜色"
+  ],
+  "Small": [
+    "Small",
+    "小号"
+  ],
+  "Medium": [
+    "Medium",
+    "中号"
+  ],
+  "Large": [
+    "Large",
+    "大号"
+  ],
+  "Extra Large": [
+    "Extra Large",
+    "加大"
+  ],
+  "Surface Content": [
+    "A page outdoors",
+    "一页山野"
+  ],
+  "This is a default surface variant. It uses bg-surface styling.": [
+    "Morning light falls on the page. The first line is still unwritten.",
+    "晨光落在纸上，今天还没有写下第一笔。"
+  ],
+  "This is a secondary surface variant. It uses bg-surface-secondary styling.": [
+    "The stream carries a newly fallen leaf past the stones.",
+    "溪水缓缓流过，带走一片刚落下的叶子。"
+  ],
+  "This is a tertiary surface variant. It uses bg-surface-tertiary styling.": [
+    "The woods grow quiet. An evening breeze moves the treetops.",
+    "林间渐渐安静，只剩晚风翻动树梢。"
+  ],
+  "Transparent": [
+    "Transparent",
+    "透明"
+  ],
+  "This is a transparent surface variant. It has no background, suitable for overlays and cards with custom backgrounds.": [
+    "Leave this page open for the next encounter.",
+    "把这一页留白，等下一次相遇。"
+  ],
+  "Input with secondary variant": [
+    "Input with secondary variant",
+    "写下今天见到的鸟"
+  ],
+  "TextArea with secondary variant": [
+    "TextArea with secondary variant",
+    "也记一点风声、树影和天气…"
+  ],
+  "Allow Notifications": [
+    "Allow Notifications",
+    "接收消息"
+  ],
+  "Marketing emails": [
+    "Marketing emails",
+    "每月山野来信"
+  ],
+  "Social media updates": [
+    "Social media updates",
+    "同行者的新手记"
+  ],
+  "Table with resizable columns": [
+    "Table with resizable columns",
+    "可调整列宽的记录表"
+  ],
+  "Role": [
+    "Role",
+    "角色"
+  ],
+  "Status": [
+    "Status",
+    "状态"
+  ],
+  "Kate Moore": [
+    "Kate Moore",
+    "青禾"
+  ],
+  "CEO": [
+    "CEO",
+    "CEO"
+  ],
+  "kate@acme.com": [
+    "kate@acme.com",
+    "kate@acme.com"
+  ],
+  "John Smith": [
+    "John Smith",
+    "远山"
+  ],
+  "CTO": [
+    "CTO",
+    "CTO"
+  ],
+  "john@acme.com": [
+    "john@acme.com",
+    "john@acme.com"
+  ],
+  "Sara Johnson": [
+    "Sara Johnson",
+    "听溪"
+  ],
+  "CMO": [
+    "CMO",
+    "CMO"
+  ],
+  "On Leave": [
+    "On Leave",
+    "暂歇"
+  ],
+  "sara@acme.com": [
+    "sara@acme.com",
+    "sara@acme.com"
+  ],
+  "CFO": [
+    "CFO",
+    "CFO"
+  ],
+  "michael@acme.com": [
+    "michael@acme.com",
+    "michael@acme.com"
+  ],
+  "Emily Davis": [
+    "Emily Davis",
+    "青禾"
+  ],
+  "Product Manager": [
+    "Product Manager",
+    "记录者"
+  ],
+  "emily@acme.com": [
+    "emily@acme.com",
+    "emily@acme.com"
+  ],
+  "Table with custom cells": [
+    "Table with custom cells",
+    "带头像和操作的记录表"
+  ],
+  "Worker ID": [
+    "Worker ID",
+    "编号"
+  ],
+  "Member": [
+    "Member",
+    "同行者"
+  ],
+  "#": [
+    "#",
+    "#"
+  ],
+  "Davis Wilson": [
+    "Davis Wilson",
+    "渡鸦"
+  ],
+  "Olivia Martinez": [
+    "Olivia Martinez",
+    "知秋"
+  ],
+  "James Taylor": [
+    "James Taylor",
+    "寻溪"
+  ],
+  "Table with pagination": [
+    "Table with pagination",
+    "分页记录表"
+  ],
+  "to": [
+    "to",
+    "至"
+  ],
+  "Prev": [
+    "Prev",
+    "上一页"
+  ],
+  "Overview": [
+    "Overview",
+    "总览"
+  ],
+  "Analytics": [
+    "Analytics",
+    "观察"
+  ],
+  "Reports": [
+    "Reports",
+    "手记"
+  ],
+  "Performance": [
+    "Performance",
+    "足迹"
+  ],
+  "Engagement": [
+    "Engagement",
+    "同行"
+  ],
+  "Audience": [
+    "Audience",
+    "访客"
+  ],
+  "Acquisition": [
+    "Acquisition",
+    "新发现"
+  ],
+  "Retention": [
+    "Retention",
+    "常来客"
+  ],
+  "Overflow options": [
+    "Overflow options",
+    "更多选项"
+  ],
+  "panel content.": [
+    "panel content.",
+    "的手记。"
+  ],
+  "Vertical tabs": [
+    "Vertical tabs",
+    "纵向标签页"
+  ],
+  "Account": [
+    "Account",
+    "账号"
+  ],
+  "Security": [
+    "Security",
+    "安全"
+  ],
+  "Billing": [
+    "Billing",
+    "订阅"
+  ],
+  "Account Settings": [
+    "Account Settings",
+    "账号设置"
+  ],
+  "Manage your account information and preferences.": [
+    "Manage your account information and preferences.",
+    "整理个人资料，选好你偏爱的记录方式。"
+  ],
+  "Security Settings": [
+    "Security Settings",
+    "安全设置"
+  ],
+  "Configure two-factor authentication and password settings.": [
+    "Configure two-factor authentication and password settings.",
+    "设置密码与双重验证，守好自己的手记。"
+  ],
+  "Notification Preferences": [
+    "Notification Preferences",
+    "消息偏好"
+  ],
+  "Choose how and when you want to receive notifications.": [
+    "Choose how and when you want to receive notifications.",
+    "选择哪些来信值得提醒，哪些可以慢慢读。"
+  ],
+  "Billing Information": [
+    "Billing Information",
+    "订阅信息"
+  ],
+  "View and manage your subscription and payment methods.": [
+    "View and manage your subscription and payment methods.",
+    "查看同行计划与支付方式。"
+  ],
+  "Single Selection": [
+    "Single Selection",
+    "单选"
+  ],
+  "News": [
+    "News",
+    "鸟讯"
+  ],
+  "Travel": [
+    "Travel",
+    "远行"
+  ],
+  "Gaming": [
+    "Gaming",
+    "山行"
+  ],
+  "Shopping": [
+    "Shopping",
+    "拾叶"
+  ],
+  "Choose one category": [
+    "Choose one category",
+    "选择一个分类"
+  ],
+  "Multiple Selection": [
+    "Multiple Selection",
+    "多选"
+  ],
+  "Choose multiple categories": [
+    "Choose multiple categories",
+    "选择多个分类"
+  ],
+  "React": [
+    "React",
+    "React"
+  ],
+  "Vue": [
+    "Vue",
+    "Vue"
+  ],
+  "Angular": [
+    "Angular",
+    "Angular"
+  ],
+  "Svelte": [
+    "Svelte",
+    "Svelte"
+  ],
+  "Default Remove Button": [
+    "Default Remove Button",
+    "默认移除按钮"
+  ],
+  "No categories found": [
+    "No categories found",
+    "还没有分类"
+  ],
+  "Click the X to remove tags": [
+    "Click the X to remove tags",
+    "点按叉号，移除这个分类。"
+  ],
+  "Custom Remove Button": [
+    "Custom Remove Button",
+    "自定义移除按钮"
+  ],
+  "No frameworks found": [
+    "No frameworks found",
+    "还没有选项"
+  ],
+  "Custom remove button with icon": [
+    "Custom remove button with icon",
+    "使用图标移除选项"
+  ],
+  "Short feedback": [
+    "Short feedback",
+    "一周鸟讯"
+  ],
+  "This week's highlights...": [
+    "Which birds visited this week?",
+    "这一周，又遇见了哪只鸟？"
+  ],
+  "Detailed notes": [
+    "Detailed notes",
+    "沿途手记"
+  ],
+  "Write out the full meeting notes...": [
+    "Note the stream, the color of the leaves, and the bird you could not name…",
+    "记下溪水的方向、树叶的颜色，还有那声没认出的鸟鸣…"
+  ],
+  "Primary textarea": [
+    "Primary textarea",
+    "写一段今天的见闻…"
+  ],
+  "Secondary textarea": [
+    "Secondary textarea",
+    "把未完的话留在这里…"
+  ],
+  "Age": [
+    "Age",
+    "年龄"
+  ],
+  "user@example.com": [
+    "user@example.com",
+    "user@example.com"
+  ],
+  "https://example.com": [
+    "https://example.com",
+    "https://example.com"
+  ],
+  "+1 (555) 000-0000": [
+    "+1 (555) 000-0000",
+    "+1 (555) 000-0000"
+  ],
+  "Time": [
+    "Time",
+    "时间"
+  ],
+  "Enter a time": [
+    "Enter a time",
+    "选择时间"
+  ],
+  "Time must be between 9:00 AM and 5:00 PM": [
+    "Time must be between 9:00 AM and 5:00 PM",
+    "时间应在上午 9 点至下午 5 点之间"
+  ],
+  "Enter a time between 9:00 AM and 5:00 PM": [
+    "Enter a time between 9:00 AM and 5:00 PM",
+    "选择上午 9 点至下午 5 点之间的时间"
+  ],
+  "Using toast.promise()": [
+    "Using toast.promise()",
+    "异步消息"
+  ],
+  "Automatically handles loading, success, and error states": [
+    "Automatically handles loading, success, and error states",
+    "记录从寄出到抵达的状态"
+  ],
+  "Upload file": [
+    "Upload file",
+    "上传手记"
+  ],
+  "Create event (error)": [
+    "Create event (error)",
+    "预约向导"
+  ],
+  "Save data (random)": [
+    "Save data (random)",
+    "同步记录"
+  ],
+  "Fetch user": [
+    "Fetch user",
+    "查看同行者"
+  ],
+  "Manual Loading State": [
+    "Manual Loading State",
+    "手动控制状态"
+  ],
+  "Manually control loading state with isLoading prop": [
+    "Manually control loading state with isLoading prop",
+    "先整理，再收好这一页。"
+  ],
+  "Uploading file...": [
+    "Uploading file...",
+    "正在上传手记…"
+  ],
+  "Please wait while we upload your file": [
+    "Please wait while we upload your file",
+    "照片和文字正在路上，请稍等。"
+  ],
+  "File uploaded": [
+    "File uploaded",
+    "手记已上传"
+  ],
+  "Your file has been uploaded successfully": [
+    "Your file has been uploaded successfully",
+    "这一程的见闻，已经收好了。"
+  ],
+  "Upload with loading": [
+    "Upload with loading",
+    "上传并显示进度"
+  ],
+  "Processing payment...": [
+    "Processing payment...",
+    "正在处理支付…"
+  ],
+  "Payment processed": [
+    "Payment processed",
+    "支付完成"
+  ],
+  "Your payment has been processed successfully": [
+    "Your payment has been processed successfully",
+    "已收到这次支付。"
+  ],
+  "Payment processing": [
+    "Payment processing",
+    "处理支付"
+  ],
+  "Saving changes...": [
+    "Saving changes...",
+    "正在保存修改…"
+  ],
+  "Failed to save": [
+    "Failed to save",
+    "暂时没能保存"
+  ],
+  "Please try again": [
+    "Please try again",
+    "请稍后重试"
+  ],
+  "Loading to error": [
+    "Loading to error",
+    "显示失败状态"
+  ],
+  "You have been invited to join a team": [
+    "You have been invited to join a team",
+    "有人邀你一起去看鸟"
+  ],
+  "Bob sent you an invitation to join HeroUI team": [
+    "Bob sent you an invitation to join HeroUI team",
+    "听风邀请你加入周末的观鸟小组。"
+  ],
+  "Default toast": [
+    "Default toast",
+    "普通消息"
+  ],
+  "You have 2 credits left": [
+    "You have 2 credits left",
+    "还可以添加两张照片"
+  ],
+  "Get a paid plan for more credits": [
+    "Get a paid plan for more credits",
+    "挑两张最喜欢的，留住今天的风景。"
+  ],
+  "Accent toast": [
+    "Accent toast",
+    "强调消息"
+  ],
+  "You have upgraded your plan": [
+    "You have upgraded your plan",
+    "新的手记本准备好了"
+  ],
+  "You can continue using HeroUI Chat": [
+    "You can continue using HeroUI Chat",
+    "翻开空白的一页，接着记录吧。"
+  ],
+  "Success toast": [
+    "Success toast",
+    "成功消息"
+  ],
+  "You have no credits left": [
+    "You have no credits left",
+    "这本手记写满了"
+  ],
+  "Upgrade to a paid plan to continue": [
+    "Upgrade to a paid plan to continue",
+    "先收好这一册，再开启下一段旅程。"
+  ],
+  "Warning toast": [
+    "Warning toast",
+    "提醒消息"
+  ],
+  "Storage is full": [
+    "Storage is full",
+    "照片空间已满"
+  ],
+  "Remove files to release space. Adding more text to demonstrate longer content display": [
+    "Remove files to release space. Adding more text to demonstrate longer content display",
+    "整理旧照片后，就能装下新的风景。"
+  ],
+  "Danger toast": [
+    "Danger toast",
+    "错误消息"
+  ],
+  "Like": [
+    "Like",
+    "喜欢"
+  ],
+  "Bookmark": [
+    "Bookmark",
+    "收藏"
+  ],
+  "Attached (default)": [
+    "Attached (default)",
+    "相连（默认）"
+  ],
+  "Bold": [
+    "Bold",
+    "粗体"
+  ],
+  "Italic": [
+    "Italic",
+    "斜体"
+  ],
+  "Underline": [
+    "Underline",
+    "下划线"
+  ],
+  "Strikethrough": [
+    "Strikethrough",
+    "删除线"
+  ],
+  "Detached": [
+    "Detached",
+    "分离"
+  ],
+  "Single selection": [
+    "Single selection",
+    "单选"
+  ],
+  "Left": [
+    "Left",
+    "左侧"
+  ],
+  "Center": [
+    "Center",
+    "居中"
+  ],
+  "Right": [
+    "Right",
+    "右侧"
+  ],
+  "Multiple selection": [
+    "Multiple selection",
+    "多选"
+  ],
+  "Text formatting": [
+    "Text formatting",
+    "文字格式"
+  ],
+  "Text style": [
+    "Text style",
+    "文字样式"
+  ],
+  "Cut": [
+    "Cut",
+    "剪切"
+  ],
+  "Editor toolbar": [
+    "Editor toolbar",
+    "编辑工具栏"
+  ],
+  "Undo": [
+    "Undo",
+    "撤销"
+  ],
+  "Redo": [
+    "Redo",
+    "重做"
+  ],
+  "Top": [
+    "Top",
+    "上方"
+  ],
+  "Top placement": [
+    "Top placement",
+    "从上方传来一声鸟鸣"
+  ],
+  "Left placement": [
+    "Left placement",
+    "左边的枝梢动了动"
+  ],
+  "Hover buttons": [
+    "Hover buttons",
+    "停留片刻"
+  ],
+  "Right placement": [
+    "Right placement",
+    "右边有一缕风"
+  ],
+  "Bottom": [
+    "Bottom",
+    "下方"
+  ],
+  "Bottom placement": [
+    "Bottom placement",
+    "脚边开着小花"
+  ],
+  "Tooltip with arrow indicator": [
+    "Tooltip with arrow indicator",
+    "枝叶间的一点提示"
+  ],
+  "Custom Offset": [
+    "Custom Offset",
+    "自定义距离"
+  ],
+  "Custom offset from trigger": [
+    "Custom offset from trigger",
+    "留一点恰好的距离"
+  ],
+  "Dashboard": [
+    "Dashboard",
+    "山野手记"
+  ],
+  "Convenience primitives are thin wrappers over Typography, so you can choose explicit composition without learning a second styling system.": [
+    "Walk beside the stream at dawn and rest beneath the trees at noon. Keep the birds you saw and the places you could not name.",
+    "清晨沿着溪水走，午后在树荫里停。记下看见的鸟，也记下那些没有名字的风景。"
+  ],
+  "Paragraph supports base, sm, and xs sizes.": [
+    "A breeze passes through the canopy. A page turns softly.",
+    "风吹过树梢，一页纸轻轻翻过去。"
+  ],
+  "Typography.Code": [
+    "Typography.Code",
+    "Typography.Code"
+  ],
+  "h1": [
+    "h1",
+    "h1"
+  ],
+  "h2": [
+    "h2",
+    "h2"
+  ],
+  "h3": [
+    "h3",
+    "h3"
+  ],
+  "h4": [
+    "h4",
+    "h4"
+  ],
+  "h5": [
+    "h5",
+    "h5"
+  ],
+  "h6": [
+    "h6",
+    "h6"
+  ],
+  "body": [
+    "body",
+    "body"
+  ],
+  "body-sm": [
+    "body-sm",
+    "body-sm"
+  ],
+  "body-xs": [
+    "body-xs",
+    "body-xs"
+  ],
+  "code": [
+    "code",
+    "code"
+  ],
+  "Variants": [
+    "Variants",
+    "变体"
+  ],
+  "Loading state": [
+    "Loading state",
+    "加载状态"
+  ],
+  "Orientation": [
+    "Orientation",
+    "方向"
+  ],
+  "Icon only": [
+    "Icon only",
+    "纯图标"
+  ],
+  "Attached": [
+    "Attached",
+    "相连"
+  ],
+  "Selection mode": [
+    "Selection mode",
+    "选择模式"
+  ],
+  "Statuses": [
+    "Statuses",
+    "状态"
+  ],
+  "With icon": [
+    "With icon",
+    "带图标"
+  ],
+  "With form": [
+    "With form",
+    "表单"
+  ],
+  "With form components": [
+    "With form components",
+    "表单控件"
+  ],
+  "Colors": [
+    "Colors",
+    "颜色"
+  ],
+  "Fallback": [
+    "Fallback",
+    "回退内容"
+  ],
+  "Count": [
+    "Count",
+    "数量"
+  ],
+  "Max": [
+    "Max",
+    "最多显示"
+  ],
+  "Placements": [
+    "Placements",
+    "位置"
+  ],
+  "With content": [
+    "With content",
+    "带内容"
+  ],
+  "Input types": [
+    "Input types",
+    "输入类型"
+  ],
+  "With error": [
+    "With error",
+    "错误状态"
+  ],
+  "Rows": [
+    "Rows",
+    "行数"
+  ],
+  "Password with toggle": [
+    "Password with toggle",
+    "显示与隐藏密码"
+  ],
+  "With icon prefix and copy suffix": [
+    "With icon prefix and copy suffix",
+    "前缀与复制"
+  ],
+  "With keyboard shortcut": [
+    "With keyboard shortcut",
+    "快捷键"
+  ],
+  "Controlled": [
+    "Controlled",
+    "受控状态"
+  ],
+  "With format options": [
+    "With format options",
+    "格式化"
+  ],
+  "Validation": [
+    "Validation",
+    "校验"
+  ],
+  "With validation": [
+    "With validation",
+    "校验"
+  ],
+  "On complete": [
+    "On complete",
+    "输入完成"
+  ],
+  "Basic": [
+    "Basic",
+    "基础"
+  ],
+  "Render function": [
+    "Render function",
+    "渲染函数"
+  ],
+  "On surface": [
+    "On surface",
+    "面板中"
+  ],
+  "With description": [
+    "With description",
+    "带说明"
+  ],
+  "Indeterminate": [
+    "Indeterminate",
+    "部分选中"
+  ],
+  "Features and addons": [
+    "Features and addons",
+    "带图标与说明"
+  ],
+  "Delivery and payment": [
+    "Delivery and payment",
+    "寄送与支付"
+  ],
+  "Group": [
+    "Group",
+    "分组"
+  ],
+  "Range with steps and marks": [
+    "Range with steps and marks",
+    "范围、步长与刻度"
+  ],
+  "Vertical with steps and marks": [
+    "Vertical with steps and marks",
+    "纵向、步长与刻度"
+  ],
+  "With sections": [
+    "With sections",
+    "分区"
+  ],
+  "Controlled multiple": [
+    "Controlled multiple",
+    "受控多选"
+  ],
+  "Multi select": [
+    "Multi select",
+    "多选"
+  ],
+  "With submenus": [
+    "With submenus",
+    "多级菜单"
+  ],
+  "With keyboard shortcuts": [
+    "With keyboard shortcuts",
+    "快捷键"
+  ],
+  "With remove button": [
+    "With remove button",
+    "移除按钮"
+  ],
+  "Selection modes": [
+    "Selection modes",
+    "选择模式"
+  ],
+  "With prefix and suffix": [
+    "With prefix and suffix",
+    "前缀与后缀"
+  ],
+  "Multiple months": [
+    "Multiple months",
+    "多月"
+  ],
+  "Year picker": [
+    "Year picker",
+    "年份选择"
+  ],
+  "Form example": [
+    "Form example",
+    "表单"
+  ],
+  "Space and channels": [
+    "Space and channels",
+    "色彩空间与通道"
+  ],
+  "RGB channels": [
+    "RGB channels",
+    "RGB 通道"
+  ],
+  "Alpha channel": [
+    "Alpha channel",
+    "透明度通道"
+  ],
+  "Channel editing": [
+    "Channel editing",
+    "通道编辑"
+  ],
+  "With fields": [
+    "With fields",
+    "输入与选择"
+  ],
+  "With swatches": [
+    "With swatches",
+    "色块选择"
+  ],
+  "Overflow": [
+    "Overflow",
+    "溢出菜单"
+  ],
+  "FAQ": [
+    "FAQ",
+    "山野小问"
+  ],
+  "Multiple": [
+    "Multiple",
+    "多项展开"
+  ],
+  "Level 3": [
+    "Level 3",
+    "三级"
+  ],
+  "Custom separator": [
+    "Custom separator",
+    "自定义分隔"
+  ],
+  "Icon placement": [
+    "Icon placement",
+    "图标位置"
+  ],
+  "Underline and offset": [
+    "Underline and offset",
+    "下划线与间距"
+  ],
+  "With ellipsis": [
+    "With ellipsis",
+    "省略页码"
+  ],
+  "With summary": [
+    "With summary",
+    "带摘要"
+  ],
+  "Custom cells": [
+    "Custom cells",
+    "自定义单元格"
+  ],
+  "Column resizing": [
+    "Column resizing",
+    "调整列宽"
+  ],
+  "Pagination": [
+    "Pagination",
+    "分页"
+  ],
+  "With card": [
+    "With card",
+    "卡片中"
+  ],
+  "Primitives": [
+    "Primitives",
+    "基础排版"
+  ],
+  "Typography scale": [
+    "Typography scale",
+    "文字层级"
+  ],
+  "Placement": [
+    "Placement",
+    "位置"
+  ],
+  "Interactive": [
+    "Interactive",
+    "可交互"
+  ],
+  "Scroll comparison": [
+    "Scroll comparison",
+    "滚动方式"
+  ],
+  "Snap points": [
+    "Snap points",
+    "分段展开"
+  ],
+  "Promise": [
+    "Promise",
+    "异步状态"
+  ],
+  "Custom value": [
+    "Custom value",
+    "自定义数值"
+  ],
+  "With label": [
+    "With label",
+    "带标签"
+  ],
+  "Sizes": [
+    "Sizes",
+    "尺寸"
+  ],
+  "List": [
+    "List",
+    "列表"
+  ],
+  "Stay Signed In": [
+    "Stay Signed In",
+    "继续登录"
+  ],
+  "Sign Out": [
+    "Sign Out",
+    "退出登录"
+  ],
+  "You'll need to sign in again to access your account. Any unsaved changes will be lost.": [
+    "You'll need to sign in again to access your account. Any unsaved changes will be lost.",
+    "退出后需要重新登录。尚未保存的内容会丢失。"
+  ],
+  "Sign out of your account?": [
+    "Sign out of your account?",
+    "退出当前账号？"
+  ],
+  "Not Yet": [
+    "Not Yet",
+    "再等等"
+  ],
+  "Mark Complete": [
+    "Mark Complete",
+    "标记完成"
+  ],
+  "This will mark the task as complete and notify all team members. The task will be moved to your completed list.": [
+    "This will mark the task as complete and notify all team members. The task will be moved to your completed list.",
+    "这条观察任务将标记为完成，并通知同行者。"
+  ],
+  "Complete this task?": [
+    "Complete this task?",
+    "完成这次观察？"
+  ],
+  "Complete Task": [
+    "Complete Task",
+    "完成观察"
+  ],
+  "Keep Editing": [
+    "Keep Editing",
+    "继续编辑"
+  ],
+  "Discard": [
+    "Discard",
+    "放弃"
+  ],
+  "You have unsaved changes that will be permanently lost. Are you sure you want to discard them?": [
+    "You have unsaved changes that will be permanently lost. Are you sure you want to discard them?",
+    "这页手记还有未保存的内容。放弃后将无法恢复，确定继续吗？"
+  ],
+  "Discard unsaved changes?": [
+    "Discard unsaved changes?",
+    "放弃未保存的修改？"
+  ],
+  "Discard Changes": [
+    "Discard Changes",
+    "放弃修改"
+  ],
+  "Delete Account": [
+    "Delete Account",
+    "删除账号"
+  ],
+  "This will permanently delete your account and remove all your data from our servers. This action is irreversible.": [
+    "This will permanently delete your account and remove all your data from our servers. This action is irreversible.",
+    "账号与其中的记录将被永久删除，无法恢复。"
+  ],
+  "Delete your account?": [
+    "Delete your account?",
+    "删除这个账号？"
+  ],
+  "None": [
+    "None",
+    "无"
+  ],
+  "Uploading...": [
+    "Uploading...",
+    "正在上传…"
+  ],
+  "Upload File": [
+    "Upload File",
+    "上传手记"
+  ],
+  "(empty)": [
+    "(empty)",
+    "尚未填写"
+  ],
+  "Saving...": [
+    "Saving...",
+    "正在保存…"
+  ],
+  "Save Color": [
+    "Save Color",
+    "保存颜色"
+  ],
+  "Submitting...": [
+    "Submitting...",
+    "正在提交…"
+  ],
+  "Hide password": [
+    "Hide password",
+    "隐藏密码"
+  ],
+  "Show password": [
+    "Show password",
+    "显示密码"
+  ],
+  "Follow": [
+    "Follow",
+    "关注"
+  ],
+  "Swipe up to reveal more content and fade the backdrop in.": [
+    "Swipe up to reveal more content and fade the backdrop in.",
+    "向上展开，看看接下来的路。"
+  ],
+  "Chief Executive Officer": [
+    "Chief Executive Officer",
+    "领队"
+  ],
+  "Chief Technology Officer": [
+    "Chief Technology Officer",
+    "向导"
+  ],
+  "Chief Marketing Officer": [
+    "Chief Marketing Officer",
+    "摄影师"
+  ],
+  "Chief Financial Officer": [
+    "Chief Financial Officer",
+    "记录者"
+  ],
+  "Lead Designer": [
+    "Lead Designer",
+    "绘图者"
+  ],
+  "Frontend Engineer": [
+    "Frontend Engineer",
+    "观察者"
+  ],
+  "Backend Engineer": [
+    "Backend Engineer",
+    "同行者"
+  ],
+  "Failed to upload file": [
+    "Failed to upload file",
+    "手记暂时没能上传"
+  ],
+  "Creating event...": [
+    "Creating event...",
+    "正在预约向导…"
+  ],
+  "Event created": [
+    "Event created",
+    "预约已记录"
+  ],
+  "Failed to fetch user": [
+    "Failed to fetch user",
+    "暂时无法查看同行者"
+  ],
+  "Loading user...": [
+    "Loading user...",
+    "正在查看同行者…"
+  ],
+  "Network error. Please try again.": [
+    "Network error. Please try again.",
+    "网络暂时中断，请稍后重试。"
+  ],
+  "Failed to save data": [
+    "Failed to save data",
+    "暂时没能保存记录"
+  ],
+  "Dismiss": [
+    "Dismiss",
+    "知道了"
+  ],
+  "Upgrade": [
+    "Upgrade",
+    "查看"
+  ],
+  "Remove": [
+    "Remove",
+    "移除"
+  ],
+  "Build better interfaces": [
+    "The woods answer back",
+    "山野有回声"
+  ],
+  "Built for the intelligence age": [
+    "Follow birdsong into the morning",
+    "循着鸟鸣，走进清晨"
+  ],
+  "Pricing on your terms": [
+    "Keep a season in a notebook",
+    "把一季的风景收进手记"
+  ],
+  "Apply to the startup program": [
+    "Share what you notice",
+    "与同行的人分享见闻"
+  ],
+  "Card titles": [
+    "A moment by the stream",
+    "溪边的片刻"
+  ],
+  "Smaller feature headers": [
+    "The path through the pines",
+    "松林小径"
+  ],
+  "Primary body text used across documentation, marketing copy, and descriptions.": [
+    "Morning mist clears and branches cast their shadows on the stream. We follow the water and make a note of each encounter.",
+    "晨雾散去，树影落在溪面上。我们沿着水声往前走，把每一次相遇慢慢记下。"
+  ],
+  "Secondary body, table cells, navigation, and sidebar items.": [
+    "A bird crosses the branches, carrying a little morning light.",
+    "一只小鸟掠过枝头，带走了一点晨光。"
+  ],
+  "Captions, badges, helper text, and fine print.": [
+    "The path is long. Take your time.",
+    "山路很长，可以慢慢走。"
+  ],
+  "With button group": [
+    "With button group",
+    "带按钮组"
+  ],
+  "Rgb channels": [
+    "Rgb channels",
+    "RGB 通道"
+  ],
+  "top-right": [
+    "top-right",
+    "右上"
+  ],
+  "top-left": [
+    "top-left",
+    "左上"
+  ],
+  "bottom-right": [
+    "bottom-right",
+    "右下"
+  ],
+  "bottom-left": [
+    "bottom-left",
+    "左下"
+  ],
+  "Verified": [
+    "Verified",
+    "已验证"
+  ],
+  "Verify Code": [
+    "Verify Code",
+    "验证"
+  ],
+  "Saved {count} items": [
+    "Saved {count} items",
+    "已保存 {count} 条记录"
+  ],
+  "File {filename} uploaded ({size}KB)": [
+    "File {filename} uploaded ({size}KB)",
+    "{filename} 已上传（{size}KB）"
+  ],
+  "Welcome back, {name}!": [
+    "Welcome back, {name}!",
+    "欢迎回来，{name}！"
+  ],
+  "Your chosen plan is: {value}": [
+    "Your chosen plan is: {value}",
+    "已选择同行计划：{value}"
+  ],
+  "Selected preferences: {values}": [
+    "Selected preferences: {values}",
+    "已选择通知方式：{values}"
+  ],
+  "Selected item: {key}": [
+    "Selected item: {key}",
+    "已选择：{key}"
+  ],
+  "Form submitted with: {data}": [
+    "Form submitted with: {data}",
+    "记录已保存：{data}"
+  ],
+  "Select {name}": [
+    "Select {name}",
+    "选择 {name}"
+  ],
+  "Copy ID #{id}": [
+    "Copy ID #{id}",
+    "复制编号 #{id}"
+  ],
+  "View {name}": [
+    "View {name}",
+    "查看 {name}"
+  ],
+  "Edit {name}": [
+    "Edit {name}",
+    "编辑 {name}"
+  ],
+  "Delete {name}": [
+    "Delete {name}",
+    "删除 {name}"
+  ],
+  "Morning birdsong": [
+    "Morning birdsong",
+    "清晨的鸟鸣"
+  ],
+  "Dawn by the stream": [
+    "Dawn by the stream",
+    "清晨，沿溪水出发"
+  ],
+  "A kingfisher at the bridge": [
+    "A kingfisher at the bridge",
+    "在小桥边寻找翠鸟"
+  ],
+  "Rest beneath the pines": [
+    "Rest beneath the pines",
+    "松林里歇一歇"
+  ],
+  "Lunch on the ridge": [
+    "Lunch on the ridge",
+    "山脊上午餐"
+  ],
+  "Home before dusk": [
+    "Home before dusk",
+    "黄昏前沿原路归来"
+  ],
+  "Faq": [
+    "Faq",
+    "山野小问"
+  ],
+  "With arrow": [
+    "With arrow",
+    "带箭头"
+  ]
+}

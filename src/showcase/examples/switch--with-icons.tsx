@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {
   BellFill,
   BellSlash,
@@ -14,6 +15,7 @@ import {
 import {Switch} from "@heroui/react";
 
 export function WithIcons() {
+  const t = useCopy();
   const icons = {
     check: {
       off: Power,
@@ -45,17 +47,17 @@ export function WithIcons() {
   return (
     <div className="flex flex-wrap gap-3">
       {Object.entries(icons).map(([key, value]) => (
-        <Switch key={key} defaultSelected aria-label={key} size="lg">
+        <Switch key={key} defaultSelected aria-label={t(key)} size="lg">
           {({isSelected}) => (
             <Switch.Content>
               <Switch.Control className={isSelected ? value.selectedControlClass : ""}>
                 <Switch.Thumb>
                   <Switch.Icon>
-                    {isSelected ? (
+                    {t(isSelected ? (
                       <value.on className="size-3 text-inherit opacity-100" />
                     ) : (
                       <value.off className="size-3 text-inherit opacity-70" />
-                    )}
+                    ))}
                   </Switch.Icon>
                 </Switch.Thumb>
               </Switch.Control>

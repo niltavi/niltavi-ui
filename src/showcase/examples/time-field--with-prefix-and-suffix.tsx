@@ -1,11 +1,13 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {ChevronDown, Clock} from "@gravity-ui/icons";
 import {Description, Label, TimeField} from "@heroui/react";
 
 export function WithPrefixAndSuffix() {
+  const t = useCopy();
   return (
     <TimeField className="w-full max-w-[256px]" name="time">
-      <Label>Time</Label>
+      <Label>{t("Time")}</Label>
       <TimeField.Group>
         <TimeField.Prefix>
           <Clock className="size-4 text-muted" />
@@ -15,7 +17,7 @@ export function WithPrefixAndSuffix() {
           <ChevronDown className="size-4 text-muted" />
         </TimeField.Suffix>
       </TimeField.Group>
-      <Description>Enter a time</Description>
+      <Description>{t("Enter a time")}</Description>
     </TimeField>
   );
 }

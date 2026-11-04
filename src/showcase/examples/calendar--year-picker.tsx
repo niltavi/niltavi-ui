@@ -1,9 +1,11 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Calendar} from "@heroui/react";
 
 export function YearPicker() {
+  const t = useCopy();
   return (
-    <Calendar aria-label="Event date">
+    <Calendar aria-label={t("Event date")}>
       <Calendar.Header>
         <Calendar.YearPickerTrigger>
           <Calendar.YearPickerTriggerHeading />
@@ -14,7 +16,7 @@ export function YearPicker() {
       </Calendar.Header>
       <Calendar.Grid>
         <Calendar.GridHeader>
-          {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          {(day) => <Calendar.HeaderCell>{t(day)}</Calendar.HeaderCell>}
         </Calendar.GridHeader>
         <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
       </Calendar.Grid>

@@ -1,4 +1,4 @@
-# Niltava UI
+# Niltavi UI
 
 [English](../README.md) | 简体中文
 
@@ -65,13 +65,15 @@ npm run tokens
 
 卡片选项使用 `checkbox--card` / `radio--card`，内容区采用 `choice-card` 网格。标题和说明放在 `choice-card__body` 中；需要图标时搭配 `choice-card__icon` 和 `choice-card--with-icon`。选择标记保留在网格流中，与首行文字对齐。分组使用 `checkbox-group--cards` / `radio-group--cards` 配合 `choice-list` 统一间距，`choice-list--columns` 按可用宽度排布。展示面板统一提供外层留白，示例避免重复包裹和加边距，表单宽度应能随容器收缩。
 
-脚本会检查 62 组前景 / 背景对比度，有不达标的会报错退出。生成器测试运行 `npm test`。
+脚本会检查 62 组前景 / 背景对比度，有不达标的会报错退出。运行 `npm test` 检查 token、路由、目录、搜索和双语文案。
 
-## 预览
+## 对外展示页
 
-组件展示复用 [HeroUI 官方示例](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en)，涵盖分组与多选、表单校验、日期范围、嵌套菜单、可调列宽表格、弹窗、抽屉、底部面板和颜色控件。支持按组件名或中文关键词搜索。示例全部使用当前主题，并展示 Niltavi 的按钮和标签扩展。右侧主题切换区保留带主题底色的 Surface。
+组件展示复用 [HeroUI 官方示例](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en)，涵盖分组与多选、表单校验、日期范围、嵌套菜单、可调列宽表格、弹窗、抽屉、底部面板和颜色控件。支持按组件名或中文关键词搜索。示例全部使用当前主题，并展示 Niltavi 的按钮和标签扩展。紧凑顶栏包含页面导航、中英文切换和图标主题按钮。两个页面各自提供目录侧栏，窄屏下改为章节选择器。
 
 示例以本地源码维护，上游提交记录在 `src/showcase/NOTICE.md`，并按 HeroUI 3.2.7 校验。官方示例的布局工具类沿用同一套 HeroUI / Tailwind 主题映射，示例中的自定义主题覆盖已移除。展示区作为独立代码块加载，部分头像和图片使用 HeroUI 的公开素材 CDN。
+
+静态站点采用 hash 路由：`#/components`、`#/components/checkbox-group`、`#/palette` 和 `#/palette/leaf`。直接链接和浏览器前进、后退无需服务端路由支持。语言与主题偏好保存在本地。`src/showcase/catalog.ts` 统一维护标题与目录，`src/showcase/messages.json` 维护双语示例文案，日期和内置控件跟随 React Aria 的语言设置。自然意趣放在示例内容中，操作名称和校验提示保持直白。色觉模拟矩阵保留在 `src/theme/vision.ts` 中，公开顶栏不再提供入口。
 
 ```bash
 npm install

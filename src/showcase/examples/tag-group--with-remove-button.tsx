@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {Key} from "@heroui/react";
 
 import {CircleXmarkFill} from "@gravity-ui/icons";
@@ -6,6 +7,7 @@ import {Description, EmptyState, Label, Tag, TagGroup} from "@heroui/react";
 import {useState} from "react";
 
 export function TagGroupWithRemoveButton() {
+  const t = useCopy();
   type TagItem = {id: string; name: string};
 
   const [tags, setTags] = useState<TagItem[]>([
@@ -34,44 +36,44 @@ export function TagGroupWithRemoveButton() {
     <div className="flex flex-col gap-8">
       <div className="w-full max-w-sm">
         <TagGroup selectionMode="single" onRemove={onRemoveTags}>
-          <Label>Default Remove Button</Label>
+          <Label>{t("Default Remove Button")}</Label>
           <TagGroup.List
             items={tags}
-            renderEmptyState={() => <EmptyState className="p-1">No categories found</EmptyState>}
+            renderEmptyState={() => <EmptyState className="p-1">{t("No categories found")}</EmptyState>}
           >
             {(tag) => (
-              <Tag key={tag.name} id={tag.id} textValue={tag.name}>
-                {tag.name}
+              <Tag key={tag.name} id={tag.id} textValue={t(tag.name)}>
+                {t(tag.name)}
               </Tag>
             )}
           </TagGroup.List>
-          <Description>Click the X to remove tags</Description>
+          <Description>{t("Click the X to remove tags")}</Description>
         </TagGroup>
       </div>
 
       <div className="w-full max-w-md">
         <TagGroup selectionMode="single" onRemove={onRemoveFrameworks}>
-          <Label>Custom Remove Button</Label>
+          <Label>{t("Custom Remove Button")}</Label>
           <TagGroup.List
             items={frameworks}
-            renderEmptyState={() => <EmptyState className="p-1">No frameworks found</EmptyState>}
+            renderEmptyState={() => <EmptyState className="p-1">{t("No frameworks found")}</EmptyState>}
           >
             {(tag) => (
-              <Tag key={tag.id} id={tag.id} textValue={tag.name}>
+              <Tag key={tag.id} id={tag.id} textValue={t(tag.name)}>
                 {(renderProps) => (
                   <>
-                    {tag.name}
-                    {!!renderProps.allowsRemoving && (
+                    {t(tag.name)}
+                    {t(!!renderProps.allowsRemoving && (
                       <Tag.RemoveButton>
                         <CircleXmarkFill />
                       </Tag.RemoveButton>
-                    )}
+                    ))}
                   </>
                 )}
               </Tag>
             )}
           </TagGroup.List>
-          <Description>Custom remove button with icon</Description>
+          <Description>{t("Custom remove button with icon")}</Description>
         </TagGroup>
       </div>
     </div>

@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {Color} from "@heroui/react";
 
 import {ColorArea, ColorSwatch, parseColor} from "@heroui/react";
 import {useState} from "react";
 
 export function ColorAreaControlled() {
+  const t = useCopy();
   const [color, setColor] = useState<Color>(parseColor("#9B80FF"));
 
   return (
@@ -15,8 +17,8 @@ export function ColorAreaControlled() {
       <div className="flex w-full max-w-[300px] items-center gap-3">
         <ColorSwatch color={color} size="md" />
         <p className="text-sm text-muted">
-          Current color:{" "}
-          <span className="font-medium">{color ? color.toString("hex") : "(empty)"}</span>
+          {t("Current color:")}{t(" ")}
+          <span className="font-medium">{t(color ? color.toString("hex") : "(empty)")}</span>
         </p>
       </div>
     </div>

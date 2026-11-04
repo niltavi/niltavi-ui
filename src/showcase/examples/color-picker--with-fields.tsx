@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {ColorChannel, ColorSpace} from "@heroui/react";
 
 import {
@@ -14,6 +15,7 @@ import {
 import {useState} from "react";
 
 export function WithFields() {
+  const t = useCopy();
   const [colorSpace, setColorSpace] = useState<ColorSpace>("hsl");
 
   const colorChannelsByColorSpace: Record<ColorSpace, ColorChannel[]> = {
@@ -26,7 +28,7 @@ export function WithFields() {
     <ColorPicker defaultValue="hsla(220, 90%, 50%, 0.8)">
       <ColorPicker.Trigger>
         <ColorSwatch size="lg" />
-        <Label>Pick a color</Label>
+        <Label>{t("Pick a color")}</Label>
       </ColorPicker.Trigger>
       <ColorPicker.Popover className="max-w-62 gap-2">
         <ColorArea
@@ -38,14 +40,14 @@ export function WithFields() {
           <ColorArea.Thumb />
         </ColorArea>
         <ColorSlider channel="hue" className="gap-1 px-1" colorSpace="hsb">
-          <Label>Hue</Label>
+          <Label>{t("Hue")}</Label>
           <ColorSlider.Output className="text-muted" />
           <ColorSlider.Track>
             <ColorSlider.Thumb />
           </ColorSlider.Track>
         </ColorSlider>
         <Select
-          aria-label="Color space"
+          aria-label={t("Color space")}
           value={colorSpace}
           variant="secondary"
           onChange={(value) => setColorSpace(value as ColorSpace)}
@@ -57,8 +59,8 @@ export function WithFields() {
           <Select.Popover>
             <ListBox>
               {Object.keys(colorChannelsByColorSpace).map((space) => (
-                <ListBox.Item key={space} className="uppercase" id={space} textValue={space}>
-                  {space}
+                <ListBox.Item key={space} className="uppercase" id={space} textValue={t(space)}>
+                  {t(space)}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
               ))}
@@ -69,7 +71,7 @@ export function WithFields() {
           {colorChannelsByColorSpace[colorSpace].map((channel) => (
             <ColorField
               key={channel}
-              aria-label={channel}
+              aria-label={t(channel)}
               channel={channel}
               colorSpace={colorSpace}
             >

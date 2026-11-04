@@ -1,9 +1,11 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Avatar, Badge} from "@heroui/react";
 
 const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgePlacements() {
+  const t = useCopy();
   const placements = ["top-right", "top-left", "bottom-right", "bottom-left"] as const;
 
   return (
@@ -13,11 +15,11 @@ export function BadgePlacements() {
           <Badge.Anchor>
             <Avatar>
               <Avatar.Image src={AVATAR_URL} />
-              <Avatar.Fallback>JD</Avatar.Fallback>
+              <Avatar.Fallback>{t("JD")}</Avatar.Fallback>
             </Avatar>
             <Badge color="accent" placement={placement} size="sm" />
           </Badge.Anchor>
-          <span className="text-xs text-muted">{placement}</span>
+          <span className="text-xs text-muted">{t(placement)}</span>
         </div>
       ))}
     </div>

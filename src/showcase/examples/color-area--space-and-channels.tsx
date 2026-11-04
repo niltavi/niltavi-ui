@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {ColorSpace, Key} from "@heroui/react";
 
 import {ColorArea, Label, ListBox, Select, parseColor} from "@heroui/react";
@@ -36,6 +37,7 @@ const channelsBySpace: Record<ColorSpace, ChannelOption[]> = {
 };
 
 export function ColorAreaSpaceAndChannels() {
+  const t = useCopy();
   const [colorSpace, setColorSpace] = useState<ColorSpace>("hsb");
   const [color, setColor] = useState(() => parseColor("hsb(219, 58%, 93%)"));
 
@@ -75,7 +77,7 @@ export function ColorAreaSpaceAndChannels() {
       <div className="flex flex-wrap gap-4">
         {/* Color Space Select */}
         <Select className="w-32" value={colorSpace} onChange={handleColorSpaceChange}>
-          <Label>Color Space</Label>
+          <Label>{t("Color Space")}</Label>
           <Select.Trigger>
             <Select.Value />
             <Select.Indicator />
@@ -83,8 +85,8 @@ export function ColorAreaSpaceAndChannels() {
           <Select.Popover>
             <ListBox>
               {colorSpaces.map((space) => (
-                <ListBox.Item key={space.id} id={space.id} textValue={space.name}>
-                  {space.name}
+                <ListBox.Item key={space.id} id={space.id} textValue={t(space.name)}>
+                  {t(space.name)}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
               ))}
@@ -98,7 +100,7 @@ export function ColorAreaSpaceAndChannels() {
           value={xChannel}
           onChange={(value) => value && setXChannel(value as ColorChannel)}
         >
-          <Label>X Axis</Label>
+          <Label>{t("X Axis")}</Label>
           <Select.Trigger>
             <Select.Value />
             <Select.Indicator />
@@ -106,8 +108,8 @@ export function ColorAreaSpaceAndChannels() {
           <Select.Popover>
             <ListBox>
               {xChannelOptions.map((channel) => (
-                <ListBox.Item key={channel.id} id={channel.id} textValue={channel.name}>
-                  {channel.name}
+                <ListBox.Item key={channel.id} id={channel.id} textValue={t(channel.name)}>
+                  {t(channel.name)}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
               ))}
@@ -121,7 +123,7 @@ export function ColorAreaSpaceAndChannels() {
           value={yChannel}
           onChange={(value) => value && setYChannel(value as ColorChannel)}
         >
-          <Label>Y Axis</Label>
+          <Label>{t("Y Axis")}</Label>
           <Select.Trigger>
             <Select.Value />
             <Select.Indicator />
@@ -129,8 +131,8 @@ export function ColorAreaSpaceAndChannels() {
           <Select.Popover>
             <ListBox>
               {yChannelOptions.map((channel) => (
-                <ListBox.Item key={channel.id} id={channel.id} textValue={channel.name}>
-                  {channel.name}
+                <ListBox.Item key={channel.id} id={channel.id} textValue={t(channel.name)}>
+                  {t(channel.name)}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
               ))}
@@ -156,7 +158,7 @@ export function ColorAreaSpaceAndChannels() {
           style={{backgroundColor: color.toString("css")}}
         />
         <code className="rounded bg-default/50 px-2 py-1 text-sm">
-          {color.toString(colorSpace)}
+          {t(color.toString(colorSpace))}
         </code>
       </div>
     </div>

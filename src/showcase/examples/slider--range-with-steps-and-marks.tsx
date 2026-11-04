@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Label, Slider} from "@heroui/react";
 
 export function RangeWithStepsAndMarks() {
+  const t = useCopy();
   return (
     <Slider className="w-full max-w-xs" defaultValue={[0.2, 0.8]} maxValue={1} step={0.1}>
-      <Label>Range</Label>
+      <Label>{t("Range")}</Label>
       <Slider.Output />
       <Slider.Track>
         {({state}) => (

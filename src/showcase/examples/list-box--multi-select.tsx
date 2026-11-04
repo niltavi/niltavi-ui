@@ -1,49 +1,51 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Avatar, Description, Label, ListBox, Surface} from "@heroui/react";
 
 export function MultiSelect() {
+  const t = useCopy();
   return (
     <Surface className="w-full max-w-[256px] rounded-3xl shadow-surface">
-      <ListBox aria-label="Users" selectionMode="multiple">
-        <ListBox.Item id="1" textValue="Bob">
+      <ListBox aria-label={t("Users")} selectionMode="multiple">
+        <ListBox.Item id="1" textValue={t("Bob")}>
           <Avatar size="sm">
             <Avatar.Image
-              alt="Bob"
+              alt={t("Bob")}
               src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg"
             />
-            <Avatar.Fallback>B</Avatar.Fallback>
+            <Avatar.Fallback>{t("B")}</Avatar.Fallback>
           </Avatar>
           <div className="flex flex-col">
-            <Label>Bob</Label>
-            <Description>bob@heroui.com</Description>
+            <Label>{t("Bob")}</Label>
+            <Description>{t("bob@heroui.com")}</Description>
           </div>
           <ListBox.ItemIndicator />
         </ListBox.Item>
-        <ListBox.Item id="2" textValue="Fred">
+        <ListBox.Item id="2" textValue={t("Fred")}>
           <Avatar size="sm">
             <Avatar.Image
-              alt="Fred"
+              alt={t("Fred")}
               src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg"
             />
-            <Avatar.Fallback>F</Avatar.Fallback>
+            <Avatar.Fallback>{t("F")}</Avatar.Fallback>
           </Avatar>
           <div className="flex flex-col">
-            <Label>Fred</Label>
-            <Description>fred@heroui.com</Description>
+            <Label>{t("Fred")}</Label>
+            <Description>{t("fred@heroui.com")}</Description>
           </div>
           <ListBox.ItemIndicator />
         </ListBox.Item>
-        <ListBox.Item id="3" textValue="Martha">
+        <ListBox.Item id="3" textValue={t("Martha")}>
           <Avatar size="sm">
             <Avatar.Image
-              alt="Martha"
+              alt={t("Martha")}
               src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg"
             />
-            <Avatar.Fallback>M</Avatar.Fallback>
+            <Avatar.Fallback>{t("M")}</Avatar.Fallback>
           </Avatar>
           <div className="flex flex-col">
-            <Label>Martha</Label>
-            <Description>martha@heroui.com</Description>
+            <Label>{t("Martha")}</Label>
+            <Description>{t("martha@heroui.com")}</Description>
           </div>
           <ListBox.ItemIndicator />
         </ListBox.Item>

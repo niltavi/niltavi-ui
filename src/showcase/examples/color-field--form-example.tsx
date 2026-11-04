@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {Color} from "@heroui/react";
 
 import {Button, ColorField, ColorSwatch, Description, Form, Label} from "@heroui/react";
 import {useState} from "react";
 
 export function FormExample() {
+  const t = useCopy();
   const [value, setValue] = useState<Color | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,14 +37,14 @@ export function FormExample() {
         value={value}
         onChange={setValue}
       >
-        <Label>Brand Color</Label>
+        <Label>{t("Brand Color")}</Label>
         <ColorField.Group>
           <ColorField.Prefix>
             <ColorSwatch color={value ?? undefined} size="xs" />
           </ColorField.Prefix>
-          <ColorField.Input placeholder="#000000" />
+          <ColorField.Input placeholder={t("#000000")} />
         </ColorField.Group>
-        <Description>Choose your brand's primary color</Description>
+        <Description>{t("Choose your brand's primary color")}</Description>
       </ColorField>
       <Button
         className="w-full"
@@ -51,7 +53,7 @@ export function FormExample() {
         type="submit"
         variant="primary"
       >
-        {isSubmitting ? "Saving..." : "Save Color"}
+        {t(isSubmitting ? "Saving..." : "Save Color")}
       </Button>
     </Form>
   );

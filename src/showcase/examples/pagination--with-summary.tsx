@@ -1,8 +1,10 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Pagination} from "@heroui/react";
 import {useState} from "react";
 
 export function PaginationWithSummary() {
+  const t = useCopy();
   const [page, setPage] = useState(1);
   const totalPages = 12;
   const itemsPerPage = 10;
@@ -39,13 +41,12 @@ export function PaginationWithSummary() {
   return (
     <Pagination className="w-full">
       <Pagination.Summary>
-        Showing {startItem}-{endItem} of {totalItems} results
-      </Pagination.Summary>
+        {t("Showing")}{t(startItem)}{t("-")}{t(endItem)} {" "}{t("of")}{" "}{t(totalItems)} {t("results")}</Pagination.Summary>
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous aria-label="Previous page" isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
+          <Pagination.Previous aria-label={t("Previous page")} isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
-            <span className="hidden sm:inline">Previous</span>
+            <span className="hidden sm:inline">{t("Previous")}</span>
           </Pagination.Previous>
         </Pagination.Item>
         {getPageNumbers().map((p, i) =>
@@ -56,14 +57,14 @@ export function PaginationWithSummary() {
           ) : (
             <Pagination.Item key={p}>
               <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
-                {p}
+                {t(p)}
               </Pagination.Link>
             </Pagination.Item>
           ),
         )}
         <Pagination.Item>
-          <Pagination.Next aria-label="Next page" isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
-            <span className="hidden sm:inline">Next</span>
+          <Pagination.Next aria-label={t("Next page")} isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
+            <span className="hidden sm:inline">{t("Next")}</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>

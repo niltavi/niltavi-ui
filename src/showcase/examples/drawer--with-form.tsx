@@ -1,38 +1,39 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Button, Drawer, Input, Label, TextField} from "@heroui/react";
 
 export function WithForm() {
+  const t = useCopy();
   return (
     <Drawer>
-      <Button variant="secondary">Edit Profile</Button>
+      <Button variant="secondary">{t("Edit Profile")}</Button>
       <Drawer.Backdrop>
         <Drawer.Content placement="right">
           <Drawer.Dialog>
             <Drawer.CloseTrigger />
             <Drawer.Header>
-              <Drawer.Heading>Edit Profile</Drawer.Heading>
+              <Drawer.Heading>{t("Edit Profile")}</Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
               <form className="flex flex-col gap-4">
                 <TextField className="w-full" name="name" type="text">
-                  <Label>Name</Label>
-                  <Input placeholder="Enter your name" variant="secondary" />
+                  <Label>{t("Name")}</Label>
+                  <Input placeholder={t("Enter your name")} variant="secondary" />
                 </TextField>
                 <TextField className="w-full" name="email" type="email">
-                  <Label>Email</Label>
-                  <Input placeholder="Enter your email" variant="secondary" />
+                  <Label>{t("Email")}</Label>
+                  <Input placeholder={t("Enter your email")} variant="secondary" />
                 </TextField>
                 <TextField className="w-full" name="bio">
-                  <Label>Bio</Label>
-                  <Input placeholder="Tell us about yourself" variant="secondary" />
+                  <Label>{t("Bio")}</Label>
+                  <Input placeholder={t("Tell us about yourself")} variant="secondary" />
                 </TextField>
               </form>
             </Drawer.Body>
             <Drawer.Footer>
               <Button slot="close" variant="secondary">
-                Cancel
-              </Button>
-              <Button slot="close">Save Changes</Button>
+                {t("Cancel")}</Button>
+              <Button slot="close">{t("Save Changes")}</Button>
             </Drawer.Footer>
           </Drawer.Dialog>
         </Drawer.Content>

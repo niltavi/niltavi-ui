@@ -1,7 +1,9 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {AlertDialog, Button} from "@heroui/react";
 
 export function Statuses() {
+  const t = useCopy();
   const examples = [
     {
       actions: {
@@ -53,24 +55,24 @@ export function Statuses() {
     <div className="flex flex-wrap gap-4">
       {examples.map(({actions, body, classNames, header, status, trigger}) => (
         <AlertDialog key={status}>
-          <Button className={classNames}>{trigger}</Button>
+          <Button className={classNames}>{t(trigger)}</Button>
           <AlertDialog.Backdrop>
             <AlertDialog.Container>
               <AlertDialog.Dialog className="sm:max-w-[400px]">
                 <AlertDialog.CloseTrigger />
                 <AlertDialog.Header>
                   <AlertDialog.Icon status={status} />
-                  <AlertDialog.Heading>{header}</AlertDialog.Heading>
+                  <AlertDialog.Heading>{t(header)}</AlertDialog.Heading>
                 </AlertDialog.Header>
                 <AlertDialog.Body>
-                  <p>{body}</p>
+                  <p>{t(body)}</p>
                 </AlertDialog.Body>
                 <AlertDialog.Footer>
                   <Button slot="close" variant="tertiary">
-                    {actions.cancel}
+                    {t(actions.cancel)}
                   </Button>
                   <Button slot="close" variant={status === "danger" ? "danger" : "primary"}>
-                    {actions.confirm}
+                    {t(actions.confirm)}
                   </Button>
                 </AlertDialog.Footer>
               </AlertDialog.Dialog>

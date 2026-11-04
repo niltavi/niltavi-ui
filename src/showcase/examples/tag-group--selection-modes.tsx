@@ -1,10 +1,12 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {Key} from "@heroui/react";
 
 import {Description, Label, Tag, TagGroup} from "@heroui/react";
 import {useState} from "react";
 
 export function TagGroupSelectionModes() {
+  const t = useCopy();
   const [singleSelected, setSingleSelected] = useState<Iterable<Key>>(new Set(["news"]));
   const [multipleSelected, setMultipleSelected] = useState<Iterable<Key>>(
     new Set(["news", "travel"]),
@@ -17,14 +19,14 @@ export function TagGroupSelectionModes() {
         selectionMode="single"
         onSelectionChange={(keys) => setSingleSelected(keys)}
       >
-        <Label>Single Selection</Label>
+        <Label>{t("Single Selection")}</Label>
         <TagGroup.List>
-          <Tag>News</Tag>
-          <Tag>Travel</Tag>
-          <Tag>Gaming</Tag>
-          <Tag>Shopping</Tag>
+          <Tag>{t("News")}</Tag>
+          <Tag>{t("Travel")}</Tag>
+          <Tag>{t("Gaming")}</Tag>
+          <Tag>{t("Shopping")}</Tag>
         </TagGroup.List>
-        <Description>Choose one category</Description>
+        <Description>{t("Choose one category")}</Description>
       </TagGroup>
 
       <TagGroup
@@ -32,14 +34,14 @@ export function TagGroupSelectionModes() {
         selectionMode="multiple"
         onSelectionChange={(keys) => setMultipleSelected(keys)}
       >
-        <Label>Multiple Selection</Label>
+        <Label>{t("Multiple Selection")}</Label>
         <TagGroup.List>
-          <Tag>News</Tag>
-          <Tag>Travel</Tag>
-          <Tag>Gaming</Tag>
-          <Tag>Shopping</Tag>
+          <Tag>{t("News")}</Tag>
+          <Tag>{t("Travel")}</Tag>
+          <Tag>{t("Gaming")}</Tag>
+          <Tag>{t("Shopping")}</Tag>
         </TagGroup.List>
-        <Description>Choose multiple categories</Description>
+        <Description>{t("Choose multiple categories")}</Description>
       </TagGroup>
     </div>
   );

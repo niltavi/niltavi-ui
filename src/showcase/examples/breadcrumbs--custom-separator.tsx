@@ -1,7 +1,9 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Breadcrumbs} from "@heroui/react";
 
 export default function BreadcrumbsCustomSeparator() {
+  const t = useCopy();
   return (
     <Breadcrumbs
       separator={
@@ -10,10 +12,10 @@ export default function BreadcrumbsCustomSeparator() {
         </svg>
       }
     >
-      <Breadcrumbs.Item href="#">Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item href="#">Products</Breadcrumbs.Item>
-      <Breadcrumbs.Item href="#">Electronics</Breadcrumbs.Item>
-      <Breadcrumbs.Item>Laptop</Breadcrumbs.Item>
+      <Breadcrumbs.Item href="#" onClick={(event) => event.preventDefault()}>{t("Home")}</Breadcrumbs.Item>
+      <Breadcrumbs.Item href="#" onClick={(event) => event.preventDefault()}>{t("Products")}</Breadcrumbs.Item>
+      <Breadcrumbs.Item href="#" onClick={(event) => event.preventDefault()}>{t("Electronics")}</Breadcrumbs.Item>
+      <Breadcrumbs.Item>{t("Laptop")}</Breadcrumbs.Item>
     </Breadcrumbs>
   );
 }

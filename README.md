@@ -1,4 +1,4 @@
-# Niltava UI
+# Niltavi UI
 
 English | [简体中文](docs/README.zh-CN.md)
 
@@ -65,13 +65,15 @@ Use HeroUI component props for sizes and variants. Add reusable extensions to `s
 
 Card choices use `checkbox--card` / `radio--card` with a `choice-card` content grid. Keep the title and description in `choice-card__body`; optional icons use `choice-card__icon` and `choice-card--with-icon`. The control stays in normal grid flow, aligned with the first text line. Use `checkbox-group--cards` / `radio-group--cards` with `choice-list` for consistent gaps; `choice-list--columns` adapts to the available width. The gallery provides the outer padding, so examples should avoid extra presentation wrappers and use flexible widths for forms.
 
-The script checks 62 foreground / background contrast pairs and exits with an error if any fail. Run the generator tests with `npm test`.
+The script checks 62 foreground / background contrast pairs and exits with an error if any fail. Run token, navigation, directory, search, and localization tests with `npm test`.
 
-## Preview
+## Public showcase
 
-The component gallery adapts [HeroUI's official demos](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en), including grouped and multiple selection, form validation, date ranges, nested menus, resizable tables, dialogs, drawers, sheets, and color controls. Search by component name or Chinese keyword. All examples use this theme; the Niltavi button and chip extensions are included. The right-hand theme controls retain a themed Surface background.
+The component gallery adapts [HeroUI's official demos](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en), including grouped and multiple selection, form validation, date ranges, nested menus, resizable tables, dialogs, drawers, sheets, and color controls. Search by component name or Chinese keyword. All examples use this theme; the Niltavi button and chip extensions are included. The compact header contains page navigation, Chinese / English switching, and an icon theme switch. Each page has a directory sidebar; on small screens it becomes a section selector.
 
 Examples are maintained as local source files, pinned to the upstream commit recorded in `src/showcase/NOTICE.md`, and checked against HeroUI 3.2.7. Official example layout utilities use the same HeroUI/Tailwind theme bridge; custom theme overrides are removed. The gallery loads in a separate chunk. Some avatars and images use HeroUI's public asset CDN.
+
+The static site uses hash routes: `#/components`, `#/components/checkbox-group`, `#/palette`, and `#/palette/leaf`. Direct links and browser history work without server routing. Language and theme preferences persist locally. `src/showcase/catalog.ts` is the shared source for headings and navigation; bilingual sample copy is in `src/showcase/messages.json`. Dates and built-in controls follow the React Aria locale provider. Natural scenes belong in example content; action names and validation remain clear. Color-vision matrices remain available in `src/theme/vision.ts`, without an entry in the public header.
 
 ```bash
 npm install

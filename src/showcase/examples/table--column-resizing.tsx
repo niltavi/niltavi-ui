@@ -1,78 +1,71 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Chip, Table} from "@heroui/react";
 
 export function ColumnResizing() {
+  const t = useCopy();
   return (
     <Table>
       <Table.ResizableContainer>
-        <Table.Content aria-label="Table with resizable columns" className="min-w-[700px]">
+        <Table.Content aria-label={t("Table with resizable columns")} className="min-w-[700px]">
           <Table.Header>
             <Table.Column isRowHeader defaultWidth="1fr" id="name" minWidth={160}>
-              Name
-              <Table.ColumnResizer />
+              {t("Name")}<Table.ColumnResizer />
             </Table.Column>
             <Table.Column defaultWidth="1fr" id="role" minWidth={220}>
-              Role
-              <Table.ColumnResizer />
+              {t("Role")}<Table.ColumnResizer />
             </Table.Column>
             <Table.Column defaultWidth="1fr" id="status" minWidth={100}>
-              Status
-              <Table.ColumnResizer />
+              {t("Status")}<Table.ColumnResizer />
             </Table.Column>
             <Table.Column defaultWidth="1fr" id="email" minWidth={200}>
-              Email
-            </Table.Column>
+              {t("Email")}</Table.Column>
           </Table.Header>
           <Table.Body>
             <Table.Row>
-              <Table.Cell>Kate Moore</Table.Cell>
-              <Table.Cell>CEO</Table.Cell>
+              <Table.Cell>{t("Kate Moore")}</Table.Cell>
+              <Table.Cell>{t("CEO")}</Table.Cell>
               <Table.Cell>
                 <Chip color="success" size="sm" variant="soft">
-                  Active
-                </Chip>
+                  {t("Active")}</Chip>
               </Table.Cell>
-              <Table.Cell>kate@acme.com</Table.Cell>
+              <Table.Cell>{t("kate@acme.com")}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>John Smith</Table.Cell>
-              <Table.Cell>CTO</Table.Cell>
+              <Table.Cell>{t("John Smith")}</Table.Cell>
+              <Table.Cell>{t("CTO")}</Table.Cell>
               <Table.Cell>
                 <Chip color="success" size="sm" variant="soft">
-                  Active
-                </Chip>
+                  {t("Active")}</Chip>
               </Table.Cell>
-              <Table.Cell>john@acme.com</Table.Cell>
+              <Table.Cell>{t("john@acme.com")}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Sara Johnson</Table.Cell>
-              <Table.Cell>CMO</Table.Cell>
+              <Table.Cell>{t("Sara Johnson")}</Table.Cell>
+              <Table.Cell>{t("CMO")}</Table.Cell>
               <Table.Cell>
                 <Chip color="warning" size="sm" variant="soft">
-                  On Leave
-                </Chip>
+                  {t("On Leave")}</Chip>
               </Table.Cell>
-              <Table.Cell>sara@acme.com</Table.Cell>
+              <Table.Cell>{t("sara@acme.com")}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Michael Brown</Table.Cell>
-              <Table.Cell>CFO</Table.Cell>
+              <Table.Cell>{t("Michael Brown")}</Table.Cell>
+              <Table.Cell>{t("CFO")}</Table.Cell>
               <Table.Cell>
                 <Chip color="success" size="sm" variant="soft">
-                  Active
-                </Chip>
+                  {t("Active")}</Chip>
               </Table.Cell>
-              <Table.Cell>michael@acme.com</Table.Cell>
+              <Table.Cell>{t("michael@acme.com")}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Emily Davis</Table.Cell>
-              <Table.Cell>Product Manager</Table.Cell>
+              <Table.Cell>{t("Emily Davis")}</Table.Cell>
+              <Table.Cell>{t("Product Manager")}</Table.Cell>
               <Table.Cell>
                 <Chip color="danger" size="sm" variant="soft">
-                  Inactive
-                </Chip>
+                  {t("Inactive")}</Chip>
               </Table.Cell>
-              <Table.Cell>emily@acme.com</Table.Cell>
+              <Table.Cell>{t("emily@acme.com")}</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table.Content>

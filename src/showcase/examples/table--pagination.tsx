@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import {Pagination, Table} from "@heroui/react";
 import {useMemo, useState} from "react";
 
@@ -41,6 +42,7 @@ const users = [
 const ROWS_PER_PAGE = 4;
 
 export function PaginationDemo() {
+  const t = useCopy();
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(users.length / ROWS_PER_PAGE);
   const pages = Array.from({length: totalPages}, (_, i) => i + 1);
@@ -57,17 +59,17 @@ export function PaginationDemo() {
   return (
     <Table>
       <Table.ScrollContainer>
-        <Table.Content aria-label="Table with pagination" className="min-w-[600px]">
+        <Table.Content aria-label={t("Table with pagination")} className="min-w-[600px]">
           <Table.Header columns={columns}>
             {(column) => (
-              <Table.Column isRowHeader={column.id === "name"}>{column.name}</Table.Column>
+              <Table.Column isRowHeader={column.id === "name"}>{t(column.name)}</Table.Column>
             )}
           </Table.Header>
           <Table.Body items={paginatedItems}>
             {(user) => (
               <Table.Row>
                 <Table.Collection items={columns}>
-                  {(column) => <Table.Cell>{user[column.id as keyof typeof user]}</Table.Cell>}
+                  {(column) => <Table.Cell>{t(user[column.id as keyof typeof user])}</Table.Cell>}
                 </Table.Collection>
               </Table.Row>
             )}
@@ -77,8 +79,7 @@ export function PaginationDemo() {
       <Table.Footer>
         <Pagination size="sm">
           <Pagination.Summary>
-            {start} to {end} of {users.length} results
-          </Pagination.Summary>
+            {t(start)} {" "}{t("to")}{" "}{t(end)} {" "}{t("of")}{" "}{t(users.length)} {t("results")}</Pagination.Summary>
           <Pagination.Content>
             <Pagination.Item>
               <Pagination.Previous
@@ -86,13 +87,12 @@ export function PaginationDemo() {
                 onPress={() => setPage((p) => Math.max(1, p - 1))}
               >
                 <Pagination.PreviousIcon />
-                Prev
-              </Pagination.Previous>
+                {t("Prev")}</Pagination.Previous>
             </Pagination.Item>
             {pages.map((p) => (
               <Pagination.Item key={p}>
                 <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
-                  {p}
+                  {t(p)}
                 </Pagination.Link>
               </Pagination.Item>
             ))}
@@ -101,8 +101,7 @@ export function PaginationDemo() {
                 isDisabled={page === totalPages}
                 onPress={() => setPage((p) => Math.min(totalPages, p + 1))}
               >
-                Next
-                <Pagination.NextIcon />
+                {t("Next")}<Pagination.NextIcon />
               </Pagination.Next>
             </Pagination.Item>
           </Pagination.Content>

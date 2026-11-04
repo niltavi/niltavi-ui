@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+import {useCopy} from "../copy";
 import type {Selection, SortDescriptor} from "@heroui/react";
 
 import {Avatar, Button, Checkbox, Chip, Table} from "@heroui/react";
@@ -64,6 +65,7 @@ const users: User[] = [
 ];
 
 export function CustomCells() {
+  const t = useCopy();
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
     column: "name",
@@ -89,7 +91,7 @@ export function CustomCells() {
     <Table>
       <Table.ScrollContainer>
         <Table.Content
-          aria-label="Table with custom cells"
+          aria-label={t("Table with custom cells")}
           className="min-w-[800px]"
           selectedKeys={selectedKeys}
           selectionMode="multiple"
@@ -99,7 +101,7 @@ export function CustomCells() {
         >
           <Table.Header>
             <Table.Column className="pe-0">
-              <Checkbox aria-label="Select all" slot="selection">
+              <Checkbox aria-label={t("Select all")} slot="selection">
                 <Checkbox.Content>
                   <Checkbox.Control>
                     <Checkbox.Indicator />
@@ -110,38 +112,34 @@ export function CustomCells() {
             <Table.Column allowsSorting isRowHeader className="after:hidden" id="id">
               {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
-                  Worker ID
-                </Table.SortableColumnHeader>
+                  {t("Worker ID")}</Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="name">
               {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
-                  Member
-                </Table.SortableColumnHeader>
+                  {t("Member")}</Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="role">
               {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
-                  Role
-                </Table.SortableColumnHeader>
+                  {t("Role")}</Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="status">
               {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
-                  Status
-                </Table.SortableColumnHeader>
+                  {t("Status")}</Table.SortableColumnHeader>
               )}
             </Table.Column>
-            <Table.Column className="text-end">Actions</Table.Column>
+            <Table.Column className="text-end">{t("Actions")}</Table.Column>
           </Table.Header>
           <Table.Body>
             {sortedUsers.map((user) => (
               <Table.Row key={user.id} id={user.id}>
                 <Table.Cell className="pe-0">
-                  <Checkbox aria-label={`Select ${user.name}`} slot="selection" variant="secondary">
+                  <Checkbox aria-label={t("Select {name}", {name: t(user.name)})} slot="selection" variant="secondary">
                     <Checkbox.Content>
                       <Checkbox.Control>
                         <Checkbox.Indicator />
@@ -151,8 +149,8 @@ export function CustomCells() {
                 </Table.Cell>
                 <Table.Cell className="font-medium">
                   <div className="flex items-center gap-2">
-                    #{user.id.toString()}{" "}
-                    <Button isIconOnly aria-label={`Copy ID #${user.id}`} size="sm" variant="ghost">
+                    {t("#")}{t(user.id.toString())}{t(" ")}
+                    <Button isIconOnly aria-label={t("Copy ID #{id}", {id: user.id})} size="sm" variant="ghost">
                       <Icon className="size-4 text-muted" icon="gravity-ui:copy" />
                     </Button>
                   </div>
@@ -162,29 +160,29 @@ export function CustomCells() {
                     <Avatar size="sm">
                       <Avatar.Image src={user.image_url} />
                       <Avatar.Fallback>
-                        {user.name
+                        {t(user.name
                           .split(" ")
                           .map((n) => n[0])
-                          .join("")}
+                          .join(""))}
                       </Avatar.Fallback>
                     </Avatar>
                     <div className="flex flex-col">
-                      <span className="text-xs">{user.name}</span>
-                      <span className="text-xs text-muted">{user.email}</span>
+                      <span className="text-xs">{t(user.name)}</span>
+                      <span className="text-xs text-muted">{t(user.email)}</span>
                     </div>
                   </div>
                 </Table.Cell>
-                <Table.Cell className="min-w-52">{user.role}</Table.Cell>
+                <Table.Cell className="min-w-52">{t(user.role)}</Table.Cell>
                 <Table.Cell className="min-w-25">
                   <Chip color={statusColorMap[user.status]} size="sm" variant="soft">
-                    {user.status}
+                    {t(user.status)}
                   </Chip>
                 </Table.Cell>
                 <Table.Cell>
                   <div className="flex items-center gap-1">
                     <Button
                       isIconOnly
-                      aria-label={`View ${user.name}`}
+                      aria-label={t("View {name}", {name: t(user.name)})}
                       size="sm"
                       variant="tertiary"
                     >
@@ -192,7 +190,7 @@ export function CustomCells() {
                     </Button>
                     <Button
                       isIconOnly
-                      aria-label={`Edit ${user.name}`}
+                      aria-label={t("Edit {name}", {name: t(user.name)})}
                       size="sm"
                       variant="tertiary"
                     >
@@ -200,7 +198,7 @@ export function CustomCells() {
                     </Button>
                     <Button
                       isIconOnly
-                      aria-label={`Delete ${user.name}`}
+                      aria-label={t("Delete {name}", {name: t(user.name)})}
                       size="sm"
                       variant="danger-soft"
                     >

@@ -79,7 +79,7 @@ body {
 .preview-header__inner { width: min(1440px, calc(100% - 64px)); min-height: var(--site-header-height); margin-inline: auto; display: flex; align-items: center; gap: 40px; }
 .preview-brand { display: inline-flex; align-items: baseline; flex-shrink: 0; color: var(--foreground); font-family: var(--font-sans); font-size: 24px; font-weight: 600; letter-spacing: -1.2px; line-height: 1; text-decoration: none; }
 .preview-brand__dot { color: var(--rufous); }
-.preview-brand__label { margin-left: 7px; font: inherit; letter-spacing: inherit; }
+.preview-brand__label { align-self: center; margin-left: 8px; color: var(--muted); font-family: inherit; font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .1em; }
 .primary-nav { display: flex; align-self: stretch; gap: 28px; }
 .primary-nav a { display: inline-flex; align-items: center; position: relative; font-size: .875rem; font-weight: 500; color: var(--muted); text-decoration: none; }
 .primary-nav a[aria-current] { color: var(--foreground); }

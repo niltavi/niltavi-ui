@@ -133,11 +133,11 @@
     },
     "warning": {
       "$type": "color",
-      "$value": "{color.gold.400}"
+      "$value": "{color.gold.600}"
     },
     "warning-foreground": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": "{color.white}"
     },
     "danger": {
       "$type": "color",

@@ -115,11 +115,11 @@
     },
     "warning": {
       "$type": "color",
-      "$value": "{color.gold.300}"
+      "$value": "{color.gold.600}"
     },
     "warning-foreground": {
       "$type": "color",
-      "$value": "{color.gold.975}"
+      "$value": "{color.white}"
     },
     "danger": {
       "$type": "color",

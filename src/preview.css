@@ -116,7 +116,7 @@ body {
 .palette__scale, .palette-section { scroll-margin-top: calc(var(--site-header-height) + 24px); }
 .palette__name { font-size: .875rem; }
 .palette-section > h2 { font-size: 1rem; font-weight: 600; margin-bottom: 18px; }
-.preview-footer { display: flex; justify-content: flex-end; padding-block: 32px 24px; }
+.preview-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 32px 24px; font-size: .875rem; }
 @media (min-width: 1100px) { .showcase-examples:not([data-wide]) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 1000px) { .site-layout { gap: 28px; grid-template-columns: 170px minmax(0, 1fr); } }
 @media (max-width: 700px) {

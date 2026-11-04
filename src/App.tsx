@@ -1,4 +1,4 @@
-import {Button, ListBox, SearchField, Select, Spinner, Surface, Toast, ToggleButton, ToggleButtonGroup} from "@heroui/react";
+import {Button, Link, ListBox, SearchField, Select, Spinner, Surface, Toast, ToggleButton, ToggleButtonGroup} from "@heroui/react";
 import {lazy, Suspense, useEffect, useState, type MouseEvent} from "react";
 import {I18nProvider} from "react-aria";
 
@@ -105,7 +105,10 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
         <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
           {route.page === "components" ? <Showcase query={query} section={route.section} /> : <Palette mode={mode} section={route.section} />}
         </Suspense>
-        <footer className="preview-footer"><Button isIconOnly variant="ghost" aria-label={text("Back to top", "回到顶部")} onPress={() => {window.scrollTo({top:0}); document.getElementById("page-top")?.focus({preventScroll:true});}}><Icon name="arrow-up" /></Button></footer>
+        <footer className="preview-footer">
+          <Link href="https://niltavi.com">niltavi.com</Link>
+          <Button isIconOnly variant="ghost" aria-label={text("Back to top", "回到顶部")} onPress={() => {window.scrollTo({top:0}); document.getElementById("page-top")?.focus({preventScroll:true});}}><Icon name="arrow-up" /></Button>
+        </footer>
       </main>
     </div>
   </>;

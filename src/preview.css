@@ -117,14 +117,37 @@ body {
 .palette__name { font-size: .875rem; }
 .palette-section > h2 { font-size: 1rem; font-weight: 600; margin-bottom: 18px; }
 .preview-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 32px 24px; font-size: .875rem; }
+
+/* Long-form pages use the existing typography and semantic theme. */
+.editorial-page { --font-serif: "Iowan Old Style", "Baskerville", "Noto Serif SC", "Songti SC", "SimSun", serif; max-width: 760px; padding-block: 4px 16px; }
+.editorial-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
+.editorial-header > p { max-width: 60ch; }
+.editorial-sections { display: flex; flex-direction: column; gap: 40px; }
+.editorial-section { scroll-margin-top: calc(var(--site-header-height) + 24px); }
+.editorial-section h2 { margin-bottom: 16px; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; line-height: 1.45; text-wrap: balance; }
+.editorial-section:first-child h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -.025em; }
+.editorial-section p { font-size: 1rem; line-height: 2; text-wrap: pretty; }
+.editorial-intro { padding: 28px; }
+.editorial-quote { margin-block: 32px; padding-left: 24px; border-left: 2px solid var(--accent); font-family: var(--font-serif); font-size: 1.375rem; line-height: 1.9; white-space: pre-line; text-wrap: pretty; }
+.editorial-source { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--separator); font-size: .8125rem; }
+html[lang="en"] .editorial-section p { line-height: 1.85; }
+
+@media (min-width: 781px) and (max-width: 860px) {
+  .preview-header__inner { gap: 24px; }
+  .primary-nav { gap: 20px; }
+}
 @media (min-width: 1100px) { .showcase-examples:not([data-wide]) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 1000px) { .site-layout { gap: 28px; grid-template-columns: 170px minmax(0, 1fr); } }
-@media (max-width: 700px) {
+@media (max-width: 780px) {
   :root { --site-header-height: 96px; }
   .preview-header__inner { width: calc(100% - 32px); min-height: 0; flex-wrap: wrap; gap: 0; padding-top: 10px; }
   .preview-brand { font-size: 22px; }
   .preview-controls { margin-left: auto; }
   .primary-nav { order: 3; width: 100%; height: 42px; gap: 24px; }
+  .editorial-header { margin-bottom: 32px; }
+  .editorial-sections { gap: 32px; }
+  .editorial-intro { padding: 20px; }
+  .editorial-quote { padding-left: 16px; font-size: 1.25rem; }
   .site-layout { width: calc(100% - 32px); grid-template-columns: minmax(0, 1fr); gap: 0; }
   .site-sidebar { position: static; height: auto; padding-block: 20px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
   .site-sidebar:not(:has(.showcase-search)) { grid-template-columns: 1fr; }

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getActiveSection, type Page} from "./navigation";
+import {getActiveSection, sectionId, type Page} from "./navigation";
 
 /** Keep directory state tied to rendered headings, including lazy page loads. */
 export function useActiveSection(page: Page, ids: string[]) {
@@ -12,7 +12,7 @@ export function useActiveSection(page: Page, ids: string[]) {
       frame = 0;
       const headerBottom = document.querySelector(".preview-header")?.getBoundingClientRect().bottom ?? 0;
       const positions = sections.flatMap((id) => {
-        const element = document.getElementById(`${page === "components" ? "showcase" : "palette"}-${id}`);
+        const element = document.getElementById(sectionId(page, id));
         return element ? [{id, top: element.getBoundingClientRect().top}] : [];
       });
       setActive(getActiveSection(positions, headerBottom + 32));

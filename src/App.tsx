@@ -6,10 +6,12 @@ import {useActiveSection} from "./site/useActiveSection";
 import {paletteSections} from "./site/paletteCatalog";
 import {catalog, matchesComponent} from "./showcase/catalog";
 import {LocaleContext, useText, type Locale} from "./site/Locale";
-import {parseRoute, routeHref, scrollToSection, type Page} from "./site/navigation";
+import {pages, parseRoute, routeHref, scrollToSection, type Page} from "./site/navigation";
+import {editorialContent} from "./site/editorialContent";
 
 const Showcase = lazy(() => import("./showcase/Showcase"));
 const Palette = lazy(() => import("./site/Palette"));
+const Editorial = lazy(() => import("./site/Editorial"));
 type Mode = "light" | "dark";
 
 
@@ -48,13 +50,16 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
 
   useEffect(() => {
     document.documentElement.lang = locale;
-    document.title = `${route.page === "components" ? text("Components", "组件") : text("Palette", "色卡")} · Niltavi UI`;
+    const page = pages.find((item) => item.id === route.page)!;
+    document.title = `${text(page.en, page.zh)} · Niltavi UI`;
     try { localStorage.setItem("niltavi-locale", locale); } catch { /* Preferences are optional. */ }
   }, [locale, route.page, text]);
 
   const entries = route.page === "components"
     ? catalog.filter((component) => matchesComponent(component, query)).map((component) => ({id: component.id, label: text(component.name, component.zh)}))
-    : paletteSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}));
+    : route.page === "palette"
+      ? paletteSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
+      : editorialContent[route.page].sections.map((section) => ({id: section.id, label: text(section.title.en, section.title.zh)}));
 
   const currentSection = useActiveSection(route.page, entries.map((entry) => entry.id));
 
@@ -77,7 +82,7 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
       <div className="preview-header__inner">
         <a href={routeHref("components")} className="preview-brand" aria-label="Niltavi UI" onClick={(event) => navigateLink(event, "components")}>niltavi<span className="preview-brand__dot">.</span><span className="preview-brand__label">UI</span></a>
         <nav className="primary-nav" aria-label={text("Main navigation", "主导航")}>
-          {(["components", "palette"] as const).map((page) => <a key={page} href={routeHref(page)} aria-current={route.page === page ? "page" : undefined} onClick={(event) => navigateLink(event, page)}>{page === "components" ? text("Components", "组件") : text("Palette", "色卡")}</a>)}
+          {pages.map((page) => <a key={page.id} href={routeHref(page.id)} aria-current={route.page === page.id ? "page" : undefined} onClick={(event) => navigateLink(event, page.id)}>{text(page.en, page.zh)}</a>)}
         </nav>
         <Surface className="surface--controls preview-controls">
           <ToggleButtonGroup aria-label={text("Language", "语言")} size="sm" selectionMode="single" disallowEmptySelection selectedKeys={[locale]} onSelectionChange={(keys) => {const next = [...keys][0]; if (next === "en" || next === "zh-CN") setLocale(next);}}>
@@ -103,7 +108,7 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
       </aside>
       <main id="main-content" tabIndex={-1} className="preview-main">
         <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
-          {route.page === "components" ? <Showcase query={query} section={route.section} /> : <Palette mode={mode} section={route.section} />}
+          {route.page === "components" ? <Showcase query={query} section={route.section} /> : route.page === "palette" ? <Palette mode={mode} section={route.section} /> : <Editorial page={route.page} section={route.section} />}
         </Suspense>
         <footer className="preview-footer">
           <Link href="https://niltavi.com">niltavi.com</Link>

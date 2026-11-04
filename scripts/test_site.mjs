@@ -10,7 +10,8 @@ async function loadUtility(path) {
   return import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
 }
 
-const {parseRoute, routeHref, getActiveSection} = await loadUtility("../src/site/navigation.ts");
+const {pages, parseRoute, routeHref, sectionId, getActiveSection} = await loadUtility("../src/site/navigation.ts");
+const {editorialContent, formatPrompt} = await loadUtility("../src/site/editorialContent.ts");
 const {catalog, matchesComponent} = await loadUtility("../src/showcase/catalog.ts");
 const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/site/paletteCatalog.ts");
 const {swatchTextColor} = await loadUtility("../src/site/color.ts");
@@ -23,12 +24,46 @@ test("root and unknown pages open the component gallery", () => {
 });
 
 test("page and directory links survive direct loads and history navigation", () => {
-  for (const page of ["components", "palette"]) {
-    for (const section of ["", page === "components" ? "checkbox-group" : "colors"]) {
+  for (const {id: page} of pages) {
+    for (const section of ["", "color", "checkbox-group"]) {
       assert.deepEqual(parseRoute(routeHref(page, section)), {page, section});
     }
   }
   assert.deepEqual(parseRoute("#/palette/%3Cscript%3E"), {page: "palette", section: ""});
+});
+
+test("editorial deep links have distinct anchors and preserve existing gallery anchors", () => {
+  assert.equal(sectionId("components", "button"), "showcase-button");
+  assert.equal(sectionId("palette", "colors"), "palette-colors");
+  assert.notEqual(sectionId("philosophy", "color"), sectionId("prompts", "color"));
+  const anchors = [];
+  for (const [page, content] of Object.entries(editorialContent)) {
+    for (const section of content.sections) {
+      assert.match(section.id, /^[a-z0-9-]+$/);
+      assert.deepEqual(parseRoute(routeHref(page, section.id)), {page, section: section.id});
+      assert.ok(section.title.en && section.title.zh);
+      for (const paragraph of section.paragraphs) assert.ok(paragraph.en && paragraph.zh);
+      anchors.push(sectionId(page, section.id));
+    }
+  }
+  assert.equal(new Set(anchors).size, anchors.length);
+});
+
+test("copying a prompt includes every displayed rule and closing in the selected language", () => {
+  for (const [locale, key] of [["en", "en"], ["zh-CN", "zh"]]) {
+    const copied = formatPrompt(locale);
+    let position = -1;
+    for (const section of editorialContent.prompts.sections) {
+      const next = copied.indexOf(section.title[key]);
+      assert.ok(next > position);
+      position = next;
+      for (const paragraph of section.paragraphs) assert.ok(copied.includes(paragraph[key]));
+    }
+    assert.ok(copied.endsWith(editorialContent.prompts.closing[key]));
+    assert.ok(!copied.includes(editorialContent.prompts.source));
+  }
+  assert.notEqual(formatPrompt("en"), formatPrompt("zh-CN"));
+  assert.doesNotMatch(formatPrompt("en"), /[\u4e00-\u9fff]/);
 });
 
 test("component search accepts Chinese and normalized English names", () => {

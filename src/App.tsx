@@ -1,6 +1,9 @@
-import {Button, Link, ListBox, SearchField, Select, Spinner, Surface, Toast, ToggleButton, ToggleButtonGroup} from "@heroui/react";
+import {Globe, LogoGithub} from "@gravity-ui/icons";
+import {Button, Dropdown, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Toast} from "@heroui/react";
+import {buttonVariants} from "@heroui/styles";
 import {lazy, Suspense, useEffect, useState, type MouseEvent} from "react";
 import {I18nProvider} from "react-aria";
+import {Link as ButtonLink} from "react-aria-components";
 
 import {useActiveSection} from "./site/useActiveSection";
 import {paletteSections} from "./site/paletteCatalog";
@@ -85,10 +88,16 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
           {pages.map((page) => <a key={page.id} href={routeHref(page.id)} aria-current={route.page === page.id ? "page" : undefined} onClick={(event) => navigateLink(event, page.id)}>{text(page.en, page.zh)}</a>)}
         </nav>
         <Surface className="surface--controls preview-controls">
-          <ToggleButtonGroup aria-label={text("Language", "语言")} size="sm" selectionMode="single" disallowEmptySelection selectedKeys={[locale]} onSelectionChange={(keys) => {const next = [...keys][0]; if (next === "en" || next === "zh-CN") setLocale(next);}}>
-            <ToggleButton id="zh-CN" aria-label="中文">中文</ToggleButton>
-            <ToggleButton id="en" aria-label="English">EN</ToggleButton>
-          </ToggleButtonGroup>
+          <ButtonLink className={buttonVariants({isIconOnly: true, size: "sm", variant: "ghost"})} href="https://github.com/niltavi/niltavi-ui" target="_blank" rel="noopener noreferrer" aria-label={text("GitHub repository", "GitHub 仓库")}><LogoGithub aria-hidden="true" width={18} height={18} /></ButtonLink>
+          <Dropdown>
+            <Button isIconOnly size="sm" variant="ghost" aria-label={text("Language", "语言")}><Globe aria-hidden="true" width={18} height={18} /></Button>
+            <Dropdown.Popover placement="bottom end">
+              <Dropdown.Menu aria-label={text("Language", "语言")} selectionMode="single" disallowEmptySelection selectedKeys={[locale]} onSelectionChange={(keys) => {const next = [...keys][0]; if (next === "en" || next === "zh-CN") setLocale(next);}}>
+                <Dropdown.Item id="zh-CN" textValue="中文"><Label lang="zh-CN">中文</Label><Dropdown.ItemIndicator /></Dropdown.Item>
+                <Dropdown.Item id="en" textValue="English"><Label lang="en">English</Label><Dropdown.ItemIndicator /></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown.Popover>
+          </Dropdown>
           <Button isIconOnly size="sm" variant="ghost" aria-label={mode === "light" ? text("Dark theme", "切换深色") : text("Light theme", "切换浅色")} onPress={() => setMode(mode === "light" ? "dark" : "light")}><Icon name={mode === "light" ? "moon" : "sun"} /></Button>
         </Surface>
       </div>

@@ -89,7 +89,7 @@ body {
 .primary-nav a { display: inline-flex; align-items: center; position: relative; font-size: .875rem; font-weight: 500; color: var(--muted); text-decoration: none; }
 .primary-nav a[aria-current] { color: var(--foreground); }
 .primary-nav a[aria-current]::after { content: ""; position: absolute; bottom: -1px; inset-inline: 0; height: 2px; background: var(--accent); }
-.preview-controls { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.preview-controls { display: flex; flex-shrink: 0; align-items: center; gap: 4px; margin-left: auto; }
 .site-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 48px; width: min(1440px, calc(100% - 64px)); margin-inline: auto; }
 .site-sidebar { position: sticky; top: var(--site-header-height); align-self: start; height: calc(100dvh - var(--site-header-height)); display: flex; flex-direction: column; gap: 16px; padding-block: 28px; }
 .showcase-search { flex-shrink: 0; width: 100%; }

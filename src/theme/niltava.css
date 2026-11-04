@@ -94,8 +94,8 @@
     --field-border: color-mix(in oklab, var(--color-throat-950) 35%, var(--color-throat-800) 65%);
     --success: var(--color-leaf-400);
     --success-foreground: var(--color-leaf-975);
-    --warning: var(--color-gold-600);
-    --warning-foreground: var(--white);
+    --warning: var(--color-gold-300);
+    --warning-foreground: var(--color-gold-975);
     --danger: var(--color-berry-400);
     --danger-foreground: var(--color-berry-975);
     --info: var(--color-glossy-400);

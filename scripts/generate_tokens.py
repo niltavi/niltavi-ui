@@ -166,7 +166,7 @@ DARK = {
     "field-background": "throat-950", "field-foreground": "paper", "field-placeholder": "throat-500",
     "field-border": ("mix", "throat-950", "throat-800", 65),
     "success": "leaf-400", "success-foreground": "leaf-975",
-    "warning": "gold-600", "warning-foreground": "white",
+    "warning": "gold-300", "warning-foreground": "gold-975",
     "danger": "berry-400", "danger-foreground": "berry-975",
     "info": "glossy-400", "info-foreground": "glossy-975",
     "rufous": "rufous-400", "rufous-foreground": "rufous-975",

@@ -10,46 +10,55 @@
     },
     "surface": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2078,
+          0.0375,
+          267.01
+        ],
+        "hex": "#101729"
+      },
+      "$description": "color-mix(in oklab, throat-975 70%, throat-950 30%)"
     },
     "surface-secondary": {
       "$type": "color",
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.2825,
-          0.037,
-          266.5
+          0.217,
+          0.039,
+          267.74
         ],
-        "hex": "#21293c"
+        "hex": "#12192c"
       },
-      "$description": "color-mix(in oklab, throat-950 65%, throat-900 35%)"
+      "$description": "color-mix(in oklab, throat-975 55%, throat-950 45%)"
     },
     "surface-tertiary": {
       "$type": "color",
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.2994,
-          0.036,
-          268.58
+          0.2298,
+          0.0385,
+          267.92
         ],
-        "hex": "#262d40"
+        "hex": "#151c2f"
       },
-      "$description": "color-mix(in oklab, throat-950 40%, throat-900 60%)"
+      "$description": "color-mix(in oklab, throat-975 35%, throat-950 65%)"
     },
     "overlay": {
       "$type": "color",
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.2752,
-          0.0368,
-          268.4
+          0.2206,
+          0.037,
+          267.19
         ],
-        "hex": "#20273a"
+        "hex": "#131a2c"
       },
-      "$description": "color-mix(in oklab, throat-950 75%, throat-900 25%)"
+      "$description": "color-mix(in oklab, throat-975 50%, throat-950 50%)"
     },
     "muted": {
       "$type": "color",
@@ -60,13 +69,13 @@
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.2994,
-          0.036,
-          268.58
+          0.2298,
+          0.0385,
+          267.92
         ],
-        "hex": "#262d40"
+        "hex": "#151c2f"
       },
-      "$description": "color-mix(in oklab, throat-950 40%, throat-900 60%)"
+      "$description": "color-mix(in oklab, throat-975 35%, throat-950 65%)"
     },
     "default-foreground": {
       "$type": "color",
@@ -82,7 +91,16 @@
     },
     "field-background": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2078,
+          0.0375,
+          267.01
+        ],
+        "hex": "#101729"
+      },
+      "$description": "color-mix(in oklab, throat-975 70%, throat-950 30%)"
     },
     "field-foreground": {
       "$type": "color",
@@ -97,13 +115,13 @@
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.3497,
-          0.0329,
-          268.13
+          0.3138,
+          0.0343,
+          265.88
         ],
-        "hex": "#333a4c"
+        "hex": "#293143"
       },
-      "$description": "color-mix(in oklab, throat-950 35%, throat-800 65%)"
+      "$description": "color-mix(in oklab, throat-975 40%, throat-800 60%)"
     },
     "success": {
       "$type": "color",
@@ -147,7 +165,16 @@
     },
     "segment": {
       "$type": "color",
-      "$value": "{color.throat.900}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.217,
+          0.039,
+          267.74
+        ],
+        "hex": "#12192c"
+      },
+      "$description": "color-mix(in oklab, throat-975 55%, throat-950 45%)"
     },
     "segment-foreground": {
       "$type": "color",
@@ -158,26 +185,26 @@
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.3191,
-          0.0354,
-          268.71
+          0.2706,
+          0.0352,
+          267.69
         ],
-        "hex": "#2b3245"
+        "hex": "#1f2638"
       },
-      "$description": "color-mix(in oklab, throat-950 55%, throat-800 45%)"
+      "$description": "color-mix(in oklab, throat-975 60%, throat-800 40%)"
     },
     "separator": {
       "$type": "color",
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.2825,
-          0.037,
-          266.5
+          0.2298,
+          0.0385,
+          267.92
         ],
-        "hex": "#21293c"
+        "hex": "#151c2f"
       },
-      "$description": "color-mix(in oklab, throat-950 65%, throat-900 35%)"
+      "$description": "color-mix(in oklab, throat-975 35%, throat-950 65%)"
     },
     "focus": {
       "$type": "color",

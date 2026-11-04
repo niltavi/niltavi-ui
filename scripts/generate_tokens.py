@@ -158,20 +158,21 @@ LIGHT = {
 }
 DARK = {
     "background": "throat-975", "foreground": "paper",
-    "surface": "throat-950", "surface-secondary": ("mix", "throat-950", "throat-900", 35),
-    "surface-tertiary": ("mix", "throat-950", "throat-900", 60),
-    "overlay": ("mix", "throat-950", "throat-900", 25), "muted": "throat-400",
-    "default": ("mix", "throat-950", "throat-900", 60), "default-foreground": "paper",
+    # Keep neutral surfaces close to the canvas, as in the light theme.
+    "surface": ("mix", "throat-975", "throat-950", 30), "surface-secondary": ("mix", "throat-975", "throat-950", 45),
+    "surface-tertiary": ("mix", "throat-975", "throat-950", 65),
+    "overlay": ("mix", "throat-975", "throat-950", 50), "muted": "throat-400",
+    "default": ("mix", "throat-975", "throat-950", 65), "default-foreground": "paper",
     "accent": "niltava-400", "accent-foreground": "niltava-975",
-    "field-background": "throat-950", "field-foreground": "paper", "field-placeholder": "throat-500",
-    "field-border": ("mix", "throat-950", "throat-800", 65),
+    "field-background": ("mix", "throat-975", "throat-950", 30), "field-foreground": "paper", "field-placeholder": "throat-500",
+    "field-border": ("mix", "throat-975", "throat-800", 60),
     "success": "leaf-400", "success-foreground": "leaf-975",
     "warning": "gold-300", "warning-foreground": "gold-975",
     "danger": "berry-400", "danger-foreground": "berry-975",
     "info": "glossy-400", "info-foreground": "glossy-975",
     "rufous": "rufous-400", "rufous-foreground": "rufous-975",
-    "segment": "throat-900", "segment-foreground": "paper",
-    "border": ("mix", "throat-950", "throat-800", 45), "separator": ("mix", "throat-950", "throat-900", 35),
+    "segment": ("mix", "throat-975", "throat-950", 45), "segment-foreground": "paper",
+    "border": ("mix", "throat-975", "throat-800", 40), "separator": ("mix", "throat-975", "throat-950", 65),
     "focus": "niltava-400", "link": "niltava-300",
     "accent-soft-foreground": "niltava-300", "success-soft-foreground": "leaf-300",
     "warning-soft-foreground": "gold-300", "danger-soft-foreground": "berry-300",
@@ -187,7 +188,7 @@ SOFT_PCT = {"light": 15, "dark": 12}  # matches HeroUI's soft background mix
 # Shared HeroUI variables. Component styles derive their geometry and states here.
 FONT_SANS = '"DM Sans", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif'
 COMMON_THEME = {
-    "radius": "0.25rem",
+    "radius": "0.5rem",
     "field-radius": "calc(var(--radius) * 1.5)",
     "border-width": "1px",
     "field-border-width": "var(--border-width)",

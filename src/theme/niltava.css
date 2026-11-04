@@ -10,7 +10,7 @@
 @layer base {
   :root,
   :host {
-    --radius: 0.25rem;
+    --radius: 0.5rem;
     --field-radius: calc(var(--radius) * 1.5);
     --border-width: 1px;
     --field-border-width: var(--border-width);
@@ -90,19 +90,19 @@
     color-scheme: dark;
     --background: var(--color-throat-975);
     --foreground: var(--color-paper);
-    --surface: var(--color-throat-950);
-    --surface-secondary: color-mix(in oklab, var(--color-throat-950) 65%, var(--color-throat-900) 35%);
-    --surface-tertiary: color-mix(in oklab, var(--color-throat-950) 40%, var(--color-throat-900) 60%);
-    --overlay: color-mix(in oklab, var(--color-throat-950) 75%, var(--color-throat-900) 25%);
+    --surface: color-mix(in oklab, var(--color-throat-975) 70%, var(--color-throat-950) 30%);
+    --surface-secondary: color-mix(in oklab, var(--color-throat-975) 55%, var(--color-throat-950) 45%);
+    --surface-tertiary: color-mix(in oklab, var(--color-throat-975) 35%, var(--color-throat-950) 65%);
+    --overlay: color-mix(in oklab, var(--color-throat-975) 50%, var(--color-throat-950) 50%);
     --muted: var(--color-throat-400);
-    --default: color-mix(in oklab, var(--color-throat-950) 40%, var(--color-throat-900) 60%);
+    --default: color-mix(in oklab, var(--color-throat-975) 35%, var(--color-throat-950) 65%);
     --default-foreground: var(--color-paper);
     --accent: var(--color-niltava-400);
     --accent-foreground: var(--color-niltava-975);
-    --field-background: var(--color-throat-950);
+    --field-background: color-mix(in oklab, var(--color-throat-975) 70%, var(--color-throat-950) 30%);
     --field-foreground: var(--color-paper);
     --field-placeholder: var(--color-throat-500);
-    --field-border: color-mix(in oklab, var(--color-throat-950) 35%, var(--color-throat-800) 65%);
+    --field-border: color-mix(in oklab, var(--color-throat-975) 40%, var(--color-throat-800) 60%);
     --success: var(--color-leaf-400);
     --success-foreground: var(--color-leaf-975);
     --warning: var(--color-gold-300);
@@ -113,10 +113,10 @@
     --info-foreground: var(--color-glossy-975);
     --rufous: var(--color-rufous-400);
     --rufous-foreground: var(--color-rufous-975);
-    --segment: var(--color-throat-900);
+    --segment: color-mix(in oklab, var(--color-throat-975) 55%, var(--color-throat-950) 45%);
     --segment-foreground: var(--color-paper);
-    --border: color-mix(in oklab, var(--color-throat-950) 55%, var(--color-throat-800) 45%);
-    --separator: color-mix(in oklab, var(--color-throat-950) 65%, var(--color-throat-900) 35%);
+    --border: color-mix(in oklab, var(--color-throat-975) 60%, var(--color-throat-800) 40%);
+    --separator: color-mix(in oklab, var(--color-throat-975) 35%, var(--color-throat-950) 65%);
     --focus: var(--color-niltava-400);
     --link: var(--color-niltava-300);
     --accent-soft-foreground: var(--color-niltava-300);

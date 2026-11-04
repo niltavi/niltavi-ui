@@ -13,7 +13,7 @@ The [niltavi-website homepage](https://github.com/niltavi/niltavi-website) sets 
 - **Light minimalism:** Generous space, restrained typography, and a clear reading order.
 - **Flat design:** Solid colors, fine rules, modest corner radii, and low-relief surfaces.
 
-The light theme combines warm paper (`#F5F1E6`) and forest ink (`#283E38`) with the eight plumage scales. The dark theme uses the throat scale's deep blue-gray backgrounds and surfaces, with paper-colored text. Both modes share a 4px base radius, 6px field radius, 1px field borders, and flat surface outlines. These choices ship through `src/theme/index.css`; the preview's layout lives in `src/preview.css`. Keep woodcut details in artwork rather than form controls, and preserve focus and status cues.
+The light theme combines warm paper (`#F5F1E6`) and forest ink (`#283E38`) with the eight plumage scales. The dark theme keeps deep blue-gray surfaces close to the background, with paper-colored text. Both modes use HeroUI's standard radius scale (8px base, 12px fields), 1px field borders, and flat surface outlines. These choices ship through `src/theme/index.css`; the preview's layout lives in `src/preview.css`. Keep woodcut details in artwork rather than form controls, and preserve focus and status cues.
 
 Keep the preview focused on usable components, scales, charts, and contrast values. Use familiar icons for clear actions, with accessible names. Omit decorative copy, redundant navigation, empty views, and unnecessary columns. The global `niltavi-design` skill carries these preferences and the shared visual language.
 

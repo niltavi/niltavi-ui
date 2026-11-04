@@ -10,4 +10,6 @@ Card-based checkbox and radio examples use shared Niltavi grid extensions for te
 
 Gravity UI icons are copyright (c) 2022 YANDEX LLC, under the MIT License. See [LICENSE.gravity-ui](LICENSE.gravity-ui).
 
-The public showcase provides Chinese and English locales. Sample narratives are adapted to original field-notebook and nature scenes; the upstream component structures and license attribution are retained. Catalog metadata drives both the directory and rendered headings.
+The public showcase provides Chinese and English locales. Sample copy uses neutral interface language and a few original everyday reading passages; the upstream component structures and license attribution are retained. Catalog metadata drives both the directory and rendered headings.
+
+The QR-code and third-party mobile-download panels were replaced with neutral reading disclosures while retaining basic, render-function, grouped, and controlled navigation behavior. Public product copy uses niltavi UI; source imports, asset URLs, and upstream attribution retain their original identifiers.

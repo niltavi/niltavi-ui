@@ -1,9 +1,12 @@
 import {memo, useEffect} from "react";
+import {swatchTextColor} from "./color";
 import {scrollToSection} from "./navigation";
 import {Card, Table, toast} from "@heroui/react";
 import tokens from "../theme/tokens.json";
-import {paletteScales} from "./paletteCatalog";
+import {paletteScales, uiScales} from "./paletteCatalog";
 import {useText} from "./Locale";
+
+const SCALE_LABELS = Object.fromEntries([...paletteScales, ...uiScales].map((scale) => [scale.id, scale]));
 
 const CHART_DATA = [
   {month: "7月", values: [32, 18, 24, 12, 9, 6, 14, 5]},
@@ -12,9 +15,9 @@ const CHART_DATA = [
   {month: "10月", values: [44, 31, 16, 19, 12, 10, 9, 7]},
   {month: "11月", values: [48, 34, 21, 22, 15, 11, 13, 9]},
 ];
-const SERIES = ["仙鹟", "鸫", "莺", "鹛", "鹀", "啄木鸟", "翠鸟", "其他"];
+const SERIES = ["文档", "图片", "音频", "视频", "表格", "演示", "归档", "其他"];
 
-function Scales() {
+function Scales({group = "core"}: {group?: "core" | "ui"}) {
   const text = useText();
   const copy = (hex: string) => {
     navigator.clipboard.writeText(hex).then(
@@ -25,10 +28,10 @@ function Scales() {
 
   return (
     <div className="preview-stack--wide">
-      {Object.entries(tokens.scales).map(([name, steps]) => (
+      {Object.entries(tokens.scales).filter(([name]) => tokens.scaleGroups[group].includes(name)).map(([name, steps]) => (
         <section key={name} id={`palette-${name}`} className="palette__scale" aria-labelledby={`palette-${name}-title`}>
           <div>
-            <h2 id={`palette-${name}-title`} className="palette__name">{text(name[0].toUpperCase() + name.slice(1), paletteScales.find((section) => section.id === name)?.zh ?? name)}</h2>
+            <h2 id={`palette-${name}-title`} className="palette__name">{text(SCALE_LABELS[name]?.en ?? name, SCALE_LABELS[name]?.zh ?? name)}</h2>
             <div className="preview-code">{name}</div>
           </div>
           <div className="palette__steps">
@@ -42,7 +45,7 @@ function Scales() {
               >
                 <span
                   className="palette__swatch"
-                  style={{background: hex, color: Number(step) >= 500 ? "var(--white)" : "var(--color-throat-950)"}}
+                  style={{background: hex, color: swatchTextColor(hex)}}
                 >
                   {step}
                 </span>
@@ -70,7 +73,7 @@ function Charts() {
     <Card>
       <Card.Content className="preview-stack--wide">
         <div className="chart-scroll">
-          <svg viewBox={`0 0 ${w} ${h}`} className="chart" role="img" aria-label={text("Monthly bird sightings", "鸟类月度记录")}>
+          <svg viewBox={`0 0 ${w} ${h}`} className="chart" role="img" aria-label={text("Monthly records", "每月记录")}>
             {[0, 10, 20, 30, 40, 50].map((t) => (
               <g key={t}>
                 <line x1={pad.l} x2={w} y1={y(t)} y2={y(t)} stroke="var(--separator)" />
@@ -103,7 +106,7 @@ function Charts() {
           {SERIES.map((s, i) => (
             <span key={s} className="chart-legend__item">
               <span className="chart-legend__swatch" style={{background: `var(--chart-${i + 1})`}} />
-              {text(["Niltava", "Thrush", "Warbler", "Babbler", "Bunting", "Woodpecker", "Kingfisher", "Other"][i], s)}
+              {text(["Documents", "Images", "Audio", "Video", "Sheets", "Slides", "Archives", "Other"][i], s)}
               <span className="preview-code">chart-{i + 1}</span>
             </span>
           ))}
@@ -179,6 +182,10 @@ function Palette({mode, section}: {mode: "light" | "dark"; section: string}) {
     <section id="palette-colors" className="palette-section palette-colors" aria-labelledby="palette-colors-title">
       <h1 id="palette-colors-title">{text("Palette", "色卡")}</h1>
       <Scales />
+      <div className="palette-auxiliary">
+        <h2>{text("UI supporting colors", "UI 辅助色")}</h2>
+        <Scales group="ui" />
+      </div>
     </section>
     <section id="palette-charts" className="palette-section"><h2>{text("Charts", "图表")}</h2><Charts /></section>
     <section id="palette-contrast" className="palette-section"><h2>{text("Contrast", "对比度")}</h2><Audit mode={mode} /></section>

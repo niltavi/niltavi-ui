@@ -212,7 +212,67 @@
     },
     "link": {
       "$type": "color",
-      "$value": "{color.niltava.300}"
+      "$value": "{color.slate.300}"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2281,
+          0.0394,
+          264.21
+        ],
+        "hex": "#131c2f"
+      },
+      "$description": "color-mix(in oklab, throat-975 80%, slate-800 20%)"
+    },
+    "secondary-foreground": {
+      "$type": "color",
+      "$value": "{color.slate.300}"
+    },
+    "secondary-hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2489,
+          0.0409,
+          263.42
+        ],
+        "hex": "#172135"
+      },
+      "$description": "color-mix(in oklab, throat-975 70%, slate-800 30%)"
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2066,
+          0.0248,
+          269.93
+        ],
+        "hex": "#131723"
+      },
+      "$description": "color-mix(in oklab, throat-975 70%, stone-950 30%)"
+    },
+    "tertiary-foreground": {
+      "$type": "color",
+      "$value": "{color.slate.400}"
+    },
+    "tertiary-hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2227,
+          0.0121,
+          270.82
+        ],
+        "hex": "#191b21"
+      },
+      "$description": "color-mix(in oklab, throat-975 45%, stone-950 55%)"
     },
     "accent-soft-foreground": {
       "$type": "color",

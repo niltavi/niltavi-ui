@@ -1,4 +1,4 @@
-<title>Niltava 仙鹟色卡</title>
+<title>niltavi UI 色卡</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* 版式：色条 → 色阶 → HeroUI token → 图表色 → 导出；顶栏放色觉模拟 */
@@ -96,10 +96,10 @@ pre{margin:0;padding:14px;overflow:auto;max-height:480px;font-family:var(--f-mon
 <div class="wrap">
   <header class="hero">
     <div class="head">
-      <span class="eyebrow">Niltava · HeroUI v3 Theme</span>
+      <span class="eyebrow">niltavi UI</span>
       <div class="seg" id="vision" role="group" aria-label="色觉模拟"></div>
     </div>
-    <h1>仙鹟色卡 · <em>钴蓝</em>与<span class="r">棕腹</span></h1>
+    <h1>色卡</h1>
     <div class="specimen" id="specimen" aria-hidden="true"></div>
   </header>
 
@@ -110,7 +110,7 @@ pre{margin:0;padding:14px;overflow:auto;max-height:480px;font-family:var(--f-mon
     </section>
 
     <section>
-      <h2>HeroUI Token</h2>
+      <h2>niltavi UI Token</h2>
       <div class="tbl-wrap"><table id="tokens"><thead><tr><th>变量</th><th>Light</th><th>Dark</th></tr></thead><tbody></tbody></table></div>
     </section>
 
@@ -134,7 +134,7 @@ pre{margin:0;padding:14px;overflow:auto;max-height:480px;font-family:var(--f-mon
 <script>
 const D=__DATA__;
 const STEPS=D.steps, BASE=600;
-const NAMES={niltava:'Niltava 钴蓝',rufous:'Rufous 棕腹',glossy:'Glossy 亮斑',violet:'Violet 紫辉',throat:'Throat 喉墨',leaf:'Leaf 新叶',berry:'Berry 浆果',gold:'Gold 金腹'};
+const NAMES={niltava:'Blue 钴蓝',rufous:'Ochre 赭橙',glossy:'Cyan 湖蓝',violet:'Violet 紫辉',throat:'Graphite 石墨',leaf:'Green 叶绿',berry:'Rose 莓红',gold:'Amber 赭金',slate:'Slate 蓝灰',stone:'Stone 暖灰',sage:'Sage 灰绿'};
 const hexOf=r=>r==='white'?'#FFFFFF':(D.scales[r.split('-')[0]]||{})[r.split('-')[1]];
 
 function lum(h){const v=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(c=>c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4));return .2126*v[0]+.7152*v[1]+.0722*v[2]}
@@ -166,7 +166,7 @@ document.getElementById('scales').innerHTML=Object.entries(D.scales).map(([k,s])
 document.getElementById('scales').addEventListener('click',e=>{const b=e.target.closest('.step');if(b)copy(b.dataset.hex,b.dataset.hex)});
 
 const GROUPS=[['基础',['background','foreground','surface','surface-secondary','surface-tertiary','overlay','muted','border','separator','focus','link']],
-  ['组件',['default','default-foreground','accent','accent-foreground','accent-soft-foreground','segment','segment-foreground']],
+  ['组件',['default','default-foreground','accent','accent-foreground','accent-soft-foreground','secondary','secondary-foreground','secondary-hover','tertiary','tertiary-foreground','tertiary-hover','segment','segment-foreground']],
   ['表单',['field-background','field-foreground','field-placeholder']],
   ['状态',['success','success-foreground','success-soft-foreground','warning','warning-foreground','warning-soft-foreground','danger','danger-foreground','danger-soft-foreground']],
   ['扩展',['info','info-foreground','info-soft-foreground','rufous','rufous-foreground','rufous-soft-foreground']]];

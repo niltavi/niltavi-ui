@@ -39,6 +39,12 @@ class TokenTests(unittest.TestCase):
                             exported = node["$value"]
                         self.assertEqual(exported["hex"].upper(), tokens.resolved[mode][name])
 
+    def test_ui_supporting_scales_use_restrained_chroma(self):
+        for name in tokens.UI_SCALE_ORDER:
+            for step, color in tokens.palette[name].items():
+                with self.subTest(scale=name, step=step):
+                    self.assertLessEqual(tokens.hex_to_oklch(color)[1], 0.06)
+
     def test_all_theme_contrasts_meet_their_targets(self):
         for row in tokens.audit:
             with self.subTest(mode=row["mode"], foreground=row["fg"], background=row["bg"]):

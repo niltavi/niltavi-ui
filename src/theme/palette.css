@@ -108,6 +108,45 @@
   --color-gold-950: oklch(0.255 0.067 50.7); /* #3B1700 */
   --color-gold-975: oklch(0.184 0.049 48.9); /* #230A00 */
 
+  --color-slate-50: oklch(0.975 0.005 247.9); /* #F4F7FA */
+  --color-slate-100: oklch(0.944 0.011 252.1); /* #E7EDF4 */
+  --color-slate-200: oklch(0.888 0.024 256.1); /* #D0DBEA */
+  --color-slate-300: oklch(0.811 0.036 254.9); /* #B2C3D9 */
+  --color-slate-400: oklch(0.725 0.049 255.4); /* #92A8C5 */
+  --color-slate-500: oklch(0.640 0.056 255.7); /* #768EAE */
+  --color-slate-600: oklch(0.548 0.055 254.3); /* #5B7391 */
+  --color-slate-700: oklch(0.472 0.051 254.9); /* #485D78 */
+  --color-slate-800: oklch(0.397 0.045 256.1); /* #37485F */
+  --color-slate-900: oklch(0.329 0.037 256.6); /* #293648 */
+  --color-slate-950: oklch(0.257 0.027 253.3); /* #1A2430 */
+  --color-slate-975: oklch(0.184 0.021 255.0); /* #0C131C */
+
+  --color-stone-50: oklch(0.976 0.005 95.1); /* #F8F7F3 */
+  --color-stone-100: oklch(0.944 0.009 84.6); /* #EFECE6 */
+  --color-stone-200: oklch(0.889 0.014 88.7); /* #DEDAD0 */
+  --color-stone-300: oklch(0.812 0.018 84.6); /* #C7C1B5 */
+  --color-stone-400: oklch(0.726 0.021 87.5); /* #ACA698 */
+  --color-stone-500: oklch(0.639 0.022 84.6); /* #928B7D */
+  --color-stone-600: oklch(0.548 0.021 83.0); /* #777063 */
+  --color-stone-700: oklch(0.473 0.020 84.6); /* #615B4F */
+  --color-stone-800: oklch(0.399 0.017 88.8); /* #4B473D */
+  --color-stone-900: oklch(0.330 0.015 84.6); /* #39352D */
+  --color-stone-950: oklch(0.254 0.010 80.6); /* #25221D */
+  --color-stone-975: oklch(0.183 0.007 78.1); /* #14120F */
+
+  --color-sage-50: oklch(0.975 0.006 153.8); /* #F4F8F5 */
+  --color-sage-100: oklch(0.942 0.010 155.1); /* #E7EEE9 */
+  --color-sage-200: oklch(0.888 0.018 155.8); /* #D1DED5 */
+  --color-sage-300: oklch(0.813 0.031 154.6); /* #B3C8B9 */
+  --color-sage-400: oklch(0.726 0.039 155.1); /* #94AE9C */
+  --color-sage-500: oklch(0.641 0.046 154.4); /* #779580 */
+  --color-sage-600: oklch(0.548 0.045 155.9); /* #5C7966 */
+  --color-sage-700: oklch(0.473 0.042 154.3); /* #496351 */
+  --color-sage-800: oklch(0.398 0.035 155.3); /* #384D3F */
+  --color-sage-900: oklch(0.330 0.029 156.1); /* #293A2F */
+  --color-sage-950: oklch(0.254 0.022 155.3); /* #1A261E */
+  --color-sage-975: oklch(0.185 0.017 152.2); /* #0D150F */
+
 }
 
 /* Semantic colors HeroUI does not ship, exposed as Tailwind utilities (bg-info, text-rufous, bg-chart-1 ...) */
@@ -124,6 +163,12 @@
   --color-rufous-soft: var(--rufous-soft);
   --color-rufous-soft-foreground: var(--rufous-soft-foreground);
   --color-rufous-soft-hover: var(--rufous-soft-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-tertiary-hover: var(--tertiary-hover);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);

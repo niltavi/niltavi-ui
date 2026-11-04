@@ -12,7 +12,8 @@ async function loadUtility(path) {
 
 const {parseRoute, routeHref, getActiveSection} = await loadUtility("../src/site/navigation.ts");
 const {catalog, matchesComponent} = await loadUtility("../src/showcase/catalog.ts");
-const {paletteSections} = await loadUtility("../src/site/paletteCatalog.ts");
+const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/site/paletteCatalog.ts");
+const {swatchTextColor} = await loadUtility("../src/site/color.ts");
 const {translate} = await loadUtility("../src/site/translate.ts");
 const messages = JSON.parse(await readFile(new URL("../src/showcase/messages.json", import.meta.url), "utf8"));
 
@@ -48,8 +49,8 @@ test("catalogue anchors are unique and every example has a Chinese title", () =>
 });
 
 test("copy switches locale while keeping unknown names and typed values intact", () => {
-  assert.equal(translate(messages, "en", "Upload File"), "Upload File");
-  assert.equal(translate(messages, "zh-CN", "Upload File"), "上传手记");
+  assert.equal(translate(messages, "en", "Upload File"), "Upload file");
+  assert.equal(translate(messages, "zh-CN", "Upload File"), "上传文件");
   assert.equal(translate(messages, "zh-CN", "niltava-500"), "niltava-500");
   const value = {id: "bird-1"};
   assert.equal(translate(messages, "zh-CN", value), value);
@@ -71,4 +72,25 @@ test("directory highlight follows the visible heading rather than the last URL",
 test("palette directory lists page sections rather than individual colors", () => {
   assert.deepEqual(paletteSections.map((section) => section.id), ["colors", "charts", "contrast"]);
   assert.deepEqual(paletteSections.map((section) => section.zh), ["色卡", "图表", "对比度"]);
+});
+
+test("public copy uses the product name and neutral examples in both languages", () => {
+  for (const [key, values] of Object.entries(messages)) {
+    for (const value of values) {
+      assert.doesNotMatch(value, /heroui|观鸟|山野|林间|手记|同行者|field notebook|kingfisher|birdsong/i, key);
+    }
+  }
+});
+
+test("UI supporting colors are exported and shown separately from core colors", async () => {
+  const tokens = JSON.parse(await readFile(new URL("../src/theme/tokens.json", import.meta.url), "utf8"));
+  assert.deepEqual(paletteScales.map((scale) => scale.id), tokens.scaleGroups.core);
+  assert.deepEqual(uiScales.map((scale) => scale.id), tokens.scaleGroups.ui);
+  assert.equal(new Set([...tokens.scaleGroups.core, ...tokens.scaleGroups.ui]).size, Object.keys(tokens.scales).length);
+});
+
+test("swatch labels remain readable on light, dark, and middle supporting colors", () => {
+  assert.equal(swatchTextColor("#FFFFFF"), "#000000");
+  assert.equal(swatchTextColor("#000000"), "#FFFFFF");
+  assert.equal(swatchTextColor("#868C9B"), "#000000");
 });

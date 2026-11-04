@@ -12,112 +12,112 @@
     "892"
   ],
   "Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase.": [
-    "Bring binoculars, a notebook, and water. Walk a familiar path slowly. Listen first, then look among the leaves.",
-    "带上望远镜、一本手记和饮用水。沿熟悉的小路慢慢走，先听鸟声，再寻找枝叶间的身影。"
+    "Start with a title and a few thoughts. Add the details when you have time.",
+    "先记下标题和几句想法，细节有空时再补。"
   ],
   "How do I place an order?": [
-    "What should I bring for my first bird walk?",
-    "第一次观鸟，需要准备什么？"
+    "Can I start now and add more later?",
+    "可以先写一点，之后再补充吗？"
   ],
   "Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes.": [
-    "Of course. Note its colors, shape, call, and surroundings. A careful observation is worth keeping, even before it has a name.",
-    "当然可以。记下羽色、体形、叫声和停留的地方，日后再慢慢辨认。每一次认真观察，都值得留下。"
+    "Keep it as a draft. You can return when you are ready to continue.",
+    "先保留为草稿。想继续的时候，再打开它。"
   ],
   "Can I modify or cancel my order?": [
-    "Can I record a bird I cannot identify?",
-    "没认出名字的鸟，也可以记录吗？"
+    "What should I do with unfinished work?",
+    "还没写完的内容怎么处理？"
   ],
   "General": [
-    "First steps",
-    "初识山野"
+    "Basics",
+    "基础使用"
   ],
   "You can purchase a license directly from our website. Select the license type that fits your needs and proceed to checkout.": [
-    "Start with the time, place, and weather, then add species, counts, and photographs. Read it again at dusk; small details often return.",
-    "把时间、地点与天气写在页首，再补上鸟种、数量和照片。黄昏时翻一遍，遗漏的细节往往会自己浮现。"
+    "Use a short title and one or two categories. A little organization makes the next visit easier.",
+    "用简短的标题说明主题，再加一两个分类，下次查找会方便一些。"
   ],
   "How do I purchase a license?": [
-    "How do I organize a day of observations?",
-    "怎样整理一天的观察？"
+    "How can I make things easier to find?",
+    "怎样让内容更容易查找？"
   ],
   "A standard license is for personal use or small projects, while a pro license includes commercial use rights and priority support.": [
-    "Credit the photographer and keep sensitive nest locations private. Share the wonder while leaving the woods a little quiet.",
-    "保留拍摄者署名，分享敏感鸟种时隐去巢址。让更多人看见自然，也为林间的小生命留一份安静。"
+    "Read the title and text once more. Check the images, names, and contact details before you share.",
+    "再读一遍标题和正文，确认图片、署名和联系方式都合适。"
   ],
   "What is the difference between a standard and a pro license?": [
-    "What should I check before sharing photographs?",
-    "分享照片前，需要留意什么？"
+    "What should I check before sharing?",
+    "分享前需要检查什么？"
   ],
   "Licensing": [
-    "Notes and sharing",
-    "记录与分享"
+    "Editing and organizing",
+    "编辑与整理"
   ],
   "You can reach our support team through the contact form on our website, or email us directly at support@example.com.": [
-    "Share the notebook with a walking companion. Your morning and their evening can give the same day a fuller story.",
-    "可以把手记分享给同行的朋友。你记下的清晨，他补上的晚霞，会让同一天有更完整的模样。"
+    "Write a short message explaining what you need, and leave an email address for a reply.",
+    "简单说明来意，并留下可以回信的邮箱。"
   ],
   "How do I get support?": [
-    "Can friends write in the same notebook?",
-    "能和朋友一起写手记吗？"
+    "How can I get in touch?",
+    "怎样联系对方？"
   ],
   "Support": [
-    "Walking together",
-    "同行之间"
+    "Help",
+    "帮助"
   ],
   "Frequently Asked Questions": [
-    "A field guide",
-    "山野小问"
+    "A few common questions",
+    "几个常见问题"
   ],
   "Everything you need to know about licensing and usage.": [
-    "A few notes on setting out, observing, and sharing.",
-    "关于出发、记录与分享的几件小事。"
+    "A few things you may want to know before you start.",
+    "开始之前，你可能想了解的几件事。"
   ],
   "Getting Started": [
-    "Before setting out",
-    "出发之前"
+    "Create something",
+    "新建内容"
   ],
   "Learn the basics of HeroUI and how to integrate it into your React project. This section covers installation, setup, and your first component.": [
-    "The morning path is still wet with dew. Pack a map, adjust your binoculars, and leave a page open for today.",
-    "清晨的山路还带着露水。收好地图，调好望远镜，给今天留一页空白。"
+    "Write a title, then note the most important part. The rest can follow.",
+    "先写个标题，再记下最重要的事，其余内容可以慢慢补充。"
   ],
   "Core Concepts": [
-    "Look closely",
-    "留心观察"
+    "Organize your content",
+    "整理内容"
   ],
   "Understand the fundamental concepts behind HeroUI, including the compound component pattern, styling with Tailwind CSS, and accessibility features.": [
-    "Take your time with the name. First notice the wings, the tail, and the call threading through the breeze.",
-    "不急着寻找名字。先看翅膀的形状、尾羽的长短，再听它怎样穿过风声。"
+    "Keep related items together and give each one a clear name.",
+    "把相关内容放在一起，并给它们取个清楚的名字。"
   ],
   "Advanced Usage": [
-    "Follow the sound",
-    "循声而行"
+    "Set your preferences",
+    "调整偏好"
   ],
   "Explore advanced features like custom variants, theme customization, and integration with other libraries in your React ecosystem.": [
-    "A short call comes from the canopy. Look up along the sound; a small silhouette catches the morning light.",
-    "树冠里传来一声短鸣。沿着声音抬头，枝梢上的小小身影正好迎着晨光。"
+    "Choose the display and notification settings that suit your routine.",
+    "按自己的习惯，选择显示方式和通知设置。"
   ],
   "Best Practices": [
-    "Pass gently",
-    "轻轻经过"
+    "Save and share",
+    "保存与分享"
   ],
   "Follow our recommended best practices for building performant, accessible, and maintainable applications with HeroUI components.": [
-    "Stay on the path and give nests plenty of space. Leave the woods as quiet as you found them.",
-    "沿现有步道行走，与鸟巢保持距离。离开时，林间仍和来时一样安静。"
+    "Read it once more before sharing. A small correction can make things clearer.",
+    "分享前再读一遍，小小的修改也能让意思更清楚。"
   ],
   "New features available": [
-    "New features available",
-    "林间有新消息"
+    "There is something new",
+    "有新消息"
   ],
   "Check out our latest updates including dark mode support and improved accessibility features.": [
-    "Check out our latest updates including dark mode support and improved accessibility features.",
-    "这一季的观察已经整理好，翻开手记看看。"
+    "The latest updates are ready to view.",
+    "新的内容已经整理好，可以查看了。"
   ],
   "Update available": [
     "Update available",
-    "手记有更新"
+    "内容有更新"
   ],
   "A new version of the application is available. Please refresh to get the latest features and bug fixes.": [
-    "A new version of the application is available. Please refresh to get the latest features and bug fixes.",
-    "同行的朋友补上了新的记录，刷新后查看。"
+    "There are new changes. Refresh to see them.",
+    "有新的修改，刷新后即可查看。"
   ],
   "Refresh": [
     "Refresh",
@@ -160,12 +160,12 @@
     "正在同步今天的观察，请稍等片刻。"
   ],
   "Scheduled maintenance": [
-    "Scheduled maintenance",
-    "手记暂歇"
+    "A short pause",
+    "暂停服务"
   ],
   "Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for scheduled maintenance.": [
-    "Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for scheduled maintenance.",
-    "今晚整理书架，手记会暂时合上。明早再来，山野仍在。"
+    "The service is being maintained. Please return a little later.",
+    "服务正在维护，请稍后再来。"
   ],
   "California": [
     "California",
@@ -329,23 +329,23 @@
   ],
   "John Doe": [
     "John Doe",
-    "林间客"
+    "林安"
   ],
   "Kate Wilson": [
     "Kate Wilson",
-    "听溪"
+    "陈言"
   ],
   "Emily Chen": [
     "Emily Chen",
-    "青禾"
+    "许知"
   ],
   "Michael Brown": [
     "Michael Brown",
-    "远山"
+    "周时"
   ],
   "Olivia Davis": [
     "Olivia Davis",
-    "知秋"
+    "苏禾"
   ],
   "+": [
     "+",
@@ -364,16 +364,16 @@
     "首页"
   ],
   "Products": [
-    "Products",
-    "山野"
+    "Collections",
+    "内容集"
   ],
   "Electronics": [
-    "Electronics",
-    "林间"
+    "Reading",
+    "阅读"
   ],
   "Laptop": [
-    "Laptop",
-    "晨间手记"
+    "An afternoon",
+    "一个午后"
   ],
   "Category": [
     "Category",
@@ -408,8 +408,8 @@
     "删除记录"
   ],
   "Danger Soft": [
-    "Danger Soft",
-    "移出手记"
+    "Remove",
+    "移除"
   ],
   "上传照片": [
     "Upload photos",
@@ -472,12 +472,12 @@
     "枝头的樱桃"
   ],
   "Become an ACME Creator!": [
-    "Keep a field notebook",
-    "一起记录山野"
+    "Make room for a new idea",
+    "留个位置，给新的想法"
   ],
   "Lorem ipsum dolor sit amet consectetur. Sed arcu donec id aliquam dolor sed amet faucibus etiam.": [
-    "Morning birdsong and afternoon shadows are worth a page. Share what you notice with a fellow wanderer.",
-    "清晨的鸟鸣、午后的树影，都可以成为一页手记。把你看见的自然，分享给同行的人。"
+    "A few lines, an image, or a thought worth keeping. Start with what is on your mind.",
+    "几行文字、一张图片，或是一个值得留下的想法。从眼前想到的开始就好。"
   ],
   "Close banner": [
     "Close banner",
@@ -492,20 +492,20 @@
     "报名截至 10 月 10 日。"
   ],
   "Apply Now": [
-    "Join the walk",
-    "报名同行"
+    "Get started",
+    "开始"
   ],
   "Form submitted successfully!": [
     "Form submitted successfully!",
     "记录已收好"
   ],
   "Login": [
-    "Return to your notebook",
-    "回到手记"
+    "Welcome back",
+    "欢迎回来"
   ],
   "Enter your credentials to access your account": [
-    "Sign in and continue today’s observations.",
-    "登录后，接着写下今天的见闻。"
+    "Sign in to continue where you left off.",
+    "登录后，接着处理上次的内容。"
   ],
   "Email": [
     "Email",
@@ -544,8 +544,8 @@
     "邮件通知"
   ],
   "Get notified when someone mentions you in a comment": [
-    "Get notified when someone mentions you in a comment",
-    "有人在手记中提到你时，发一封邮件。"
+    "Receive an email when someone mentions you in a comment.",
+    "有人在评论中提到你时，接收邮件提醒。"
   ],
   "Receive updates via email": [
     "Receive updates via email",
@@ -573,11 +573,11 @@
   ],
   "Notification preferences": [
     "Notification preferences",
-    "消息偏好"
+    "通知偏好"
   ],
   "Choose how you want to receive updates": [
-    "Choose how you want to receive updates",
-    "选择林间来信的送达方式"
+    "Choose how you want to receive updates.",
+    "选择接收消息的方式。"
   ],
   "Preferences": [
     "Preferences",
@@ -632,12 +632,12 @@
     "旧记录"
   ],
   "新物种 +2": [
-    "New species +2",
-    "新物种 +2"
+    "New items +2",
+    "新增内容 +2"
   ],
   "迁徙季": [
-    "Migration season",
-    "迁徙季"
+    "Seasonal update",
+    "本季更新"
   ],
   "Information": [
     "Information",
@@ -724,16 +724,16 @@
     "当前："
   ],
   "Brand Color": [
-    "Brand Color",
-    "手记颜色"
+    "Accent color",
+    "强调色"
   ],
   "#000000": [
     "#000000",
     "#000000"
   ],
   "Choose your brand's primary color": [
-    "Choose your brand's primary color",
-    "选一抹喜欢的颜色，留给这本手记。"
+    "Choose a color for your workspace.",
+    "为工作区选一种颜色。"
   ],
   "Pick a color": [
     "Pick a color",
@@ -816,8 +816,8 @@
     "秒"
   ],
   "Appointment Date": [
-    "Appointment Date",
-    "出发日期"
+    "Appointment date",
+    "预约日期"
   ],
   "Granularity": [
     "Granularity",
@@ -844,12 +844,12 @@
     "请选择今天或之后的日期"
   ],
   "Enter a date from today onwards": [
-    "Enter a date from today onwards",
-    "从今天起，选一个出发的日子。"
+    "Choose today or a later date.",
+    "选择今天或之后的日期。"
   ],
   "Appointment date": [
     "Appointment date",
-    "出发日期"
+    "预约日期"
   ],
   "Date must be today or in the future.": [
     "Date must be today or in the future.",
@@ -857,31 +857,31 @@
   ],
   "Choose a valid appointment date.": [
     "Choose a valid appointment date.",
-    "请选择有效的出发日期。"
+    "请选择有效的预约日期。"
   ],
   "Please choose a valid range in the future.": [
     "Please choose a valid range in the future.",
     "请选择有效的未来日期范围。"
   ],
   "Select your check-in and check-out dates.": [
-    "Select your check-in and check-out dates.",
-    "选好出发和归来的日子。"
+    "Choose a start and end date.",
+    "选择开始与结束日期。"
   ],
   "Booking period": [
-    "Booking period",
-    "行程日期"
+    "Date range",
+    "日期范围"
   ],
   "Select a valid range starting today or later.": [
     "Select a valid range starting today or later.",
     "请选择从今天或之后开始的有效日期范围。"
   ],
   "Preview HeroUI Native": [
-    "Preview HeroUI Native",
-    "预览 HeroUI Native"
+    "Preview niltavi UI",
+    "预览 niltavi UI"
   ],
   "Scan this QR code with your camera app to preview the HeroUI native components.": [
-    "Scan this QR code with your camera app to preview the HeroUI native components.",
-    "用相机扫描二维码，预览 HeroUI 原生组件。"
+    "Scan this QR code with your camera app to preview the niltavi UI components.",
+    "用相机扫描二维码，预览 niltavi UI 原生组件。"
   ],
   "Expo Go QR Code": [
     "Expo Go QR Code",
@@ -900,16 +900,16 @@
     "打开移动端预览"
   ],
   "Download HeroUI Native": [
-    "Download HeroUI Native",
-    "下载 HeroUI Native"
+    "Download niltavi UI",
+    "下载 niltavi UI"
   ],
   "Download App": [
     "Download App",
     "下载应用"
   ],
   "Download the HeroUI native app to explore our mobile components directly on your device.": [
-    "Download the HeroUI native app to explore our mobile components directly on your device.",
-    "下载 HeroUI Native，在手机上查看组件效果。"
+    "Download the niltavi UI app to explore our mobile components directly on your device.",
+    "下载 niltavi UI，在手机上查看组件效果。"
   ],
   "App Store QR Code": [
     "App Store QR Code",
@@ -920,8 +920,8 @@
     "支持 iOS 和 Android。"
   ],
   "HeroUI Native": [
-    "HeroUI Native",
-    "HeroUI Native"
+    "niltavi UI",
+    "niltavi UI"
   ],
   "Previous disclosure": [
     "Previous disclosure",
@@ -976,8 +976,8 @@
     "个人简介"
   ],
   "Tell us about yourself": [
-    "A little about you and the outdoors",
-    "写一点你与自然的故事"
+    "A few words about you",
+    "简单介绍一下自己"
   ],
   "Cancel": [
     "Cancel",
@@ -1060,8 +1060,8 @@
     "个人资料"
   ],
   "Update your profile information.": [
-    "Update your profile information.",
-    "让同行的人认识你。"
+    "Update your name and profile information.",
+    "更新名字和个人资料。"
   ],
   "Name must be at least 3 characters": [
     "Name must be at least 3 characters",
@@ -1076,8 +1076,8 @@
     "简介至少需要 10 个字符"
   ],
   "Tell us about yourself...": [
-    "A little about you and the outdoors…",
-    "写一点你与自然的故事…"
+    "A few words about you…",
+    "简单介绍一下自己…"
   ],
   "Minimum 10 characters": [
     "Minimum 10 characters",
@@ -1156,24 +1156,24 @@
     "悬停时显示下划线"
   ],
   "Hover to see the underline": [
-    "Follow the sound of the stream",
-    "循着溪声去看看"
+    "Read a little more",
+    "再读一点"
   ],
   "Always visible underline": [
     "Always visible underline",
     "始终显示下划线"
   ],
   "Underline always visible": [
-    "Open the field notebook",
-    "翻开山野手记"
+    "Open the article",
+    "打开文章"
   ],
   "No underline": [
     "No underline",
     "无下划线"
   ],
   "Link without any underline": [
-    "Step into the woods",
-    "走进林间"
+    "Continue reading",
+    "继续阅读"
   ],
   "Changing the underline offset": [
     "Changing the underline offset",
@@ -1196,64 +1196,64 @@
     "间距 4 像素"
   ],
   "Users": [
-    "Users",
-    "同行的人"
+    "Members",
+    "成员"
   ],
   "Bob": [
     "Bob",
-    "听风"
+    "林安"
   ],
   "B": [
     "B",
     "B"
   ],
   "bob@heroui.com": [
-    "bob@heroui.com",
-    "bob@heroui.com"
+    "bob@example.com",
+    "bob@example.com"
   ],
   "Fred": [
     "Fred",
-    "寻溪"
+    "江宁"
   ],
   "F": [
     "F",
     "F"
   ],
   "fred@heroui.com": [
-    "fred@heroui.com",
-    "fred@heroui.com"
+    "fred@example.com",
+    "fred@example.com"
   ],
   "Martha": [
     "Martha",
-    "见山"
+    "苏禾"
   ],
   "M": [
     "M",
     "M"
   ],
   "martha@heroui.com": [
-    "martha@heroui.com",
-    "martha@heroui.com"
+    "martha@example.com",
+    "martha@example.com"
   ],
   "File actions": [
     "File actions",
-    "手记操作"
+    "文件操作"
   ],
   "New file": [
     "New file",
-    "新建手记"
+    "新建文件"
   ],
   "Create a new file": [
-    "Create a new file",
-    "给今天留一页空白"
+    "Start with an empty page.",
+    "从空白的一页开始。"
   ],
   "Edit file": [
     "Edit file",
-    "编辑手记"
+    "编辑文件"
   ],
   "Make changes": [
-    "Make changes",
-    "补上沿途的见闻"
+    "Make a few changes.",
+    "修改其中的内容。"
   ],
   "E": [
     "E",
@@ -1265,7 +1265,7 @@
   ],
   "Delete file": [
     "Delete file",
-    "删除手记"
+    "删除文件"
   ],
   "Move to trash": [
     "Move to trash",
@@ -1284,8 +1284,8 @@
     "提醒"
   ],
   "Revenue": [
-    "Revenue",
-    "本季记录"
+    "Monthly total",
+    "本月合计"
   ],
   "Inside": [
     "Inside",
@@ -1296,8 +1296,8 @@
     "外部滚动"
   ],
   "Open Modal (": [
-    "Open Modal (",
-    "打开长篇手记（"
+    "Open article (",
+    "打开文章（"
   ],
   ")": [
     ")",
@@ -1313,27 +1313,27 @@
   ],
   "Paragraph": [
     "Paragraph",
-    "手记"
+    "段落"
   ],
   ": Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor quam.": [
-    ": At a bend in the path, a bird settles on a branch. It shakes the dew from its feathers, then disappears into the green.",
-    "：山路拐弯的地方，一只小鸟落在枝头。它停了片刻，抖去羽毛上的露水，又飞进更深的绿意里。"
+    ": The rain has stopped. The book is still open on the desk, and the sentence left unfinished can wait a little longer.",
+    "：雨停了，书还摊在桌上。刚才没写完的那句话，可以再想一想。"
   ],
   "Confirm": [
     "Confirm",
     "确认"
   ],
   "Open Contact Form": [
-    "Write a letter",
-    "寄一封信"
+    "Leave a message",
+    "留个言"
   ],
   "Contact Us": [
-    "To a fellow wanderer",
-    "写给同行的人"
+    "Get in touch",
+    "联系"
   ],
   "Fill out the form below and we'll get back to you. The modal adapts automatically when the keyboard appears on mobile.": [
-    "Leave a few words and an address for a reply.",
-    "把想说的话写下来，也请留下回信的地址。"
+    "Tell us what you have in mind and leave an email address for a reply.",
+    "写下想说的事，并留下可以回信的邮箱。"
   ],
   "Phone": [
     "Phone",
@@ -1344,20 +1344,20 @@
     "填写联系电话"
   ],
   "Company": [
-    "Walking group",
-    "同行小组"
+    "Organization",
+    "所在机构"
   ],
   "Enter your company name": [
-    "Your walking group",
-    "你所在的小组"
+    "Your organization",
+    "填写所在机构"
   ],
   "Message": [
     "Message",
     "来信内容"
   ],
   "Enter your message": [
-    "What did you find in the woods today?",
-    "今天在林间遇见了什么"
+    "What would you like to say?",
+    "你想说些什么？"
   ],
   "Send Message": [
     "Send Message",
@@ -1453,7 +1453,7 @@
   ],
   "Sarah Johnson": [
     "Sarah Johnson",
-    "林间客"
+    "林安"
   ],
   "SJ": [
     "SJ",
@@ -1464,8 +1464,8 @@
     "@sarahj"
   ],
   "Product designer and creative director. Building beautiful experiences that matter.": [
-    "Product designer and creative director. Building beautiful experiences that matter.",
-    "喜欢沿溪慢行，收集鸟鸣和叶子的名字。"
+    "Design, reading, and a few notes on everyday things.",
+    "做设计，也读书，偶尔记下日常的小事。"
   ],
   "Following": [
     "Following",
@@ -1477,19 +1477,19 @@
   ],
   "Followers": [
     "Followers",
-    "同行者"
+    "关注者"
   ],
   "With Arrow": [
     "With Arrow",
     "带箭头"
   ],
   "Popover with Arrow": [
-    "Popover with Arrow",
-    "林间消息"
+    "A small reminder",
+    "小提醒"
   ],
   "The arrow shows which element triggered the popover.": [
-    "The arrow shows which element triggered the popover.",
-    "枝头有了动静，抬头看看。"
+    "Your latest changes have been saved.",
+    "刚才的修改已经保存。"
   ],
   "More options": [
     "More options",
@@ -1545,67 +1545,67 @@
   ],
   "Delivery method": [
     "Delivery method",
-    "手记寄送方式"
+    "寄送方式"
   ],
   "Payment method": [
     "Payment method",
     "支付方式"
   ],
   "Subscription plan": [
-    "Subscription plan",
-    "同行计划"
+    "Plan",
+    "使用方案"
   ],
   "Starter": [
-    "Starter",
-    "初见"
+    "Basic",
+    "基础"
   ],
   "For side projects and small teams": [
-    "For side projects and small teams",
-    "从一本手记开始，慢慢认识山野。"
+    "For personal projects and small teams.",
+    "适合个人项目和小团队。"
   ],
   "Pro": [
-    "Pro",
-    "深行"
+    "Standard",
+    "标准"
   ],
   "Advanced reporting and analytics": [
-    "Advanced reporting and analytics",
-    "整理长久的观察，找出季节的线索。"
+    "More room for ongoing work.",
+    "为持续进行的工作留出更多空间。"
   ],
   "Teams": [
-    "Teams",
-    "结伴"
+    "Team",
+    "团队"
   ],
   "Share access with up to 10 teammates": [
-    "Share access with up to 10 teammates",
-    "与十位朋友一起，记下不同的风景。"
+    "Work together with up to 10 members.",
+    "支持最多 10 位成员一起使用。"
   ],
   "Choose a subscription before continuing.": [
-    "Choose a subscription before continuing.",
-    "请先选择一个同行计划。"
+    "Choose a plan before continuing.",
+    "请先选择一种方案。"
   ],
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor quam. Morbi accumsan cursus enim, sed ultricies sapien.": [
-    "As the morning mist lifts, the stones in the stream come into view. A kingfisher flashes blue across the water. We pause by the bridge and write it down.",
-    "晨雾慢慢散去，溪水露出石头的轮廓。一只翠鸟掠过水面，蓝色的翅影转瞬就落进了树荫。我们在桥边停下，把这一刻写进手记。"
+    "A little rain fell in the afternoon. By the time it stopped, the room had grown brighter. A glass of water sat beside the open book. Nothing needed to happen just yet.",
+    "午后下了一阵小雨。雨停时，屋里慢慢亮了起来。摊开的书旁边放着一杯水，暂时没有什么急着要做的事。"
   ],
   "Lorem Card": [
-    "Notes by the stream",
-    "溪边手记"
+    "An afternoon",
+    "午后"
   ],
   "Bridging the Future": [
-    "A breeze by the bridge",
-    "桥边等一阵风"
+    "Notes from an ordinary day",
+    "寻常的一天"
   ],
   "Today, 6:30 PM": [
     "Today, 6:30 PM",
     "今天，傍晚六点半"
   ],
   "Terms and Conditions": [
-    "Terms and Conditions",
-    "山野同行约定"
+    "Terms of use",
+    "使用约定"
   ],
   "Please review before proceeding": [
-    "Please review before proceeding",
-    "出发前，请读一读这份约定。"
+    "Please read before continuing.",
+    "继续之前，请先读一读。"
   ],
   "Accept": [
     "Accept",
@@ -1644,12 +1644,12 @@
     "地区（受控多选）"
   ],
   "Snap Points": [
-    "Snap Points",
-    "展开行程"
+    "View details",
+    "查看详情"
   ],
   "This sheet opens at 148px and snaps again at 355px. Dragging past the last detent reveals the full sheet, and the backdrop fades in after that point.": [
-    "From the stream to the ridge, then home through the pines. Pull up to see the full route.",
-    "从溪边走到山脊，再沿着松林归来。向上展开，可以查看完整行程。"
+    "A short summary is shown first. Expand the panel when you want to read the full details.",
+    "这里先放一段摘要，想继续了解时，可以展开查看全文。"
   ],
   "Range": [
     "Range",
@@ -1680,48 +1680,48 @@
     "加大"
   ],
   "Surface Content": [
-    "A page outdoors",
-    "一页山野"
+    "A little space",
+    "一段内容"
   ],
   "This is a default surface variant. It uses bg-surface styling.": [
-    "Morning light falls on the page. The first line is still unwritten.",
-    "晨光落在纸上，今天还没有写下第一笔。"
+    "Light falls across the desk. The book is still open where you left it.",
+    "光落在桌面上，书还停在上次读到的地方。"
   ],
   "This is a secondary surface variant. It uses bg-surface-secondary styling.": [
-    "The stream carries a newly fallen leaf past the stones.",
-    "溪水缓缓流过，带走一片刚落下的叶子。"
+    "A few thoughts are waiting here. Add to them whenever you like.",
+    "几个想法先留在这里，有空时再接着写。"
   ],
   "This is a tertiary surface variant. It uses bg-surface-tertiary styling.": [
-    "The woods grow quiet. An evening breeze moves the treetops.",
-    "林间渐渐安静，只剩晚风翻动树梢。"
+    "Keep an unfinished article for another day.",
+    "把读到一半的文章留在这里，下次继续。"
   ],
   "Transparent": [
     "Transparent",
     "透明"
   ],
   "This is a transparent surface variant. It has no background, suitable for overlays and cards with custom backgrounds.": [
-    "Leave this page open for the next encounter.",
-    "把这一页留白，等下一次相遇。"
+    "A blank space for what comes next.",
+    "留一点空白，之后再补上。"
   ],
   "Input with secondary variant": [
-    "Input with secondary variant",
-    "写下今天见到的鸟"
+    "Add a title",
+    "写个标题"
   ],
   "TextArea with secondary variant": [
-    "TextArea with secondary variant",
-    "也记一点风声、树影和天气…"
+    "Write down what is on your mind…",
+    "把想到的内容写在这里…"
   ],
   "Allow Notifications": [
     "Allow Notifications",
     "接收消息"
   ],
   "Marketing emails": [
-    "Marketing emails",
-    "每月山野来信"
+    "Monthly updates",
+    "每月简报"
   ],
   "Social media updates": [
-    "Social media updates",
-    "同行者的新手记"
+    "Activity from people you follow",
+    "关注的人的动态"
   ],
   "Table with resizable columns": [
     "Table with resizable columns",
@@ -1737,7 +1737,7 @@
   ],
   "Kate Moore": [
     "Kate Moore",
-    "青禾"
+    "陈言"
   ],
   "CEO": [
     "CEO",
@@ -1749,7 +1749,7 @@
   ],
   "John Smith": [
     "John Smith",
-    "远山"
+    "周时"
   ],
   "CTO": [
     "CTO",
@@ -1761,7 +1761,7 @@
   ],
   "Sara Johnson": [
     "Sara Johnson",
-    "听溪"
+    "许知"
   ],
   "CMO": [
     "CMO",
@@ -1785,7 +1785,7 @@
   ],
   "Emily Davis": [
     "Emily Davis",
-    "青禾"
+    "苏禾"
   ],
   "Product Manager": [
     "Product Manager",
@@ -1805,7 +1805,7 @@
   ],
   "Member": [
     "Member",
-    "同行者"
+    "成员"
   ],
   "#": [
     "#",
@@ -1813,15 +1813,15 @@
   ],
   "Davis Wilson": [
     "Davis Wilson",
-    "渡鸦"
+    "江宁"
   ],
   "Olivia Martinez": [
     "Olivia Martinez",
-    "知秋"
+    "顾然"
   ],
   "James Taylor": [
     "James Taylor",
-    "寻溪"
+    "方简"
   ],
   "Table with pagination": [
     "Table with pagination",
@@ -1840,40 +1840,40 @@
     "总览"
   ],
   "Analytics": [
-    "Analytics",
-    "观察"
+    "Activity",
+    "活动"
   ],
   "Reports": [
     "Reports",
-    "手记"
+    "报告"
   ],
   "Performance": [
     "Performance",
     "足迹"
   ],
   "Engagement": [
-    "Engagement",
-    "同行"
+    "Activity",
+    "动态"
   ],
   "Audience": [
     "Audience",
     "访客"
   ],
   "Acquisition": [
-    "Acquisition",
-    "新发现"
+    "New items",
+    "新增"
   ],
   "Retention": [
-    "Retention",
-    "常来客"
+    "Returning visitors",
+    "再次访问"
   ],
   "Overflow options": [
     "Overflow options",
     "更多选项"
   ],
   "panel content.": [
-    "panel content.",
-    "的手记。"
+    "content.",
+    "的内容。"
   ],
   "Vertical tabs": [
     "Vertical tabs",
@@ -1904,8 +1904,8 @@
     "安全设置"
   ],
   "Configure two-factor authentication and password settings.": [
-    "Configure two-factor authentication and password settings.",
-    "设置密码与双重验证，守好自己的手记。"
+    "Set your password and two-factor authentication preferences.",
+    "设置密码与双重验证。"
   ],
   "Notification Preferences": [
     "Notification Preferences",
@@ -1920,8 +1920,8 @@
     "订阅信息"
   ],
   "View and manage your subscription and payment methods.": [
-    "View and manage your subscription and payment methods.",
-    "查看同行计划与支付方式。"
+    "View your current plan and payment methods.",
+    "查看当前方案与支付方式。"
   ],
   "Single Selection": [
     "Single Selection",
@@ -1929,19 +1929,19 @@
   ],
   "News": [
     "News",
-    "鸟讯"
+    "资讯"
   ],
   "Travel": [
     "Travel",
-    "远行"
+    "旅行"
   ],
   "Gaming": [
-    "Gaming",
-    "山行"
+    "Games",
+    "游戏"
   ],
   "Shopping": [
     "Shopping",
-    "拾叶"
+    "购物"
   ],
   "Choose one category": [
     "Choose one category",
@@ -1996,28 +1996,28 @@
     "使用图标移除选项"
   ],
   "Short feedback": [
-    "Short feedback",
-    "一周鸟讯"
+    "A short note",
+    "简单记几句"
   ],
   "This week's highlights...": [
-    "Which birds visited this week?",
-    "这一周，又遇见了哪只鸟？"
+    "What would you like to keep from this week?",
+    "这一周，有什么想留下的？"
   ],
   "Detailed notes": [
-    "Detailed notes",
-    "沿途手记"
+    "Notes",
+    "详细内容"
   ],
   "Write out the full meeting notes...": [
-    "Note the stream, the color of the leaves, and the bird you could not name…",
-    "记下溪水的方向、树叶的颜色，还有那声没认出的鸟鸣…"
+    "Write it down here. A few words are enough to begin.",
+    "把内容写在这里，从几句话开始就好。"
   ],
   "Primary textarea": [
-    "Primary textarea",
-    "写一段今天的见闻…"
+    "Write a few words…",
+    "写几句话…"
   ],
   "Secondary textarea": [
-    "Secondary textarea",
-    "把未完的话留在这里…"
+    "Continue here…",
+    "在这里继续…"
   ],
   "Age": [
     "Age",
@@ -2056,12 +2056,12 @@
     "异步消息"
   ],
   "Automatically handles loading, success, and error states": [
-    "Automatically handles loading, success, and error states",
-    "记录从寄出到抵达的状态"
+    "The message follows the result of the action.",
+    "消息会随操作结果更新。"
   ],
   "Upload file": [
     "Upload file",
-    "上传手记"
+    "上传文件"
   ],
   "Create event (error)": [
     "Create event (error)",
@@ -2072,32 +2072,32 @@
     "同步记录"
   ],
   "Fetch user": [
-    "Fetch user",
-    "查看同行者"
+    "View member",
+    "查看成员"
   ],
   "Manual Loading State": [
-    "Manual Loading State",
-    "手动控制状态"
+    "Manual status",
+    "手动更新状态"
   ],
   "Manually control loading state with isLoading prop": [
-    "Manually control loading state with isLoading prop",
-    "先整理，再收好这一页。"
+    "Follow the progress of an action.",
+    "查看操作的进展。"
   ],
   "Uploading file...": [
-    "Uploading file...",
-    "正在上传手记…"
+    "Uploading file…",
+    "正在上传文件…"
   ],
   "Please wait while we upload your file": [
-    "Please wait while we upload your file",
-    "照片和文字正在路上，请稍等。"
+    "Your file is uploading. Please wait a moment.",
+    "文件正在上传，请稍等。"
   ],
   "File uploaded": [
     "File uploaded",
-    "手记已上传"
+    "文件已上传"
   ],
   "Your file has been uploaded successfully": [
-    "Your file has been uploaded successfully",
-    "这一程的见闻，已经收好了。"
+    "Your file has been uploaded successfully.",
+    "文件已上传成功。"
   ],
   "Upload with loading": [
     "Upload with loading",
@@ -2136,48 +2136,48 @@
     "显示失败状态"
   ],
   "You have been invited to join a team": [
-    "You have been invited to join a team",
-    "有人邀你一起去看鸟"
+    "You have a new invitation",
+    "收到一份邀请"
   ],
   "Bob sent you an invitation to join HeroUI team": [
-    "Bob sent you an invitation to join HeroUI team",
-    "听风邀请你加入周末的观鸟小组。"
+    "Bob invited you to the niltavi UI workspace.",
+    "林安邀请你加入 niltavi UI 工作区。"
   ],
   "Default toast": [
     "Default toast",
     "普通消息"
   ],
   "You have 2 credits left": [
-    "You have 2 credits left",
-    "还可以添加两张照片"
+    "You have room for two more files",
+    "还可以添加两个文件"
   ],
   "Get a paid plan for more credits": [
-    "Get a paid plan for more credits",
-    "挑两张最喜欢的，留住今天的风景。"
+    "Choose the files you would like to keep.",
+    "选择你想保留的文件。"
   ],
   "Accent toast": [
     "Accent toast",
     "强调消息"
   ],
   "You have upgraded your plan": [
-    "You have upgraded your plan",
-    "新的手记本准备好了"
+    "Your plan has been updated",
+    "方案已更新"
   ],
   "You can continue using HeroUI Chat": [
-    "You can continue using HeroUI Chat",
-    "翻开空白的一页，接着记录吧。"
+    "Your niltavi UI workspace is ready.",
+    "niltavi UI 工作区已准备好。"
   ],
   "Success toast": [
     "Success toast",
     "成功消息"
   ],
   "You have no credits left": [
-    "You have no credits left",
-    "这本手记写满了"
+    "Your storage allowance is used up",
+    "可用空间已用完"
   ],
   "Upgrade to a paid plan to continue": [
-    "Upgrade to a paid plan to continue",
-    "先收好这一册，再开启下一段旅程。"
+    "Free some space before adding more files.",
+    "腾出一些空间后，可以继续添加文件。"
   ],
   "Warning toast": [
     "Warning toast",
@@ -2188,8 +2188,8 @@
     "照片空间已满"
   ],
   "Remove files to release space. Adding more text to demonstrate longer content display": [
-    "Remove files to release space. Adding more text to demonstrate longer content display",
-    "整理旧照片后，就能装下新的风景。"
+    "Remove files you no longer need to make room for new ones.",
+    "删除不再需要的文件，就能为新内容腾出空间。"
   ],
   "Danger toast": [
     "Danger toast",
@@ -2276,52 +2276,52 @@
     "上方"
   ],
   "Top placement": [
-    "Top placement",
-    "从上方传来一声鸟鸣"
+    "A note above",
+    "上方的一点提示"
   ],
   "Left placement": [
-    "Left placement",
-    "左边的枝梢动了动"
+    "A note to the left",
+    "左侧的一点提示"
   ],
   "Hover buttons": [
     "Hover buttons",
     "停留片刻"
   ],
   "Right placement": [
-    "Right placement",
-    "右边有一缕风"
+    "A note to the right",
+    "右侧的一点提示"
   ],
   "Bottom": [
     "Bottom",
     "下方"
   ],
   "Bottom placement": [
-    "Bottom placement",
-    "脚边开着小花"
+    "A note below",
+    "下方的一点提示"
   ],
   "Tooltip with arrow indicator": [
-    "Tooltip with arrow indicator",
-    "枝叶间的一点提示"
+    "A small reminder",
+    "一个小提醒"
   ],
   "Custom Offset": [
     "Custom Offset",
     "自定义距离"
   ],
   "Custom offset from trigger": [
-    "Custom offset from trigger",
-    "留一点恰好的距离"
+    "A little distance makes it easier to read.",
+    "留一点距离，看得更清楚。"
   ],
   "Dashboard": [
-    "Dashboard",
-    "山野手记"
+    "An ordinary day",
+    "寻常的一天"
   ],
   "Convenience primitives are thin wrappers over Typography, so you can choose explicit composition without learning a second styling system.": [
-    "Walk beside the stream at dawn and rest beneath the trees at noon. Keep the birds you saw and the places you could not name.",
-    "清晨沿着溪水走，午后在树荫里停。记下看见的鸟，也记下那些没有名字的风景。"
+    "The rain stopped before lunch. A little light came through the window and rested on the empty half of the desk.",
+    "午饭前，雨停了。一点光从窗边照进来，落在桌上空着的那一半。"
   ],
   "Paragraph supports base, sm, and xs sizes.": [
-    "A breeze passes through the canopy. A page turns softly.",
-    "风吹过树梢，一页纸轻轻翻过去。"
+    "The page is still here. Read on when you have time.",
+    "书页还在这里，有空时再接着读。"
   ],
   "Typography.Code": [
     "Typography.Code",
@@ -2588,8 +2588,8 @@
     "溢出菜单"
   ],
   "FAQ": [
-    "FAQ",
-    "山野小问"
+    "Common questions",
+    "常见问题"
   ],
   "Multiple": [
     "Multiple",
@@ -2704,16 +2704,16 @@
     "标记完成"
   ],
   "This will mark the task as complete and notify all team members. The task will be moved to your completed list.": [
-    "This will mark the task as complete and notify all team members. The task will be moved to your completed list.",
-    "这条观察任务将标记为完成，并通知同行者。"
+    "This marks the task as complete and notifies the other members.",
+    "这项任务将标记为完成，并通知其他成员。"
   ],
   "Complete this task?": [
     "Complete this task?",
-    "完成这次观察？"
+    "完成这项任务？"
   ],
   "Complete Task": [
-    "Complete Task",
-    "完成观察"
+    "Complete task",
+    "完成任务"
   ],
   "Keep Editing": [
     "Keep Editing",
@@ -2724,8 +2724,8 @@
     "放弃"
   ],
   "You have unsaved changes that will be permanently lost. Are you sure you want to discard them?": [
-    "You have unsaved changes that will be permanently lost. Are you sure you want to discard them?",
-    "这页手记还有未保存的内容。放弃后将无法恢复，确定继续吗？"
+    "Your unsaved changes will be lost. Do you want to continue?",
+    "未保存的修改会丢失，确定继续吗？"
   ],
   "Discard unsaved changes?": [
     "Discard unsaved changes?",
@@ -2756,8 +2756,8 @@
     "正在上传…"
   ],
   "Upload File": [
-    "Upload File",
-    "上传手记"
+    "Upload file",
+    "上传文件"
   ],
   "(empty)": [
     "(empty)",
@@ -2792,20 +2792,20 @@
     "向上展开，看看接下来的路。"
   ],
   "Chief Executive Officer": [
-    "Chief Executive Officer",
-    "领队"
+    "Team lead",
+    "负责人"
   ],
   "Chief Technology Officer": [
-    "Chief Technology Officer",
-    "向导"
+    "Engineer",
+    "工程师"
   ],
   "Chief Marketing Officer": [
-    "Chief Marketing Officer",
-    "摄影师"
+    "Editor",
+    "编辑"
   ],
   "Chief Financial Officer": [
-    "Chief Financial Officer",
-    "记录者"
+    "Operations",
+    "运营"
   ],
   "Lead Designer": [
     "Lead Designer",
@@ -2816,12 +2816,12 @@
     "观察者"
   ],
   "Backend Engineer": [
-    "Backend Engineer",
-    "同行者"
+    "Backend engineer",
+    "后端工程师"
   ],
   "Failed to upload file": [
-    "Failed to upload file",
-    "手记暂时没能上传"
+    "The file could not be uploaded",
+    "文件上传失败"
   ],
   "Creating event...": [
     "Creating event...",
@@ -2832,12 +2832,12 @@
     "预约已记录"
   ],
   "Failed to fetch user": [
-    "Failed to fetch user",
-    "暂时无法查看同行者"
+    "This member could not be loaded",
+    "暂时无法查看该成员"
   ],
   "Loading user...": [
-    "Loading user...",
-    "正在查看同行者…"
+    "Loading member…",
+    "正在查看成员…"
   ],
   "Network error. Please try again.": [
     "Network error. Please try again.",
@@ -2860,40 +2860,40 @@
     "移除"
   ],
   "Build better interfaces": [
-    "The woods answer back",
-    "山野有回声"
+    "An ordinary day",
+    "寻常的一天"
   ],
   "Built for the intelligence age": [
-    "Follow birdsong into the morning",
-    "循着鸟鸣，走进清晨"
+    "A few lines in the afternoon",
+    "午后的几行字"
   ],
   "Pricing on your terms": [
-    "Keep a season in a notebook",
-    "把一季的风景收进手记"
+    "The seat by the window",
+    "窗边的位置"
   ],
   "Apply to the startup program": [
-    "Share what you notice",
-    "与同行的人分享见闻"
+    "Write down a thought",
+    "记下一个想法"
   ],
   "Card titles": [
-    "A moment by the stream",
-    "溪边的片刻"
+    "A book left open",
+    "读到一半的书"
   ],
   "Smaller feature headers": [
-    "The path through the pines",
-    "松林小径"
+    "The next page",
+    "下一页"
   ],
   "Primary body text used across documentation, marketing copy, and descriptions.": [
-    "Morning mist clears and branches cast their shadows on the stream. We follow the water and make a note of each encounter.",
-    "晨雾散去，树影落在溪面上。我们沿着水声往前走，把每一次相遇慢慢记下。"
+    "A little rain fell in the afternoon. The room grew quiet, and the book on the desk stayed open at the same page.",
+    "午后下了一阵小雨。屋里渐渐安静下来，桌上的书还摊在原来那一页。"
   ],
   "Secondary body, table cells, navigation, and sidebar items.": [
-    "A bird crosses the branches, carrying a little morning light.",
-    "一只小鸟掠过枝头，带走了一点晨光。"
+    "There is no need to finish every thought today.",
+    "有些想法，明天再接着写也可以。"
   ],
   "Captions, badges, helper text, and fine print.": [
-    "The path is long. Take your time.",
-    "山路很长，可以慢慢走。"
+    "Leave a little room for later.",
+    "留一点位置，之后再补。"
   ],
   "With button group": [
     "With button group",
@@ -2940,8 +2940,8 @@
     "欢迎回来，{name}！"
   ],
   "Your chosen plan is: {value}": [
-    "Your chosen plan is: {value}",
-    "已选择同行计划：{value}"
+    "Selected plan: {value}",
+    "已选择方案：{value}"
   ],
   "Selected preferences: {values}": [
     "Selected preferences: {values}",
@@ -2976,35 +2976,67 @@
     "删除 {name}"
   ],
   "Morning birdsong": [
-    "Morning birdsong",
-    "清晨的鸟鸣"
+    "An unfinished thought",
+    "一个还没写完的想法"
   ],
   "Dawn by the stream": [
-    "Dawn by the stream",
-    "清晨，沿溪水出发"
+    "Start with a title",
+    "先写一个标题"
   ],
   "A kingfisher at the bridge": [
-    "A kingfisher at the bridge",
-    "在小桥边寻找翠鸟"
+    "Add a few details",
+    "补充几处细节"
   ],
   "Rest beneath the pines": [
-    "Rest beneath the pines",
-    "松林里歇一歇"
+    "Read it once more",
+    "再读一遍"
   ],
   "Lunch on the ridge": [
-    "Lunch on the ridge",
-    "山脊上午餐"
+    "Save the changes",
+    "保存修改"
   ],
   "Home before dusk": [
-    "Home before dusk",
-    "黄昏前沿原路归来"
+    "Return when you like",
+    "有空时再回来"
   ],
   "Faq": [
-    "Faq",
-    "山野小问"
+    "Common questions",
+    "常见问题"
   ],
   "With arrow": [
     "With arrow",
     "带箭头"
+  ],
+  "pnpm add @heroui/react": [
+    "const theme = \"niltavi UI\";",
+    "const theme = \"niltavi UI\";"
+  ],
+  "Read a little more": [
+    "Read a little more",
+    "展开阅读"
+  ],
+  "An afternoon": [
+    "An afternoon",
+    "午后"
+  ],
+  "The room grew quiet after the rain. A book lay open beside a glass of water.": [
+    "The room grew quiet after the rain. A book lay open beside a glass of water.",
+    "雨后，屋里安静下来。摊开的书旁边，放着一杯水。"
+  ],
+  "There was still time to read a few more pages.": [
+    "There was still time to read a few more pages.",
+    "还有一点时间，可以再读几页。"
+  ],
+  "A short excerpt": [
+    "A short excerpt",
+    "一段文字"
+  ],
+  "About the author": [
+    "About the author",
+    "关于作者"
+  ],
+  "Writing, reading, and sometimes drawing an idea before it has a name.": [
+    "Writing, reading, and sometimes drawing an idea before it has a name.",
+    "写作、阅读，偶尔把还没想清楚的事画下来。"
   ]
 }

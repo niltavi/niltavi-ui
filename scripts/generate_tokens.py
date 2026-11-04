@@ -110,6 +110,10 @@ SCALES = {
     "leaf": (0.19, [148, 149, 150, 151, 152, 154, 156, 158, 160, 162, 164, 165], CHROMA_COOL),
     "berry": (0.23, [16, 16, 17, 18, 19, 20, 21, 22, 22, 22, 22, 22], CHROMA_COOL),
     "gold": (0.18, [98, 96, 93, 90, 86, 80, 72, 66, 60, 56, 52, 50], CHROMA_WARM),
+    # Quiet supporting scales for interface text and fills.
+    "slate": (0.055, [255] * 12, CHROMA_COOL),
+    "stone": (0.022, [85] * 12, CHROMA_WARM),
+    "sage": (0.045, [155] * 12, CHROMA_COOL),
 }
 
 palette = {}
@@ -120,7 +124,9 @@ palette["throat"] = {
     for i, s in enumerate(STEPS)
 }
 
-SCALE_ORDER = ["niltava", "rufous", "glossy", "violet", "throat", "leaf", "berry", "gold"]
+CORE_SCALE_ORDER = ["niltava", "rufous", "glossy", "violet", "throat", "leaf", "berry", "gold"]
+UI_SCALE_ORDER = ["slate", "stone", "sage"]
+SCALE_ORDER = CORE_SCALE_ORDER + UI_SCALE_ORDER
 
 # Paper and ink match the website without changing the eight plumage scales.
 MATERIALS = {"paper": "#F5F1E6", "ink": "#283E38"}
@@ -151,7 +157,11 @@ LIGHT = {
     "rufous": "rufous-600", "rufous-foreground": "white",
     "segment": ("mix", "paper", "white", 15), "segment-foreground": "ink",
     "border": ("mix", "paper", "ink", 14), "separator": ("mix", "paper", "ink", 8),
-    "focus": "niltava-500", "link": "niltava-600",
+    "focus": "niltava-500", "link": "slate-700",
+    "secondary": ("mix", "paper", "slate-500", 8), "secondary-foreground": "slate-700",
+    "secondary-hover": ("mix", "paper", "slate-500", 14),
+    "tertiary": ("mix", "paper", "stone-500", 5), "tertiary-foreground": "slate-700",
+    "tertiary-hover": ("mix", "paper", "stone-500", 12),
     "accent-soft-foreground": "niltava-700", "success-soft-foreground": "leaf-700",
     "warning-soft-foreground": "gold-700", "danger-soft-foreground": "berry-700",
     "info-soft-foreground": "glossy-700", "rufous-soft-foreground": "rufous-700",
@@ -173,7 +183,11 @@ DARK = {
     "rufous": "rufous-400", "rufous-foreground": "rufous-975",
     "segment": ("mix", "throat-975", "throat-950", 45), "segment-foreground": "paper",
     "border": ("mix", "throat-975", "throat-800", 40), "separator": ("mix", "throat-975", "throat-950", 65),
-    "focus": "niltava-400", "link": "niltava-300",
+    "focus": "niltava-400", "link": "slate-300",
+    "secondary": ("mix", "throat-975", "slate-800", 20), "secondary-foreground": "slate-300",
+    "secondary-hover": ("mix", "throat-975", "slate-800", 30),
+    "tertiary": ("mix", "throat-975", "stone-950", 30), "tertiary-foreground": "slate-400",
+    "tertiary-hover": ("mix", "throat-975", "stone-950", 55),
     "accent-soft-foreground": "niltava-300", "success-soft-foreground": "leaf-300",
     "warning-soft-foreground": "gold-300", "danger-soft-foreground": "berry-300",
     "info-soft-foreground": "glossy-300", "rufous-soft-foreground": "rufous-300",
@@ -223,6 +237,9 @@ CHECKS = [
     ("focus", "background", 3),
     ("field-foreground", "field-background", 7), ("foreground", "overlay", 7),
     ("default-foreground", "default", 7), ("segment-foreground", "segment", 7),
+    ("link", "surface", 4.5),
+    ("secondary-foreground", "secondary", 4.5), ("secondary-foreground", "secondary-hover", 4.5),
+    ("tertiary-foreground", "tertiary", 4.5), ("tertiary-foreground", "tertiary-hover", 4.5),
 ]
 for c in ["accent", "success", "warning", "danger", "info", "rufous"]:
     CHECKS.append((f"{c}-foreground", c, 4.5))
@@ -262,6 +279,9 @@ def write_palette_css():
     lines.append("@theme inline {")
     for c in ["info", "rufous"]:
         for suffix in ["", "-foreground", "-hover", "-soft", "-soft-foreground", "-soft-hover"]:
+            lines.append(f"  --color-{c}{suffix}: var(--{c}{suffix});")
+    for c in ["secondary", "tertiary"]:
+        for suffix in ["", "-foreground", "-hover"]:
             lines.append(f"  --color-{c}{suffix}: var(--{c}{suffix});")
     for i in range(1, 9):
         lines.append(f"  --color-chart-{i}: var(--chart-{i});")
@@ -350,6 +370,7 @@ def write_dtcg():
 def write_app_json():
     data = {
         "steps": STEPS,
+        "scaleGroups": {"core": CORE_SCALE_ORDER, "ui": UI_SCALE_ORDER},
         "scales": {n: {str(s): palette[n][s] for s in STEPS} for n in SCALE_ORDER},
         "oklch": {n: {str(s): oklch_css(palette[n][s]) for s in STEPS} for n in SCALE_ORDER},
         "semantic": {m: {k: (v if isinstance(v, str) else f"mix({v[1]}, {v[2]} {v[3]}%)") for k, v in mp.items()}
@@ -369,7 +390,7 @@ def write_card():
         **{f"{n}.tokens.json": (ROOT / f"tokens/{n}.tokens.json").read_text() for n in ("primitives", "light", "dark")},
     }
     app = json.loads((ROOT / "src/theme/tokens.json").read_text())
-    data = {k: app[k] for k in ("steps", "scales", "oklch", "semantic", "resolved", "chart")}
+    data = {k: app[k] for k in ("steps", "scaleGroups", "scales", "oklch", "semantic", "resolved", "chart")}
     data["files"] = files
     body = (ROOT / "scripts/palette-card.template.html").read_text().replace(
         "__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))

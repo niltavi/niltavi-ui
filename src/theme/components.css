@@ -92,6 +92,20 @@
     .choice-card { transition: none; }
   }
 
+  .button--secondary {
+    --button-bg: var(--secondary);
+    --button-bg-hover: var(--secondary-hover);
+    --button-bg-pressed: var(--secondary-hover);
+    --button-fg: var(--secondary-foreground);
+  }
+
+  .button--tertiary {
+    --button-bg: var(--tertiary);
+    --button-bg-hover: var(--tertiary-hover);
+    --button-bg-pressed: var(--tertiary-hover);
+    --button-fg: var(--tertiary-foreground);
+  }
+
   .button--rufous {
     --button-bg: var(--rufous);
     --button-bg-hover: var(--rufous-hover);

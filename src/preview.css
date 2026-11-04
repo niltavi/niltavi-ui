@@ -124,12 +124,15 @@ body {
 .editorial-header > p { max-width: 60ch; }
 .editorial-sections { display: flex; flex-direction: column; gap: 40px; }
 .editorial-section { scroll-margin-top: calc(var(--site-header-height) + 24px); }
+.editorial-section:has(> .editorial-bird) { display: flow-root; }
+.editorial-bird { float: right; width: clamp(88px, 18vw, 144px); height: auto; margin: 4px 0 16px 24px; }
 .editorial-section h2 { margin-bottom: 16px; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; line-height: 1.45; text-wrap: balance; }
 .editorial-section:first-child h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -.025em; }
 .editorial-section p { font-size: 1rem; line-height: 2; text-wrap: pretty; }
 .editorial-intro { padding: 28px; }
 .editorial-quote { margin-block: 32px; padding-left: 24px; border-left: 2px solid var(--accent); font-family: var(--font-serif); font-size: 1.375rem; line-height: 1.9; white-space: pre-line; text-wrap: pretty; }
 html[lang="en"] .editorial-section p { line-height: 1.85; }
+@media (max-width: 480px) { .editorial-bird { margin-left: 16px; } }
 
 @media (min-width: 781px) and (max-width: 860px) {
   .preview-header__inner { gap: 24px; }

@@ -1,6 +1,7 @@
 import {Copy} from "@gravity-ui/icons";
 import {Button, Surface, Typography, toast} from "@heroui/react";
 import {useEffect} from "react";
+import birdArtwork from "../../docs/assets/niltavi-bird.svg";
 import {useLocale, useText} from "./Locale";
 import {editorialContent, formatPrompt} from "./editorialContent";
 import {scrollToSection, sectionId} from "./navigation";
@@ -36,6 +37,7 @@ export default function Editorial({page, section}: {page: "philosophy" | "prompt
         const id = sectionId(page, item.id);
         const body = <>
           <Typography.Heading level={2} id={`${id}-title`}>{text(item.title.en, item.title.zh)}</Typography.Heading>
+          {page === "philosophy" && item.id === "color" && <img className="editorial-bird" src={birdArtwork} width={1030} height={1380} alt={text("A blue and yellow niltava resting on a branch", "栖在枝头的蓝黄色仙鹟")} />}
           {item.paragraphs.map((paragraph, paragraphIndex) => <Typography.Paragraph key={paragraphIndex}>{text(paragraph.en, paragraph.zh)}</Typography.Paragraph>)}
           {item.quote && <blockquote className="editorial-quote">{text(item.quote.en, item.quote.zh)}</blockquote>}
         </>;

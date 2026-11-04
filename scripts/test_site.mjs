@@ -23,7 +23,7 @@ test("root and unknown pages open the component gallery", () => {
 
 test("page and directory links survive direct loads and history navigation", () => {
   for (const page of ["components", "palette"]) {
-    for (const section of ["", page === "components" ? "checkbox-group" : "niltava"]) {
+    for (const section of ["", page === "components" ? "checkbox-group" : "colors"]) {
       assert.deepEqual(parseRoute(routeHref(page, section)), {page, section});
     }
   }
@@ -68,7 +68,7 @@ test("directory highlight follows the visible heading rather than the last URL",
   assert.equal(getActiveSection([], 92), "");
 });
 
-test("palette directory follows the rendered scale order and includes supporting sections", async () => {
-  const tokens = JSON.parse(await readFile(new URL("../src/theme/tokens.json", import.meta.url), "utf8"));
-  assert.deepEqual(paletteSections.map((section) => section.id), [...Object.keys(tokens.scales), "charts", "contrast"]);
+test("palette directory lists page sections rather than individual colors", () => {
+  assert.deepEqual(paletteSections.map((section) => section.id), ["colors", "charts", "contrast"]);
+  assert.deepEqual(paletteSections.map((section) => section.zh), ["色卡", "图表", "对比度"]);
 });

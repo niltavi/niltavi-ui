@@ -2,7 +2,7 @@ import {memo, useEffect} from "react";
 import {scrollToSection} from "./navigation";
 import {Card, Table, toast} from "@heroui/react";
 import tokens from "../theme/tokens.json";
-import {paletteSections} from "./paletteCatalog";
+import {paletteScales} from "./paletteCatalog";
 import {useText} from "./Locale";
 
 const CHART_DATA = [
@@ -28,7 +28,7 @@ function Scales() {
       {Object.entries(tokens.scales).map(([name, steps]) => (
         <section key={name} id={`palette-${name}`} className="palette__scale" aria-labelledby={`palette-${name}-title`}>
           <div>
-            <h2 id={`palette-${name}-title`} className="palette__name">{text(name[0].toUpperCase() + name.slice(1), paletteSections.find((section) => section.id === name)?.zh ?? name)}</h2>
+            <h2 id={`palette-${name}-title`} className="palette__name">{text(name[0].toUpperCase() + name.slice(1), paletteScales.find((section) => section.id === name)?.zh ?? name)}</h2>
             <div className="preview-code">{name}</div>
           </div>
           <div className="palette__steps">
@@ -176,8 +176,10 @@ function Palette({mode, section}: {mode: "light" | "dark"; section: string}) {
   }, [section]);
   const text = useText();
   return <div className="palette-page">
-    <h1>{text("Palette", "色卡")}</h1>
-    <Scales />
+    <section id="palette-colors" className="palette-section palette-colors" aria-labelledby="palette-colors-title">
+      <h1 id="palette-colors-title">{text("Palette", "色卡")}</h1>
+      <Scales />
+    </section>
     <section id="palette-charts" className="palette-section"><h2>{text("Charts", "图表")}</h2><Charts /></section>
     <section id="palette-contrast" className="palette-section"><h2>{text("Contrast", "对比度")}</h2><Audit mode={mode} /></section>
   </div>;

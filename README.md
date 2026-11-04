@@ -73,7 +73,7 @@ The component gallery adapts [HeroUI's official demos](https://github.com/heroui
 
 Examples are maintained as local source files, pinned to the upstream commit recorded in `src/showcase/NOTICE.md`, and checked against HeroUI 3.2.7. Official example layout utilities use the same HeroUI/Tailwind theme bridge; custom theme overrides are removed. The gallery loads in a separate chunk. Some avatars and images use HeroUI's public asset CDN.
 
-The static site uses hash routes: `#/components`, `#/components/checkbox-group`, `#/palette`, and `#/palette/leaf`. Direct links and browser history work without server routing. Language and theme preferences persist locally. `src/showcase/catalog.ts` is the shared source for headings and navigation; bilingual sample copy is in `src/showcase/messages.json`. Dates and built-in controls follow the React Aria locale provider. Natural scenes belong in example content; action names and validation remain clear. Color-vision matrices remain available in `src/theme/vision.ts`, without an entry in the public header.
+The static site uses hash routes: `#/components`, `#/components/checkbox-group`, `#/palette`, and `#/palette/colors`. Direct links and browser history work without server routing. Language and theme preferences persist locally. `src/showcase/catalog.ts` is the shared source for headings and navigation; bilingual sample copy is in `src/showcase/messages.json`. Dates and built-in controls follow the React Aria locale provider. Natural scenes belong in example content; action names and validation remain clear. Color-vision matrices remain available in `src/theme/vision.ts`, without an entry in the public header.
 
 ```bash
 npm install

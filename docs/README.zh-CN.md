@@ -73,7 +73,7 @@ npm run tokens
 
 示例以本地源码维护，上游提交记录在 `src/showcase/NOTICE.md`，并按 HeroUI 3.2.7 校验。官方示例的布局工具类沿用同一套 HeroUI / Tailwind 主题映射，示例中的自定义主题覆盖已移除。展示区作为独立代码块加载，部分头像和图片使用 HeroUI 的公开素材 CDN。
 
-静态站点采用 hash 路由：`#/components`、`#/components/checkbox-group`、`#/palette` 和 `#/palette/leaf`。直接链接和浏览器前进、后退无需服务端路由支持。语言与主题偏好保存在本地。`src/showcase/catalog.ts` 统一维护标题与目录，`src/showcase/messages.json` 维护双语示例文案，日期和内置控件跟随 React Aria 的语言设置。自然意趣放在示例内容中，操作名称和校验提示保持直白。色觉模拟矩阵保留在 `src/theme/vision.ts` 中，公开顶栏不再提供入口。
+静态站点采用 hash 路由：`#/components`、`#/components/checkbox-group`、`#/palette` 和 `#/palette/colors`。直接链接和浏览器前进、后退无需服务端路由支持。语言与主题偏好保存在本地。`src/showcase/catalog.ts` 统一维护标题与目录，`src/showcase/messages.json` 维护双语示例文案，日期和内置控件跟随 React Aria 的语言设置。自然意趣放在示例内容中，操作名称和校验提示保持直白。色觉模拟矩阵保留在 `src/theme/vision.ts` 中，公开顶栏不再提供入口。
 
 ```bash
 npm install

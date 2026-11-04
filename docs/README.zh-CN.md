@@ -1,83 +1,25 @@
+<div align="center">
+
 # Niltavi UI
 
-[English](../README.md) | 简体中文
+*数字时代的自然主义*
 
-基于 HeroUI v3 的中性界面主题，采用轻量底色和低饱和辅助色。
+[ui.niltavi.com](https://ui.niltavi.com/) · [English](../README.md)
 
-## 设计语言
+</div>
 
-以 [niltavi-website 首页](https://github.com/niltavi/niltavi-website)为共同参考，在 Niltavi 产品中结合使用：
+---
 
-- **矢量图风格：** 轮廓清楚，图形可缩放，配色克制。
-- **木刻版画：** 大块墨色、收尖的羽毛刀痕和带棱角的叶脉。装饰用于插画，保持文字和控件清晰。
-- **轻量极简风格：** 充分留白，克制使用字体，阅读顺序明确。
-- **平面风格：** 纯色色块、细分隔线、适度圆角，以及低起伏的表面。
+在人工智能不断拓展人类能力边界的时代，我们希望重新唤起人们对自然、感知与自我体验的关注。技术让世界变得更加高效、精确和丰富，而自然提醒我们，生活中仍有许多值得亲自感受的事物：一束穿过树叶的阳光、一阵微风、一只偶然停留在枝头的鸟，以及那些无法被预先计算的细微瞬间。
 
-浅色主题用暖纸（`#F5F1E6`）和森林墨色（`#283E38`）搭配八组基础色阶和三组低饱和 UI 辅助色阶。深色主题采用与页面底色接近的深蓝灰表面，搭配暖纸色文字。两种模式统一采用 HeroUI 标准圆角比例（8px 基础圆角、12px 输入框圆角）、1px 输入框边线，以及平面轮廓。这些设置由 `src/theme/index.css` 统一引入；预览页布局放在 `src/preview.css`。木刻细节用于插画，表单控件保留清楚的焦点和状态提示。
+Niltavi 的灵感来自栖息于森林中的仙鹟。它拥有鲜明而纯净的蓝色羽毛，点缀着温暖的黄色，在深邃的森林绿意之间呈现出一种安静而生动的美。这种色彩关系构成了我们的视觉起点：以蓝色表达自由、清澈与探索，以黄色传递温度、生命力与偶然的惊喜，以森林绿承载自然的深度、宁静与归属感。我们将这些源于自然的颜色转化为克制、柔和而富有层次的视觉语言，让鲜明的生命色彩在低饱和的环境中自然浮现。
 
-预览页只保留有用的组件、色阶、图表和对比度值。含义明确的操作使用常见图标，并提供无障碍名称。移除装饰文案、重复导航、空视图和无用列。全局 `niltavi-design` Skill 记录共同设计语言。这套 UI 保持中性，自然意趣主要体现在颜色和材质中，示例避免固定的户外或鸟类场景。
+在表现形式上，我们从传统自然博物图鉴与木刻版画中汲取灵感，并以现代平面矢量语言重新诠释。清晰的轮廓、纯粹的色块与简洁的几何构图，赋予画面现代设计的秩序与轻盈；羽毛、枝叶之间细腻而富有方向感的刻线，则保留了传统手工艺术的温度与生命感。我们珍视这种精确与自然之间的微妙平衡，让理性的数字形式承载感性的自然表达。
 
-## 接入
+我们相信，质感无需依赖繁复的装饰。温暖的纸张底色、舒展的留白、优雅的文字与克制的细节，足以营造一种安静而持久的美。画面中的每一种颜色、每一道线条、每一处空白，都应当拥有存在的理由。设计不急于吸引注意，也不试图填满所有空间，而是为观看、思考与感受留下余地。
 
-把 `src/theme/` 中的 CSS 文件复制到项目里，在全局样式中引入主题入口：
+Niltavi 所追求的是一种温和而清醒的现代自然主义。它拥抱技术带来的可能性，也珍视人类与真实世界之间不可替代的联系。我们希望通过一种轻盈、宁静、富有生命力的设计语言，邀请人们暂时放慢脚步，重新发现自然的细节，感受生活本身的丰富，并在不断变化的数字世界中，保留属于自己的节奏。
 
-```css
-@import "./theme/index.css";
-```
+---
 
-沿用 [HeroUI v3 的 CSS 变量和 BEM 主题方式](https://heroui.com/en/docs/react/getting-started/theming)。入口统一加载 HeroUI 及其 Tailwind v4 构建依赖、色阶、语义变量和共享组件扩展。保留 HeroUI 所需的 Tailwind v4 构建集成，无需额外配置一套 Tailwind 主题。
-
-明暗切换沿用 HeroUI 的方式：`<html class="dark" data-theme="dark">`。
-
-## 文件
-
-| 文件 | 内容 |
-| --- | --- |
-| `src/theme/index.css` | 唯一主题入口 |
-| `src/theme/components.css` | 引用语义变量的共享 HeroUI BEM 扩展 |
-| `src/theme/palette.css` | 8 组基础色阶与 3 组 UI 辅助色阶，每组 12 阶（Tailwind v4 `@theme`，OKLCH），以及 `info`、`rufous`、`chart-1…8` 工具类 |
-| `src/theme/niltava.css` | HeroUI v3 语义变量、共享尺寸、字体、浅色 / 深色 |
-| `tokens/primitives.tokens.json` | 色阶，W3C Design Tokens 格式 |
-| `tokens/light.tokens.json` / `dark.tokens.json` | 语义 token，引用色阶 |
-| `docs/palette.html` | 色卡，浏览器直接打开 |
-| `src/showcase/` | 64 类组件、127 个官方改编示例，以及来源记录和许可证 |
-
-## HeroUI 之外的颜色
-
-| 用途 | 写法 |
-| --- | --- |
-| 橙色按钮 | `<Button className="button--rufous">` |
-| 信息标签 | `<Chip className="chip--info" variant="soft">` |
-| 橙色标签 | `<Chip className="chip--rufous" variant="soft">` |
-| 图表 | `var(--chart-1)` … `var(--chart-8)`，深色主题自动换阶 |
-
-状态色在红绿色盲下会接近，Alert、Toast 保留 HeroUI 自带图标，不要只靠颜色区分状态。
-
-UI 辅助色阶包括 `slate`（蓝灰）、`stone`（暖灰）和 `sage`（灰绿）。Secondary 按钮与链接使用蓝灰，Tertiary 的底色使用暖灰。按钮文字、底色与悬停状态使用独立的语义 token，Chip 现有的组合色保持不变。三组辅助色均包含在 CSS 和 DTCG 导出中。
-
-## 维护主题
-
-色阶、明暗语义颜色、共享圆角 / 边线 / 阴影变量，以及字体，都在 `scripts/generate_tokens.py` 中定义。改脚本后运行：
-
-```bash
-npm run tokens
-```
-
-尺寸和变体优先使用 HeroUI 组件属性。可复用的扩展放在 `src/theme/components.css` 的 `@layer components` 中，使用组件文档中的 BEM 类和语义变量。布局放在 `src/preview.css`，避免在页面中单独覆盖 HeroUI 组件的圆角、颜色和状态。顶部使用 HeroUI 的 `ToggleButtonGroup` 处理选择、键盘导航、圆角和焦点。
-
-卡片选项使用 `checkbox--card` / `radio--card`，内容区采用 `choice-card` 网格。标题和说明放在 `choice-card__body` 中；需要图标时搭配 `choice-card__icon` 和 `choice-card--with-icon`。选择标记保留在网格流中，与首行文字对齐。分组使用 `checkbox-group--cards` / `radio-group--cards` 配合 `choice-list` 统一间距，`choice-list--columns` 按可用宽度排布。展示面板统一提供外层留白，示例避免重复包裹和加边距，表单宽度应能随容器收缩。
-
-脚本会检查 72 组前景 / 背景对比度，有不达标的会报错退出。运行 `npm test` 检查 token、路由、目录、搜索和双语文案。
-
-## 对外展示页
-
-组件展示复用 [HeroUI 官方示例](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en)，涵盖分组与多选、表单校验、日期范围、嵌套菜单、可调列宽表格、弹窗、抽屉、底部面板和颜色控件。支持按组件名或中文关键词搜索。示例全部使用当前主题，并展示 Niltavi 的按钮和标签扩展。紧凑顶栏包含页面导航、中英文切换和图标主题按钮。两个页面各自提供目录侧栏，窄屏下改为章节选择器。
-
-示例以本地源码维护，上游提交记录在 `src/showcase/NOTICE.md`，并按 HeroUI 3.2.7 校验。官方示例的布局工具类沿用同一套 HeroUI / Tailwind 主题映射，示例中的自定义主题覆盖已移除。展示区作为独立代码块加载，部分头像和图片使用 HeroUI 的公开素材 CDN。
-
-静态站点采用 hash 路由：`#/components`、`#/components/checkbox-group`、`#/palette` 和 `#/palette/colors`。直接链接和浏览器前进、后退无需服务端路由支持。语言与主题偏好保存在本地。`src/showcase/catalog.ts` 统一维护标题与目录，`src/showcase/messages.json` 维护双语示例文案，日期和内置控件跟随 React Aria 的语言设置。示例采用中性、具体的内容；少量阅读段落可以保留自然意象，操作、表单、通知和校验提示保持直白。色觉模拟矩阵保留在 `src/theme/vision.ts` 中，公开顶栏不再提供入口。
-
-```bash
-npm install
-npm run dev
-```
+> **让技术拓展可能，**<br />**让自然唤醒感知，**<br />**让每一次真实的体验都值得被珍视。**

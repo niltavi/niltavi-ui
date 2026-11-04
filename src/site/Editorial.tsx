@@ -1,5 +1,5 @@
 import {Copy} from "@gravity-ui/icons";
-import {Button, Link, Surface, Typography, toast} from "@heroui/react";
+import {Button, Surface, Typography, toast} from "@heroui/react";
 import {useEffect} from "react";
 import {useLocale, useText} from "./Locale";
 import {editorialContent, formatPrompt} from "./editorialContent";
@@ -45,6 +45,5 @@ export default function Editorial({page, section}: {page: "philosophy" | "prompt
       })}
     </div>
     {content.closing && <blockquote className="editorial-quote">{text(content.closing.en, content.closing.zh)}</blockquote>}
-    <div className="editorial-source"><Link href={content.source} target="_blank" rel="noopener noreferrer">{text("Read the original on Notion", "阅读 Notion 原文")}<Link.Icon /></Link></div>
   </article>;
 }

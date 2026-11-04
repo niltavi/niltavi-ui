@@ -129,7 +129,6 @@ body {
 .editorial-section p { font-size: 1rem; line-height: 2; text-wrap: pretty; }
 .editorial-intro { padding: 28px; }
 .editorial-quote { margin-block: 32px; padding-left: 24px; border-left: 2px solid var(--accent); font-family: var(--font-serif); font-size: 1.375rem; line-height: 1.9; white-space: pre-line; text-wrap: pretty; }
-.editorial-source { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--separator); font-size: .8125rem; }
 html[lang="en"] .editorial-section p { line-height: 1.85; }
 
 @media (min-width: 781px) and (max-width: 860px) {

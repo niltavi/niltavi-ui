@@ -1,8 +1,8 @@
 export const pages = [
   {id: "components", en: "Components", zh: "组件"},
   {id: "palette", en: "Palette", zh: "色卡"},
-  {id: "philosophy", en: "Philosophy", zh: "理念"},
   {id: "prompts", en: "Prompts", zh: "提示词"},
+  {id: "philosophy", en: "Philosophy", zh: "理念"},
 ] as const;
 export type Page = typeof pages[number]["id"];
 export type Route = {page: Page; section: string};

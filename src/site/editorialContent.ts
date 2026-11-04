@@ -1,4 +1,4 @@
-// Adapted from the two Niltavi Notion essays; source links stay with each page.
+// Adapted from the two Niltavi Notion essays; source links record content provenance.
 type Copy = {en: string; zh: string};
 type EditorialSection = {id: string; title: Copy; paragraphs: Copy[]; quote?: Copy};
 type EditorialContent = {source: string; sections: EditorialSection[]; closing?: Copy};

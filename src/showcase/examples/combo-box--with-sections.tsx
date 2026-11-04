@@ -3,7 +3,7 @@ import {ComboBox, Header, Input, Label, ListBox, Separator} from "@heroui/react"
 
 export function WithSections() {
   return (
-    <ComboBox className="w-[256px]">
+    <ComboBox className="w-full max-w-[256px]">
       <Label>Country</Label>
       <ComboBox.InputGroup>
         <Input placeholder="Search countries..." />

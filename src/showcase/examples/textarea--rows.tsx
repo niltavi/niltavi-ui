@@ -3,7 +3,7 @@ import {Label, TextArea} from "@heroui/react";
 
 export function Rows() {
   return (
-    <div className="flex w-96 flex-col gap-4">
+    <div className="flex w-full max-w-96 flex-col gap-4">
       <div className="flex flex-col gap-2">
         <Label htmlFor="textarea-rows-3">Short feedback</Label>
         <TextArea

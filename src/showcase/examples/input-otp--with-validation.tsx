@@ -30,7 +30,7 @@ export function WithValidation() {
   };
 
   return (
-    <div className="flex w-[280px] flex-col gap-2">
+    <div className="flex w-full max-w-[280px] flex-col gap-2">
       <Form className="flex flex-col gap-2" onSubmit={onSubmit}>
         <Label>Verify account</Label>
         <Description>Hint: The code is 123456</Description>

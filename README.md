@@ -63,6 +63,8 @@ npm run tokens
 
 Use HeroUI component props for sizes and variants. Add reusable extensions to `src/theme/components.css` under `@layer components`, using the component's documented BEM classes and semantic variables. Keep layout in `src/preview.css`; avoid page-specific radius, color, or state overrides on HeroUI components. The header uses HeroUI's `ToggleButtonGroup` for selection, keyboard navigation, corner geometry, and focus.
 
+Card choices use `checkbox--card` / `radio--card` with a `choice-card` content grid. Keep the title and description in `choice-card__body`; optional icons use `choice-card__icon` and `choice-card--with-icon`. The control stays in normal grid flow, aligned with the first text line. Use `checkbox-group--cards` / `radio-group--cards` with `choice-list` for consistent gaps; `choice-list--columns` adapts to the available width. The gallery provides the outer padding, so examples should avoid extra presentation wrappers and use flexible widths for forms.
+
 The script checks 62 foreground / background contrast pairs and exits with an error if any fail. Run the generator tests with `npm test`.
 
 ## Preview

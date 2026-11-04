@@ -1,7 +1,6 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
 import {Description, Label, Radio, RadioGroup} from "@heroui/react";
 import {DemoIcon as Icon} from "../DemoIcon";
-import {cn as clsx} from "@heroui/react";
 
 export function DeliveryAndPayment() {
   const deliveryOptions = [
@@ -47,63 +46,45 @@ export function DeliveryAndPayment() {
   ];
 
   return (
-    <div
-      className="flex w-full flex-col items-center gap-10"
-    >
-      <section className="flex w-full max-w-lg flex-col gap-4">
-        <RadioGroup defaultValue="express" name="delivery" variant="secondary">
-          <Label>Delivery method</Label>
-          <div className="grid gap-x-4 md:grid-cols-3">
-            {deliveryOptions.map((option) => (
-              <Radio key={option.value} value={option.value}>
-                <Radio.Content
-                  className={clsx(
-                    "group relative flex w-full flex-col gap-6 rounded-xl border border-transparent bg-surface px-5 py-4 transition-all data-[selected=true]:border-accent data-[selected=true]:bg-accent/10",
-                    "data-[focus-visible=true]:border-accent data-[focus-visible=true]:bg-accent/10",
-                  )}
-                >
-                  <Radio.Control className="absolute end-4 top-3 size-5">
-                    <Radio.Indicator />
-                  </Radio.Control>
-                  <div className="flex flex-col gap-1">
-                    <span>{option.title}</span>
-                    <Description>{option.description}</Description>
-                  </div>
-                  <span className="text-sm font-semibold">{option.price}</span>
-                </Radio.Content>
-              </Radio>
-            ))}
-          </div>
-        </RadioGroup>
-      </section>
-      <section className="flex w-full max-w-lg flex-col gap-4">
-        <RadioGroup defaultValue="visa" name="payment" variant="secondary">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Label>Payment method</Label>
-          </div>
-          <div className="grid gap-x-4 md:grid-cols-2">
-            {paymentOptions.map((option) => (
-              <Radio key={option.value} value={option.value}>
-                <Radio.Content
-                  className={clsx(
-                    "group relative flex w-full flex-row items-start justify-start gap-4 rounded-xl border border-transparent bg-surface px-5 py-4 transition-all",
-                    "data-[selected=true]:border-accent data-[selected=true]:bg-accent/10",
-                  )}
-                >
-                  <Radio.Control className="absolute end-4 top-3 size-5">
-                    <Radio.Indicator />
-                  </Radio.Control>
-                  <Icon className="size-6" icon={option.icon} />
-                  <div className="flex flex-col gap-1">
-                    <span>{option.title}</span>
-                    <Description>{option.description}</Description>
-                  </div>
-                </Radio.Content>
-              </Radio>
-            ))}
-          </div>
-        </RadioGroup>
-      </section>
+    <div className="flex w-full flex-col gap-6">
+      <RadioGroup className="radio-group--cards" defaultValue="express" name="delivery" variant="secondary">
+        <Label>Delivery method</Label>
+        <div className="choice-list choice-list--columns">
+          {deliveryOptions.map((option) => (
+            <Radio key={option.value} className="radio--card" value={option.value}>
+              <Radio.Content className="choice-card">
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                <div className="choice-card__body">
+                  <span>{option.title}</span>
+                  <Description>{option.description}</Description>
+                </div>
+                <span className="choice-card__detail text-sm font-semibold">{option.price}</span>
+              </Radio.Content>
+            </Radio>
+          ))}
+        </div>
+      </RadioGroup>
+      <RadioGroup className="radio-group--cards" defaultValue="visa" name="payment" variant="secondary">
+        <Label>Payment method</Label>
+        <div className="choice-list choice-list--columns">
+          {paymentOptions.map((option) => (
+            <Radio key={option.value} className="radio--card" value={option.value}>
+              <Radio.Content className="choice-card choice-card--with-icon">
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                <Icon className="choice-card__icon" icon={option.icon} />
+                <div className="choice-card__body">
+                  <span>{option.title}</span>
+                  <Description>{option.description}</Description>
+                </div>
+              </Radio.Content>
+            </Radio>
+          ))}
+        </div>
+      </RadioGroup>
     </div>
   );
 }

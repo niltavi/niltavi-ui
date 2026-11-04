@@ -3,7 +3,7 @@ import {Label, Meter} from "@heroui/react";
 
 export function Colors() {
   return (
-    <div className="flex w-64 flex-col gap-6">
+    <div className="flex w-full max-w-64 flex-col gap-6">
       <Meter color="default" value={50}>
         <Label>Default</Label>
         <Meter.Output />

@@ -10,7 +10,7 @@ export function ChannelEditing() {
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm text-muted">Edit individual HSL channels:</p>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <ColorField
           channel="hue"
           className="w-[100px]"

@@ -30,8 +30,8 @@ export function OnSurface() {
   };
 
   return (
-    <div className="flex items-center justify-center rounded-3xl bg-surface p-6">
-      <Surface className="w-full min-w-[380px]">
+    <div className="w-full">
+      <Surface className="w-full min-w-0">
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend>Profile Settings</Fieldset.Legend>

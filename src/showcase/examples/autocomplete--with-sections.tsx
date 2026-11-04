@@ -19,7 +19,7 @@ export function WithSections() {
 
   return (
     <Autocomplete
-      className="w-[256px]"
+      className="w-full max-w-[256px]"
       placeholder="Select a country"
       selectionMode="single"
       value={selectedKey}

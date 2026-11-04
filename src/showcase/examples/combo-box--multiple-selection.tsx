@@ -3,7 +3,7 @@ import {ComboBox, Input, Label, ListBox} from "@heroui/react";
 
 export function MultipleSelection() {
   return (
-    <ComboBox className="w-[256px]" selectionMode="multiple">
+    <ComboBox className="w-full max-w-[256px]" selectionMode="multiple">
       <Label>Favorite Animals</Label>
       <ComboBox.InputGroup>
         <Input placeholder="Search animals..." />

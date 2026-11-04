@@ -20,7 +20,7 @@ export function ControlledMultiple() {
   return (
     <div className="space-y-2">
       <Autocomplete
-        className="w-[256px]"
+        className="w-full max-w-[256px]"
         placeholder="Select states"
         selectionMode="multiple"
         value={selected}

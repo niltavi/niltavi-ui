@@ -32,7 +32,7 @@ export function TagGroupWithRemoveButton() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="w-sm">
+      <div className="w-full max-w-sm">
         <TagGroup selectionMode="single" onRemove={onRemoveTags}>
           <Label>Default Remove Button</Label>
           <TagGroup.List
@@ -49,7 +49,7 @@ export function TagGroupWithRemoveButton() {
         </TagGroup>
       </div>
 
-      <div className="w-md">
+      <div className="w-full max-w-md">
         <TagGroup selectionMode="single" onRemove={onRemoveFrameworks}>
           <Label>Custom Remove Button</Label>
           <TagGroup.List

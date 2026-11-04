@@ -72,7 +72,7 @@ export function ColorAreaSpaceAndChannels() {
   return (
     <div className="flex flex-col items-center gap-6">
       {/* Controls */}
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {/* Color Space Select */}
         <Select className="w-32" value={colorSpace} onChange={handleColorSpaceChange}>
           <Label>Color Space</Label>

@@ -5,7 +5,7 @@ import {Button, Checkbox, CheckboxGroup, FieldError, Form, Label} from "@heroui/
 export function Validation() {
   return (
     <Form
-      className="flex flex-col gap-4 px-4"
+      className="flex flex-col gap-4"
       onSubmit={(e) => {
         e.preventDefault();
 

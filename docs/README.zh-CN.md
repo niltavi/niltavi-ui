@@ -63,6 +63,8 @@ npm run tokens
 
 尺寸和变体优先使用 HeroUI 组件属性。可复用的扩展放在 `src/theme/components.css` 的 `@layer components` 中，使用组件文档中的 BEM 类和语义变量。布局放在 `src/preview.css`，避免在页面中单独覆盖 HeroUI 组件的圆角、颜色和状态。顶部使用 HeroUI 的 `ToggleButtonGroup` 处理选择、键盘导航、圆角和焦点。
 
+卡片选项使用 `checkbox--card` / `radio--card`，内容区采用 `choice-card` 网格。标题和说明放在 `choice-card__body` 中；需要图标时搭配 `choice-card__icon` 和 `choice-card--with-icon`。选择标记保留在网格流中，与首行文字对齐。分组使用 `checkbox-group--cards` / `radio-group--cards` 配合 `choice-list` 统一间距，`choice-list--columns` 按可用宽度排布。展示面板统一提供外层留白，示例避免重复包裹和加边距，表单宽度应能随容器收缩。
+
 脚本会检查 62 组前景 / 背景对比度，有不达标的会报错退出。生成器测试运行 `npm test`。
 
 ## 预览

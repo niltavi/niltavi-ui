@@ -1,7 +1,6 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
 import {Bell, Comment, Envelope} from "@gravity-ui/icons";
 import {Checkbox, CheckboxGroup, Description, Label} from "@heroui/react";
-import {cn as clsx} from "@heroui/react";
 
 export function FeaturesAndAddOns() {
   const addOns = [
@@ -26,35 +25,28 @@ export function FeaturesAndAddOns() {
   ];
 
   return (
-    <div className="flex w-full flex-col items-center gap-10 px-4 py-8">
-      <section className="flex w-full min-w-[320px] flex-col gap-4">
-        <CheckboxGroup name="notification-preferences">
-          <Label>Notification preferences</Label>
-          <Description>Choose how you want to receive updates</Description>
-          <div className="flex flex-col gap-2">
-            {addOns.map((addon) => (
-              <Checkbox key={addon.value} value={addon.value} variant="secondary">
-                <Checkbox.Content
-                  className={clsx(
-                    "group relative flex w-full flex-row items-start justify-start gap-4 rounded-3xl bg-surface px-5 py-4 transition-all",
-                    "data-[selected=true]:bg-accent/10",
-                  )}
-                >
-                  <Checkbox.Control className="absolute end-4 top-3 size-5 rounded-full before:rounded-full">
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
-                  <addon.icon className="size-5 text-accent-soft-foreground" />
-                  <div className="flex flex-col gap-1">
-                    <span>{addon.title}</span>
-                    <Description>{addon.description}</Description>
-                  </div>
-                </Checkbox.Content>
-              </Checkbox>
-            ))}
-          </div>
-        </CheckboxGroup>
-      </section>
-    </div>
+    <CheckboxGroup className="checkbox-group--cards" name="notification-preferences">
+      <div className="choice-group__heading">
+        <Label>Notification preferences</Label>
+        <Description>Choose how you want to receive updates</Description>
+      </div>
+      <div className="choice-list">
+        {addOns.map((addon) => (
+          <Checkbox key={addon.value} className="checkbox--card" value={addon.value} variant="secondary">
+            <Checkbox.Content className="choice-card choice-card--with-icon">
+              <Checkbox.Control>
+                <Checkbox.Indicator />
+              </Checkbox.Control>
+              <addon.icon aria-hidden="true" className="choice-card__icon" />
+              <div className="choice-card__body">
+                <span>{addon.title}</span>
+                <Description>{addon.description}</Description>
+              </div>
+            </Checkbox.Content>
+          </Checkbox>
+        ))}
+      </div>
+    </CheckboxGroup>
   );
 }
 

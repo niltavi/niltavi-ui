@@ -68,7 +68,7 @@ export const TypographyScale = () => {
   return (
     <div className="flex w-full flex-col divide-y divide-border">
       {scale.map((row) => (
-        <div key={row.label} className="grid grid-cols-[160px_1fr] items-center gap-8 py-5">
+        <div key={row.label} className="grid grid-cols-1 items-center gap-3 py-5 sm:grid-cols-[160px_1fr] sm:gap-8">
           <div className="flex shrink-0 flex-col gap-0.5">
             <span className="text-sm font-semibold text-foreground">{row.label}</span>
             <span className="text-xs whitespace-nowrap text-muted">{row.meta}</span>

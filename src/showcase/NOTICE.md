@@ -7,4 +7,6 @@ A filename `component--variant.tsx` corresponds to upstream `component/variant.t
 
 The local gallery also uses the existing Niltavi button/chip extensions, replaces browser alerts with themed toasts, maps example shadows to the shared surface token, and prevents the example's search shortcut from intercepting typing in other inputs.
 
+Card-based checkbox and radio examples use shared Niltavi grid extensions for text/icon/control alignment. Presentation padding and fixed widths have been adapted to the gallery, with responsive wrapping for narrow screens.
+
 Gravity UI icons are copyright (c) 2022 YANDEX LLC, under the MIT License. See [LICENSE.gravity-ui](LICENSE.gravity-ui).

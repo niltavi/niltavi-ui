@@ -15,7 +15,7 @@ export function WithValidation() {
     <div className="flex flex-col gap-4">
       <TimeField
         isRequired
-        className="w-[256px]"
+        className="w-full max-w-[256px]"
         isInvalid={isInvalid}
         maxValue={maxTime}
         minValue={minTime}

@@ -139,9 +139,9 @@ body {
 .showcase-component { min-width: 0; scroll-margin-top: 7rem; }
 .showcase-component > h3 { font-size: 1rem; font-weight: 600; margin-bottom: calc(var(--spacing) * 4); }
 .showcase-examples { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--spacing) * 5); }
-.showcase-variant { min-width: 0; }
+.showcase-variant { display: flex; flex-direction: column; min-width: 0; }
 .showcase-variant > h4 { color: var(--muted); font-size: .75rem; margin-bottom: calc(var(--spacing) * 2); }
-.showcase-example { min-width: 0; max-width: 100%; overflow-x: auto; }
+.showcase-example { flex: 1; min-width: 0; max-width: 100%; overflow-x: auto; }
 @media (min-width: 900px) {
   .showcase-examples:not([data-wide]) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

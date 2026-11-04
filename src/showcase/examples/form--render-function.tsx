@@ -19,7 +19,7 @@ export function RenderFunction() {
 
   return (
     <Form
-      className="flex w-96 flex-col gap-4"
+      className="flex w-full max-w-96 flex-col gap-4"
       render={(props) => <form {...props} data-custom="foo" />}
       onSubmit={onSubmit}
     >

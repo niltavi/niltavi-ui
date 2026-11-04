@@ -26,7 +26,7 @@ export function FormExample() {
   };
 
   return (
-    <Form className="flex w-[280px] flex-col gap-4" onSubmit={handleSubmit}>
+    <Form className="flex w-full max-w-[280px] flex-col gap-4" onSubmit={handleSubmit}>
       <ColorField
         fullWidth
         isRequired

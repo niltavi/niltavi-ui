@@ -18,7 +18,7 @@ export function Basic() {
   };
 
   return (
-    <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+    <Form className="flex w-full max-w-96 flex-col gap-4" onSubmit={onSubmit}>
       <TextField
         isRequired
         name="email"

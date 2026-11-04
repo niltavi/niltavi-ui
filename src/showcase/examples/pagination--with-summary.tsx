@@ -43,9 +43,9 @@ export function PaginationWithSummary() {
       </Pagination.Summary>
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
+          <Pagination.Previous aria-label="Previous page" isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
-            <span>Previous</span>
+            <span className="hidden sm:inline">Previous</span>
           </Pagination.Previous>
         </Pagination.Item>
         {getPageNumbers().map((p, i) =>
@@ -62,8 +62,8 @@ export function PaginationWithSummary() {
           ),
         )}
         <Pagination.Item>
-          <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
-            <span>Next</span>
+          <Pagination.Next aria-label="Next page" isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
+            <span className="hidden sm:inline">Next</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>

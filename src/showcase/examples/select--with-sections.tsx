@@ -3,7 +3,7 @@ import {Header, Label, ListBox, Select, Separator} from "@heroui/react";
 
 export function WithSections() {
   return (
-    <Select className="w-[256px]" placeholder="Select a country">
+    <Select className="w-full max-w-[256px]" placeholder="Select a country">
       <Label>Country</Label>
       <Select.Trigger>
         <Select.Value />

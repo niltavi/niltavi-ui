@@ -4,7 +4,7 @@ import {Label, Meter} from "@heroui/react";
 export function CustomValue() {
   return (
     <Meter
-      className="w-64"
+      className="w-full max-w-64"
       formatOptions={{currency: "USD", style: "currency"}}
       maxValue={1000}
       minValue={0}

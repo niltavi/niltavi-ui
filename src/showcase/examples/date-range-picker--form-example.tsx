@@ -40,7 +40,7 @@ export function FormExample() {
   };
 
   return (
-    <Form className="flex w-80 flex-col gap-3" onSubmit={handleSubmit}>
+    <Form className="flex w-full max-w-80 flex-col gap-3" onSubmit={handleSubmit}>
       <DateRangePicker
         isRequired
         endName="tripEndDate"

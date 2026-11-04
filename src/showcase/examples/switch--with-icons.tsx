@@ -43,7 +43,7 @@ export function WithIcons() {
   };
 
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-wrap gap-3">
       {Object.entries(icons).map(([key, value]) => (
         <Switch key={key} defaultSelected aria-label={key} size="lg">
           {({isSelected}) => (

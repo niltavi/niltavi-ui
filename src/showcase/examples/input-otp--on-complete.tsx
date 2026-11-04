@@ -26,7 +26,7 @@ export function OnComplete() {
   };
 
   return (
-    <Form className="flex w-[280px] flex-col gap-2" onSubmit={handleSubmit}>
+    <Form className="flex w-full max-w-[280px] flex-col gap-2" onSubmit={handleSubmit}>
       <Label>Verify account</Label>
       <InputOTP
         maxLength={6}

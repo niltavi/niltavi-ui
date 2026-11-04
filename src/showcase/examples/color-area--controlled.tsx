@@ -12,7 +12,7 @@ export function ColorAreaControlled() {
       <ColorArea colorSpace="rgb" value={color} xChannel="red" yChannel="green" onChange={setColor}>
         <ColorArea.Thumb />
       </ColorArea>
-      <div className="flex w-[300px] items-center gap-3">
+      <div className="flex w-full max-w-[300px] items-center gap-3">
         <ColorSwatch color={color} size="md" />
         <p className="text-sm text-muted">
           Current color:{" "}

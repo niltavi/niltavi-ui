@@ -1,9 +1,11 @@
 <div align="center">
 
+<a href="https://niltavi.com/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/niltavi-logo-dark.svg" />
   <img src="assets/niltavi-logo-light.svg" width="144" height="53" alt="Niltavi UI" />
 </picture>
+</a>
 
 *数字时代的自然主义*
 

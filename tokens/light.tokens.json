@@ -2,48 +2,84 @@
   "heroui": {
     "background": {
       "$type": "color",
-      "$value": "{color.throat.50}"
+      "$value": "{color.paper}"
     },
     "foreground": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": "{color.ink}"
     },
     "surface": {
       "$type": "color",
-      "$value": "{color.white}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.964,
+          0.0123,
+          91.52
+        ],
+        "hex": "#f6f3ea"
+      },
+      "$description": "color-mix(in oklab, paper 85%, white 15%)"
     },
     "surface-secondary": {
       "$type": "color",
-      "$value": "{color.throat.100}"
+      "$value": "{color.paper}"
     },
     "surface-tertiary": {
       "$type": "color",
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.9154,
-          0.013,
-          266.7
+          0.9085,
+          0.0136,
+          97.46
         ],
-        "hex": "#dfe3ec"
+        "hex": "#e3e1d7"
       },
-      "$description": "color-mix(in oklab, throat-100 50%, throat-200 50%)"
+      "$description": "color-mix(in oklab, paper 92%, ink 8%)"
     },
     "overlay": {
       "$type": "color",
-      "$value": "{color.white}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.964,
+          0.0123,
+          91.52
+        ],
+        "hex": "#f6f3ea"
+      },
+      "$description": "color-mix(in oklab, paper 85%, white 15%)"
     },
     "muted": {
       "$type": "color",
-      "$value": "{color.throat.600}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.4978,
+          0.0232,
+          163.86
+        ],
+        "hex": "#57675f"
+      },
+      "$description": "color-mix(in oklab, ink 75%, paper 25%)"
     },
     "default": {
       "$type": "color",
-      "$value": "{color.throat.100}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9146,
+          0.0136,
+          97.45
+        ],
+        "hex": "#e5e3d9"
+      },
+      "$description": "color-mix(in oklab, paper 93%, ink 7%)"
     },
     "default-foreground": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": "{color.ink}"
     },
     "accent": {
       "$type": "color",
@@ -55,15 +91,37 @@
     },
     "field-background": {
       "$type": "color",
-      "$value": "{color.white}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.964,
+          0.0123,
+          91.52
+        ],
+        "hex": "#f6f3ea"
+      },
+      "$description": "color-mix(in oklab, paper 85%, white 15%)"
     },
     "field-foreground": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": "{color.ink}"
     },
     "field-placeholder": {
       "$type": "color",
       "$value": "{color.throat.500}"
+    },
+    "field-border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8221,
+          0.0139,
+          115.89
+        ],
+        "hex": "#c4c6bc"
+      },
+      "$description": "color-mix(in oklab, paper 78%, ink 22%)"
     },
     "success": {
       "$type": "color",
@@ -107,19 +165,46 @@
     },
     "segment": {
       "$type": "color",
-      "$value": "{color.white}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.964,
+          0.0123,
+          91.52
+        ],
+        "hex": "#f6f3ea"
+      },
+      "$description": "color-mix(in oklab, paper 85%, white 15%)"
     },
     "segment-foreground": {
       "$type": "color",
-      "$value": "{color.throat.950}"
+      "$value": "{color.ink}"
     },
     "border": {
       "$type": "color",
-      "$value": "{color.throat.200}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.873,
+          0.0149,
+          106.7
+        ],
+        "hex": "#d6d6cb"
+      },
+      "$description": "color-mix(in oklab, paper 86%, ink 14%)"
     },
     "separator": {
       "$type": "color",
-      "$value": "{color.throat.100}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9085,
+          0.0136,
+          97.46
+        ],
+        "hex": "#e3e1d7"
+      },
+      "$description": "color-mix(in oklab, paper 92%, ink 8%)"
     },
     "focus": {
       "$type": "color",
@@ -165,7 +250,7 @@
     },
     "3": {
       "$type": "color",
-      "$value": "{color.leaf.500}"
+      "$value": "{color.leaf.600}"
     },
     "4": {
       "$type": "color",

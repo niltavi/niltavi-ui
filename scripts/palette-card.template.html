@@ -1,23 +1,17 @@
 <title>Niltava 仙鹟色卡</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* 版式：色条 → 色阶 → HeroUI token → 图表色 → 导出；顶栏放色觉模拟 */
 :root{
-  --bg:#F7F9FF; --surface:#FFFFFF; --surface-2:#E9ECF4; --line:#D6DAE4;
-  --ink:#1B2235; --ink-2:#545B6C; --ink-3:#868C9B; --blue:#3A5CF4; --rufous:#DD6300; --focus:#5882FF;
-  --f-display:"Bricolage Grotesque", "PingFang SC", system-ui, sans-serif;
-  --f-body:"IBM Plex Sans", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  __CARD_LIGHT__
+  --f-display:"Iowan Old Style", "Songti SC", "Noto Serif CJK SC", serif;
+  --f-body:"PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --f-mono:ui-monospace, "SF Mono", Menlo, monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0B1224; --surface:#1B2235; --surface-2:#252C40; --line:#2E3548;
-  --ink:#F7F9FF; --ink-2:#A1A6B3; --ink-3:#6A7181; --blue:#79A4FF; --rufous:#F68400; --focus:#79A4FF; color-scheme:dark}}
+  __CARD_DARK__ color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0B1224; --surface:#1B2235; --surface-2:#252C40; --line:#2E3548;
-  --ink:#F7F9FF; --ink-2:#A1A6B3; --ink-3:#6A7181; --blue:#79A4FF; --rufous:#F68400; --focus:#79A4FF; color-scheme:dark}
+  __CARD_DARK__ color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
@@ -25,7 +19,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 .wrap{max-width:1120px;margin:0 auto;padding-block:40px 96px;display:flex;flex-direction:column;gap:56px}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
-h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.05}
+h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:400;line-height:1.2}
 h2{font-size:1.4rem;font-weight:700}
 h3{font-size:.95rem;font-weight:700}
 .eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
@@ -38,12 +32,12 @@ button{font:inherit;cursor:pointer}
 .hero{display:flex;flex-direction:column;gap:20px}
 .hero h1 em{font-style:normal;color:var(--blue)}
 .hero h1 .r{color:var(--rufous)}
-.specimen{display:flex;height:88px;border-radius:14px;overflow:hidden}
+.specimen{display:flex;height:88px;border-radius:8px;overflow:hidden}
 .specimen div{min-width:0}
 
-.seg{display:inline-flex;gap:2px;padding:3px;border-radius:10px;background:var(--surface-2)}
-.seg button{border:0;background:transparent;color:var(--ink-2);padding:4px 12px;border-radius:7px;font-size:.84rem}
-.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.seg{display:inline-flex;gap:2px;padding:3px;border-radius:6px;background:var(--surface-2)}
+.seg button{border:0;background:transparent;color:var(--ink-2);padding:4px 12px;border-radius:4px;font-size:.84rem}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
 
 .scales{display:flex;flex-direction:column;gap:20px}
 .scale{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:start}
@@ -57,7 +51,7 @@ button{font:inherit;cursor:pointer}
 .step:hover .sw{transform:translateY(-2px)}
 @media (prefers-reduced-motion:reduce){.step .sw{transition:none}}
 
-.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
 table{border-collapse:collapse;width:100%;min-width:620px;font-size:.86rem}
 th,td{padding:8px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
 th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
@@ -69,7 +63,7 @@ td code{font-family:var(--f-mono);font-size:.8rem}
 .group td{background:var(--surface-2);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-block:6px}
 
 .charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.chart-card{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);min-width:0}
+.chart-card{border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);min-width:0}
 .chart-card .t{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 .series{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
 .series div{height:44px;border-radius:6px;display:flex;align-items:flex-end;padding:4px 5px;font-family:var(--f-mono);font-size:.6rem}
@@ -80,7 +74,7 @@ td code{font-family:var(--f-mono);font-size:.8rem}
 .ramps{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .ramps div{display:flex;flex-direction:column;gap:6px;font-size:.8rem;color:var(--ink-2)}
 
-.code{background:var(--surface);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;min-width:0}
+.code{background:var(--surface);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;min-width:0}
 .code-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px 8px 8px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .copy{background:var(--surface-2);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:4px 10px;font-size:.8rem}
 pre{margin:0;padding:14px;overflow:auto;max-height:480px;font-family:var(--f-mono);font-size:.74rem;line-height:1.55;color:var(--ink-2)}

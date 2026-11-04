@@ -12,7 +12,6 @@ import {
   Modal,
   Switch,
   Table,
-  Tabs,
   TextField,
   Toast,
   toast,
@@ -56,33 +55,52 @@ const CHART_DATA = [
 ];
 const SERIES = ["仙鹟", "鸫", "莺", "鹛", "鹀", "啄木鸟", "翠鸟", "其他"];
 
-function Segmented<T extends string>({value, options, onChange, label}: {
+function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
+  return (
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {name === "sun" ? <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></> :
+        name === "moon" ? <path d="M20.9 13.3A9 9 0 0 1 10.7 3.1a9 9 0 1 0 10.2 10.2Z" /> :
+          <path d="M12 20V4m-6 6 6-6 6 6" />}
+    </svg>
+  );
+}
+
+function Segmented<T extends string>({value, options, icons, onChange, label}: {
   value: T;
   options: Record<T, string>;
+  icons?: Record<T, React.ReactNode>;
   onChange: (v: T) => void;
   label: string;
 }) {
   return (
-    <div aria-label={label} className="flex gap-1 rounded-xl bg-default p-1" role="group">
+    <div aria-label={label} className="preview-segmented" role="group">
       {(Object.keys(options) as T[]).map((key) => (
         <Button
           key={key}
           size="sm"
           variant={key === value ? "primary" : "ghost"}
+          className={icons ? "w-9 px-0" : undefined}
+          aria-label={options[key]}
           aria-pressed={key === value}
           onPress={() => onChange(key)}
         >
-          {options[key]}
+          {icons ? icons[key] : options[key]}
         </Button>
       ))}
     </div>
   );
 }
 
-function Section({title, children}: {title: string; children: React.ReactNode}) {
+function Section({id, title, children}: {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="flex flex-col gap-5">
-      <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+    <section id={id} className="preview-section" aria-labelledby={`${id}-title`}>
+      <div className="preview-section__heading">
+        <h2 id={`${id}-title`}>{title}</h2>
+      </div>
       {children}
     </section>
   );
@@ -258,7 +276,7 @@ function Components() {
             </Checkbox>
           </div>
         </Card.Content>
-        <Card.Footer className="flex gap-2">
+        <Card.Footer className="flex flex-wrap gap-2">
           <Modal>
             <Button variant="secondary">删除记录</Button>
             <Modal.Backdrop>
@@ -294,63 +312,37 @@ function Components() {
 
       <Card className="lg:col-span-2">
         <Card.Content className="flex flex-col gap-4">
-          <Tabs>
-            <Tabs.ListContainer>
-              <Tabs.List aria-label="记录视图">
-                <Tabs.Tab id="list">
-                  列表
-                  <Tabs.Indicator />
-                </Tabs.Tab>
-                <Tabs.Tab id="map">
-                  地图
-                  <Tabs.Indicator />
-                </Tabs.Tab>
-                <Tabs.Tab id="stats">
-                  统计
-                  <Tabs.Indicator />
-                </Tabs.Tab>
-              </Tabs.List>
-            </Tabs.ListContainer>
-            <Tabs.Panel id="list">
-              <Table>
-                <Table.ScrollContainer>
-                  <Table.Content aria-label="观鸟记录" className="min-w-[520px]">
-                    <Table.Header>
-                      <Table.Column isRowHeader>物种</Table.Column>
-                      <Table.Column>学名</Table.Column>
-                      <Table.Column>数量</Table.Column>
-                      <Table.Column>状态</Table.Column>
-                    </Table.Header>
-                    <Table.Body>
-                      {[
-                        ["棕腹仙鹟", "Niltava sundara", 3, "success", "已核验"],
-                        ["棕腹大仙鹟", "Niltava davidi", 1, "warning", "待补充"],
-                        ["大仙鹟", "Niltava grandis", 2, "success", "已核验"],
-                        ["小仙鹟", "Niltava macgrigoriae", 1, "danger", "误认"],
-                      ].map(([zh, la, n, color, status]) => (
-                        <Table.Row key={String(la)}>
-                          <Table.Cell>{zh}</Table.Cell>
-                          <Table.Cell className="italic text-muted">{la}</Table.Cell>
-                          <Table.Cell>{n}</Table.Cell>
-                          <Table.Cell>
-                            <Chip color={color as "success" | "warning" | "danger"} variant="soft">
-                              {status}
-                            </Chip>
-                          </Table.Cell>
-                        </Table.Row>
-                      ))}
-                    </Table.Body>
-                  </Table.Content>
-                </Table.ScrollContainer>
-              </Table>
-            </Tabs.Panel>
-            <Tabs.Panel id="map" className="py-6 text-muted">
-              地图视图
-            </Tabs.Panel>
-            <Tabs.Panel id="stats" className="py-6 text-muted">
-              统计视图
-            </Tabs.Panel>
-          </Tabs>
+          <Table>
+            <Table.ScrollContainer>
+              <Table.Content aria-label="观鸟记录" className="min-w-[520px]">
+                <Table.Header>
+                  <Table.Column isRowHeader>物种</Table.Column>
+                  <Table.Column>学名</Table.Column>
+                  <Table.Column>数量</Table.Column>
+                  <Table.Column>状态</Table.Column>
+                </Table.Header>
+                <Table.Body>
+                  {[
+                    ["棕腹仙鹟", "Niltava sundara", 3, "success", "已核验"],
+                    ["棕腹大仙鹟", "Niltava davidi", 1, "warning", "待补充"],
+                    ["大仙鹟", "Niltava grandis", 2, "success", "已核验"],
+                    ["小仙鹟", "Niltava macgrigoriae", 1, "danger", "误认"],
+                  ].map(([zh, la, n, color, status]) => (
+                    <Table.Row key={String(la)}>
+                      <Table.Cell>{zh}</Table.Cell>
+                      <Table.Cell className="italic text-muted">{la}</Table.Cell>
+                      <Table.Cell>{n}</Table.Cell>
+                      <Table.Cell>
+                        <Chip color={color as "success" | "warning" | "danger"} variant="soft">
+                          {status}
+                        </Chip>
+                      </Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table.Content>
+            </Table.ScrollContainer>
+          </Table>
         </Card.Content>
       </Card>
     </div>
@@ -442,7 +434,6 @@ function Audit({mode}: {mode: Mode}) {
             <Table.Column isRowHeader>前景</Table.Column>
             <Table.Column>背景</Table.Column>
             <Table.Column>对比度</Table.Column>
-            <Table.Column>目标</Table.Column>
           </Table.Header>
           <Table.Body>
             {rows.map((r) => (
@@ -460,11 +451,6 @@ function Audit({mode}: {mode: Mode}) {
                 </Table.Cell>
                 <Table.Cell className="font-mono text-xs">{r.bg}</Table.Cell>
                 <Table.Cell className="font-mono text-xs tabular-nums">{r.ratio.toFixed(2)}</Table.Cell>
-                <Table.Cell>
-                  <Chip color={r.pass ? "success" : "danger"} variant="soft">
-                    ≥ {r.target}
-                  </Chip>
-                </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -500,34 +486,40 @@ export default function App() {
         ))}
       </svg>
       <Toast.Provider />
-      <header className="sticky top-0 z-10 border-b border-separator bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold tracking-tight">Niltava UI</span>
-            <span className="font-mono text-xs text-muted">HeroUI v3 theme</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Segmented label="主题" value={mode} options={{light: "浅色", dark: "深色"}} onChange={setMode} />
+      <a href="#main-content" className="skip-link">跳到内容</a>
+      <header id="page-top" tabIndex={-1} className="preview-header">
+        <div className="preview-header__inner">
+          <a href="#main-content" className="preview-brand" aria-label="Niltavi UI 首页">
+            niltavi<span>.</span>
+            <span className="preview-brand__label">UI</span>
+          </a>
+          <div className="preview-controls">
+            <Segmented label="主题" value={mode} options={{light: "浅色", dark: "深色"}} icons={{light: <Icon name="sun" />, dark: <Icon name="moon" />}} onChange={setMode} />
             <Segmented label="色觉模拟" value={vision} options={VISION_LABEL} onChange={setVision} />
           </div>
         </div>
       </header>
       <main
-        className="mx-auto flex max-w-6xl flex-col gap-14 px-4 py-10"
+        id="main-content"
+        tabIndex={-1}
+        className="preview-main"
         style={{filter: vision === "normal" ? undefined : `url(#cvd-${vision})`}}
       >
-        <Section title="色阶">
-          <Scales />
-        </Section>
-        <Section title="组件">
+        <Section id="components" title="组件">
           <Components />
         </Section>
-        <Section title="图表">
+        <Section id="palette" title="色阶">
+          <Scales />
+        </Section>
+        <Section id="charts" title="图表">
           <Charts />
         </Section>
-        <Section title="对比度">
+        <Section id="contrast" title="对比度">
           <Audit mode={mode} />
         </Section>
+        <footer className="preview-footer">
+          <a href="#page-top" aria-label="回到顶部" title="回到顶部"><Icon name="arrow-up" /></a>
+        </footer>
       </main>
     </>
   );

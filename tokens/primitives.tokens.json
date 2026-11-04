@@ -12,6 +12,30 @@
         "hex": "#ffffff"
       }
     },
+    "paper": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9582,
+          0.0152,
+          90.24
+        ],
+        "hex": "#f5f1e6"
+      }
+    },
+    "ink": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3433,
+          0.0297,
+          175.57
+        ],
+        "hex": "#283e38"
+      }
+    },
     "niltava": {
       "50": {
         "$type": "color",

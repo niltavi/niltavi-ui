@@ -122,49 +122,56 @@ palette["throat"] = {
 
 SCALE_ORDER = ["niltava", "rufous", "glossy", "violet", "throat", "leaf", "berry", "gold"]
 
+# Paper and ink match the website without changing the eight plumage scales.
+MATERIALS = {"paper": "#F5F1E6", "ink": "#283E38"}
+
 def ref(r):
     if r == "white":
         return "#FFFFFF"
+    if r in MATERIALS:
+        return MATERIALS[r]
     name, step = r.rsplit("-", 1)
     return palette[name][int(step)]
 
 # ---------- HeroUI semantic mapping ----------
-# A value is a scale ref ("niltava-600"), "white", or ("mix", a, b, pct_b).
+# A value is a scale/material ref, "white", or ("mix", a, b, pct_b).
 
 LIGHT = {
-    "background": "throat-50", "foreground": "throat-950",
-    "surface": "white", "surface-secondary": "throat-100", "surface-tertiary": ("mix", "throat-100", "throat-200", 50),
-    "overlay": "white", "muted": "throat-600",
-    "default": "throat-100", "default-foreground": "throat-950",
+    "background": "paper", "foreground": "ink",
+    "surface": ("mix", "paper", "white", 15), "surface-secondary": "paper", "surface-tertiary": ("mix", "paper", "ink", 8),
+    "overlay": ("mix", "paper", "white", 15), "muted": ("mix", "ink", "paper", 25),
+    "default": ("mix", "paper", "ink", 7), "default-foreground": "ink",
     "accent": "niltava-600", "accent-foreground": "white",
-    "field-background": "white", "field-foreground": "throat-950", "field-placeholder": "throat-500",
+    "field-background": ("mix", "paper", "white", 15), "field-foreground": "ink", "field-placeholder": "throat-500",
+    "field-border": ("mix", "paper", "ink", 22),
     "success": "leaf-600", "success-foreground": "white",
     "warning": "gold-400", "warning-foreground": "throat-950",
     "danger": "berry-600", "danger-foreground": "white",
     "info": "glossy-600", "info-foreground": "white",
     "rufous": "rufous-600", "rufous-foreground": "white",
-    "segment": "white", "segment-foreground": "throat-950",
-    "border": "throat-200", "separator": "throat-100",
+    "segment": ("mix", "paper", "white", 15), "segment-foreground": "ink",
+    "border": ("mix", "paper", "ink", 14), "separator": ("mix", "paper", "ink", 8),
     "focus": "niltava-500", "link": "niltava-600",
     "accent-soft-foreground": "niltava-700", "success-soft-foreground": "leaf-700",
     "warning-soft-foreground": "gold-700", "danger-soft-foreground": "berry-700",
     "info-soft-foreground": "glossy-700", "rufous-soft-foreground": "rufous-700",
 }
 DARK = {
-    "background": "throat-975", "foreground": "throat-50",
+    "background": "throat-975", "foreground": "paper",
     "surface": "throat-950", "surface-secondary": ("mix", "throat-950", "throat-900", 35),
     "surface-tertiary": ("mix", "throat-950", "throat-900", 60),
     "overlay": ("mix", "throat-950", "throat-900", 25), "muted": "throat-400",
-    "default": ("mix", "throat-950", "throat-900", 60), "default-foreground": "throat-50",
+    "default": ("mix", "throat-950", "throat-900", 60), "default-foreground": "paper",
     "accent": "niltava-400", "accent-foreground": "niltava-975",
-    "field-background": "throat-950", "field-foreground": "throat-50", "field-placeholder": "throat-500",
+    "field-background": "throat-950", "field-foreground": "paper", "field-placeholder": "throat-500",
+    "field-border": ("mix", "throat-950", "throat-800", 65),
     "success": "leaf-400", "success-foreground": "leaf-975",
     "warning": "gold-300", "warning-foreground": "gold-975",
     "danger": "berry-400", "danger-foreground": "berry-975",
     "info": "glossy-400", "info-foreground": "glossy-975",
     "rufous": "rufous-400", "rufous-foreground": "rufous-975",
-    "segment": "throat-900", "segment-foreground": "throat-50",
-    "border": "throat-900", "separator": ("mix", "throat-950", "throat-900", 50),
+    "segment": "throat-900", "segment-foreground": "paper",
+    "border": ("mix", "throat-950", "throat-800", 45), "separator": ("mix", "throat-950", "throat-900", 35),
     "focus": "niltava-400", "link": "niltava-300",
     "accent-soft-foreground": "niltava-300", "success-soft-foreground": "leaf-300",
     "warning-soft-foreground": "gold-300", "danger-soft-foreground": "berry-300",
@@ -172,7 +179,7 @@ DARK = {
 }
 # Categorical chart series, chosen so every pair stays apart under protan / deutan / tritan simulation.
 CHART = {
-    "light": ["niltava-600", "rufous-500", "leaf-500", "violet-700", "gold-700", "berry-800", "glossy-700", "throat-500"],
+    "light": ["niltava-600", "rufous-500", "leaf-600", "violet-700", "gold-700", "berry-800", "glossy-700", "throat-500"],
     "dark": ["niltava-400", "rufous-300", "leaf-200", "violet-500", "gold-500", "berry-400", "glossy-300", "throat-400"],
 }
 SOFT_PCT = {"light": 15, "dark": 12}  # matches HeroUI's soft background mix
@@ -199,6 +206,8 @@ CHECKS = [
     ("foreground", "background", 7), ("foreground", "surface", 7), ("muted", "surface", 4.5),
     ("muted", "background", 4.5), ("link", "background", 4.5), ("field-placeholder", "field-background", 3),
     ("focus", "background", 3),
+    ("field-foreground", "field-background", 7), ("foreground", "overlay", 7),
+    ("default-foreground", "default", 7), ("segment-foreground", "segment", 7),
 ]
 for c in ["accent", "success", "warning", "danger", "info", "rufous"]:
     CHECKS.append((f"{c}-foreground", c, 4.5))
@@ -226,6 +235,9 @@ HEADER = "/* Generated by scripts/generate_tokens.py. Edit the script, not this 
 
 def write_palette_css():
     lines = [HEADER, "@theme static {"]
+    for name, hx in MATERIALS.items():
+        lines.append(f"  --color-{name}: {oklch_css(hx)}; /* {hx} */")
+    lines.append("")
     for name in SCALE_ORDER:
         for s in STEPS:
             lines.append(f"  --color-{name}-{s}: {oklch_css(palette[name][s])}; /* {palette[name][s]} */")
@@ -245,6 +257,17 @@ def theme_block(mode, mapping):
     out = []
     for k, v in mapping.items():
         out.append(f"    --{k}: {css_value(v)};")
+    # Keep these in each mode block so switching themes cannot restore defaults.
+    out.extend([
+        "    --radius: 0.25rem;",
+        "    --field-radius: 0.375rem;",
+        "    --field-border-width: 1px;",
+        "    --field-border-hover: var(--muted);",
+        "    --field-border-focus: var(--focus);",
+        "    --surface-shadow: 0 0 0 1px var(--border);",
+        "    --overlay-shadow: 0 0 0 1px var(--border);",
+        "    --field-shadow: 0 0 0 0 transparent;",
+    ])
     pct = SOFT_PCT[mode]
     for c in ["info", "rufous"]:
         out.append(f"    --{c}-hover: color-mix(in oklab, var(--{c}) 90%, var(--{c}-foreground) 10%);")
@@ -292,11 +315,14 @@ def dtcg_alias(v, mode):
                 "$description": f"color-mix(in oklab, {v[1]} {100 - v[3]}%, {v[2]} {v[3]}%)"}
     if v == "white":
         return {"$type": "color", "$value": "{color.white}"}
+    if v in MATERIALS:
+        return {"$type": "color", "$value": f"{{color.{v}}}"}
     name, step = v.rsplit("-", 1)
     return {"$type": "color", "$value": f"{{color.{name}.{step}}}"}
 
 def write_dtcg():
     prim = {"color": {"white": dtcg_color("#FFFFFF")}}
+    prim["color"].update({name: dtcg_color(hx) for name, hx in MATERIALS.items()})
     for name in SCALE_ORDER:
         prim["color"][name] = {str(s): dtcg_color(palette[name][s]) for s in STEPS}
     (ROOT / "tokens/primitives.tokens.json").write_text(json.dumps(prim, indent=2, ensure_ascii=False) + "\n")
@@ -329,19 +355,31 @@ def write_card():
     data["files"] = files
     body = (ROOT / "scripts/palette-card.template.html").read_text().replace(
         "__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
+    card_vars = {
+        "bg": "background", "surface": "surface", "surface-2": "default", "line": "border",
+        "ink": "foreground", "ink-2": "muted", "ink-3": "muted", "blue": "accent",
+        "rufous": "rufous", "focus": "focus",
+    }
+    for mode in ("light", "dark"):
+        values = " ".join(f"--{key}:{resolved[mode][token]};" for key, token in card_vars.items())
+        body = body.replace(f"__CARD_{mode.upper()}__", values)
     html = ('<!doctype html>\n<html lang="zh-CN">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             '<style>body{margin:0}</style>\n</head>\n<body>\n' + body + '\n</body>\n</html>\n')
     (ROOT / "docs/palette.html").write_text(html)
 
-write_palette_css()
-write_theme_css()
-write_dtcg()
-write_app_json()
-write_card()
+def main():
+    write_palette_css()
+    write_theme_css()
+    write_dtcg()
+    write_app_json()
+    write_card()
 
-for row in audit:
-    if not row["pass"]:
-        print(f"FAIL {row['mode']:5} {row['fg']} on {row['bg']}: {row['ratio']} < {row['target']}")
-print(f"{sum(r['pass'] for r in audit)}/{len(audit)} contrast checks passed")
-sys.exit(1 if failed else 0)
+    for row in audit:
+        if not row["pass"]:
+            print(f"FAIL {row['mode']:5} {row['fg']} on {row['bg']}: {row['ratio']} < {row['target']}")
+    print(f"{sum(r['pass'] for r in audit)}/{len(audit)} contrast checks passed")
+    return 1 if failed else 0
+
+if __name__ == "__main__":
+    sys.exit(main())

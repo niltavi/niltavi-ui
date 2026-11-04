@@ -6,7 +6,7 @@
     },
     "foreground": {
       "$type": "color",
-      "$value": "{color.throat.50}"
+      "$value": "{color.paper}"
     },
     "surface": {
       "$type": "color",
@@ -70,7 +70,7 @@
     },
     "default-foreground": {
       "$type": "color",
-      "$value": "{color.throat.50}"
+      "$value": "{color.paper}"
     },
     "accent": {
       "$type": "color",
@@ -86,11 +86,24 @@
     },
     "field-foreground": {
       "$type": "color",
-      "$value": "{color.throat.50}"
+      "$value": "{color.paper}"
     },
     "field-placeholder": {
       "$type": "color",
       "$value": "{color.throat.500}"
+    },
+    "field-border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3497,
+          0.0329,
+          268.13
+        ],
+        "hex": "#333a4c"
+      },
+      "$description": "color-mix(in oklab, throat-950 35%, throat-800 65%)"
     },
     "success": {
       "$type": "color",
@@ -138,24 +151,33 @@
     },
     "segment-foreground": {
       "$type": "color",
-      "$value": "{color.throat.50}"
+      "$value": "{color.paper}"
     },
     "border": {
       "$type": "color",
-      "$value": "{color.throat.900}"
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3191,
+          0.0354,
+          268.71
+        ],
+        "hex": "#2b3245"
+      },
+      "$description": "color-mix(in oklab, throat-950 55%, throat-800 45%)"
     },
     "separator": {
       "$type": "color",
       "$value": {
         "colorSpace": "oklch",
         "components": [
-          0.2914,
-          0.0363,
-          268.53
+          0.2825,
+          0.037,
+          266.5
         ],
-        "hex": "#242b3e"
+        "hex": "#21293c"
       },
-      "$description": "color-mix(in oklab, throat-950 50%, throat-900 50%)"
+      "$description": "color-mix(in oklab, throat-950 65%, throat-900 35%)"
     },
     "focus": {
       "$type": "color",

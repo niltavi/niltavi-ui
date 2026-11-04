@@ -1,26 +1,19 @@
 import {
-  Alert,
   Button,
   Card,
-  Checkbox,
-  Chip,
-  Description,
-  FieldError,
-  Input,
-  Label,
-  Meter,
-  Modal,
-  Switch,
+  Spinner,
+  Surface,
   Table,
-  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Toast,
   toast,
 } from "@heroui/react";
-import {useEffect, useState} from "react";
+import {lazy, Suspense, useEffect, useState} from "react";
 
 import tokens from "./theme/tokens.json";
+
+const Showcase = lazy(() => import("./showcase/Showcase"));
 
 type Mode = "light" | "dark";
 type Vision = "normal" | "protan" | "deutan" | "tritan";
@@ -149,208 +142,6 @@ function Scales() {
           </div>
         </div>
       ))}
-    </div>
-  );
-}
-
-function Components() {
-  return (
-    <div className="component-examples">
-      <Card>
-        <Card.Header>
-          <Card.Title>按钮</Card.Title>
-        </Card.Header>
-        <Card.Content className="preview-stack">
-          <div className="preview-row">
-            <Button>保存记录</Button>
-            <Button className="button--rufous">上传照片</Button>
-            <Button variant="secondary">次要</Button>
-            <Button variant="tertiary">三级</Button>
-            <Button variant="outline">描边</Button>
-            <Button variant="ghost">幽灵</Button>
-          </div>
-          <div className="preview-row">
-            <Button variant="danger">删除</Button>
-            <Button variant="danger-soft">移除</Button>
-            <Button isDisabled>禁用</Button>
-            <Button isDisabled variant="secondary">
-              禁用
-            </Button>
-          </div>
-        </Card.Content>
-      </Card>
-
-      <Card>
-        <Card.Header>
-          <Card.Title>标签</Card.Title>
-        </Card.Header>
-        <Card.Content className="preview-stack">
-          {(["primary", "secondary", "soft"] as const).map((variant) => (
-            <div key={variant} className="preview-row">
-              <Chip variant={variant}>默认</Chip>
-              <Chip color="accent" variant={variant}>
-                仙鹟属
-              </Chip>
-              <Chip color="success" variant={variant}>
-                已核验
-              </Chip>
-              <Chip color="warning" variant={variant}>
-                待补充
-              </Chip>
-              <Chip color="danger" variant={variant}>
-                误认
-              </Chip>
-            </div>
-          ))}
-          <div className="preview-row">
-            <Chip className="chip--rufous" variant="soft">
-              新物种 +2
-            </Chip>
-            <Chip className="chip--info" variant="soft">
-              迁徙季
-            </Chip>
-          </div>
-        </Card.Content>
-      </Card>
-
-      <div className="preview-stack">
-        <Alert status="accent">
-          <Alert.Indicator />
-          <Alert.Content>
-            <Alert.Title>同步完成</Alert.Title>
-            <Alert.Description>11 月的 48 条记录已上传。</Alert.Description>
-          </Alert.Content>
-        </Alert>
-        <Alert status="success">
-          <Alert.Indicator />
-          <Alert.Content>
-            <Alert.Title>鉴定通过</Alert.Title>
-          </Alert.Content>
-        </Alert>
-        <Alert status="warning">
-          <Alert.Indicator />
-          <Alert.Content>
-            <Alert.Title>3 张照片缺少拍摄地点</Alert.Title>
-          </Alert.Content>
-        </Alert>
-        <Alert status="danger">
-          <Alert.Indicator />
-          <Alert.Content>
-            <Alert.Title>上传中断</Alert.Title>
-            <Alert.Description>请检查网络后重试。</Alert.Description>
-          </Alert.Content>
-        </Alert>
-      </div>
-
-      <Card>
-        <Card.Header>
-          <Card.Title>观鸟记录 · 11 月</Card.Title>
-          <Card.Description>大帽山 · 6 次出行</Card.Description>
-        </Card.Header>
-        <Card.Content className="preview-stack--medium">
-          <Meter aria-label="年度目标" value={68}>
-            <Label>年度目标</Label>
-            <Meter.Output />
-            <Meter.Track>
-              <Meter.Fill />
-            </Meter.Track>
-          </Meter>
-          <TextField name="species">
-            <Label>物种</Label>
-            <Input placeholder="如 Niltava sundara" />
-            <Description>支持学名与中文名</Description>
-          </TextField>
-          <TextField isInvalid name="count" defaultValue="-1">
-            <Label>数量</Label>
-            <Input />
-            <FieldError>数量必须大于 0</FieldError>
-          </TextField>
-          <div className="preview-controls-row">
-            <Switch defaultSelected>
-              <Switch.Content>
-                <Switch.Control>
-                  <Switch.Thumb />
-                </Switch.Control>
-                公开记录
-              </Switch.Content>
-            </Switch>
-            <Checkbox defaultSelected>
-              <Checkbox.Control>
-                <Checkbox.Indicator />
-              </Checkbox.Control>
-              <Checkbox.Content>附带 GPS</Checkbox.Content>
-            </Checkbox>
-          </div>
-        </Card.Content>
-        <Card.Footer className="preview-row">
-          <Modal>
-            <Button variant="secondary">删除记录</Button>
-            <Modal.Backdrop>
-              <Modal.Container size="sm">
-                <Modal.Dialog>
-                  <Modal.CloseTrigger />
-                  <Modal.Header>
-                    <Modal.Heading>删除这条记录？</Modal.Heading>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>棕腹仙鹟 · 2026-11-02 的记录和 4 张照片会一起删除。</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button slot="close" variant="tertiary">
-                      取消
-                    </Button>
-                    <Button slot="close" variant="danger">
-                      删除
-                    </Button>
-                  </Modal.Footer>
-                </Modal.Dialog>
-              </Modal.Container>
-            </Modal.Backdrop>
-          </Modal>
-          <Button variant="tertiary" onPress={() => toast.success("记录已保存")}>
-            Toast
-          </Button>
-          <Button variant="tertiary" onPress={() => toast.warning("照片缺少地点")}>
-            警告 Toast
-          </Button>
-        </Card.Footer>
-      </Card>
-
-      <Card className="component-examples__table">
-        <Card.Content className="preview-stack--medium">
-          <Table>
-            <Table.ScrollContainer>
-              <Table.Content aria-label="观鸟记录" className="records-table">
-                <Table.Header>
-                  <Table.Column isRowHeader>物种</Table.Column>
-                  <Table.Column>学名</Table.Column>
-                  <Table.Column>数量</Table.Column>
-                  <Table.Column>状态</Table.Column>
-                </Table.Header>
-                <Table.Body>
-                  {[
-                    ["棕腹仙鹟", "Niltava sundara", 3, "success", "已核验"],
-                    ["棕腹大仙鹟", "Niltava davidi", 1, "warning", "待补充"],
-                    ["大仙鹟", "Niltava grandis", 2, "success", "已核验"],
-                    ["小仙鹟", "Niltava macgrigoriae", 1, "danger", "误认"],
-                  ].map(([zh, la, n, color, status]) => (
-                    <Table.Row key={String(la)}>
-                      <Table.Cell>{zh}</Table.Cell>
-                      <Table.Cell className="species-name">{la}</Table.Cell>
-                      <Table.Cell>{n}</Table.Cell>
-                      <Table.Cell>
-                        <Chip color={color as "success" | "warning" | "danger"} variant="soft">
-                          {status}
-                        </Chip>
-                      </Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table.Body>
-              </Table.Content>
-            </Table.ScrollContainer>
-          </Table>
-        </Card.Content>
-      </Card>
     </div>
   );
 }
@@ -499,10 +290,10 @@ export default function App() {
             niltavi<span>.</span>
             <span className="preview-brand__label">UI</span>
           </a>
-          <div className="preview-controls">
+          <Surface className="surface--controls preview-controls">
             <Segmented label="主题" value={mode} options={{light: "浅色", dark: "深色"}} icons={{light: <Icon name="sun" />, dark: <Icon name="moon" />}} onChange={setMode} />
             <Segmented label="色觉模拟" value={vision} options={VISION_LABEL} onChange={setVision} />
-          </div>
+          </Surface>
         </div>
       </header>
       <main
@@ -512,7 +303,7 @@ export default function App() {
         style={{filter: vision === "normal" ? undefined : `url(#cvd-${vision})`}}
       >
         <Section id="components" title="组件">
-          <Components />
+          <Suspense fallback={<Spinner aria-label="加载组件" />}><Showcase /></Suspense>
         </Section>
         <Section id="palette" title="色阶">
           <Scales />

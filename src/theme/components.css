@@ -1,5 +1,15 @@
 /* HeroUI BEM extensions. Colors and states come from the semantic theme. */
 @layer components {
+  .surface--controls {
+    padding: var(--spacing);
+    border-radius: var(--radius-4xl);
+  }
+
+  .surface--example {
+    padding: calc(var(--spacing) * 4);
+    border-radius: var(--radius-3xl);
+  }
+
   .button--rufous {
     --button-bg: var(--rufous);
     --button-bg-hover: var(--rufous-hover);

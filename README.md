@@ -40,6 +40,7 @@ Light / dark switching follows HeroUI: `<html class="dark" data-theme="dark">`.
 | `tokens/primitives.tokens.json` | Color scales in W3C Design Tokens format |
 | `tokens/light.tokens.json` / `dark.tokens.json` | Semantic tokens referencing the scales |
 | `docs/palette.html` | Palette card, open directly in a browser |
+| `src/showcase/` | 64 component groups and 127 adapted official examples, with source attribution and licenses |
 
 ## Colors beyond HeroUI
 
@@ -65,6 +66,10 @@ Use HeroUI component props for sizes and variants. Add reusable extensions to `s
 The script checks 62 foreground / background contrast pairs and exits with an error if any fail. Run the generator tests with `npm test`.
 
 ## Preview
+
+The component gallery adapts [HeroUI's official demos](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en), including grouped and multiple selection, form validation, date ranges, nested menus, resizable tables, dialogs, drawers, sheets, and color controls. Search by component name or Chinese keyword. All examples use this theme; the Niltavi button and chip extensions are included. The right-hand theme controls retain a themed Surface background.
+
+Examples are maintained as local source files, pinned to the upstream commit recorded in `src/showcase/NOTICE.md`, and checked against HeroUI 3.2.7. Official example layout utilities use the same HeroUI/Tailwind theme bridge; custom theme overrides are removed. The gallery loads in a separate chunk. Some avatars and images use HeroUI's public asset CDN.
 
 ```bash
 npm install

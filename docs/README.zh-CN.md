@@ -40,6 +40,7 @@
 | `tokens/primitives.tokens.json` | 色阶，W3C Design Tokens 格式 |
 | `tokens/light.tokens.json` / `dark.tokens.json` | 语义 token，引用色阶 |
 | `docs/palette.html` | 色卡，浏览器直接打开 |
+| `src/showcase/` | 64 类组件、127 个官方改编示例，以及来源记录和许可证 |
 
 ## HeroUI 之外的颜色
 
@@ -65,6 +66,10 @@ npm run tokens
 脚本会检查 62 组前景 / 背景对比度，有不达标的会报错退出。生成器测试运行 `npm test`。
 
 ## 预览
+
+组件展示复用 [HeroUI 官方示例](https://github.com/heroui-inc/heroui/tree/b2c65a5b5236550526f23d475b1ad0c6e5eab1a2/apps/docs/src/demos/en)，涵盖分组与多选、表单校验、日期范围、嵌套菜单、可调列宽表格、弹窗、抽屉、底部面板和颜色控件。支持按组件名或中文关键词搜索。示例全部使用当前主题，并展示 Niltavi 的按钮和标签扩展。右侧主题切换区保留带主题底色的 Surface。
+
+示例以本地源码维护，上游提交记录在 `src/showcase/NOTICE.md`，并按 HeroUI 3.2.7 校验。官方示例的布局工具类沿用同一套 HeroUI / Tailwind 主题映射，示例中的自定义主题覆盖已移除。展示区作为独立代码块加载，部分头像和图片使用 HeroUI 的公开素材 CDN。
 
 ```bash
 npm install

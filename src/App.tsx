@@ -1,4 +1,4 @@
-import {Globe, LogoGithub} from "@gravity-ui/icons";
+import {ArrowUp, Globe, LogoGithub, Moon, Sun} from "@gravity-ui/icons";
 import {Button, Dropdown, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Toast} from "@heroui/react";
 import {buttonVariants} from "@heroui/styles";
 import {lazy, Suspense, useEffect, useState, type MouseEvent} from "react";
@@ -20,9 +20,8 @@ type Mode = "light" | "dark";
 
 
 function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
-  return <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    {name === "sun" ? <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></> : name === "moon" ? <path d="M20.9 13.3A9 9 0 0 1 10.7 3.1a9 9 0 1 0 10.2 10.2Z" /> : <path d="M12 20V4m-6 6 6-6 6 6" />}
-  </svg>;
+  const Component = {sun: Sun, moon: Moon, "arrow-up": ArrowUp}[name];
+  return <Component aria-hidden="true" focusable="false" width={18} height={18} />;
 }
 
 function storedPreference(key: string) {

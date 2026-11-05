@@ -32,3 +32,7 @@ Niltavi seeks a gentle, clear-eyed naturalism for our time. It welcomes the poss
 ---
 
 > **Let technology widen the possible.**<br />**Let nature awaken the senses.**<br />**Let every lived moment be cherished.**
+
+---
+
+Licensed under the [MIT License](LICENSE). Third-party code and assets retain their respective licenses; see the [showcase attribution](src/showcase/NOTICE.md) and [logo font license](docs/assets/niltavi-logo-FONT-LICENSE.txt).

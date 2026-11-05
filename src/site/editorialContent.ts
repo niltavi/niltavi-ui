@@ -18,8 +18,8 @@ export const philosophy: EditorialContent = {
       id: "color",
       title: {en: "Color, from the forest", zh: "色彩，来自森林"},
       paragraphs: [{
-        zh: "Niltavi 的灵感来自栖息于森林中的仙鹟。它拥有鲜明而纯净的蓝色羽毛，点缀着温暖的黄色，在深邃的森林绿意之间呈现出一种安静而生动的美。这种色彩关系构成了我们的视觉起点：以蓝色表达自由、清澈与探索，以黄色传递温度、生命力与偶然的惊喜，以森林绿承载自然的深度、宁静与归属感。我们将这些源于自然的颜色转化为克制、柔和而富有层次的视觉语言，让鲜明的生命色彩在低饱和的环境中自然浮现。",
-        en: "Niltavi takes its inspiration from the niltava, a bird of the forest. Clear blue plumage, touched with warm yellow, holds a quiet, living beauty against the depth of green. Here our visual language begins: blue for freedom, clarity, and the urge to explore; yellow for warmth, vitality, and the grace of a chance encounter; forest green for stillness, depth, and a sense of belonging. Drawn from nature, these colors become a language of softness, restraint, and subtle layers, allowing the bright colors of life to emerge from a muted world.",
+        zh: "Niltavi [nɪlˈtɑːvi] 的灵感来自栖息于森林中的仙鹟。它拥有鲜明而纯净的蓝色羽毛，点缀着温暖的黄色，在深邃的森林绿意之间呈现出一种安静而生动的美。这种色彩关系构成了我们的视觉起点：以蓝色表达自由、清澈与探索，以黄色传递温度、生命力与偶然的惊喜，以森林绿承载自然的深度、宁静与归属感。我们将这些源于自然的颜色转化为克制、柔和而富有层次的视觉语言，让鲜明的生命色彩在低饱和的环境中自然浮现。",
+        en: "Niltavi [nɪlˈtɑːvi] takes its inspiration from the niltava, a bird of the forest. Clear blue plumage, touched with warm yellow, holds a quiet, living beauty against the depth of green. Here our visual language begins: blue for freedom, clarity, and the urge to explore; yellow for warmth, vitality, and the grace of a chance encounter; forest green for stillness, depth, and a sense of belonging. Drawn from nature, these colors become a language of softness, restraint, and subtle layers, allowing the bright colors of life to emerge from a muted world.",
       }],
     },
     {

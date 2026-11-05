@@ -19,7 +19,7 @@ As artificial intelligence carries human possibility ever further, we hope to br
 
 <img align="right" src="docs/assets/niltavi-bird.svg" width="112" hspace="16" alt="A blue and yellow niltava resting on a branch" />
 
-Niltavi takes its inspiration from the niltava, a bird of the forest. Clear blue plumage, touched with warm yellow, holds a quiet, living beauty against the depth of green. Here our visual language begins: blue for freedom, clarity, and the urge to explore; yellow for warmth, vitality, and the grace of a chance encounter; forest green for stillness, depth, and a sense of belonging. Drawn from nature, these colors become a language of softness, restraint, and subtle layers, allowing the bright colors of life to emerge from a muted world.
+Niltavi [nɪlˈtɑːvi] takes its inspiration from the niltava, a bird of the forest. Clear blue plumage, touched with warm yellow, holds a quiet, living beauty against the depth of green. Here our visual language begins: blue for freedom, clarity, and the urge to explore; yellow for warmth, vitality, and the grace of a chance encounter; forest green for stillness, depth, and a sense of belonging. Drawn from nature, these colors become a language of softness, restraint, and subtle layers, allowing the bright colors of life to emerge from a muted world.
 
 <br clear="right" />
 

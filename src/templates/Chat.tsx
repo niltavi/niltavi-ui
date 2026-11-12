@@ -104,16 +104,15 @@ export default function ChatTemplate() {
         </div>
         <form className="tpl-chat-input" onSubmit={send}>
           <TextField aria-label={text("Message", "消息")} value={draft} onChange={setDraft} className="w-full">
-            <InputGroup variant="secondary">
+            <InputGroup className="w-full">
               <InputGroup.Prefix className="ps-1"><IconButton label={text("Attach", "附件")} icon={Paperclip} /></InputGroup.Prefix>
-              <InputGroup.Input placeholder={text("Write a message…", "输入消息…")} />
-              <InputGroup.Suffix className="pe-1">
-                <IconButton label={text("Image", "图片")} icon={Picture} />
-                <IconButton label={text("Emoji", "表情")} icon={FaceSmile} />
+              <InputGroup.Input placeholder={text("Write a message…", "输入消息…")} className="min-w-0" />
+              <InputGroup.Suffix className="gap-0.5 pe-1">
+                <span className="tpl-chat-extra"><IconButton label={text("Image", "图片")} icon={Picture} /><IconButton label={text("Emoji", "表情")} icon={FaceSmile} /></span>
+                <Button type="submit" isIconOnly size="sm" aria-label={text("Send", "发送")} isDisabled={!draft.trim()}><PaperPlane aria-hidden="true" width={16} height={16} /></Button>
               </InputGroup.Suffix>
             </InputGroup>
           </TextField>
-          <Button type="submit" isIconOnly aria-label={text("Send", "发送")} isDisabled={!draft.trim()}><PaperPlane aria-hidden="true" width={16} height={16} /></Button>
         </form>
       </section>
     </div>

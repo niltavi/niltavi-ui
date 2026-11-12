@@ -17,6 +17,8 @@ const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/sit
 const {swatchTextColor} = await loadUtility("../src/site/color.ts");
 const {translate} = await loadUtility("../src/site/translate.ts");
 const {templateSections} = await loadUtility("../src/templates/catalog.ts");
+const {cornerFor, nextMode} = await loadUtility("../src/templates/ai/widgetLogic.ts");
+const {passwordStrength, isEmail, isPhone} = await loadUtility("../src/templates/saas/validation.ts");
 const messages = JSON.parse(await readFile(new URL("../src/showcase/messages.json", import.meta.url), "utf8"));
 
 test("root and unknown pages open the component gallery", () => {
@@ -132,10 +134,34 @@ test("swatch labels remain readable on light, dark, and middle supporting colors
 });
 
 test("template directory links resolve to unique, bilingual sections", () => {
-  assert.deepEqual(templateSections.map((item) => item.id), ["dashboard", "mail", "chat", "crm", "finances"]);
+  assert.deepEqual(templateSections.map((item) => item.id), ["ai-assistant", "dashboard", "mail", "chat", "crm", "finances", "saas"]);
   for (const item of templateSections) {
     assert.deepEqual(parseRoute(routeHref("templates", item.id)), {page: "templates", section: item.id});
     assert.equal(sectionId("templates", item.id), `templates-${item.id}`);
     assert.ok(item.en && item.zh && item.description.en && item.description.zh && item.uses.length);
   }
+});
+
+test("the assistant button cycles compact, tall, full and back to the icon", () => {
+  const seen = [];
+  let mode = "closed";
+  for (let i = 0; i < 4; i++) { mode = nextMode[mode]; seen.push(mode); }
+  assert.deepEqual(seen, ["compact", "tall", "full", "closed"]);
+});
+
+test("a dropped assistant snaps to the nearest window corner", () => {
+  assert.equal(cornerFor(10, 10, 1000, 800), "tl");
+  assert.equal(cornerFor(990, 10, 1000, 800), "tr");
+  assert.equal(cornerFor(10, 790, 1000, 800), "bl");
+  assert.equal(cornerFor(600, 500, 1000, 800), "br");
+});
+
+test("sign-in validation and password strength", () => {
+  assert.ok(isEmail(" lin@niltavi.com "));
+  assert.ok(!isEmail("lin@niltavi"));
+  assert.ok(isPhone("+65 8123 4567"));
+  assert.ok(!isPhone("12ab"));
+  assert.equal(passwordStrength(""), 0);
+  assert.equal(passwordStrength("abc"), 1);
+  assert.equal(passwordStrength("Forest-2026"), 4);
 });

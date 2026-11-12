@@ -90,7 +90,7 @@ export default function MailTemplate() {
             </Button>
           </div>
         </div>
-        <div className="tpl-reader__body">
+        <div className="tpl-reader__body" key={mail.id}>
           <h4 className="tpl-reader__subject">{text(mail.subject.en, mail.subject.zh)}</h4>
           <div className="tpl-reader__from">
             <PersonAvatar name={mail.from} size="md" />

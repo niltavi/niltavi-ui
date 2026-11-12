@@ -38,6 +38,8 @@
 .tpl-topbar__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .tpl-content { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px 24px; scrollbar-width: var(--scrollbar-width); scrollbar-color: var(--scrollbar-color); }
 .tpl-content--flush { padding: 0; overflow: hidden; }
+/* Children keep their natural height; a horizontally scrolling board must not be squashed. */
+.tpl-content > * { flex-shrink: 0; }
 
 /* Shared pieces */
 .tpl-grid { display: grid; gap: 16px; }
@@ -118,13 +120,15 @@
 .tpl-bubble-row[data-mine] .tpl-bubble-wrap { align-items: flex-end; }
 .tpl-bubble { padding: 9px 13px; border-radius: 16px 16px 16px 4px; background: var(--surface); box-shadow: var(--surface-shadow); line-height: 1.55; overflow-wrap: anywhere; }
 .tpl-bubble-row[data-mine] .tpl-bubble { border-radius: 16px 16px 4px 16px; background: var(--accent); color: var(--accent-foreground); box-shadow: none; }
-.tpl-chat-input { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--separator); }
+.tpl-chat-input { padding: 12px 16px; border-top: 1px solid var(--separator); }
+.tpl-chat-extra { display: flex; }
 
 /* CRM */
 .tpl-board { display: grid; grid-template-columns: repeat(4, minmax(180px, 1fr)); gap: 12px; overflow-x: auto; }
 .tpl-board__col { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 10px; border-radius: var(--radius-2xl); background: var(--surface-tertiary); }
 .tpl-board__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 2px 2px 4px; }
 .tpl-deal { gap: 10px; padding: 12px; }
+.tpl-deal .tpl-mail-item__top { flex-wrap: wrap; row-gap: 6px; }
 .tpl-deal strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tpl-deal__value { font-weight: 600; font-variant-numeric: tabular-nums; }
 .tpl-activity { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
@@ -164,7 +168,9 @@
   .tpl-topbar__actions { margin-left: auto; }
 }
 @container tpl (max-width: 640px) {
-  .tpl-topbar { padding-inline: 16px; }
+  .tpl-topbar { flex-wrap: wrap; row-gap: 8px; padding-inline: 16px; }
+  .tpl-chat-extra { display: none; }
+  .tpl-bubble-row { max-width: 92%; }
   .tpl-content { padding: 16px; }
   .tpl-content--flush { padding: 0; }
   .tpl-split--mail .tpl-list, .tpl-split--chat .tpl-list { display: none; }
@@ -178,3 +184,8 @@
   .tpl-reader__from > .tpl-push { display: none; }
 }
 @media (max-width: 780px) { .tpl-frame { height: 680px; } }
+
+/* Template views gain the same quiet entrance when they switch. */
+.tpl-board, .tpl-reader__body, .tpl-messages > * { animation: nt-fade-up var(--motion-base) var(--motion-ease) both; }
+@media (prefers-reduced-motion: reduce) { .tpl-board, .tpl-reader__body, .tpl-messages > * { animation: none; } }
+[data-reduce-motion="true"] :is(.tpl-board, .tpl-reader__body, .tpl-messages > *) { animation: none; }

@@ -11,7 +11,9 @@ async function loadUtility(path) {
 }
 
 const {pages, parseRoute, routeHref, sectionId, getActiveSection} = await loadUtility("../src/site/navigation.ts");
-const {editorialContent, formatPrompt} = await loadUtility("../src/site/editorialContent.ts");
+const {editorialContent} = await loadUtility("../src/site/editorialContent.ts");
+const skills = await loadUtility("../src/site/skillsContent.ts");
+const skillSource = await readFile(new URL("../skills/niltavi-ui/SKILL.md", import.meta.url), "utf8");
 const {catalog, matchesComponent} = await loadUtility("../src/showcase/catalog.ts");
 const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/site/paletteCatalog.ts");
 const {swatchTextColor} = await loadUtility("../src/site/color.ts");
@@ -35,7 +37,7 @@ test("page and directory links survive direct loads and history navigation", () 
 test("editorial deep links have distinct anchors and preserve existing gallery anchors", () => {
   assert.equal(sectionId("components", "button"), "showcase-button");
   assert.equal(sectionId("palette", "colors"), "palette-colors");
-  assert.notEqual(sectionId("philosophy", "color"), sectionId("prompts", "color"));
+  assert.notEqual(sectionId("philosophy", "color"), sectionId("skills", "color"));
   const anchors = [];
   for (const [page, content] of Object.entries(editorialContent)) {
     for (const section of content.sections) {
@@ -49,21 +51,31 @@ test("editorial deep links have distinct anchors and preserve existing gallery a
   assert.equal(new Set(anchors).size, anchors.length);
 });
 
-test("copying a prompt includes every displayed rule and closing in the selected language", () => {
-  for (const [locale, key] of [["en", "en"], ["zh-CN", "zh"]]) {
-    const copied = formatPrompt(locale);
-    let position = -1;
-    for (const section of editorialContent.prompts.sections) {
-      const next = copied.indexOf(section.title[key]);
-      assert.ok(next > position);
-      position = next;
-      for (const paragraph of section.paragraphs) assert.ok(copied.includes(paragraph[key]));
-    }
-    assert.ok(copied.endsWith(editorialContent.prompts.closing[key]));
-    assert.ok(!copied.includes(editorialContent.prompts.source));
+test("skills page sections are bilingual, unique, and deep-linkable", () => {
+  const ids = skills.skillSections.map((section) => section.id);
+  assert.equal(new Set(ids).size, ids.length);
+  for (const section of skills.skillSections) {
+    assert.match(section.id, /^[a-z0-9-]+$/);
+    assert.deepEqual(parseRoute(routeHref("skills", section.id)), {page: "skills", section: section.id});
+    assert.ok(section.title.en && section.title.zh);
   }
-  assert.notEqual(formatPrompt("en"), formatPrompt("zh-CN"));
-  assert.doesNotMatch(formatPrompt("en"), /[\u4e00-\u9fff]/);
+  for (const item of skills.conventions) {
+    for (const copy of [item.title, item.lead, ...item.rules]) {
+      assert.ok(copy.en && copy.zh);
+      assert.doesNotMatch(copy.en, /[\u4e00-\u9fff]/);
+    }
+  }
+});
+
+test("SKILL.md is a valid skill that covers every convention shown on the page", () => {
+  const frontmatter = skillSource.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? "";
+  assert.match(frontmatter, new RegExp(`^name: ${skills.skillName}$`, "m"));
+  assert.match(frontmatter, /^description: .{40,}$/m);
+  assert.ok(skillSource.includes(skills.siteUrl));
+  assert.ok(skillSource.includes(skills.repoUrl));
+  const headings = [...skillSource.matchAll(/^## (.+)$/gm)].map((match) => match[1]);
+  for (const item of skills.conventions) assert.ok(headings.includes(item.heading), item.heading);
+  assert.ok(skills.installCommands.project.includes("niltavi/niltavi-ui"));
 });
 
 test("component search accepts Chinese and normalized English names", () => {

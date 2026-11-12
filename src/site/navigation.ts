@@ -1,5 +1,6 @@
 export const pages = [
   {id: "components", en: "Components", zh: "组件"},
+  {id: "templates", en: "Templates", zh: "模板"},
   {id: "palette", en: "Palette", zh: "色卡"},
   {id: "skills", en: "Skills", zh: "Skills"},
   {id: "philosophy", en: "Philosophy", zh: "理念"},

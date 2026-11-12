@@ -122,4 +122,10 @@
     --chip-bg: var(--info-soft);
     --chip-fg: var(--info-soft-foreground);
   }
+
+  /* Prefix and suffix live inside one field: no dividing rules, a tighter inner gap. */
+  .input-group__prefix,
+  .input-group__suffix { border-inline-width: 0; }
+  .input-group__prefix { padding-inline-end: calc(var(--spacing) * 2); }
+  .input-group__suffix { padding-inline-start: calc(var(--spacing) * 2); }
 }

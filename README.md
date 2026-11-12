@@ -29,6 +29,16 @@ We believe beauty needs little ornament. The warmth of paper, generous open spac
 
 Niltavi seeks a gentle, clear-eyed naturalism for our time. It welcomes the possibilities of technology and treasures the irreplaceable bond between people and the world they inhabit. Through a language of lightness, stillness, and life, we hope to offer an invitation: slow your steps, rediscover the small things growing around you, feel the abundance of being alive, and keep a rhythm of your own as the digital world moves on.
 
+## Agent Skill
+
+Teach your coding assistant the Niltavi conventions:
+
+```bash
+npx skills add niltavi/niltavi-ui
+```
+
+Then call `/niltavi-ui` in Claude Code (or `$niltavi-ui` in Codex). The skill always defers to the latest conventions on [ui.niltavi.com](https://ui.niltavi.com/) and in this repository. See [Skills](https://ui.niltavi.com/#/skills) for details.
+
 ---
 
 > **Let technology widen the possible.**<br />**Let nature awaken the senses.**<br />**Let every lived moment be cherished.**

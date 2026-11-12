@@ -11,11 +11,13 @@ import {catalog, matchesComponent} from "./showcase/catalog";
 import {LocaleContext, useText, type Locale} from "./site/Locale";
 import {pages, parseRoute, routeHref, scrollToSection, type Page} from "./site/navigation";
 import {editorialContent} from "./site/editorialContent";
+import {skillSections} from "./site/skillsContent";
 import {templateSections} from "./templates/catalog";
 
 const Showcase = lazy(() => import("./showcase/Showcase"));
 const Palette = lazy(() => import("./site/Palette"));
 const Editorial = lazy(() => import("./site/Editorial"));
+const Skills = lazy(() => import("./site/Skills"));
 const Templates = lazy(() => import("./templates/Templates"));
 type Mode = "light" | "dark";
 
@@ -65,7 +67,7 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
       ? templateSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
     : route.page === "palette"
       ? paletteSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
-      : editorialContent[route.page].sections.map((section) => ({id: section.id, label: text(section.title.en, section.title.zh)}));
+      : (route.page === "skills" ? skillSections : editorialContent[route.page].sections).map((section) => ({id: section.id, label: text(section.title.en, section.title.zh)}));
 
   const currentSection = useActiveSection(route.page, entries.map((entry) => entry.id));
 
@@ -120,7 +122,7 @@ function Site({locale, setLocale}: {locale: Locale; setLocale: (locale: Locale) 
       </aside>
       <main id="main-content" tabIndex={-1} className="preview-main">
         <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
-          {route.page === "components" ? <Showcase query={query} section={route.section} /> : route.page === "templates" ? <Templates section={route.section} /> : route.page === "palette" ? <Palette mode={mode} section={route.section} /> : <Editorial page={route.page} section={route.section} />}
+          {route.page === "components" ? <Showcase query={query} section={route.section} /> : route.page === "templates" ? <Templates section={route.section} /> : route.page === "palette" ? <Palette mode={mode} section={route.section} /> : route.page === "skills" ? <Skills section={route.section} /> : <Editorial page={route.page} section={route.section} />}
         </Suspense>
         <footer className="preview-footer">
           <Link href="https://niltavi.com">niltavi.com</Link>

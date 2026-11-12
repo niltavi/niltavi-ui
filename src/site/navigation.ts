@@ -2,7 +2,7 @@ export const pages = [
   {id: "components", en: "Components", zh: "组件"},
   {id: "templates", en: "Templates", zh: "模板"},
   {id: "palette", en: "Palette", zh: "色卡"},
-  {id: "prompts", en: "Prompts", zh: "提示词"},
+  {id: "skills", en: "Skills", zh: "Skills"},
   {id: "philosophy", en: "Philosophy", zh: "理念"},
 ] as const;
 export type Page = typeof pages[number]["id"];

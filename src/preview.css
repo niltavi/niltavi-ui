@@ -166,3 +166,27 @@ html[lang="en"] .editorial-section p { line-height: 1.85; }
 @container (min-width: 360px) { .palette__steps { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 @container (min-width: 680px) { .palette__steps { grid-template-columns: repeat(12, minmax(0, 1fr)); } }
 @container (min-width: 980px) { .palette__scale { grid-template-columns: 110px minmax(0, 1fr); } }
+
+/* Skills page: install commands, agent paths, and convention lists. */
+.skills-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.skills-section > * + * { margin-top: 16px; }
+.skills-section > h2 + * { margin-top: 0; }
+.skills-page .editorial-intro p + p { margin-top: 12px; }
+.skills-lead { color: var(--muted); font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.8; text-wrap: pretty; }
+.skills-rules { display: flex; flex-direction: column; gap: 10px; padding-left: 1.25em; list-style: disc; }
+.skills-rules li { line-height: 1.85; text-wrap: pretty; }
+.skills-rules li::marker { color: var(--accent); }
+.skills-tabs { width: 100%; }
+.skills-tabs [role="tabpanel"] { padding: 12px 0 0; }
+.code-block { position: relative; display: flex; align-items: flex-start; border: var(--border-width) solid var(--border); border-radius: var(--radius-xl); background: var(--surface); }
+.code-block pre { flex: 1; min-width: 0; margin: 0; padding: 12px 16px; overflow-x: auto; font-family: var(--font-mono); font-size: .8125rem; line-height: 1.7; white-space: pre; scrollbar-width: thin; }
+.code-block__copy { flex-shrink: 0; margin: 6px 6px 0 0; }
+.skills-prompts { display: flex; flex-direction: column; gap: 8px; }
+.skills-prompts pre { white-space: pre-wrap; }
+.skills-paths { display: grid; border-top: 1px solid var(--separator); }
+.skills-paths > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 16px; padding-block: 10px; border-bottom: 1px solid var(--separator); font-size: .875rem; }
+.skills-paths dt { color: var(--muted); }
+.skills-paths dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.skills-paths code, .skills-rules code { font-family: var(--font-mono); font-size: .8125rem; }
+.skills-rules code { padding: 1px 5px; border-radius: var(--radius-sm); background: var(--default); overflow-wrap: anywhere; }
+@media (max-width: 480px) { .skills-paths > div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }

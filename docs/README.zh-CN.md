@@ -29,6 +29,16 @@ Niltavi [nɪlˈtɑːvi] 的灵感来自栖息于森林中的仙鹟。它拥有�
 
 Niltavi 所追求的是一种温和而清醒的现代自然主义。它拥抱技术带来的可能性，也珍视人类与真实世界之间不可替代的联系。我们希望通过一种轻盈、宁静、富有生命力的设计语言，邀请人们暂时放慢脚步，重新发现自然的细节，感受生活本身的丰富，并在不断变化的数字世界中，保留属于自己的节奏。
 
+## Agent Skill
+
+让编程助手掌握 Niltavi 的约定：
+
+```bash
+npx skills add niltavi/niltavi-ui
+```
+
+在 Claude Code 中调用 `/niltavi-ui`（Codex 中为 `$niltavi-ui`）。Skill 始终以 [ui.niltavi.com](https://ui.niltavi.com/) 与本仓库的最新约定为准，详见 [Skills](https://ui.niltavi.com/#/skills)。
+
 ---
 
 > **让技术拓展可能，**<br />**让自然唤醒感知，**<br />**让每一次真实的体验都值得被珍视。**

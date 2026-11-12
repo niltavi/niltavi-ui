@@ -16,6 +16,7 @@ const {catalog, matchesComponent} = await loadUtility("../src/showcase/catalog.t
 const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/site/paletteCatalog.ts");
 const {swatchTextColor} = await loadUtility("../src/site/color.ts");
 const {translate} = await loadUtility("../src/site/translate.ts");
+const {templateSections} = await loadUtility("../src/templates/catalog.ts");
 const messages = JSON.parse(await readFile(new URL("../src/showcase/messages.json", import.meta.url), "utf8"));
 
 test("root and unknown pages open the component gallery", () => {
@@ -128,4 +129,13 @@ test("swatch labels remain readable on light, dark, and middle supporting colors
   assert.equal(swatchTextColor("#FFFFFF"), "#000000");
   assert.equal(swatchTextColor("#000000"), "#FFFFFF");
   assert.equal(swatchTextColor("#868C9B"), "#000000");
+});
+
+test("template directory links resolve to unique, bilingual sections", () => {
+  assert.deepEqual(templateSections.map((item) => item.id), ["dashboard", "mail", "chat", "crm", "finances"]);
+  for (const item of templateSections) {
+    assert.deepEqual(parseRoute(routeHref("templates", item.id)), {page: "templates", section: item.id});
+    assert.equal(sectionId("templates", item.id), `templates-${item.id}`);
+    assert.ok(item.en && item.zh && item.description.en && item.description.zh && item.uses.length);
+  }
 });

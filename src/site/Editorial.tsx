@@ -16,6 +16,7 @@ export default function Editorial({page, section}: {page: "philosophy"; section:
   return <article className="editorial-page" aria-labelledby="editorial-title">
     <header className="editorial-header">
       <Typography.Heading id="editorial-title" level={1}>{text("Philosophy", "理念")}</Typography.Heading>
+      {content.lead && <Typography.Paragraph className="editorial-lead">{text(content.lead.en, content.lead.zh)}</Typography.Paragraph>}
     </header>
     <div className="editorial-sections">
       {content.sections.map((item) => {

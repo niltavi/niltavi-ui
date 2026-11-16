@@ -1,7 +1,8 @@
 import {ArrowLeft, ArrowRightFromSquare, CircleCheckFill, Envelope, Eye, EyeSlash, Lock, LogoApple, LogoGithub} from "@gravity-ui/icons";
 import {Alert, AlertDialog, Button, Checkbox, Description, FieldError, Form, Input, InputGroup, InputOTP, Label, Link, Meter, TextField} from "@heroui/react";
-import {useEffect, useId, useRef, useState, type FormEvent, type ReactNode} from "react";
+import {useEffect, useRef, useState, type FormEvent, type ReactNode} from "react";
 import {useText} from "../../site/Locale";
+import {ForestScene} from "./ForestScene";
 
 import {DEMO_CODE, isEmail as emailOk, isPhone as phoneOk, passwordStrength} from "./validation";
 export {DEMO_CODE, passwordStrength};
@@ -17,24 +18,13 @@ function useCountdown() {
   return [left, () => setLeft(60)] as const;
 }
 
-/** Soft, non-repeating texture: fractal noise mapped to a faint ink tint, drawn once over the whole panel. */
-function Texture() {
-  const id = useId().replace(/:/g, "");
-  return <svg className="nt-authlayout__texture" aria-hidden="true" focusable="false">
-    <filter id={`${id}-cloud`}><feTurbulence type="fractalNoise" baseFrequency="0.006 0.011" numOctaves="4" seed="11" /><feColorMatrix type="matrix" values="0 0 0 0 .1  0 0 0 0 .14  0 0 0 0 .2  1.8 0 0 0 -.7" /></filter>
-    <filter id={`${id}-grain`}><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" /><feColorMatrix type="matrix" values="0 0 0 0 .1  0 0 0 0 .14  0 0 0 0 .2  1.6 0 0 0 -.65" /></filter>
-    <rect width="100%" height="100%" filter={`url(#${id}-cloud)`} className="nt-authlayout__cloud" />
-    <rect width="100%" height="100%" filter={`url(#${id}-grain)`} className="nt-authlayout__grain" />
-  </svg>;
-}
-
 /** The signed-out shell: a quiet textured panel beside whichever account screen is active. */
 export function AuthLayout({children, product = "Niltavi"}: {children: ReactNode; product?: string}) {
   const brand = <div className="nt-auth__brand"><span className="tpl-nav__logo" aria-hidden="true">{product.slice(0, 1)}</span><strong>{product}</strong></div>;
   return <div className="nt-authlayout">
-    <aside className="nt-authlayout__brand"><Texture />{brand}</aside>
+    <aside className="nt-authlayout__brand"><ForestScene /></aside>
     <main className="nt-authlayout__main">
-      <div className="nt-authlayout__mobile-brand">{brand}</div>
+      <div className="nt-authlayout__logo">{brand}</div>
       {children}
     </main>
   </div>;

@@ -1,10 +1,14 @@
 // Adapted from the Niltavi Notion essay; the source link records content provenance.
 type Copy = {en: string; zh: string};
 type EditorialSection = {id: string; title: Copy; paragraphs: Copy[]; quote?: Copy};
-type EditorialContent = {source: string; sections: EditorialSection[]; closing?: Copy};
+type EditorialContent = {source: string; lead?: Copy; sections: EditorialSection[]; closing?: Copy};
 
 export const philosophy: EditorialContent = {
   source: "https://app.notion.com/p/40e44fed5856810b8272effb59207522",
+  lead: {
+    zh: "Niltavi 为数字游民的理想生活而打造\n更少的信息过载 更少的工作时间 更少的决策成本",
+    en: "Niltavi is made for the life a digital nomad dreams of.\nLess information overload. Fewer working hours. Fewer decisions to make.",
+  },
   sections: [
     {
       id: "naturalism",

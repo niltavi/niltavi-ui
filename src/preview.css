@@ -122,6 +122,7 @@ body {
 .editorial-page { --font-serif: "Iowan Old Style", "Baskerville", "Noto Serif SC", "Songti SC", "SimSun", serif; max-width: 760px; padding-block: 4px 16px; }
 .editorial-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
 .editorial-header > p { max-width: 60ch; }
+.editorial-lead { font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.9; white-space: pre-line; text-wrap: pretty; color: var(--muted); }
 .editorial-sections { display: flex; flex-direction: column; gap: 40px; }
 .editorial-section { scroll-margin-top: calc(var(--site-header-height) + 24px); }
 .editorial-section:has(> .editorial-bird) { display: flow-root; }

@@ -1,8 +1,17 @@
 import {Button, FieldError, Form, Input, Label, Link, TextField} from "@heroui/react";
-import {useRef, useState, type ComponentProps, type FormEvent, type ReactNode} from "react";
+import {useRef, useState, useSyncExternalStore, type ComponentProps, type FormEvent, type ReactNode} from "react";
 
 type Credentials = {email: string; password: string};
 type FormErrors = Partial<Record<keyof Credentials, string>> & {message?: string};
+const subscribeToHydration = () => () => {};
+const hydrated = () => true;
+const serverRendered = () => false;
+
+function clearFieldError(errors: FormErrors, field: keyof Credentials): FormErrors {
+  const next = {...errors};
+  delete next[field];
+  return next;
+}
 
 type EmailPasswordFormProps = {
   mode: "sign-in" | "register";
@@ -15,11 +24,12 @@ type EmailPasswordFormProps = {
 export function EmailPasswordForm({mode, labels, alternate, onSubmit, children}: EmailPasswordFormProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [pending, setPending] = useState(false);
+  const ready = useSyncExternalStore(subscribeToHydration, hydrated, serverRendered);
   const submitting = useRef(false);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (submitting.current) return;
+    if (!ready || submitting.current) return;
     const data = new FormData(event.currentTarget);
     submitting.current = true;
     setErrors({});
@@ -38,20 +48,22 @@ export function EmailPasswordForm({mode, labels, alternate, onSubmit, children}:
   return <section className="niltavi-email-password">
     <h2>{labels.title}</h2>
     {children}
-    <Form className="niltavi-email-password__fields" onSubmit={submit} validationBehavior="native" validationErrors={errors}>
-      <TextField name="email" type="email" autoComplete="email" isRequired onChange={() => setErrors((previous) => ({...previous, email: undefined}))}>
-        <Label>{labels.email}</Label>
-        <Input />
-        <FieldError />
-      </TextField>
-      <TextField name="password" type="password" autoComplete={mode === "register" ? "new-password" : "current-password"} isRequired onChange={() => setErrors((previous) => ({...previous, password: undefined}))}>
-        <Label>{labels.password}</Label>
-        <Input />
-        <FieldError />
-      </TextField>
-      <Button type="submit" isPending={pending}>{labels.title}</Button>
+    <Form className="niltavi-email-password__form" method="post" onSubmit={submit} validationBehavior="native" validationErrors={errors}>
+      <fieldset className="niltavi-email-password__fields" disabled={!ready}>
+        <TextField name="email" type="email" autoComplete="email" isRequired onChange={() => setErrors((previous) => clearFieldError(previous, "email"))}>
+          <Label>{labels.email}</Label>
+          <Input />
+          <FieldError />
+        </TextField>
+        <TextField name="password" type="password" autoComplete={mode === "register" ? "new-password" : "current-password"} isRequired onChange={() => setErrors((previous) => clearFieldError(previous, "password"))}>
+          <Label>{labels.password}</Label>
+          <Input />
+          <FieldError />
+        </TextField>
+        <Button type="submit" isPending={pending}>{labels.title}</Button>
+      </fieldset>
       {errors.message && <p role="alert">{errors.message}</p>}
     </Form>
-    <Link href={alternate.href} onClick={alternate.onClick}>{alternate.label}</Link>
+    <Link href={alternate.href} {...(alternate.onClick ? {onClick: alternate.onClick} : {})}>{alternate.label}</Link>
   </section>;
 }

@@ -18,7 +18,7 @@ Use an authorized checkout of a specific Niltavi UI commit. Import [the theme en
 - For hosted products, pass a localized `signIn` link to put the secondary action immediately before the controls.
 - Use `ProductFooter` with the two existing Niltavi wordmark assets in [docs/assets](../assets).
 
-Use [EmailPasswordForm](../../src/product/EmailPasswordForm.tsx) on separate sign-in and registration routes. It sends only the typed email and password to the callback. Handle server errors in the callback and navigate to any email verification step after registration. Keep account creation, verification, and authorization in the applicable production service.
+Use [EmailPasswordForm](../../src/product/EmailPasswordForm.tsx) on separate sign-in and registration routes. The form declares POST and stays disabled until its client submit handler is ready. It sends only the typed email and password to the callback. Handle server errors in the callback and navigate to any email verification step after registration. Keep account creation, verification, and authorization in the applicable production service.
 
 ## Verify a change
 

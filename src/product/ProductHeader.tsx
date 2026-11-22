@@ -61,7 +61,7 @@ export function ProductHeader({brand, theme, onToggleTheme, locale, locales, onN
           <Button className="niltavi-product-header__control" isIconOnly size="sm" variant="ghost" aria-label={theme === "light" ? labels.dark : labels.light} onPress={onToggleTheme}>
             <ThemeIcon {...controlIcon} />
           </Button>
-          <LanguageControl locale={locale} locales={locales} onNavigateLocale={onNavigateLocale} label={labels.language} />
+          <LanguageControl locale={locale} locales={locales} label={labels.language} {...(onNavigateLocale ? {onNavigateLocale} : {})} />
           <Link className={`${buttonVariants({isIconOnly: true, size: "sm", variant: "ghost"})} niltavi-product-header__control`} href={githubHref} aria-label={labels.github}>
             <LogoGithub {...controlIcon} />
           </Link>

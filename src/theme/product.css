@@ -104,10 +104,11 @@
 
   .niltavi-email-password h2 { font-size: 1.25rem; font-weight: 600; }
 
-  .niltavi-email-password__fields {
+  .niltavi-email-password__form, .niltavi-email-password__fields {
     display: grid;
     gap: calc(var(--spacing) * 3);
   }
 
-  .niltavi-email-password__fields [role="alert"] { color: var(--danger); }
+  .niltavi-email-password__fields { min-width: 0; margin: 0; padding: 0; border: 0; }
+  .niltavi-email-password__form [role="alert"] { color: var(--danger); }
 }

@@ -8,8 +8,8 @@ export const siteUrl = "https://ui.niltavi.com/";
 export const repoUrl = "https://github.com/niltavi/niltavi-ui";
 
 export const installCommands = {
-  project: `npx skills add niltavi/niltavi-ui`,
-  global: `npx skills add niltavi/niltavi-ui -g`,
+  project: `npx skills add niltavi/niltavi-ui --skill niltavi-ui`,
+  global: `npx skills add niltavi/niltavi-ui --skill niltavi-ui -g`,
   manual: `git clone --depth 1 https://github.com/niltavi/niltavi-ui.git /tmp/niltavi-ui\nmkdir -p .claude/skills\ncp -R /tmp/niltavi-ui/skills/niltavi-ui .claude/skills/`,
 };
 

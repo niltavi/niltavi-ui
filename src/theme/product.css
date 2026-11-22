@@ -1,0 +1,113 @@
+@layer components {
+  .niltavi-container {
+    box-sizing: border-box;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
+  @media (min-width: 576px) { .niltavi-container { max-width: 540px; } }
+  @media (min-width: 768px) { .niltavi-container { max-width: 720px; } }
+  @media (min-width: 992px) { .niltavi-container { max-width: 960px; } }
+  @media (min-width: 1200px) { .niltavi-container { max-width: 1140px; } }
+  @media (min-width: 1400px) { .niltavi-container { max-width: 1320px; } }
+
+  .niltavi-product-header {
+    background: var(--background);
+    border-block-end: var(--border-width) solid var(--separator);
+  }
+
+  .niltavi-product-header__inner {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+    min-height: calc(var(--spacing) * 15);
+  }
+
+  .niltavi-product-header__inner--full {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
+  .niltavi-project-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    color: var(--foreground);
+    font: 500 20px / 1 var(--font-sans);
+    text-decoration: none;
+  }
+
+  .niltavi-project-brand__symbol {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+  }
+
+  .niltavi-project-brand__symbol > :is(img, svg) {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .niltavi-project-brand__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .niltavi-project-brand:focus-visible, .niltavi-product-footer a:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  .niltavi-product-header__actions, .niltavi-product-header__controls {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+
+  .niltavi-product-header__actions {
+    margin-inline-start: auto;
+    gap: calc(var(--spacing) * 2);
+  }
+
+  .niltavi-product-header__controls {
+    gap: 4px;
+  }
+
+  .niltavi-product-header__controls > .niltavi-product-header__control {
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+
+  .niltavi-product-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-block: calc(var(--spacing) * 5);
+  }
+
+  .niltavi-product-footer__dark { display: none; }
+  :is(.dark, [data-theme="dark"]) .niltavi-product-footer__light { display: none; }
+  :is(.dark, [data-theme="dark"]) .niltavi-product-footer__dark { display: block; }
+
+  .niltavi-email-password {
+    display: grid;
+    width: 100%;
+    max-width: 22rem;
+    gap: calc(var(--spacing) * 4);
+  }
+
+  .niltavi-email-password h2 { font-size: 1.25rem; font-weight: 600; }
+
+  .niltavi-email-password__fields {
+    display: grid;
+    gap: calc(var(--spacing) * 3);
+  }
+
+  .niltavi-email-password__fields [role="alert"] { color: var(--danger); }
+}

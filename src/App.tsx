@@ -141,7 +141,6 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
         {isHome && <div className="site-intro">
           <h1>Niltavi UI</h1>
           <p>{siteDescriptions[locale]}</p>
-          <a href="/llms.txt">{text("Install with an agent", "让 Agent 安装")}</a>
         </div>}
         <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
           {route.page === "components" ? <Showcase query={query} section={route.section} isHome={isHome} /> : route.page === "templates" ? <Templates section={route.section} /> : route.page === "palette" ? <Palette mode={mode} section={route.section} /> : route.page === "skills" ? <Skills section={route.section} /> : <Editorial page={route.page} section={route.section} />}

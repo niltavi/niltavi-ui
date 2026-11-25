@@ -82,6 +82,10 @@ body {
 .preview-main:focus { outline: none; }
 .preview-header { position: sticky; top: 0; z-index: 20; }
 .preview-header .niltavi-product-header__inner { min-height: var(--site-header-height); gap: calc(var(--spacing) * 5); }
+.preview-header .niltavi-project-brand__symbol { width: auto; height: auto; }
+.niltavi-wordmark { font-size: 24px; font-weight: 600; letter-spacing: -1.2px; line-height: 1; white-space: nowrap; }
+.niltavi-wordmark__dot { color: var(--rufous); }
+.preview-header .niltavi-project-brand__name { color: var(--secondary-foreground); font-size: 14px; font-weight: 600; letter-spacing: .08em; }
 .primary-nav { display: flex; align-self: stretch; gap: calc(var(--spacing) * 5); }
 .primary-nav a { display: inline-flex; align-items: center; position: relative; font-size: .875rem; font-weight: 500; color: var(--muted); text-decoration: none; }
 .primary-nav a[aria-current] { color: var(--foreground); }

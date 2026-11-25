@@ -1,4 +1,3 @@
-import {Palette as PaletteIcon} from "@gravity-ui/icons";
 import {ListBox, SearchField, Select, Toast} from "@heroui/react";
 import {lazy, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
 import {I18nProvider} from "react-aria";
@@ -91,7 +90,7 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
     <a href="#main-content" className="skip-link" onClick={(event) => {event.preventDefault(); document.getElementById("main-content")?.focus();}}>{text("Skip to content", "跳到内容")}</a>
     <ProductHeader className="preview-header"
       brand={{
-        name: "UI", href: localizedHref(locale), symbol: <PaletteIcon width={32} height={32} />,
+        name: "UI", href: localizedHref(locale), symbol: <span className="niltavi-wordmark">niltavi<span className="niltavi-wordmark__dot">.</span></span>,
         onClick: (event) => {
           if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
           event.preventDefault();

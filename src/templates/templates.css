@@ -142,8 +142,9 @@
 .tpl-chat-extra { display: flex; }
 
 /* CRM */
-.tpl-board { display: grid; grid-template-columns: repeat(4, minmax(180px, 1fr)); gap: 12px; overflow-x: auto; }
-.tpl-board__col { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 10px; border-radius: var(--radius-2xl); background: var(--surface-tertiary); }
+/* Lanes keep a readable width; when four do not fit, the board scrolls sideways and snaps to a lane. */
+.tpl-board { display: grid; grid-template-columns: repeat(4, minmax(240px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; scrollbar-width: var(--scrollbar-width); scrollbar-color: var(--scrollbar-color); }
+.tpl-board__col { scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 10px; border-radius: var(--radius-2xl); background: var(--surface-tertiary); }
 .tpl-board__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 2px 2px 4px; }
 .tpl-deal { gap: 10px; padding: 12px; }
 .tpl-deal .tpl-mail-item__top { flex-wrap: wrap; row-gap: 6px; }
@@ -188,7 +189,7 @@
   .tpl-content--flush { padding: 0; }
   .tpl-split--mail .tpl-list, .tpl-split--chat .tpl-list { display: none; }
   .tpl-split--mail, .tpl-split--chat { grid-template-columns: minmax(0, 1fr); }
-  .tpl-board { grid-template-columns: repeat(4, 200px); }
+  .tpl-board { grid-template-columns: repeat(4, 240px); }
   .tpl-spending { flex-direction: column; align-items: stretch; }
   .tpl-donut { align-self: center; }
   .tpl-topbar__title p { display: none; }

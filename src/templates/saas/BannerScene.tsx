@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import "./vendor/niltavi-banner/screenprint.js";
 
-type BannerSettings = {seed?: string; wobble?: number; grain?: number};
+type BannerSettings = {seed?: string; wobble?: number; grain?: number; paper?: string};
 type NiltaviBanner = {width: number; height: number; drawPoster: (context: CanvasRenderingContext2D, settings?: BannerSettings) => void};
 
 const banner = (globalThis as typeof globalThis & {NiltaviBanner: NiltaviBanner}).NiltaviBanner;
@@ -16,8 +16,12 @@ export function BannerScene() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const context = canvasRef.current?.getContext("2d", {willReadFrequently: true});
-    if (context) banner.drawPoster(context, {seed});
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d", {willReadFrequently: true});
+    if (!canvas || !context) return;
+    // Print on the theme's paper token so the poster matches the Niltavi palette.
+    const paper = getComputedStyle(canvas).getPropertyValue("--color-paper").trim();
+    banner.drawPoster(context, paper ? {seed, paper} : {seed});
   }, [seed]);
 
   return <canvas ref={canvasRef} className="nt-banner" width={banner.width} height={banner.height} data-seed={seed} aria-hidden="true" />;

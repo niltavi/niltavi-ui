@@ -3,8 +3,7 @@
 
   const width = 1024;
   const height = 1536;
-  const defaults = Object.freeze({ seed: '2564', wobble: 48, grain: 56 });
-  const paper = '#faf3e3';
+  const defaults = Object.freeze({ seed: '2564', wobble: 48, grain: 56, paper: '#faf3e3' });
   const inks = ['#2e8246', '#a0c84c', '#0498b8', '#f6ca35'];
   const contrastingInk = [[1, 3], [0, 2], [1, 3], [0, 2]];
   const shapeGrid = [
@@ -231,7 +230,7 @@
     }
   }
 
-  function drawSprig(context, random) {
+  function drawSprig(context, random, paper) {
     context.save();
     context.translate(between(random, 19, 27), between(random, 41, 49));
     context.rotate(between(random, 0.16, 0.45));
@@ -252,7 +251,7 @@
     context.restore();
   }
 
-  function drawGrain(context, path, points, random, amount) {
+  function drawGrain(context, path, points, random, amount, paper) {
     if (amount === 0) return;
     context.save();
     context.clip(path);
@@ -279,7 +278,7 @@
     context.restore();
   }
 
-  function drawMotif(context, motif, seed, wobble, grain) {
+  function drawMotif(context, motif, seed, wobble, grain, paper) {
     const random = randomFrom(seed + '|motif');
     const points = outline(motif.shape, randomFrom(seed + '|edge'), wobble);
     const path = trace(points, true);
@@ -313,14 +312,14 @@
       context.ellipse(22, 22, 23, 35, 0.32, 0, tau);
       context.fill();
       context.restore();
-      drawSprig(context, random);
+      drawSprig(context, random, paper);
     }
     context.restore();
     if (motif.overhang && rows) {
       context.strokeStyle = patternInk;
       drawOverhangs(context, points, rows, randomFrom(seed + '|overhang'));
     }
-    drawGrain(context, path, points, randomFrom(seed + '|grain'), grain);
+    drawGrain(context, path, points, randomFrom(seed + '|grain'), grain, paper);
     context.restore();
   }
 
@@ -332,6 +331,7 @@
     const seed = normalizeSeed(settings.seed);
     const wobble = normalizeAmount(settings.wobble, defaults.wobble);
     const grain = normalizeAmount(settings.grain, defaults.grain);
+    const paper = typeof settings.paper === 'string' && settings.paper.trim() ? settings.paper : defaults.paper;
     const scale = canvasWidth / width;
     if (scale !== 1) {
       context.save();
@@ -341,7 +341,7 @@
       context.fillStyle = paper;
       context.fillRect(0, 0, width, height);
       createPosterLayout(seed).forEach((motif, index) => {
-        drawMotif(context, motif, seed + '|' + index, wobble, grain);
+        drawMotif(context, motif, seed + '|' + index, wobble, grain, paper);
       });
     } finally {
       if (scale !== 1) context.restore();

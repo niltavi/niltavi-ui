@@ -1,6 +1,9 @@
-import {ListBox, SearchField, Select, Toast} from "@heroui/react";
-import {lazy, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
+import {ArrowUp, Globe, LogoGithub, Moon, Sun} from "@gravity-ui/icons";
+import {Button, Dropdown, Header, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Tabs, Toast} from "@heroui/react";
+import {buttonVariants} from "@heroui/styles";
+import {Fragment, lazy, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
 import {I18nProvider} from "react-aria";
+import {Link as ButtonLink} from "react-aria-components";
 
 import {useActiveSection} from "./site/useActiveSection";
 import {paletteSections} from "./site/paletteCatalog";
@@ -9,18 +12,34 @@ import {LocaleContext, useText, type Locale} from "./site/Locale";
 import {pages, parseRoute, routeHref, scrollToSection, type Page} from "./site/navigation";
 import {editorialContent} from "./site/editorialContent";
 import {skillSections} from "./site/skillsContent";
-import {templateSections} from "./templates/catalog";
-import {ProductFooter, ProductHeader} from "./product/ProductHeader";
+import {templateGroups} from "./templates/catalog";
 import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey} from "./product/theme";
 import {localeFromPath, localizedHref, siteDescriptions, siteOrigin, siteTitles} from "./site/localizedUrls";
-import lightLogo from "../docs/assets/niltavi-logo-light.svg";
-import darkLogo from "../docs/assets/niltavi-logo-dark.svg";
 
 const Showcase = lazy(() => import("./showcase/Showcase"));
 const Palette = lazy(() => import("./site/Palette"));
 const Editorial = lazy(() => import("./site/Editorial"));
 const Skills = lazy(() => import("./site/Skills"));
 const Templates = lazy(() => import("./templates/Templates"));
+
+type TocEntry = {id: string; label: string; group?: string};
+
+/** Consecutive entries that share a group heading. */
+function groupEntries(entries: TocEntry[]) {
+  const groups: {group?: string; items: TocEntry[]}[] = [];
+  for (const entry of entries) {
+    const last = groups.at(-1);
+    if (last && last.group === entry.group) last.items.push(entry);
+    else groups.push({group: entry.group, items: [entry]});
+  }
+  return groups;
+}
+
+function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
+  const Component = {sun: Sun, moon: Moon, "arrow-up": ArrowUp}[name];
+  return <Component aria-hidden="true" focusable="false" width={18} height={18} />;
+}
+
 function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: string) => void}) {
   const text = useText();
   const [mode, setMode] = useState(preferredTheme);
@@ -59,10 +78,10 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", siteOrigin + localizedHref(locale));
   }, [isHome, locale, route.page, text]);
 
-  const entries = route.page === "components"
+  const entries: TocEntry[] = route.page === "components"
     ? catalog.filter((component) => matchesComponent(component, query)).map((component) => ({id: component.id, label: text(component.name, component.zh)}))
     : route.page === "templates"
-      ? templateSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
+      ? templateGroups.flatMap((group) => group.items.map((section) => ({id: section.id, label: text(section.en, section.zh), group: text(group.en, group.zh)})))
     : route.page === "palette"
       ? paletteSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
       : (route.page === "skills" ? skillSections : editorialContent[route.page].sections).map((section) => ({id: section.id, label: text(section.title.en, section.title.zh)}));
@@ -88,59 +107,75 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
   return <>
     <Toast.Provider />
     <a href="#main-content" className="skip-link" onClick={(event) => {event.preventDefault(); document.getElementById("main-content")?.focus();}}>{text("Skip to content", "跳到内容")}</a>
-    <ProductHeader className="preview-header"
-      brand={{
-        name: "UI", href: localizedHref(locale), symbol: <span className="niltavi-wordmark">niltavi<span className="niltavi-wordmark__dot">.</span></span>,
-        onClick: (event) => {
+    <header id="page-top" tabIndex={-1} className="preview-header">
+      <div className="preview-header__inner niltavi-container">
+        <a href={localizedHref(locale)} className="preview-brand" aria-label="Niltavi UI" onClick={(event) => {
           if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
           event.preventDefault();
           if (hash) changeLocale(localizedHref(locale));
           window.scrollTo({top: 0});
-        },
-      }}
-      theme={mode}
-      onToggleTheme={() => {
-        const next = mode === "light" ? "dark" : "light";
-        saveTheme(next);
-        setMode(next);
-      }}
-      locale={locale}
-      locales={[
-        {locale: "en", label: "English", href: localizedHref("en", hash)},
-        {locale: "zh-CN", label: "简体中文", href: localizedHref("zh-CN", hash)},
-      ]}
-      onNavigateLocale={changeLocale}
-      githubHref="https://github.com/niltavi/niltavi-ui"
-      labels={{light: text("Switch to light theme", "切换浅色主题"), dark: text("Switch to dark theme", "切换深色主题"), language: text("Language", "语言"), github: text("GitHub repository", "GitHub 仓库")}}>
-      <nav className="primary-nav" aria-label={text("Main navigation", "主导航")}>
-        {pages.map((page) => <a key={page.id} href={routeHref(page.id)} aria-current={!isHome && route.page === page.id ? "page" : undefined} onClick={(event) => navigateLink(event, page.id)}>{text(page.en, page.zh)}</a>)}
-      </nav>
-    </ProductHeader>
+        }}>niltavi<span className="preview-brand__dot">.</span><span className="preview-brand__label">UI</span></a>
+        {/* Tabs always hold a selection; on the home page the indicator is hidden so no page reads as current. */}
+        <Tabs className="primary-nav" selectedKey={route.page} data-idle={isHome || undefined}>
+          <Tabs.ListContainer>
+            <Tabs.List aria-label={text("Main navigation", "主导航")}>
+              {pages.map((page) => <Tabs.Tab key={page.id} id={page.id} href={routeHref(page.id)}
+                onPress={() => { if (hash === routeHref(page.id)) navigate(page.id); }}>{text(page.en, page.zh)}<Tabs.Indicator /></Tabs.Tab>)}
+            </Tabs.List>
+          </Tabs.ListContainer>
+        </Tabs>
+        <Surface className="surface--controls preview-controls">
+          <Button isIconOnly size="sm" variant="ghost" aria-label={mode === "light" ? text("Switch to dark theme", "切换深色主题") : text("Switch to light theme", "切换浅色主题")} onPress={() => {
+            const next = mode === "light" ? "dark" : "light";
+            saveTheme(next);
+            setMode(next);
+          }}><Icon name={mode === "light" ? "moon" : "sun"} /></Button>
+          <Dropdown>
+            <Button isIconOnly size="sm" variant="ghost" aria-label={text("Language", "语言")}><Globe aria-hidden="true" width={18} height={18} /></Button>
+            <Dropdown.Popover placement="bottom end">
+              <Dropdown.Menu aria-label={text("Language", "语言")} selectionMode="single" disallowEmptySelection selectedKeys={[locale]} onSelectionChange={(keys) => {const next = [...keys][0]; if (next === "en" || next === "zh-CN") changeLocale(localizedHref(next, hash));}}>
+                <Dropdown.Item id="zh-CN" textValue="简体中文"><Label lang="zh-CN">简体中文</Label><Dropdown.ItemIndicator /></Dropdown.Item>
+                <Dropdown.Item id="en" textValue="English"><Label lang="en">English</Label><Dropdown.ItemIndicator /></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown.Popover>
+          </Dropdown>
+          <ButtonLink className={buttonVariants({isIconOnly: true, size: "sm", variant: "ghost"})} href="https://github.com/niltavi/niltavi-ui" target="_blank" rel="noopener noreferrer" aria-label={text("GitHub repository", "GitHub 仓库")}><LogoGithub aria-hidden="true" width={18} height={18} /></ButtonLink>
+        </Surface>
+      </div>
+    </header>
     <div className="site-layout niltavi-container">
       <aside className="site-sidebar">
         {route.page === "components" && <SearchField aria-label={text("Search components", "搜索组件")} className="showcase-search" value={query} onChange={setQuery}>
           <SearchField.Group><SearchField.SearchIcon /><SearchField.Input placeholder={text("Search…", "搜索…")} /><SearchField.ClearButton aria-label={text("Clear search", "清空搜索")} /></SearchField.Group>
         </SearchField>}
         <nav className="toc-links" aria-label={text("On this page", "本页目录")}>
-          {entries.map((entry) => <a key={entry.id} href={routeHref(route.page, entry.id)} aria-current={currentSection === entry.id ? "location" : undefined} onClick={(event) => navigateLink(event, route.page, entry.id)}>{entry.label}</a>)}
+          {entries.map((entry, index) => <Fragment key={entry.id}>
+            {entry.group && entry.group !== entries[index - 1]?.group && <span className="toc-heading">{entry.group}</span>}
+            <a href={routeHref(route.page, entry.id)} aria-current={currentSection === entry.id ? "location" : undefined} onClick={(event) => navigateLink(event, route.page, entry.id)}>{entry.label}</a>
+          </Fragment>)}
         </nav>
         <Select placeholder={text("Contents", "目录")} isDisabled={entries.length === 0} className="toc-mobile" aria-label={text("On this page", "本页目录")} value={currentSection ?? null} onChange={(key) => {if (typeof key === "string") navigate(route.page, key);}}>
           <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
-          <Select.Popover><ListBox>{entries.map((entry) => <ListBox.Item key={entry.id} id={entry.id} textValue={entry.label}>{entry.label}<ListBox.ItemIndicator /></ListBox.Item>)}</ListBox></Select.Popover>
+          <Select.Popover><ListBox>{groupEntries(entries).map(({group, items}) => {
+            const options = items.map((entry) => <ListBox.Item key={entry.id} id={entry.id} textValue={entry.label}>{entry.label}<ListBox.ItemIndicator /></ListBox.Item>);
+            return group ? <ListBox.Section key={group}><Header>{group}</Header>{options}</ListBox.Section> : options;
+          })}</ListBox></Select.Popover>
         </Select>
       </aside>
       <main id="main-content" tabIndex={-1} className="preview-main">
         {isHome && <div className="site-intro">
           <h1>Niltavi UI</h1>
           <p>{siteDescriptions[locale]}</p>
-          <a href="/llms.txt">{text("Install with an agent", "让 Agent 安装")}</a>
         </div>}
-        <Suspense fallback={<p role="status">{text("Loading examples…", "正在加载示例…")}</p>}>
+        <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
           {route.page === "components" ? <Showcase query={query} section={route.section} isHome={isHome} /> : route.page === "templates" ? <Templates section={route.section} /> : route.page === "palette" ? <Palette mode={mode} section={route.section} /> : route.page === "skills" ? <Skills section={route.section} /> : <Editorial page={route.page} section={route.section} />}
         </Suspense>
+        <footer className="preview-footer">
+          <Link href="https://niltavi.com">niltavi.com</Link>
+          <Button isIconOnly variant="ghost" aria-label={text("Back to top", "回到顶部")} onPress={() => {window.scrollTo({top: 0}); document.getElementById("page-top")?.focus({preventScroll: true});}}><Icon name="arrow-up" /></Button>
+        </footer>
       </main>
     </div>
-    <ProductFooter lightLogo={lightLogo} darkLogo={darkLogo} />
   </>;
 }
 

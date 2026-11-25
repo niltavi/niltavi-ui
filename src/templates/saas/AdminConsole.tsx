@@ -1,11 +1,9 @@
 import {Bell, ChartColumn, CreditCard, Ellipsis, Envelope, Gear, House, Layers, Lock, Persons, PersonPlus, Shield} from "@gravity-ui/icons";
-import {Alert, Breadcrumbs, Button, Card, Chip, Description, Dropdown, Input, Label, Link, ListBox, Modal, Select, Switch, Table, TextField, toast} from "@heroui/react";
+import {Breadcrumbs, Button, Card, Chip, Description, Dropdown, Input, Label, ListBox, Modal, Select, Switch, Table, TextField, toast} from "@heroui/react";
 import {useMemo, useState} from "react";
 import {useText} from "../../site/Locale";
 import {Delta, PersonAvatar, Segmented} from "../shell";
-import {EmailPasswordForm} from "../../product/EmailPasswordForm";
-import {ProjectBrand} from "../../product/ProductHeader";
-import {AuthLayout, ResetPasswordScreen, SignOutDialog, workspaceBrand} from "./Auth";
+import {AuthLayout, ResetPasswordScreen, SignInScreen, SignOutDialog} from "./Auth";
 import {AppSidebar, CommandMenu, CommandTrigger, CreateMenu, UserMenu, WorkspaceSwitcher, useDefaultCommands, type SidebarGroup} from "./Navigation";
 
 type Role = "owner" | "admin" | "member" | "viewer";
@@ -218,20 +216,13 @@ export function AdminConsole({onSignOut, account = "lin@niltavi.com"}: {onSignOu
   };
 
   return <div className="nt-console" data-collapsed={collapsed || undefined}>
-    <header className="nt-console__brand">
-      <ProjectBrand {...workspaceBrand} onClick={(event) => {
-        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-        event.preventDefault();
-        setPage("overview");
-      }} />
-    </header>
     <AppSidebar groups={groups} active={page} onNavigate={setPage} collapsed={collapsed} onCollapsedChange={setCollapsed}
       header={<WorkspaceSwitcher compact={collapsed} />}
       footer={<UserMenu showName={!collapsed} placement="top start" email={account} onSignOut={() => setSignOutOpen(true)} onAction={(k) => k === "settings" && setPage("settings")} />} />
     <div className="nt-console__main">
       <header className="nt-console__top">
         <Breadcrumbs className="nt-crumbs">
-          <Breadcrumbs.Item href="#/templates/saas" onClick={(e) => { e.preventDefault(); setPage("overview"); }}>{text("Overview", "概览")}</Breadcrumbs.Item>
+          <Breadcrumbs.Item href="#" onClick={(e) => { e.preventDefault(); setPage("overview"); }}>Niltavi</Breadcrumbs.Item>
           {"parent" in (title ?? {}) && <Breadcrumbs.Item href="#" onClick={(e) => e.preventDefault()}>{(title as {parent: string}).parent}</Breadcrumbs.Item>}
           <Breadcrumbs.Item>{title?.label ?? ""}</Breadcrumbs.Item>
         </Breadcrumbs>
@@ -240,7 +231,7 @@ export function AdminConsole({onSignOut, account = "lin@niltavi.com"}: {onSignOu
           <CreateMenu onAction={run} />
         </div>
       </header>
-      <div className="nt-console__body">
+      <div className="nt-console__body" key={page}>
         {page === "members" ? <MembersPage inviteOpen={inviteOpen} setInviteOpen={setInviteOpen} />
           : page === "settings" || page === "security" || page === "billing" ? <SettingsPage section={page} />
           : <OverviewPage />}
@@ -252,53 +243,21 @@ export function AdminConsole({onSignOut, account = "lin@niltavi.com"}: {onSignOu
 }
 
 /**
- * Account form and workspace layout demonstration. Account state stays local.
+ * SaaS back office in one window: sign in (code or password), reset password,
+ * the admin console, and sign out back to the start.
  */
 export function SaasTemplate() {
   const text = useText();
-  const [view, setView] = useState<"signin" | "register" | "reset" | "app">("signin");
+  const [view, setView] = useState<"signin" | "reset" | "app">("signin");
   const [account, setAccount] = useState("lin@niltavi.com");
   const [notice, setNotice] = useState("");
   return <div className="nt-saas" data-view={view}>
     {view === "app"
       ? <div className="nt-saas__app nt-fade-in"><AdminConsole account={account} onSignOut={() => { setNotice(text("Signed out.", "已退出登录")); setView("signin"); }} /></div>
       : <AuthLayout>
-        {view === "reset"
-          ? <ResetPasswordScreen key="reset" onBack={() => setView("signin")} onDone={() => { setNotice(text("Password updated.", "密码已更新")); setView("signin"); }} />
-          : <EmailPasswordForm key={view}
-            mode={view === "signin" ? "sign-in" : "register"}
-            labels={{
-              title: view === "signin" ? text("Sign in", "登录") : text("Create account", "注册"),
-              email: text("Email", "邮箱"), password: text("Password", "密码"), retry: text("Try again.", "请重试。"),
-            }}
-            alternate={{
-              href: "#/templates/saas",
-              label: view === "signin" ? text("Create an account", "注册账号") : text("Back to sign in", "返回登录"),
-              onClick: (event) => {
-                event.preventDefault();
-                setNotice("");
-                setView(view === "signin" ? "register" : "signin");
-              },
-            }}
-            onSubmit={async ({email, password}) => {
-              if (password.length < 8) return {password: text("Use at least 8 characters.", "密码至少需要 8 位。")};
-              if (view === "register") {
-                setNotice(text("Demo registration complete. Sign in to open the workspace.", "演示注册完成。登录后即可打开工作区。"));
-                setView("signin");
-                return;
-              }
-              setAccount(email);
-              setNotice("");
-              setView("app");
-            }}>
-              <p>{text("Demo form. It does not create a live account.", "这是演示表单，不会创建实际账号。")}</p>
-              {notice && <Alert status="success"><Alert.Indicator /><Alert.Content><Alert.Description>{notice}</Alert.Description></Alert.Content></Alert>}
-              {view === "signin" && <Link href="#/templates/saas" onClick={(event) => {
-                event.preventDefault();
-                setNotice("");
-                setView("reset");
-              }}>{text("Forgot password?", "忘记密码？")}</Link>}
-            </EmailPasswordForm>}
+        {view === "signin"
+          ? <SignInScreen key="signin" notice={notice} onSignedIn={(a) => { if (a) setAccount(a); setNotice(""); setView("app"); }} onForgot={() => { setNotice(""); setView("reset"); }} />
+          : <ResetPasswordScreen key="reset" onBack={() => setView("signin")} onDone={() => { setNotice(text("Password updated.", "密码已更新")); setView("signin"); }} />}
       </AuthLayout>}
   </div>;
 }

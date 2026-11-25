@@ -125,6 +125,11 @@
 .nt-widget__grip { color: var(--muted); }
 .nt-widget__actions { display: flex; margin-left: auto; }
 .nt-widget[data-mode="full"] .nt-chat__inner, .nt-widget[data-mode="full"] .nt-chat__footer { width: min(760px, 100%); }
+/* Contained: the widget lives inside a positioned size container instead of the window. */
+.nt-widget[data-contained] { position: absolute; z-index: 5; }
+.nt-widget[data-contained] .nt-widget__panel { width: min(380px, 100cqw - 32px); height: min(520px, 100cqh - 32px); }
+.nt-widget[data-contained][data-mode="tall"] .nt-widget__panel { width: min(420px, 100cqw - 32px); height: calc(100cqh - 32px); }
+.nt-widget[data-contained][data-mode="full"] .nt-widget__panel { width: 100%; height: 100%; }
 @media (prefers-reduced-motion: reduce) { .nt-widget, .nt-widget__panel, .nt-widget__fab { transition: none; animation: none; } }
 [data-reduce-motion="true"] :is(.nt-widget, .nt-widget__panel, .nt-widget__fab) { transition: none; animation: none; }
 
@@ -135,48 +140,15 @@
 
 /* Signed-out shell: brand panel + the active account screen */
 .nt-authlayout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); height: 100%; }
-.nt-authlayout__brand {
-  --forest-air-top: var(--color-sage-200); --forest-air-low: var(--color-sage-50);
-  --forest-far: color-mix(in oklab, var(--color-sage-300) 55%, var(--color-sage-200)); --forest-mid: var(--color-sage-400); --forest-near: var(--color-sage-600);
-  --forest-ground: var(--color-sage-100); --forest-shade: var(--color-sage-200); --forest-path: var(--background);
-  --forest-mist: var(--background); --forest-beam: var(--white);
-  --bird-back: var(--color-niltava-600); --bird-patch: var(--color-niltava-300); --bird-tail: var(--color-niltava-800);
-  --bird-breast: var(--color-rufous-400); --bird-beak: var(--color-throat-800);
-  position: relative; overflow: hidden; background: var(--forest-air-low);
-}
-:root[data-theme="dark"] .nt-authlayout__brand {
-  --forest-air-top: var(--color-sage-975); --forest-air-low: color-mix(in oklab, var(--color-sage-900) 60%, var(--background));
-  --forest-far: var(--color-sage-900); --forest-mid: color-mix(in oklab, var(--color-sage-950) 70%, var(--color-sage-900)); --forest-near: var(--color-sage-975);
-  --forest-ground: color-mix(in oklab, var(--color-sage-950) 60%, var(--background)); --forest-shade: var(--color-sage-975); --forest-path: var(--color-sage-800);
-  --forest-mist: color-mix(in oklab, var(--color-sage-700) 45%, var(--background)); --forest-beam: var(--color-sage-200);
-  --bird-back: var(--color-niltava-500); --bird-patch: var(--color-niltava-300); --bird-tail: var(--color-niltava-700);
-  --bird-breast: var(--color-rufous-400); --bird-beak: var(--color-throat-975);
-}
-.nt-forest { position: absolute; inset: 0; width: 100%; height: 100%; }
-.nt-forest__air-top { stop-color: var(--forest-air-top); }
-.nt-forest__air-low { stop-color: var(--forest-air-low); }
-.nt-forest__mist-stop { stop-color: var(--forest-mist); }
-.nt-forest__fade-stop { stop-color: var(--background); }
-.nt-forest__far { fill: var(--forest-far); }
-.nt-forest__mid { fill: var(--forest-mid); }
-.nt-forest__near { fill: var(--forest-near); }
-.nt-forest__ground { fill: var(--forest-ground); }
-.nt-forest__shade { fill: var(--forest-shade); }
-.nt-forest__path { fill: var(--forest-path); }
-.nt-forest__beams { fill: var(--forest-beam); opacity: .3; animation: nt-forest-breathe 18s ease-in-out infinite alternate; }
-:root[data-theme="dark"] .nt-forest__beams { --beam-low: .06; --beam-high: .13; opacity: .1; }
-@keyframes nt-forest-breathe {
-  from { opacity: var(--beam-low, .18); transform: translateX(-4px); }
-  to { opacity: var(--beam-high, .38); transform: translateX(4px); }
-}
-.nt-forest__bird-back { fill: var(--bird-back); }
-.nt-forest__bird-patch { fill: var(--bird-patch); }
-.nt-forest__bird-tail { fill: var(--bird-tail); }
-.nt-forest__bird-breast { fill: var(--bird-breast); }
-.nt-forest__bird-beak { fill: var(--bird-beak); }
-.nt-forest__bird-legs { fill: none; stroke: var(--bird-beak); stroke-width: .9; stroke-linecap: round; }
-@media (prefers-reduced-motion: reduce) { .nt-forest__beams { animation: none; } }
-[data-reduce-motion="true"] .nt-forest__beams { animation: none; }
+/* Poster paper follows the theme: Niltavi paper in light, a quiet night surface in dark.
+   In dark, a translucent night veil also dims the inks; panels lay the same veil over
+   the paper so the poster's edge never shows. */
+:root { --banner-paper: var(--color-paper); --banner-veil: transparent; }
+:is(.dark, [data-theme="dark"]) { --banner-paper: var(--surface-secondary); --banner-veil: color-mix(in srgb, var(--color-throat-975) 35%, transparent); }
+.nt-banner-panel { background: linear-gradient(var(--banner-veil), var(--banner-veil)), var(--banner-paper); }
+.nt-authlayout__brand { position: relative; overflow: hidden; }
+/* The whole poster stays visible; spare room reads as the poster's own paper. */
+.nt-banner { position: absolute; inset: calc(var(--spacing) * 6); display: block; width: calc(100% - var(--spacing) * 12); height: calc(100% - var(--spacing) * 12); object-fit: contain; }
 .nt-authlayout__main { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-width: 0; overflow-y: auto; padding: 32px 24px; }
 @container ntauth (max-width: 720px) {
   .nt-authlayout { grid-template-columns: minmax(0, 1fr); }
@@ -205,6 +177,15 @@
 .nt-auth__step { display: flex; flex-direction: column; gap: 4px; }
 .nt-auth__done { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-block: 12px; text-align: center; }
 .nt-auth__done > svg { color: var(--success); }
+/* Sent-to summary and the line under a code input. */
+.nt-auth__sent { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 6px 10px 14px; border-radius: var(--field-radius, var(--radius-xl)); background: var(--surface); box-shadow: var(--surface-shadow); }
+.nt-auth__sent > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nt-auth__sent span { color: var(--muted); font-size: .75rem; }
+.nt-auth__sent strong { overflow: hidden; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.nt-auth__codehelp { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 32px; }
+.nt-resend { flex-shrink: 0; min-width: 8.5rem; justify-content: center; font-variant-numeric: tabular-nums; }
+.nt-auth__terms { display: flex; flex-direction: column; gap: 6px; font-size: .8125rem; }
+.nt-auth__foot { padding-top: 16px; }
 .nt-steps { display: flex; flex: 1; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .nt-steps li { flex: 1; height: 4px; border-radius: 99px; background: var(--default); overflow: hidden; }
 .nt-steps li::after { content: ""; display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform var(--motion-slow) var(--motion-ease); }
@@ -238,11 +219,17 @@
 .nt-side__subitem { width: 100%; padding: 6px 10px; border: 0; border-radius: var(--radius-lg); background: none; color: var(--muted); font: inherit; text-align: left; cursor: var(--cursor-interactive); }
 .nt-side__subitem:hover { background: var(--default); color: var(--foreground); }
 .nt-side__subitem[aria-current] { color: var(--accent-soft-foreground); font-weight: 500; }
-.nt-side__footer { display: flex; align-items: center; gap: 4px; padding-top: 10px; border-top: 1px solid var(--separator); }
+/* The divider runs edge to edge, meeting the sidebar border. */
+.nt-side__footer { display: flex; align-items: center; align-self: stretch; gap: 4px; margin-inline: -10px; padding: 10px 10px 0; border-top: 1px solid var(--separator); }
 .nt-side[data-collapsed] .nt-side__footer { flex-direction: column; }
 .nt-side__footer > .nt-user { flex: 1; min-width: 0; }
 .nt-side__collapse { flex-shrink: 0; color: var(--muted); }
 .nt-side__header { min-width: 0; }
+/* Collapsed: workspace and account buttons become square and centred on the rail. */
+.nt-side[data-collapsed] :is(.nt-ws, .nt-user) { flex: none; justify-content: center; width: 40px; min-width: 0; height: 40px; min-height: 0; padding: 0; }
+.nt-side__brand { display: flex; align-items: center; gap: 10px; min-height: 40px; padding-inline: 6px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.nt-side[data-collapsed] .nt-side__brand { justify-content: center; padding: 0; }
+.nt-side[data-collapsed] .nt-side__brand > span:last-child { display: none; }
 .nt-side:not([data-collapsed]) .nt-side__header > .nt-ws { width: 100%; }
 
 .nt-ws, .nt-user { justify-content: flex-start; gap: 10px; height: auto; min-height: 40px; padding: 6px; text-align: left; }
@@ -267,12 +254,11 @@
 /* ---------- Admin console & SaaS demo ---------- */
 .nt-saas { container: ntauth / inline-size; height: 100%; }
 .nt-saas__app { height: 100%; }
-.nt-console { container: ntconsole / inline-size; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: 100%; font-size: .875rem; }
-.nt-console__brand { grid-column: 1 / -1; display: flex; align-items: center; min-width: 0; padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4); border-bottom: var(--border-width) solid var(--separator); }
+.nt-console { container: ntconsole / inline-size; display: grid; grid-template-columns: auto minmax(0, 1fr); height: 100%; font-size: .875rem; }
 .nt-console__main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .nt-console__top { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 20px; border-bottom: 1px solid var(--separator); }
 .nt-console__tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.nt-console__body { flex: 1; min-height: 0; overflow-y: auto; padding: 20px; }
+.nt-console__body { flex: 1; min-height: 0; overflow-y: auto; padding: 20px; animation: nt-fade-up var(--motion-base) var(--motion-ease) both; }
 .nt-crumbs { min-width: 0; }
 .nt-page { display: flex; flex-direction: column; gap: 16px; max-width: 960px; }
 .nt-page > * { flex-shrink: 0; }
@@ -301,6 +287,8 @@
   .nt-crumbs { display: none; }
 }
 
+@media (prefers-reduced-motion: reduce) { .nt-console__body { animation: none; } }
+[data-reduce-motion="true"] .nt-console__body { animation: none; }
 
 /* Narrow consoles fold the sidebar to its icon rail without changing state. */
 @container ntconsole (max-width: 640px) {

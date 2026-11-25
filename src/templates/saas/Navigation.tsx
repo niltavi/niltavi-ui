@@ -1,6 +1,6 @@
 import {ArrowRightFromSquare, Book, ChevronDown, ChevronsLeft, ChevronsRight, CircleQuestion, CreditCard, FileText, Gear, Keyboard, Magnifier, Moon, Person, PersonPlus, Plus, Folder} from "@gravity-ui/icons";
 import {Avatar, Button, Dropdown, Header, Kbd, Label, ListBox, Modal, SearchField, Separator, Tooltip} from "@heroui/react";
-import {useEffect, useMemo, useState, type ComponentType, type ReactNode, type SVGProps} from "react";
+import {useEffect, useMemo, useRef, useState, type ComponentType, type ReactNode, type SVGProps} from "react";
 import {useText} from "../../site/Locale";
 
 type Icon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -8,17 +8,37 @@ export type SidebarItem = {id: string; label: string; icon: Icon; badge?: string
 export type SidebarGroup = {id: string; label?: string; items: SidebarItem[]};
 
 /* ---------- Sidebar ---------- */
-export function AppSidebar({groups, active, onNavigate, collapsed, onCollapsedChange, header, footer, label}: {
+/** Folds to the icon rail while the parent is narrower than `below` pixels. */
+function useNarrowParent(below?: number) {
+  const ref = useRef<HTMLElement>(null);
+  const [narrow, setNarrow] = useState(false);
+  useEffect(() => {
+    const parent = ref.current?.parentElement;
+    if (!below || !parent) return;
+    const observer = new ResizeObserver(([entry]) => setNarrow(entry!.contentRect.width < below));
+    observer.observe(parent);
+    return () => observer.disconnect();
+  }, [below]);
+  return [ref, narrow] as const;
+}
+
+export function AppSidebar({groups, active, onNavigate, collapsed: collapsedProp, onCollapsedChange, header, footer, label, autoCollapseBelow}: {
   groups: SidebarGroup[];
   active: string;
   onNavigate: (id: string) => void;
   collapsed?: boolean;
   onCollapsedChange?: (collapsed: boolean) => void;
-  header?: ReactNode;
-  footer?: ReactNode;
+  /** Header and footer may be functions of the effective collapsed state. */
+  header?: ReactNode | ((collapsed: boolean) => ReactNode);
+  footer?: ReactNode | ((collapsed: boolean) => ReactNode);
   label?: string;
+  /** Collapse automatically while the parent is narrower than this many pixels. */
+  autoCollapseBelow?: number;
 }) {
   const text = useText();
+  const [ref, narrow] = useNarrowParent(autoCollapseBelow);
+  const collapsed = collapsedProp || narrow;
+  const slot = (node: typeof header) => typeof node === "function" ? node(!!collapsed) : node;
   const parentOf = (id: string) => groups.flatMap((g) => g.items).find((i) => i.children?.some((c) => c.id === id))?.id;
   const [open, setOpen] = useState<Set<string>>(() => new Set([parentOf(active) ?? ""]));
   const toggle = (id: string) => setOpen((prev) => { const next = new Set(prev); if (next.has(id)) next.delete(id); else next.add(id); return next; });
@@ -42,8 +62,8 @@ export function AppSidebar({groups, active, onNavigate, collapsed, onCollapsedCh
     </li>;
   };
 
-  return <aside className="nt-side" data-collapsed={collapsed || undefined} aria-label={label ?? text("Sidebar", "侧边栏")}>
-    {header && <div className="nt-side__header">{header}</div>}
+  return <aside ref={ref} className="nt-side" data-collapsed={collapsed || undefined} aria-label={label ?? text("Sidebar", "侧边栏")}>
+    {header && <div className="nt-side__header">{slot(header)}</div>}
     <nav className="nt-side__nav">
       {groups.map((g) => <div key={g.id} className="nt-side__group">
         {g.label && <span className="nt-side__heading">{g.label}</span>}
@@ -51,8 +71,8 @@ export function AppSidebar({groups, active, onNavigate, collapsed, onCollapsedCh
       </div>)}
     </nav>
     <div className="nt-side__footer">
-      {footer}
-      {onCollapsedChange && <Button isIconOnly size="sm" variant="ghost" className="nt-side__collapse" aria-label={collapsed ? text("Expand sidebar", "展开侧边栏") : text("Collapse sidebar", "收起侧边栏")} onPress={() => onCollapsedChange(!collapsed)}>
+      {slot(footer)}
+      {onCollapsedChange && !narrow && <Button isIconOnly size="sm" variant="ghost" className="nt-side__collapse" aria-label={collapsed ? text("Expand sidebar", "展开侧边栏") : text("Collapse sidebar", "收起侧边栏")} onPress={() => onCollapsedChange(!collapsed)}>
         {collapsed ? <ChevronsRight aria-hidden="true" width={16} height={16} /> : <ChevronsLeft aria-hidden="true" width={16} height={16} />}
       </Button>}
     </div>

@@ -12,9 +12,8 @@ function publicMetadata(): Plugin {
       handler(html, ctx) {
         const locale = localeFromPath(ctx.path.replace(/index\.html$/, ""));
         const description = siteDescriptions[locale];
-        const installLabel = locale === "en" ? "Install with an agent" : "让 Agent 安装";
         return {
-          html: html.replace("%SITE_DESCRIPTION%", description).replace("%INTRO_DESCRIPTION%", description).replace("%SITE_TITLE%", siteTitles[locale]).replace("%INSTALL_LABEL%", installLabel),
+          html: html.replace("%SITE_DESCRIPTION%", description).replace("%INTRO_DESCRIPTION%", description).replace("%SITE_TITLE%", siteTitles[locale]),
           tags: [
             {tag: "script", injectTo: "head-prepend", children: themeInitialization},
             {tag: "link", attrs: {rel: "canonical", href: siteOrigin + localizedHref(locale)}},

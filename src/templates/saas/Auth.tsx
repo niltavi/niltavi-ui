@@ -3,7 +3,7 @@ import {Alert, AlertDialog, Button, Checkbox, Description, FieldError, Form, Inp
 import {useEffect, useRef, useState, type FormEvent, type ReactNode} from "react";
 import {ProjectBrand, type ProductHeaderProps} from "../../product/ProductHeader";
 import {useText} from "../../site/Locale";
-import {ForestScene} from "./ForestScene";
+import {BannerScene} from "./BannerScene";
 
 import {DEMO_CODE, isEmail as emailOk, isPhone as phoneOk, passwordStrength} from "./validation";
 export {DEMO_CODE, passwordStrength};
@@ -28,7 +28,7 @@ export const workspaceBrand: ProductHeaderProps["brand"] = {
 
 export function AuthLayout({children}: {children: ReactNode}) {
   return <div className="nt-authlayout">
-    <aside className="nt-authlayout__brand"><ForestScene /></aside>
+    <aside className="nt-authlayout__brand"><BannerScene /></aside>
     <main className="nt-authlayout__main">
       <div className="nt-authlayout__logo"><ProjectBrand {...workspaceBrand} /></div>
       {children}

@@ -28,7 +28,7 @@ export const workspaceBrand: ProductHeaderProps["brand"] = {
 
 export function AuthLayout({children}: {children: ReactNode}) {
   return <div className="nt-authlayout">
-    <aside className="nt-authlayout__brand"><BannerScene /></aside>
+    <aside className="nt-authlayout__brand nt-banner-panel"><BannerScene /></aside>
     <main className="nt-authlayout__main">
       <div className="nt-authlayout__logo"><ProjectBrand {...workspaceBrand} /></div>
       {children}

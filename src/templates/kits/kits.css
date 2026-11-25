@@ -72,7 +72,7 @@
 
 /* ---------- Banner ---------- */
 .kit-banner { display: grid; grid-template-columns: minmax(0, 1fr) 320px; min-height: 620px; }
-.kit-banner__stage { position: relative; min-height: 0; background: var(--color-paper); }
+.kit-banner__stage { position: relative; min-height: 0; }
 .kit-banner__canvas { position: absolute; inset: calc(var(--spacing) * 6); display: block; width: calc(100% - var(--spacing) * 12); height: calc(100% - var(--spacing) * 12); object-fit: contain; }
 .kit-banner__controls { display: flex; flex-direction: column; gap: 20px; padding: 24px; border-left: 1px solid var(--separator); font-size: .875rem; }
 .kit-banner__field { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }

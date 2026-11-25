@@ -39,7 +39,8 @@ export function BannerKit() {
   };
 
   return <div className="kit-banner">
-    <div className="kit-banner__stage">
+    {/* The stage matches whichever paper the poster is printed on. */}
+    <div className={paper === "original" ? "kit-banner__stage" : "kit-banner__stage nt-banner-panel"} style={paper === "original" ? {background: banner.defaults.paper} : undefined}>
       <BannerCanvas key={paper} seed={seed} wobble={wobble} grain={grain} paper={paper === "original" ? banner.defaults.paper : undefined}
         className="kit-banner__canvas" canvasRef={canvas} label={text(`Poster, seed ${seed}`, `海报，种子 ${seed}`)} />
     </div>
@@ -57,7 +58,7 @@ export function BannerKit() {
       <div className="kit-banner__field">
         <Label>{text("Paper", "纸色")}</Label>
         <Segmented label={text("Paper", "纸色")} value={paper} onChange={setPaper}
-          options={[{id: "theme", label: text("Niltavi paper", "Niltavi 纸色")}, {id: "original", label: text("Original", "原版")}]} />
+          options={[{id: "theme", label: text("Follow theme", "跟随主题")}, {id: "original", label: text("Original", "原版")}]} />
       </div>
       <div className="kit-banner__actions">
         <Button variant="secondary" onPress={shuffle}><Shuffle aria-hidden="true" width={16} height={16} />{text("Shuffle", "随机")}</Button>

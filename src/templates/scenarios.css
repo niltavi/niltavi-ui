@@ -125,6 +125,11 @@
 .nt-widget__grip { color: var(--muted); }
 .nt-widget__actions { display: flex; margin-left: auto; }
 .nt-widget[data-mode="full"] .nt-chat__inner, .nt-widget[data-mode="full"] .nt-chat__footer { width: min(760px, 100%); }
+/* Contained: the widget lives inside a positioned size container instead of the window. */
+.nt-widget[data-contained] { position: absolute; z-index: 5; }
+.nt-widget[data-contained] .nt-widget__panel { width: min(380px, 100cqw - 32px); height: min(520px, 100cqh - 32px); }
+.nt-widget[data-contained][data-mode="tall"] .nt-widget__panel { width: min(420px, 100cqw - 32px); height: calc(100cqh - 32px); }
+.nt-widget[data-contained][data-mode="full"] .nt-widget__panel { width: 100%; height: 100%; }
 @media (prefers-reduced-motion: reduce) { .nt-widget, .nt-widget__panel, .nt-widget__fab { transition: none; animation: none; } }
 [data-reduce-motion="true"] :is(.nt-widget, .nt-widget__panel, .nt-widget__fab) { transition: none; animation: none; }
 
@@ -166,6 +171,15 @@
 .nt-auth__step { display: flex; flex-direction: column; gap: 4px; }
 .nt-auth__done { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-block: 12px; text-align: center; }
 .nt-auth__done > svg { color: var(--success); }
+/* Sent-to summary and the line under a code input. */
+.nt-auth__sent { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 6px 10px 14px; border-radius: var(--field-radius, var(--radius-xl)); background: var(--surface); box-shadow: var(--surface-shadow); }
+.nt-auth__sent > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nt-auth__sent span { color: var(--muted); font-size: .75rem; }
+.nt-auth__sent strong { overflow: hidden; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.nt-auth__codehelp { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 32px; }
+.nt-resend { flex-shrink: 0; min-width: 8.5rem; justify-content: center; font-variant-numeric: tabular-nums; }
+.nt-auth__terms { display: flex; flex-direction: column; gap: 6px; font-size: .8125rem; }
+.nt-auth__foot { padding-top: 16px; }
 .nt-steps { display: flex; flex: 1; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .nt-steps li { flex: 1; height: 4px; border-radius: 99px; background: var(--default); overflow: hidden; }
 .nt-steps li::after { content: ""; display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform var(--motion-slow) var(--motion-ease); }
@@ -199,11 +213,17 @@
 .nt-side__subitem { width: 100%; padding: 6px 10px; border: 0; border-radius: var(--radius-lg); background: none; color: var(--muted); font: inherit; text-align: left; cursor: var(--cursor-interactive); }
 .nt-side__subitem:hover { background: var(--default); color: var(--foreground); }
 .nt-side__subitem[aria-current] { color: var(--accent-soft-foreground); font-weight: 500; }
-.nt-side__footer { display: flex; align-items: center; gap: 4px; padding-top: 10px; border-top: 1px solid var(--separator); }
+/* The divider runs edge to edge, meeting the sidebar border. */
+.nt-side__footer { display: flex; align-items: center; align-self: stretch; gap: 4px; margin-inline: -10px; padding: 10px 10px 0; border-top: 1px solid var(--separator); }
 .nt-side[data-collapsed] .nt-side__footer { flex-direction: column; }
 .nt-side__footer > .nt-user { flex: 1; min-width: 0; }
 .nt-side__collapse { flex-shrink: 0; color: var(--muted); }
 .nt-side__header { min-width: 0; }
+/* Collapsed: workspace and account buttons become square and centred on the rail. */
+.nt-side[data-collapsed] :is(.nt-ws, .nt-user) { flex: none; justify-content: center; width: 40px; min-width: 0; height: 40px; min-height: 0; padding: 0; }
+.nt-side__brand { display: flex; align-items: center; gap: 10px; min-height: 40px; padding-inline: 6px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.nt-side[data-collapsed] .nt-side__brand { justify-content: center; padding: 0; }
+.nt-side[data-collapsed] .nt-side__brand > span:last-child { display: none; }
 .nt-side:not([data-collapsed]) .nt-side__header > .nt-ws { width: 100%; }
 
 .nt-ws, .nt-user { justify-content: flex-start; gap: 10px; height: auto; min-height: 40px; padding: 6px; text-align: left; }

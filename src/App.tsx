@@ -1,7 +1,7 @@
 import {ArrowUp, Globe, LogoGithub, Moon, Sun} from "@gravity-ui/icons";
-import {Button, Dropdown, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Toast} from "@heroui/react";
+import {Button, Dropdown, Header, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Tabs, Toast} from "@heroui/react";
 import {buttonVariants} from "@heroui/styles";
-import {lazy, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
+import {Fragment, lazy, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
 import {I18nProvider} from "react-aria";
 import {Link as ButtonLink} from "react-aria-components";
 
@@ -12,7 +12,7 @@ import {LocaleContext, useText, type Locale} from "./site/Locale";
 import {pages, parseRoute, routeHref, scrollToSection, type Page} from "./site/navigation";
 import {editorialContent} from "./site/editorialContent";
 import {skillSections} from "./site/skillsContent";
-import {templateSections} from "./templates/catalog";
+import {templateGroups} from "./templates/catalog";
 import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey} from "./product/theme";
 import {localeFromPath, localizedHref, siteDescriptions, siteOrigin, siteTitles} from "./site/localizedUrls";
 
@@ -21,6 +21,19 @@ const Palette = lazy(() => import("./site/Palette"));
 const Editorial = lazy(() => import("./site/Editorial"));
 const Skills = lazy(() => import("./site/Skills"));
 const Templates = lazy(() => import("./templates/Templates"));
+
+type TocEntry = {id: string; label: string; group?: string};
+
+/** Consecutive entries that share a group heading. */
+function groupEntries(entries: TocEntry[]) {
+  const groups: {group?: string; items: TocEntry[]}[] = [];
+  for (const entry of entries) {
+    const last = groups.at(-1);
+    if (last && last.group === entry.group) last.items.push(entry);
+    else groups.push({group: entry.group, items: [entry]});
+  }
+  return groups;
+}
 
 function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
   const Component = {sun: Sun, moon: Moon, "arrow-up": ArrowUp}[name];
@@ -65,10 +78,10 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", siteOrigin + localizedHref(locale));
   }, [isHome, locale, route.page, text]);
 
-  const entries = route.page === "components"
+  const entries: TocEntry[] = route.page === "components"
     ? catalog.filter((component) => matchesComponent(component, query)).map((component) => ({id: component.id, label: text(component.name, component.zh)}))
     : route.page === "templates"
-      ? templateSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
+      ? templateGroups.flatMap((group) => group.items.map((section) => ({id: section.id, label: text(section.en, section.zh), group: text(group.en, group.zh)})))
     : route.page === "palette"
       ? paletteSections.map((section) => ({id: section.id, label: text(section.en, section.zh)}))
       : (route.page === "skills" ? skillSections : editorialContent[route.page].sections).map((section) => ({id: section.id, label: text(section.title.en, section.title.zh)}));
@@ -102,9 +115,15 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
           if (hash) changeLocale(localizedHref(locale));
           window.scrollTo({top: 0});
         }}>niltavi<span className="preview-brand__dot">.</span><span className="preview-brand__label">UI</span></a>
-        <nav className="primary-nav" aria-label={text("Main navigation", "主导航")}>
-          {pages.map((page) => <a key={page.id} href={routeHref(page.id)} aria-current={!isHome && route.page === page.id ? "page" : undefined} onClick={(event) => navigateLink(event, page.id)}>{text(page.en, page.zh)}</a>)}
-        </nav>
+        {/* Tabs always hold a selection; on the home page the indicator is hidden so no page reads as current. */}
+        <Tabs className="primary-nav" selectedKey={route.page} data-idle={isHome || undefined}>
+          <Tabs.ListContainer>
+            <Tabs.List aria-label={text("Main navigation", "主导航")}>
+              {pages.map((page) => <Tabs.Tab key={page.id} id={page.id} href={routeHref(page.id)}
+                onPress={() => { if (hash === routeHref(page.id)) navigate(page.id); }}>{text(page.en, page.zh)}<Tabs.Indicator /></Tabs.Tab>)}
+            </Tabs.List>
+          </Tabs.ListContainer>
+        </Tabs>
         <Surface className="surface--controls preview-controls">
           <Button isIconOnly size="sm" variant="ghost" aria-label={mode === "light" ? text("Switch to dark theme", "切换深色主题") : text("Switch to light theme", "切换浅色主题")} onPress={() => {
             const next = mode === "light" ? "dark" : "light";
@@ -130,11 +149,17 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
           <SearchField.Group><SearchField.SearchIcon /><SearchField.Input placeholder={text("Search…", "搜索…")} /><SearchField.ClearButton aria-label={text("Clear search", "清空搜索")} /></SearchField.Group>
         </SearchField>}
         <nav className="toc-links" aria-label={text("On this page", "本页目录")}>
-          {entries.map((entry) => <a key={entry.id} href={routeHref(route.page, entry.id)} aria-current={currentSection === entry.id ? "location" : undefined} onClick={(event) => navigateLink(event, route.page, entry.id)}>{entry.label}</a>)}
+          {entries.map((entry, index) => <Fragment key={entry.id}>
+            {entry.group && entry.group !== entries[index - 1]?.group && <span className="toc-heading">{entry.group}</span>}
+            <a href={routeHref(route.page, entry.id)} aria-current={currentSection === entry.id ? "location" : undefined} onClick={(event) => navigateLink(event, route.page, entry.id)}>{entry.label}</a>
+          </Fragment>)}
         </nav>
         <Select placeholder={text("Contents", "目录")} isDisabled={entries.length === 0} className="toc-mobile" aria-label={text("On this page", "本页目录")} value={currentSection ?? null} onChange={(key) => {if (typeof key === "string") navigate(route.page, key);}}>
           <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
-          <Select.Popover><ListBox>{entries.map((entry) => <ListBox.Item key={entry.id} id={entry.id} textValue={entry.label}>{entry.label}<ListBox.ItemIndicator /></ListBox.Item>)}</ListBox></Select.Popover>
+          <Select.Popover><ListBox>{groupEntries(entries).map(({group, items}) => {
+            const options = items.map((entry) => <ListBox.Item key={entry.id} id={entry.id} textValue={entry.label}>{entry.label}<ListBox.ItemIndicator /></ListBox.Item>);
+            return group ? <ListBox.Section key={group}><Header>{group}</Header>{options}</ListBox.Section> : options;
+          })}</ListBox></Select.Popover>
         </Select>
       </aside>
       <main id="main-content" tabIndex={-1} className="preview-main">

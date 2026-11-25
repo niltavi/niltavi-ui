@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import {existsSync} from "node:fs";
 import {readFile} from "node:fs/promises";
 import test from "node:test";
 import ts from "typescript";
@@ -19,7 +20,8 @@ const {catalog, matchesComponent} = await loadUtility("../src/showcase/catalog.t
 const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/site/paletteCatalog.ts");
 const {swatchTextColor} = await loadUtility("../src/site/color.ts");
 const {translate} = await loadUtility("../src/site/translate.ts");
-const {templateSections} = await loadUtility("../src/templates/catalog.ts");
+const {templateSections, componentKits, templateDirectory} = await loadUtility("../src/templates/catalog.ts");
+const {localizeSource} = await loadUtility("../src/templates/sourceLocale.ts");
 const {cornerFor, nextMode} = await loadUtility("../src/templates/ai/widgetLogic.ts");
 const {passwordStrength, isEmail, isPhone} = await loadUtility("../src/templates/saas/validation.ts");
 const messages = JSON.parse(await readFile(new URL("../src/showcase/messages.json", import.meta.url), "utf8"));
@@ -156,7 +158,11 @@ test("swatch labels remain readable on light, dark, and middle supporting colors
 
 test("template directory links resolve to unique, bilingual sections", () => {
   assert.deepEqual(templateSections.map((item) => item.id), ["ai-assistant", "dashboard", "mail", "chat", "crm", "finances", "saas"]);
-  for (const item of templateSections) {
+  assert.deepEqual(componentKits.map((item) => item.id), ["kit-sidebar", "kit-auth", "kit-responsive", "kit-agent", "kit-banner", "kit-toolbar", "kit-type"]);
+  assert.equal(new Set(templateDirectory.map((item) => item.id)).size, templateDirectory.length);
+  for (const item of templateDirectory) {
+    assert.ok(item.sources.length);
+    for (const source of item.sources) assert.ok(existsSync(new URL(`../src/templates/${source.split("#")[0]}`, import.meta.url)), source);
     assert.deepEqual(parseRoute(routeHref("templates", item.id)), {page: "templates", section: item.id});
     assert.equal(sectionId("templates", item.id), `templates-${item.id}`);
     assert.ok(item.en && item.zh && item.description.en && item.description.zh && item.uses.length);
@@ -185,4 +191,26 @@ test("sign-in validation and password strength", () => {
   assert.equal(passwordStrength(""), 0);
   assert.equal(passwordStrength("abc"), 1);
   assert.equal(passwordStrength("Forest-2026"), 4);
+});
+
+test("source view shows text in the page language and drops the unused hook", () => {
+  const source = [
+    'import {useMemo} from "react";',
+    'import {useLocale, useText} from "../site/Locale";',
+    "function Demo({n}) {",
+    "  const text = useText();",
+    '  const items = useMemo(() => [text("Home", "首页")], [text]);',
+    '  return <Button aria-label={text("Close, now", "关闭（现在）")}>{text(`${n} left`, `剩余 ${n}`)}<span>{text("Save", "保存")}</span></Button>;',
+    "}",
+  ].join("\n");
+  const zh = localizeSource(source, "zh-CN");
+  assert.ok(zh.includes('[ "首页"]'.replace(" ", "")));
+  assert.ok(zh.includes('aria-label="关闭（现在）"'));
+  assert.ok(zh.includes("{`剩余 ${n}`}"));
+  assert.ok(zh.includes("<span>保存</span>"));
+  assert.ok(!zh.includes("useText"));
+  assert.ok(zh.includes('import {useLocale} from "../site/Locale";'));
+  assert.ok(zh.includes("[])"));
+  assert.ok(localizeSource(source, "en").includes('aria-label="Close, now"'));
+  assert.equal(localizeSource("const a = text(item.en, item.zh);", "en"), "const a = text(item.en, item.zh);");
 });

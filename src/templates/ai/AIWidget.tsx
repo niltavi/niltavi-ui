@@ -1,9 +1,9 @@
-import {ArrowsExpandVertical, ChevronsExpandUpRight, Grip, Minus, Pencil, Sparkles} from "@gravity-ui/icons";
+import {ArrowsExpandVertical, ChevronsExpandUpRight, Grip, Minus, Sparkles} from "@gravity-ui/icons";
 import {Button, Tooltip} from "@heroui/react";
 import {useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent} from "react";
 import {createPortal} from "react-dom";
 import {useLocale, useText} from "../../site/Locale";
-import {ActionButton, AIChat} from "./AIChat";
+import {AIChat} from "./AIChat";
 import {useSuggestions} from "./AIChatWorkspace";
 import {mockResponder} from "./mockResponder";
 import {useAIChat, type Responder} from "./useAIChat";
@@ -19,14 +19,16 @@ function stored<T extends string>(key: string, allowed: readonly T[], fallback: 
  * Floating assistant pinned to a window corner.
  * closed → compact → tall (top to bottom) → full → closed, all from one button.
  * Drag the launcher or the panel header; it snaps to the nearest corner on release.
+ * Pass `boundary` to keep it inside an element (a positioned size container) instead of the window.
  */
-export function AIWidget({mode: modeProp, onModeChange, respond, title}: {mode?: WidgetMode; onModeChange?: (mode: WidgetMode) => void; respond?: Responder; title?: string}) {
+export function AIWidget({mode: modeProp, defaultMode = "closed", onModeChange, respond, title, boundary}: {mode?: WidgetMode; defaultMode?: WidgetMode; onModeChange?: (mode: WidgetMode) => void; respond?: Responder; title?: string; boundary?: HTMLElement | null}) {
   const text = useText();
   const locale = useLocale();
-  const [innerMode, setInnerMode] = useState<WidgetMode>("closed");
+  const [innerMode, setInnerMode] = useState<WidgetMode>(defaultMode);
   const mode = modeProp ?? innerMode;
   const setMode = useCallback((next: WidgetMode) => { setInnerMode(next); onModeChange?.(next); }, [onModeChange]);
-  const [corner, setCorner] = useState<WidgetCorner>(() => stored("niltavi-ai-corner", ["tl", "tr", "bl", "br"] as const, "br"));
+  const contained = boundary !== undefined;
+  const [corner, setCorner] = useState<WidgetCorner>(() => contained ? "br" : stored("niltavi-ai-corner", ["tl", "tr", "bl", "br"] as const, "br"));
   const [exiting, setExiting] = useState(false);
   const [dragging, setDragging] = useState(false);
   const shown = mode;
@@ -38,7 +40,7 @@ export function AIWidget({mode: modeProp, onModeChange, respond, title}: {mode?:
   const drag = useRef<{x: number; y: number; moved: boolean} | null>(null);
   const flip = useRef<{left: number; top: number} | null>(null);
 
-  useEffect(() => { try { localStorage.setItem("niltavi-ai-corner", corner); } catch { /* optional */ } }, [corner]);
+  useEffect(() => { if (!contained) try { localStorage.setItem("niltavi-ai-corner", corner); } catch { /* optional */ } }, [contained, corner]);
 
   const close = useCallback(() => {
     setExiting(true);
@@ -78,7 +80,8 @@ export function AIWidget({mode: modeProp, onModeChange, respond, title}: {mode?:
     setDragging(false);
     const rect = el.getBoundingClientRect();
     flip.current = {left: rect.left, top: rect.top};
-    const next = cornerFor(rect.left + rect.width / 2, rect.top + rect.height / 2, window.innerWidth, window.innerHeight);
+    const area = boundary?.getBoundingClientRect() ?? {left: 0, top: 0, width: window.innerWidth, height: window.innerHeight};
+    const next = cornerFor(rect.left + rect.width / 2 - area.left, rect.top + rect.height / 2 - area.top, area.width, area.height);
     if (next === corner) settle(el);
     else setCorner(next);
     event.preventDefault();
@@ -101,7 +104,7 @@ export function AIWidget({mode: modeProp, onModeChange, respond, title}: {mode?:
   const cycleLabel = {closed: text("Open assistant", "打开助手"), compact: text("Expand to full height", "纵向展开"), tall: text("Fill the window", "全屏展开"), full: text("Minimize", "最小化")}[mode];
   const CycleIcon = {closed: Sparkles, compact: ArrowsExpandVertical, tall: ChevronsExpandUpRight, full: Minus}[mode];
 
-  const node = <div ref={root} className="nt-widget" data-mode={shown} data-corner={corner} data-dragging={dragging || undefined}>
+  const node = <div ref={root} className="nt-widget" data-mode={shown} data-corner={corner} data-dragging={dragging || undefined} data-contained={contained || undefined}>
     {shown === "closed"
       ? <button type="button" className="nt-widget__fab nt-pop" aria-label={cycleLabel} data-drag-handle
         {...dragHandlers}
@@ -114,7 +117,6 @@ export function AIWidget({mode: modeProp, onModeChange, respond, title}: {mode?:
           <span className="nt-ai-avatar" aria-hidden="true" style={{width: 26, height: 26}}><Sparkles width={13} height={13} /></span>
           <strong>{title ?? text("Assistant", "智能助手")}</strong>
           <span className="nt-widget__actions">
-            <ActionButton label={text("New chat", "新对话")} icon={Pencil} onPress={chat.reset} />
             <Tooltip delay={400} closeDelay={0}>
               <Button isIconOnly size="sm" variant="ghost" aria-label={cycleLabel} onPress={cycle} className="nt-action">
                 <CycleIcon aria-hidden="true" width={14} height={14} />
@@ -126,5 +128,6 @@ export function AIWidget({mode: modeProp, onModeChange, respond, title}: {mode?:
         <AIChat chat={chat} variant="panel" suggestions={mode === "compact" ? suggestions.slice(0, 3) : suggestions} footnote={false} tools={mode === "full"} />
       </section>}
   </div>;
+  if (contained) return boundary ? createPortal(node, boundary) : null;
   return createPortal(node, document.body);
 }

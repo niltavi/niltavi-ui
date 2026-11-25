@@ -1,11 +1,12 @@
 import {Avatar, Button, SearchField, ToggleButton, ToggleButtonGroup} from "@heroui/react";
-import {useLayoutEffect, useRef, useState, type ComponentType, type ReactNode, type SVGProps} from "react";
+import {useLayoutEffect, useMemo, useRef, useState, type ComponentType, type ReactNode, type SVGProps} from "react";
 import {useText} from "../site/Locale";
+import {AppSidebar, UserMenu} from "./saas/Navigation";
 
 export type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 export type NavItem = {id: string; en: string; zh: string; icon: IconType; count?: number};
 
-/** Shared application frame: navigation rail, top bar and a scrollable workspace. */
+/** Shared application frame: the collapsible sidebar, top bar and a scrollable workspace. */
 export function AppShell({brand, nav, active, onNavigate, title, actions, children, flush}: {
   brand: string;
   nav: NavItem[];
@@ -17,21 +18,13 @@ export function AppShell({brand, nav, active, onNavigate, title, actions, childr
   flush?: boolean;
 }) {
   const text = useText();
+  const [collapsed, setCollapsed] = useState(false);
+  const groups = useMemo(() => [{id: "main", items: nav.map(({id, en, zh, icon, count}) => ({id, label: text(en, zh), icon, badge: count || undefined}))}], [nav, text]);
   return <div className="tpl-app">
-    <aside className="tpl-nav" aria-label={text("Template navigation", "模板导航")}>
-      <div className="tpl-nav__brand"><span className="tpl-nav__logo" aria-hidden="true">{brand.slice(0, 1)}</span><span className="tpl-nav__label">{brand}</span></div>
-      <nav className="tpl-nav__list">
-        {nav.map(({id, en, zh, icon: Icon, count}) => <button key={id} type="button" className="tpl-nav__item" aria-current={active === id ? "page" : undefined} onClick={() => onNavigate?.(id)} title={text(en, zh)}>
-          <Icon aria-hidden="true" width={16} height={16} />
-          <span className="tpl-nav__label">{text(en, zh)}</span>
-          {count ? <span className="tpl-nav__count">{count}</span> : null}
-        </button>)}
-      </nav>
-      <div className="tpl-nav__user">
-        <Avatar size="sm" color="accent"><Avatar.Fallback>LW</Avatar.Fallback></Avatar>
-        <div className="tpl-nav__label tpl-nav__who"><strong>Lin Wei</strong><span>lin@niltavi.com</span></div>
-      </div>
-    </aside>
+    <AppSidebar groups={groups} active={active} onNavigate={(id) => onNavigate?.(id)} collapsed={collapsed} onCollapsedChange={setCollapsed} autoCollapseBelow={760}
+      label={text("Template navigation", "模板导航")}
+      header={<div className="nt-side__brand"><span className="tpl-nav__logo" aria-hidden="true">{brand.slice(0, 1)}</span><span>{brand}</span></div>}
+      footer={(folded) => <UserMenu showName={!folded} placement="top start" />} />
     <div className="tpl-body">
       <header className="tpl-topbar">
         <div className="tpl-topbar__title">{title}</div>

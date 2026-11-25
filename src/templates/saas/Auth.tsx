@@ -1,11 +1,11 @@
-import {ArrowLeft, ArrowRightFromSquare, CircleCheckFill, Eye, EyeSlash, Layers, Lock} from "@gravity-ui/icons";
-import {AlertDialog, Button, Checkbox, Description, FieldError, Form, Input, InputGroup, InputOTP, Label, Meter, TextField} from "@heroui/react";
-import {useEffect, useRef, useState, type ReactNode} from "react";
+import {ArrowLeft, ArrowRightFromSquare, CircleCheckFill, Envelope, Eye, EyeSlash, Layers, Lock, LogoApple, LogoGithub} from "@gravity-ui/icons";
+import {Alert, AlertDialog, Button, Checkbox, Description, FieldError, Form, Input, InputGroup, InputOTP, Label, Link, Meter, TextField} from "@heroui/react";
+import {useEffect, useRef, useState, type FormEvent, type ReactNode} from "react";
 import {ProjectBrand, type ProductHeaderProps} from "../../product/ProductHeader";
 import {useText} from "../../site/Locale";
 import {ForestScene} from "./ForestScene";
 
-import {DEMO_CODE, isEmail as emailOk, passwordStrength} from "./validation";
+import {DEMO_CODE, isEmail as emailOk, isPhone as phoneOk, passwordStrength} from "./validation";
 export {DEMO_CODE, passwordStrength};
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -36,6 +36,9 @@ export function AuthLayout({children}: {children: ReactNode}) {
   </div>;
 }
 
+function Notice({children}: {children: ReactNode}) {
+  return <Alert status="success" className="nt-fade-down"><Alert.Indicator /><Alert.Content><Alert.Description>{children}</Alert.Description></Alert.Content></Alert>;
+}
 
 export function PasswordField({label, value, onChange, isInvalid, error, autoComplete = "current-password", name = "password"}: {label: string; value: string; onChange: (v: string) => void; isInvalid?: boolean; error?: string; autoComplete?: string; name?: string}) {
   const text = useText();
@@ -67,6 +70,88 @@ function CodeInput({value, onChange, isInvalid, onComplete, autoFocus}: {value: 
   </InputOTP></div>;
 }
 
+function Divider({children}: {children: ReactNode}) {
+  return <div className="nt-auth__divider"><span>{children}</span></div>;
+}
+
+/* ---------- Sign in: verification code or password ---------- */
+export function SignInScreen({onSignedIn, onForgot, notice}: {onSignedIn?: (account: string) => void; onForgot?: () => void; notice?: string}) {
+  const text = useText();
+  const [method, setMethod] = useState<"code" | "password">("code");
+  const [account, setAccount] = useState("");
+  const [code, setCode] = useState("");
+  const [sent, setSent] = useState(false);
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [pending, setPending] = useState<"" | "send" | "submit">("");
+  const [left, startCountdown] = useCountdown();
+
+  const sendCode = async () => {
+    if (!emailOk(account) && !phoneOk(account)) { setErrors({account: text("Enter a valid email or phone number", "请输入有效的邮箱或手机号")}); return; }
+    setErrors({}); setPending("send"); await wait(700); setPending(""); setSent(true); startCountdown();
+  };
+  const submit = async (event?: FormEvent, typed?: string) => {
+    event?.preventDefault();
+    const next: Record<string, string> = {};
+    if (method === "code") {
+      if (!sent) return sendCode();
+      if ((typed ?? code) !== DEMO_CODE) next.code = text("Incorrect code. Try 123456.", "验证码不正确，试试 123456。");
+    } else {
+      if (!emailOk(account)) next.account = text("Enter a valid email", "请输入有效的邮箱");
+      if (password.length < 8) next.password = text("At least 8 characters", "密码至少 8 位");
+    }
+    setErrors(next);
+    if (Object.keys(next).length) return;
+    setPending("submit"); await wait(800); setPending("");
+    onSignedIn?.(account);
+  };
+
+  const switchMethod = () => { setMethod(method === "code" ? "password" : "code"); setErrors({}); };
+
+  return <div className="nt-auth nt-auth--signin nt-fade-up">
+    <h3 className="nt-auth__title">{text("Sign in", "登录")}</h3>
+    {notice && <Notice>{notice}</Notice>}
+    {method === "code"
+      ? <Form key="code" className="nt-auth__form nt-fade-in" onSubmit={submit} validationBehavior="aria">
+        <TextField isInvalid={!!errors.account} value={account} onChange={(v) => { setAccount(v); setSent(false); setCode(""); }} name="account" autoComplete="username">
+          <Label>{text("Email or phone", "邮箱或手机号")}</Label>
+          <div className="nt-auth__inline">
+            <Input placeholder="you@company.com" className="flex-1" />
+            <Button variant="secondary" onPress={sendCode} isPending={pending === "send"} isDisabled={left > 0} className="shrink-0">
+              {left > 0 ? `${left}s` : sent ? text("Resend", "重发") : text("Send code", "获取验证码")}
+            </Button>
+          </div>
+          {errors.account && <FieldError>{errors.account}</FieldError>}
+        </TextField>
+        {sent && <div className="nt-auth__otp nt-fade-up">
+          <Label>{text("Verification code", "验证码")}</Label>
+          <CodeInput autoFocus value={code} onChange={(v) => { setCode(v); setErrors({}); }} onComplete={(v) => submit(undefined, v)} isInvalid={!!errors.code} />
+          {errors.code ? <span className="field-error" data-visible>{errors.code}</span> : <Description>{text("Demo code 123456", "演示验证码 123456")}</Description>}
+        </div>}
+        <Button type="submit" className="w-full" isPending={pending === "submit"} isDisabled={sent && code.length < 6}>{sent ? text("Sign in", "登录") : text("Continue", "继续")}</Button>
+      </Form>
+      : <Form key="password" className="nt-auth__form nt-fade-in" onSubmit={submit} validationBehavior="aria">
+        <TextField isInvalid={!!errors.account} value={account} onChange={setAccount} name="email" type="email" autoComplete="username">
+          <Label>{text("Email", "邮箱")}</Label>
+          <InputGroup><InputGroup.Prefix><Envelope aria-hidden="true" width={14} height={14} /></InputGroup.Prefix><InputGroup.Input placeholder="you@company.com" /></InputGroup>
+          {errors.account && <FieldError>{errors.account}</FieldError>}
+        </TextField>
+        <PasswordField label={text("Password", "密码")} value={password} onChange={setPassword} isInvalid={!!errors.password} error={errors.password} />
+        <Button type="submit" className="w-full" isPending={pending === "submit"}>{text("Sign in", "登录")}</Button>
+      </Form>}
+    <div className="nt-auth__alt">
+      <Divider>{text("or", "或")}</Divider>
+      <div className="nt-auth__social">
+        <Button isIconOnly variant="secondary" aria-label={text("Continue with GitHub", "使用 GitHub 登录")}><LogoGithub aria-hidden="true" width={18} height={18} /></Button>
+        <Button isIconOnly variant="secondary" aria-label={text("Continue with Apple", "使用 Apple 登录")}><LogoApple aria-hidden="true" width={18} height={18} /></Button>
+      </div>
+      <p className="nt-auth__links">
+        <Link href="#" onClick={(event) => { event.preventDefault(); switchMethod(); }}>{method === "code" ? text("Use password", "使用密码登录") : text("Use a code", "使用验证码登录")}</Link>
+        {method === "password" && <><span aria-hidden="true">·</span><Link href="#" onClick={(event) => { event.preventDefault(); onForgot?.(); }}>{text("Forgot password?", "忘记密码")}</Link></>}
+      </p>
+    </div>
+  </div>;
+}
 
 /* ---------- Forgot password: email → code → new password → done ---------- */
 export function ResetPasswordScreen({onBack, onDone}: {onBack?: () => void; onDone?: () => void}) {

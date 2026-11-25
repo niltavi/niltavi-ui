@@ -6,7 +6,7 @@ import {useCopy} from "./copy";
 import {matchesComponent} from "./catalog";
 import {components} from "./registry";
 
-function Showcase({query, section}: {query: string; section: string}) {
+function Showcase({query, section, isHome = false}: {query: string; section: string; isHome?: boolean}) {
   const text = useText();
   const locale = useLocale();
   const t = useCopy();
@@ -17,7 +17,7 @@ function Showcase({query, section}: {query: string; section: string}) {
   }, [section, query]);
 
   return <div className="showcase">
-    <h1>{text("Components", "组件")}</h1>
+    {!isHome && <h1>{text("Components", "组件")}</h1>}
     {filtered.length === 0 ? <EmptyState>{text("No matching components", "没有找到匹配的组件")}</EmptyState> : filtered.map((component) => {
       return <section key={component.id} id={`showcase-${component.id}`} className="showcase-component" aria-labelledby={`showcase-${component.id}-title`}>
         <h2 id={`showcase-${component.id}-title`}>{text(component.name, component.zh)}{locale === "zh-CN" && <span>{component.name}</span>}</h2>

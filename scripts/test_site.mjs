@@ -58,7 +58,7 @@ test("editorial deep links have distinct anchors and preserve existing gallery a
       assert.match(section.id, /^[a-z0-9-]+$/);
       assert.deepEqual(parseRoute(routeHref(page, section.id)), {page, section: section.id});
       assert.ok(section.title.en && section.title.zh);
-      for (const paragraph of section.paragraphs) assert.ok(paragraph.en && paragraph.zh);
+      for (const block of section.paragraphs) for (const copy of "list" in block ? block.list : "motifs" in block ? [] : [block]) assert.ok(copy.en && copy.zh);
       anchors.push(sectionId(page, section.id));
     }
   }
@@ -73,23 +73,22 @@ test("skills page sections are bilingual, unique, and deep-linkable", () => {
     assert.deepEqual(parseRoute(routeHref("skills", section.id)), {page: "skills", section: section.id});
     assert.ok(section.title.en && section.title.zh);
   }
-  for (const item of skills.conventions) {
-    for (const copy of [item.title, item.lead, ...item.rules]) {
-      assert.ok(copy.en && copy.zh);
-      assert.doesNotMatch(copy.en, /[\u4e00-\u9fff]/);
-    }
+  for (const copy of [skills.installPrompt, ...skills.examplePrompts]) {
+    assert.ok(copy.en && copy.zh);
+    assert.doesNotMatch(copy.en, /[\u4e00-\u9fff]/);
   }
 });
 
-test("SKILL.md is a valid skill that covers every convention shown on the page", () => {
+test("SKILL.md is a valid skill and the install prompt points at it", () => {
   const frontmatter = skillSource.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? "";
   assert.match(frontmatter, new RegExp(`^name: ${skills.skillName}$`, "m"));
   assert.match(frontmatter, /^description: .{40,}$/m);
   assert.ok(skillSource.includes(skills.siteUrl));
   assert.ok(skillSource.includes(skills.repoUrl));
-  const headings = [...skillSource.matchAll(/^## (.+)$/gm)].map((match) => match[1]);
-  for (const item of skills.conventions) assert.ok(headings.includes(item.heading), item.heading);
-  assert.ok(skills.installCommands.project.includes("niltavi/niltavi-ui"));
+  for (const prompt of [skills.installPrompt.en, skills.installPrompt.zh]) {
+    assert.ok(prompt.includes(`--skill ${skills.skillName}`));
+    assert.ok(prompt.includes(skills.repoUrl));
+  }
 });
 
 test("component search accepts Chinese and normalized English names", () => {

@@ -13,7 +13,8 @@ async function loadUtility(path) {
 const {pages, parseRoute, routeHref, sectionId, getActiveSection} = await loadUtility("../src/site/navigation.ts");
 const {editorialContent} = await loadUtility("../src/site/editorialContent.ts");
 const skills = await loadUtility("../src/site/skillsContent.ts");
-const skillSource = await readFile(new URL("../skills/niltavi-ui/SKILL.md", import.meta.url), "utf8");
+const skillSource = (await readFile(new URL("../skills/niltavi-ui/SKILL.md", import.meta.url), "utf8")).replaceAll("\r\n", "\n");
+const {localeFromPath, localizedHref} = await loadUtility("../src/site/localizedUrls.ts");
 const {catalog, matchesComponent} = await loadUtility("../src/showcase/catalog.ts");
 const {paletteSections, paletteScales, uiScales} = await loadUtility("../src/site/paletteCatalog.ts");
 const {swatchTextColor} = await loadUtility("../src/site/color.ts");
@@ -35,6 +36,14 @@ test("page and directory links survive direct loads and history navigation", () 
     }
   }
   assert.deepEqual(parseRoute("#/palette/%3Cscript%3E"), {page: "palette", section: ""});
+});
+
+test("localized links retain the active page and section", () => {
+  const active = routeHref("palette", "contrast");
+  assert.equal(localizedHref("en", active), "/#/palette/contrast");
+  assert.equal(localizedHref("zh-CN", active), "/zh/#/palette/contrast");
+  assert.equal(localeFromPath("/"), "en");
+  assert.equal(localeFromPath("/zh/"), "zh-CN");
 });
 
 test("editorial deep links have distinct anchors and preserve existing gallery anchors", () => {

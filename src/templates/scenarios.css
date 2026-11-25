@@ -183,7 +183,6 @@
   .nt-authlayout__brand { display: none; }
   .nt-authlayout__main { justify-content: flex-start; padding: 28px 16px; }
 }
-.nt-auth__brand { display: flex; align-items: center; gap: 10px; font-size: .9375rem; }
 .nt-auth .alert { width: 100%; }
 .nt-auth__head { display: flex; flex-direction: column; gap: 4px; }
 .nt-auth__head h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; }
@@ -268,11 +267,12 @@
 /* ---------- Admin console & SaaS demo ---------- */
 .nt-saas { container: ntauth / inline-size; height: 100%; }
 .nt-saas__app { height: 100%; }
-.nt-console { container: ntconsole / inline-size; display: grid; grid-template-columns: auto minmax(0, 1fr); height: 100%; font-size: .875rem; }
+.nt-console { container: ntconsole / inline-size; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: 100%; font-size: .875rem; }
+.nt-console__brand { grid-column: 1 / -1; display: flex; align-items: center; min-width: 0; padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4); border-bottom: var(--border-width) solid var(--separator); }
 .nt-console__main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .nt-console__top { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 20px; border-bottom: 1px solid var(--separator); }
 .nt-console__tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.nt-console__body { flex: 1; min-height: 0; overflow-y: auto; padding: 20px; animation: nt-fade-up var(--motion-base) var(--motion-ease) both; }
+.nt-console__body { flex: 1; min-height: 0; overflow-y: auto; padding: 20px; }
 .nt-crumbs { min-width: 0; }
 .nt-page { display: flex; flex-direction: column; gap: 16px; max-width: 960px; }
 .nt-page > * { flex-shrink: 0; }
@@ -301,8 +301,6 @@
   .nt-crumbs { display: none; }
 }
 
-@media (prefers-reduced-motion: reduce) { .nt-console__body { animation: none; } }
-[data-reduce-motion="true"] .nt-console__body { animation: none; }
 
 /* Narrow consoles fold the sidebar to its icon rail without changing state. */
 @container ntconsole (max-width: 640px) {

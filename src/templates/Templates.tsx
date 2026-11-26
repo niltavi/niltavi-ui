@@ -87,7 +87,7 @@ function Templates({section}: {section: string}) {
   return <div className="templates">
     <header className="templates__intro">
       <h1>{text("Templates", "模板")}</h1>
-      <p>{text("Two kinds of starting points built from Niltavi components. The template library holds whole scenarios to run as they are; component kits are smaller pieces to drop into your own layout. Every entry switches between the live component and its source.", "用 Niltavi 组件搭好的两类起点。模板库是完整的业务场景，可以直接跑起来；组件套装是更小的积木，方便放进自己的布局。每一项都能在组件和源码之间切换。")}</p>
+      <p>{text("Combine components freely, and Niltavi UI comes together naturally and in harmony.", "自由组合各类组件，Niltavi UI 天然可以形成自然和谐的效果。")}</p>
     </header>
     <div className="templates__group" aria-labelledby="templates-library-title">
       <header className="templates__group-head">

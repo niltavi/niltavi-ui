@@ -1,7 +1,7 @@
 import {ArrowUp, Globe, LogoGithub, Moon, Sun} from "@gravity-ui/icons";
 import {Button, Dropdown, Header, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Tabs, Toast} from "@heroui/react";
 import {buttonVariants} from "@heroui/styles";
-import {Fragment, lazy, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
+import {Fragment, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
 import {I18nProvider} from "react-aria";
 import {Link as ButtonLink} from "react-aria-components";
 
@@ -15,12 +15,7 @@ import {skillSections} from "./site/skillsContent";
 import {templateGroups} from "./templates/catalog";
 import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey} from "./product/theme";
 import {localeFromPath, localizedHref, siteDescriptions, siteOrigin, siteTitles} from "./site/localizedUrls";
-
-const Showcase = lazy(() => import("./showcase/Showcase"));
-const Palette = lazy(() => import("./site/Palette"));
-const Editorial = lazy(() => import("./site/Editorial"));
-const Skills = lazy(() => import("./site/Skills"));
-const Templates = lazy(() => import("./templates/Templates"));
+import {Editorial, Palette, Showcase, Skills, Templates} from "./site/pageModules";
 
 type TocEntry = {id: string; label: string; group?: string};
 

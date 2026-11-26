@@ -123,6 +123,17 @@
     --chip-fg: var(--info-soft-foreground);
   }
 
+  /*
+   * HeroUI fixes SearchField and NumberField at h-9 while Input, Select and Autocomplete
+   * grow with their text (16px on small screens, 14px from sm). Let these two grow the
+   * same way so fields placed side by side share one height.
+   */
+  .search-field__group,
+  .number-field__group {
+    height: auto;
+    min-height: calc(var(--spacing) * 9);
+  }
+
   /* Prefix and suffix live inside one field: no dividing rules, a tighter inner gap. */
   .input-group__prefix,
   .input-group__suffix { border-inline-width: 0; }

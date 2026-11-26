@@ -1,5 +1,5 @@
 import {ArrowLeft, ArrowRightFromSquare, CircleCheckFill, Envelope, Eye, EyeSlash, Layers, Lock, LogoApple, LogoGithub, Pencil} from "@gravity-ui/icons";
-import {Alert, AlertDialog, Button, Checkbox, Description, FieldError, Form, Input, InputGroup, InputOTP, Label, Link, Meter, TextField} from "@heroui/react";
+import {Alert, AlertDialog, Button, Checkbox, FieldError, Form, Input, InputGroup, InputOTP, Label, Link, Meter, TextField} from "@heroui/react";
 import {useEffect, useRef, useState, type FormEvent, type ReactNode} from "react";
 import {ProjectBrand, type ProductHeaderProps} from "../../product/ProductHeader";
 import {useText} from "../../site/Locale";
@@ -79,15 +79,21 @@ function SentTo({label, value, onEdit}: {label: string; value: string; onEdit: (
   </div>;
 }
 
-/** Hint or error under the code, with a resend button whose width never changes. */
-function CodeHelp({error, left, onResend, isPending}: {error?: string; left: number; onResend: () => void; isPending?: boolean}) {
+/** Label row with "Verification code" left and "Resend" right, flush with the last OTP slot. */
+function CodeLabel({left, onResend, isPending}: {left: number; onResend: () => void; isPending?: boolean}) {
   const text = useText();
-  return <div className="nt-auth__codehelp">
-    {error ? <span className="field-error" data-visible>{error}</span> : <Description>{text("Demo code 123456", "演示验证码 123456")}</Description>}
+  return <div className="nt-auth__codelabel">
+    <Label>{text("Verification code", "验证码")}</Label>
     <Button size="sm" variant="ghost" className="nt-resend" isDisabled={left > 0} isPending={isPending} onPress={onResend}>
       {left > 0 ? text(`Resend in ${left}s`, `${left} 秒后重发`) : text("Resend code", "重新发送")}
     </Button>
   </div>;
+}
+
+/** Error shown under the code input, hidden when there is no error. */
+function CodeError({error}: {error?: string}) {
+  if (!error) return null;
+  return <span className="field-error" data-visible>{error}</span>;
 }
 
 function Divider({children}: {children: ReactNode}) {
@@ -142,9 +148,9 @@ export function SignInScreen({onSignedIn, onForgot, onSignUp, notice}: {onSigned
             {errors.account && <FieldError>{errors.account}</FieldError>}
           </TextField>}
         {sent && <div className="nt-auth__otp nt-fade-up">
-          <Label>{text("Verification code", "验证码")}</Label>
+          <CodeLabel left={left} isPending={pending === "send"} onResend={sendCode} />
           <CodeInput autoFocus value={code} onChange={(v) => { setCode(v); setErrors({}); }} onComplete={(v) => submit(undefined, v)} isInvalid={!!errors.code} />
-          <CodeHelp error={errors.code} left={left} isPending={pending === "send"} onResend={sendCode} />
+          <CodeError error={errors.code} />
         </div>}
         <Button type="submit" className="w-full" isPending={pending === "submit" || (!sent && pending === "send")} isDisabled={sent && code.length < 6}>{sent ? text("Sign in", "登录") : text("Send code", "获取验证码")}</Button>
       </Form>
@@ -243,8 +249,11 @@ export function SignUpScreen({onSignIn, onSignedUp}: {onSignIn?: () => void; onS
         <div className="nt-auth__head"><h3>{text("Check your email", "查收验证邮件")}</h3></div>
         <Form className="nt-auth__form" validationBehavior="aria" onSubmit={(e) => { e.preventDefault(); verify(); }}>
           <SentTo label={text("Code sent to", "验证码已发送至")} value={email.trim()} onEdit={() => { setErrors({}); setCode(""); setStep(0); }} />
-          <div className="nt-auth__otp"><CodeInput autoFocus value={code} onChange={(v) => { setCode(v); setErrors({}); }} onComplete={verify} isInvalid={!!errors.code} />
-            <CodeHelp error={errors.code} left={left} onResend={startCountdown} /></div>
+          <div className="nt-auth__otp">
+            <CodeLabel left={left} onResend={startCountdown} />
+            <CodeInput autoFocus value={code} onChange={(v) => { setCode(v); setErrors({}); }} onComplete={verify} isInvalid={!!errors.code} />
+            <CodeError error={errors.code} />
+          </div>
           <Button type="submit" className="w-full" isPending={pending} isDisabled={code.length < 6}>{text("Verify", "验证")}</Button>
         </Form>
       </>}
@@ -296,9 +305,12 @@ export function ResetPasswordScreen({onBack, onDone}: {onBack?: () => void; onDo
         <div className="nt-auth__head"><h3>{text("Enter code", "输入验证码")}</h3></div>
         <Form className="nt-auth__form" validationBehavior="aria" onSubmit={(e) => { e.preventDefault(); run(() => code === DEMO_CODE ? "" : text("Incorrect code. Try 123456.", "验证码不正确，试试 123456。"), () => setStep(2)); }}>
           <SentTo label={text("Code sent to", "验证码已发送至")} value={email.trim()} onEdit={() => { setError(""); setCode(""); setStep(0); }} />
-          <div className="nt-auth__otp"><CodeInput autoFocus value={code} onChange={(v) => { setCode(v); setError(""); }} isInvalid={!!error}
-            onComplete={(v) => run(() => v === DEMO_CODE ? "" : text("Incorrect code. Try 123456.", "验证码不正确，试试 123456。"), () => setStep(2))} />
-            <CodeHelp error={error} left={left} onResend={startCountdown} /></div>
+          <div className="nt-auth__otp">
+            <CodeLabel left={left} onResend={startCountdown} />
+            <CodeInput autoFocus value={code} onChange={(v) => { setCode(v); setError(""); }} isInvalid={!!error}
+              onComplete={(v) => run(() => v === DEMO_CODE ? "" : text("Incorrect code. Try 123456.", "验证码不正确，试试 123456。"), () => setStep(2))} />
+            <CodeError error={error} />
+          </div>
           <Button type="submit" className="w-full" isPending={pending} isDisabled={code.length < 6}>{text("Verify", "验证")}</Button>
         </Form>
       </>}

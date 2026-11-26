@@ -1,93 +1,64 @@
 ---
 name: niltavi-ui
-description: Build and review frontend UI in the Niltavi visual language (HeroUI v3 + Tailwind v4 + the Niltava theme). Use when creating or changing pages, components, styles, illustrations, or color choices for a project that uses Niltavi UI, or when the user mentions Niltavi, niltava, ui.niltavi.com, or asks for a calm, natural-history editorial look.
+description: Builds and reviews web interfaces with Niltavi UI, a HeroUI v3 + Tailwind CSS v4 theme with ready-made templates and component kits. Use when creating or changing pages, layouts, components, colors, icons, or motion in a project that uses Niltavi UI, or when the user mentions Niltavi, niltava, ui.niltavi.com, or asks for a calm, natural, minimal look.
 license: MIT
+metadata:
+  version: "0.1.0"
 ---
 
 # Niltavi UI
 
-Niltavi is a quiet, natural-history editorial language for digital products: vivid color held in a world of restraint. Warm paper, forest-ink text, one clear blue for intent, a touch of warm rufous, and generous space. This skill turns that intent into concrete frontend rules.
+Niltavi UI is a theme plus working screens for React products: HeroUI v3 components, a warm paper-and-forest palette, and templates you copy instead of rebuilding.
 
-## Source of truth
+- Live reference: https://ui.niltavi.com/
+- Source: https://github.com/niltavi/niltavi-ui
 
-The conventions live in two places, and **the latest version of both always wins over this file**:
+## The tool
 
-- Live reference: https://ui.niltavi.com/ — components, palette, contrast tables.
-- Repository: https://github.com/niltavi/niltavi-ui (branch `main`).
+Everything that can be exact lives in one script next to this file. Run it from the project root:
 
-Before writing UI, read the current files instead of relying on memory:
+```bash
+node <this skill's folder>/scripts/niltavi.mjs <command>
+```
 
-- `src/theme/niltava.css` — semantic HeroUI variables for light and dark.
-- `src/theme/palette.css` — primitive color scales (`--color-niltava-*`, `--color-rufous-*`, …).
-- `src/theme/components.css` — Niltavi BEM extensions such as `.button--rufous`.
-- `tokens/*.tokens.json` — the same tokens in DTCG format.
-- `src/showcase/examples/` — reference compositions for every component.
+It reads the current Niltavi UI repository (a local checkout, `--source <dir>`, `NILTAVI_UI_DIR`, or a cached clone it keeps up to date), so its output wins over anything written here.
 
-Raw files are at `https://raw.githubusercontent.com/niltavi/niltavi-ui/main/<path>`. If a rule here disagrees with the repository or the live site, follow the repository and tell the user which rule changed. Never invent a token, variant, or color that the repository does not define.
+| Command | Use it to |
+| --- | --- |
+| `init [--product]` | Copy the theme (and the shared header, footer, and theme toggle) into the project, then print the exact install and import steps |
+| `list` | See every template and component kit |
+| `get <id>` | Copy a template or kit, with every file it imports and the CSS it needs |
+| `example [component]` | Find a working example for one component, or print it |
+| `tokens [motion]` | Print the current color tokens (light and dark) or motion tokens and classes |
+| `sizes` | Print the recommended sizes: header, sidebar, tab bar, breakpoints, icons, spacing |
+| `check [paths]` | Check code against the rules; exits 1 on errors |
 
-## Setup
+## Workflow
 
-1. Install the stack: `npm i @heroui/react @heroui/styles` and `npm i -D tailwindcss @tailwindcss/vite`.
-2. Copy the repository's `src/theme/` folder into the project and import it once from the app's entry stylesheet: `@import "./theme/index.css";`. It already pulls in Tailwind and `@heroui/styles`.
-3. Switch themes the HeroUI way: `class="dark"` or `data-theme="dark"` on `<html>`. Never fork the palette per theme in component code.
-4. Treat `palette.css` and `niltava.css` as generated output. In the Niltavi repository, change `scripts/generate_tokens.py` and run `npm run tokens`; in a consuming app, override semantic variables in your own layer rather than editing the copied files.
+Copy this checklist and work through it:
 
-## Color and tokens
+- [ ] `init` once per project; run every step it prints
+- [ ] `list`, then `get` the closest template or kit; `example <component>` for single controls
+- [ ] Change the content; keep the structure, classes, and tokens. Write new layout only for what's missing
+- [ ] Before using a HeroUI component you haven't used here, read `https://heroui.com/docs/react/components/<kebab-name>.mdx`
+- [ ] `check` the files you changed. Fix every error, then look at each warning
+- [ ] View it in light and dark, at 320px and at desktop width
 
-- Style with semantic variables and their Tailwind utilities: `background`, `foreground`, `surface`, `muted`, `accent`, `border`, `separator`, `focus`, `success`, `warning`, `danger`, `info`, `rufous`. Reach for primitives (`--color-niltava-600`) only inside illustration or data visualization.
-- No hex, rgb, or hsl literals in components. If a color is missing, the answer is a token, not a literal.
-- `accent` (niltava blue) marks the single primary intent in a view. `rufous` is a warm, rare highlight: one per screen at most, for example `.button--rufous` or `.chip--rufous`.
-- Soft states use the `*-soft` and `*-soft-foreground` pairs; do not build tints with opacity on text.
-- Charts use `--chart-1` … `--chart-8` in order, so light and dark both stay legible.
-- Every foreground/background pair must keep the contrast shown on the live palette page. Check both themes.
+`check` errors are hard rules: hard-coded colors, Tailwind's default palette, HeroUI v2 APIs, icon sets other than `@gravity-ui/icons`, icon-only buttons without `aria-label`. Warnings are design advice: drop shadows, gradients and blur, palette primitives in components, `onClick` on HeroUI controls, motion outside 150–320ms, more than one primary button or rufous accent. Change a warning, or keep it on purpose with a `// niltavi-ignore <rule>` comment on or above the line.
 
-## Typography
+## Judgment
 
-- UI text uses `--font-sans` (DM Sans, then PingFang SC / Microsoft YaHei). Do not add font families per component.
-- Editorial headings may use a serif stack for a literary, atlas-like voice; navigation, labels, forms, and buttons stay sans.
-- Keep hierarchy in size and weight (400–600), not color. Use `muted` for secondary text, never a lighter gray literal.
-- Long-form text: about 60–75 characters per line, `text-wrap: pretty` on paragraphs, `balance` on headings. Chinese body text needs more line height than English.
-- Write copy for people: short, specific labels. No implementation notes in the UI.
+The tool can't check taste. Aim for clean, simple, spacious, crafted, and natural. niltavi is made for a calm life: less information, fewer decisions, less work. Interfaces follow from that.
 
-## Layout and space
+- Follow Apple's [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines): clear hierarchy, content before chrome, controls where people expect them.
+- Treat the user as smart. No intro paragraphs, captions that repeat a heading, or helper text under obvious fields.
+- Prefer a familiar icon to a word: icon-only `ghost` button, `aria-label`, `Tooltip`. Keep text for ambiguous or consequential actions.
+- One primary action per view. Group with space first, a `separator` line second, a `Card` only when content needs a container.
+- Pick good defaults instead of adding settings.
+- Every list has an empty state, every async view a loading state, every form an error state.
 
-- Let space create order before borders do. Group with spacing, separate with `separator`, and add a `Surface` only when content needs a container.
-- Use the Tailwind spacing scale (`calc(var(--spacing) * n)`); avoid one-off pixel values.
-- Radius comes from the theme (`--radius`, `--field-radius`). Do not hand-tune radii per component.
-- Elevation is a 1px ring (`--surface-shadow`, `--overlay-shadow`), not a drop shadow. Do not add `shadow-lg` and similar.
-- Design mobile first: keep reading order, one visual focus, and reachable controls at 320px wide. No horizontal page scroll; wide tables scroll inside their own container.
+These are defaults, not laws. Where the user asks for something else, or where Niltavi has no opinion (charts, illustrations, marketing pages, brand content), follow the user. Keep `check` free of errors unless the user wants otherwise.
 
-## Components
+## HeroUI v3
 
-- Compose from `@heroui/react` before writing anything custom. Match the patterns in `src/showcase/examples/`.
-- Extend with BEM modifiers in `@layer components` (`.button--rufous`, `.surface--example`), using semantic variables only. Do not restyle HeroUI internals with deep selectors.
-- One primary button per view; supporting actions use `secondary`, `tertiary`, or `ghost`.
-- Icons come from `@gravity-ui/icons` at 16–18px, with `aria-hidden` when decorative and an `aria-label` on icon-only buttons.
-- Feedback uses HeroUI states (`isInvalid`, `isDisabled`, `isPending`) and `toast`, not ad hoc banners.
-
-## Illustration and texture
-
-- Illustrations follow a flat-vector, woodcut-inspired style: clear silhouettes, flat fields of color, simple geometry, and a few pale cuts that follow the form of feathers, leaves, and branches.
-- Draw from the palette primitives at muted steps: blue-gray, deep blue, botanical green, ochre, a little golden brown.
-- Keep backgrounds clean. No global noise, grain, or grunge overlays. If paper texture is requested, keep it very low contrast.
-- Ship illustrations as optimized SVG with `width`, `height`, and meaningful `alt` text (empty `alt` when decorative).
-
-## Motion and accessibility
-
-- Motion is short (150–250ms) and eases out. Animate opacity and transform, not layout.
-- Respect `prefers-reduced-motion`.
-- Every interactive element is reachable by keyboard and shows the `--focus` ring. Do not remove outlines without a visible replacement.
-- Use semantic landmarks and headings in order. Prefer HeroUI / React Aria components, which carry the right roles.
-- Before handing off, check light and dark, 320px and desktop widths, keyboard flow, and contrast.
-
-## Avoid
-
-- Neon gradients, glassmorphism, glowing buttons, heavy drop shadows.
-- Template-looking card grids and decoration that has no job.
-- Heavy antiquing, dense wood grain, crosshatching, torn edges.
-- Cartoon, photorealistic, or plastic 3D illustration styles.
-- Colors picked from screenshots instead of tokens.
-
-## Before you finish
-
-Re-read the current theme files from the repository, confirm every color is a token, and confirm the result reads well in both themes. If you deviated from a convention on purpose, say so and why.
+HeroUI v3 only: no provider, compound components (`Card.Header`), `onPress`, semantic variants. The v2/v3 differences, the variant table, and Niltavi's extra classes are in [references/components.md](references/components.md).

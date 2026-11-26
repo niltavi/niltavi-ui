@@ -182,8 +182,8 @@
 .nt-auth__sent > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .nt-auth__sent span { color: var(--muted); font-size: .75rem; }
 .nt-auth__sent strong { overflow: hidden; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
-.nt-auth__codehelp { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 32px; }
-.nt-resend { flex-shrink: 0; min-width: 8.5rem; justify-content: center; font-variant-numeric: tabular-nums; }
+.nt-auth__codelabel { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.nt-resend { flex-shrink: 0; min-width: 0; padding-inline: 0; font-variant-numeric: tabular-nums; }
 .nt-auth__terms { display: flex; flex-direction: column; gap: 6px; font-size: .8125rem; }
 .nt-auth__foot { padding-top: 16px; }
 .nt-steps { display: flex; flex: 1; gap: 6px; margin: 0; padding: 0; list-style: none; }

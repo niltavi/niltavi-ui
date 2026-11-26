@@ -1,3 +1,4 @@
+// niltavi-ignore-file: converts palette data; the color values are inputs, not styling.
 /** Choose a readable label for a fixed palette swatch in either theme. */
 export function swatchTextColor(hex: string) {
   const [red, green, blue] = [1, 3, 5].map((offset) => {

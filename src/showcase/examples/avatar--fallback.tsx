@@ -30,7 +30,7 @@ export function Fallback() {
 
       {/* Custom styled fallback */}
       <Avatar>
-        <Avatar.Fallback className="border-none bg-gradient-to-br from-pink-500 to-purple-500 text-white">
+        <Avatar.Fallback className="border-none bg-rufous-soft text-rufous-soft-foreground">
           {t("GB")}</Avatar.Fallback>
       </Avatar>
     </div>

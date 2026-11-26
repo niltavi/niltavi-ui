@@ -20,27 +20,32 @@ export function WithIcons() {
     check: {
       off: Power,
       on: Check,
-      selectedControlClass: "bg-green-500/80",
+      selectedControlClass: "bg-success",
+      selectedIconClass: "text-success",
     },
     darkMode: {
       off: Moon,
       on: Sun,
-      selectedControlClass: "",
+      selectedControlClass: "bg-rufous",
+      selectedIconClass: "text-rufous",
     },
     microphone: {
       off: Microphone,
       on: MicrophoneSlash,
-      selectedControlClass: "bg-red-500/80",
+      selectedControlClass: "bg-danger",
+      selectedIconClass: "text-danger",
     },
     notification: {
       off: BellSlash,
       on: BellFill,
-      selectedControlClass: "bg-purple-500/80",
+      selectedControlClass: "bg-warning",
+      selectedIconClass: "text-warning",
     },
     volume: {
       off: VolumeFill,
       on: VolumeSlashFill,
-      selectedControlClass: "bg-blue-500/80",
+      selectedControlClass: "bg-muted",
+      selectedIconClass: "text-muted",
     },
   };
 
@@ -54,7 +59,7 @@ export function WithIcons() {
                 <Switch.Thumb>
                   <Switch.Icon>
                     {t(isSelected ? (
-                      <value.on className="size-3 text-inherit opacity-100" />
+                      <value.on className={`size-3 opacity-100 ${value.selectedIconClass}`} />
                     ) : (
                       <value.off className="size-3 text-inherit opacity-70" />
                     ))}

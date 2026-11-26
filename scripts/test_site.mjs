@@ -83,6 +83,7 @@ test("SKILL.md is a valid skill and the install prompt points at it", () => {
   const frontmatter = skillSource.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? "";
   assert.match(frontmatter, new RegExp(`^name: ${skills.skillName}$`, "m"));
   assert.match(frontmatter, /^description: .{40,}$/m);
+  assert.match(skills.readSkillVersion(skillSource) ?? "", /^\d+\.\d+\.\d+$/);
   assert.ok(skillSource.includes(skills.siteUrl));
   assert.ok(skillSource.includes(skills.repoUrl));
   for (const prompt of [skills.installPrompt.en, skills.installPrompt.zh]) {

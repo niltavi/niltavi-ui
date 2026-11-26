@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import {defineConfig, type Plugin} from "vite";
+import type {OutputBundle, OutputChunk} from "rollup";
 import {themeInitialization} from "./src/product/theme";
 import {localeFromPath, localizedHref, siteDescriptions, siteOrigin, siteTitles} from "./src/site/localizedUrls";
 
@@ -27,7 +28,42 @@ function publicMetadata(): Plugin {
   };
 }
 
+const pageEntries = ["src/showcase/Showcase.tsx", "src/templates/Templates.tsx", "src/site/Palette.tsx", "src/site/Skills.tsx", "src/site/Editorial.tsx"];
+
+/** Fetch every page chunk alongside the entry so no page waits on a second round trip. */
+function preloadPageChunks(): Plugin {
+  return {
+    name: "niltavi-preload-page-chunks",
+    apply: "build",
+    transformIndexHtml: {
+      order: "post",
+      handler(html, {bundle}) {
+        if (!bundle) return;
+        const chunks = Object.values(bundle as OutputBundle).filter((item): item is OutputChunk => item.type === "chunk");
+        const files = new Set<string>();
+        const styles = new Set<string>();
+        const visit = (fileName: string) => {
+          const chunk = (bundle as OutputBundle)[fileName];
+          if (chunk?.type !== "chunk" || files.has(fileName) || html.includes(fileName)) return;
+          files.add(fileName);
+          chunk.viteMetadata?.importedCss.forEach((css) => { if (!html.includes(css)) styles.add(css); });
+          chunk.imports.forEach(visit);
+        };
+        for (const entry of pageEntries) {
+          const chunk = chunks.find((item) => item.isDynamicEntry && item.facadeModuleId?.replaceAll("\\", "/").endsWith(entry));
+          if (!chunk) throw new Error(`Page chunk not found: ${entry}`);
+          visit(chunk.fileName);
+        }
+        return [
+          ...[...files].map((fileName) => ({tag: "link", attrs: {rel: "modulepreload", crossorigin: true, href: "/" + fileName}, injectTo: "head" as const})),
+          ...[...styles].map((fileName) => ({tag: "link", attrs: {rel: "preload", as: "style", href: "/" + fileName}, injectTo: "head" as const})),
+        ];
+      },
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [publicMetadata(), react(), tailwindcss()],
+  plugins: [publicMetadata(), preloadPageChunks(), react(), tailwindcss()],
   build: {rollupOptions: {input: ["index.html", "zh/index.html"]}},
 });

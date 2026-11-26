@@ -1,9 +1,12 @@
 import {Check, Copy} from "@gravity-ui/icons";
 import {Button, Link, Typography, toast} from "@heroui/react";
 import {useEffect, useState, type ReactNode} from "react";
+import skillSource from "../../skills/niltavi-ui/SKILL.md?raw";
 import {useText} from "./Locale";
 import {scrollToSection, sectionId} from "./navigation";
-import {examplePrompts, installPrompt, invocations, repoUrl, skillName} from "./skillsContent";
+import {examplePrompts, installPrompt, invocations, readSkillVersion, repoUrl, skillName} from "./skillsContent";
+
+const skillVersion = readSkillVersion(skillSource);
 
 function useCopyText() {
   const text = useText();
@@ -68,7 +71,10 @@ export default function Skills({section}: {section: string}) {
           "复制下面这段话发给你的编程助手，它会帮你装好。",
         )}</Typography.Paragraph>
         <CodeBlock code={text(installPrompt.en, installPrompt.zh)} label={text("install prompt", "安装提示词")} wrap />
-        <Typography.Paragraph color="muted">{text("Source: ", "源文件：")}<Link href={`${repoUrl}/tree/main/skills/${skillName}`} target="_blank" rel="noopener noreferrer">skills/{skillName}</Link></Typography.Paragraph>
+        <Typography.Paragraph color="muted">
+          {skillVersion && <>{text("Version ", "版本 ")}{skillVersion}{" · "}</>}
+          {text("Source: ", "源文件：")}<Link href={`${repoUrl}/tree/main/skills/${skillName}`} target="_blank" rel="noopener noreferrer">skills/{skillName}</Link>
+        </Typography.Paragraph>
       </Section>
 
       <Section id="usage" title={text("Usage", "调用")}>

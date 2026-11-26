@@ -2,6 +2,8 @@
 name: niltavi-ui
 description: Builds and reviews web interfaces with Niltavi UI, a HeroUI v3 + Tailwind CSS v4 theme with ready-made templates and component kits. Use when creating or changing pages, layouts, components, colors, icons, or motion in a project that uses Niltavi UI, or when the user mentions Niltavi, niltava, ui.niltavi.com, or asks for a calm, natural, minimal look.
 license: MIT
+metadata:
+  version: "0.1.0"
 ---
 
 # Niltavi UI

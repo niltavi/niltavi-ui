@@ -5,6 +5,11 @@ export const skillName = "niltavi-ui";
 export const siteUrl = "https://ui.niltavi.com/";
 export const repoUrl = "https://github.com/niltavi/niltavi-ui";
 
+export function readSkillVersion(source: string) {
+  const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1];
+  return frontmatter?.match(/^metadata:\r?\n(?: {2}[^\r\n]*\r?\n)*? {2}version: "([^"\r\n]+)"\r?$/m)?.[1];
+}
+
 /** A prompt the reader pastes into their coding assistant so it installs the skill for them. */
 export const installPrompt: Copy = {
   en: `Install the niltavi-ui skill into this project.

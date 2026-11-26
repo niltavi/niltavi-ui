@@ -1,4 +1,5 @@
 // Adapted from HeroUI official demos (Apache-2.0); see ../NOTICE.md.
+// niltavi-ignore-file: the color values here are data the user picks, not styling.
 import {useCopy} from "../copy";
 import {ColorSlider, Label} from "@heroui/react";
 

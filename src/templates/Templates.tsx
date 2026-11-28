@@ -1,8 +1,7 @@
 import {Code, Eye} from "@gravity-ui/icons";
 import {Tabs} from "@heroui/react";
-import {memo, useEffect, useState, type ComponentType} from "react";
+import {memo, useState, type ComponentType} from "react";
 import {useLocale, useText} from "../site/Locale";
-import {scrollToSection} from "../site/navigation";
 import {componentKits, templateSections} from "./catalog";
 import ChatTemplate from "./Chat";
 import CrmTemplate from "./Crm";
@@ -77,12 +76,8 @@ function Block({item}: {item: Entry}) {
   </section>;
 }
 
-function Templates({section}: {section: string}) {
+function Templates() {
   const text = useText();
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => scrollToSection("templates", section));
-    return () => cancelAnimationFrame(frame);
-  }, [section]);
 
   return <div className="templates">
     <header className="templates__intro">

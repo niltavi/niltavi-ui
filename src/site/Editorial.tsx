@@ -1,5 +1,4 @@
 import {Typography} from "@heroui/react";
-import {useEffect} from "react";
 import birdArtwork from "../../docs/assets/niltavi-bird.svg";
 import {useText} from "./Locale";
 import {editorialContent} from "./editorialContent";
@@ -9,15 +8,11 @@ import stampArt from "./motifs/stamp-kingfisher.png";
 import woodcutArt from "./motifs/woodcut-fir.png";
 
 const motifArt = {screenprint: screenprintArt, stamp: stampArt, woodcut: woodcutArt};
-import {scrollToSection, sectionId} from "./navigation";
+import {sectionId} from "./navigation";
 
-export default function Editorial({page, section}: {page: "philosophy"; section: string}) {
+export default function Editorial({page}: {page: "philosophy"}) {
   const text = useText();
   const content = editorialContent[page];
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => scrollToSection(page, section));
-    return () => cancelAnimationFrame(frame);
-  }, [page, section]);
 
   return <article className={`editorial-page editorial-page--${page}`} aria-labelledby="editorial-title">
     <header className="editorial-header">

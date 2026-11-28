@@ -3,7 +3,7 @@ name: niltavi-ui
 description: Builds and reviews web interfaces with Niltavi UI, a HeroUI v3 + Tailwind CSS v4 theme with ready-made templates and component kits. Use when creating or changing pages, layouts, components, colors, icons, or motion in a project that uses Niltavi UI, or when the user mentions Niltavi, niltava, ui.niltavi.com, or asks for a calm, natural, minimal look.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Niltavi UI
@@ -32,6 +32,7 @@ It reads the current Niltavi UI repository (a local checkout, `--source <dir>`, 
 | `tokens [motion]` | Print the current color tokens (light and dark) or motion tokens and classes |
 | `sizes` | Print the recommended sizes: header, sidebar, tab bar, breakpoints, icons, spacing |
 | `check [paths]` | Check code against the rules; exits 1 on errors |
+| `favicon` / `favicon check [dir]` | Print the favicon and app icon spec; check a site's icons, touch icon, and manifest |
 
 ## Workflow
 
@@ -43,6 +44,7 @@ Copy this checklist and work through it:
 - [ ] Before using a HeroUI component you haven't used here, read `https://heroui.com/docs/react/components/<kebab-name>.mdx`
 - [ ] `check` the files you changed. Fix every error, then look at each warning
 - [ ] View it in light and dark, at 320px and at desktop width
+- [ ] When adding or changing a favicon or app icon, follow [references/favicon.md](references/favicon.md) and run `favicon check`
 
 `check` errors are hard rules: hard-coded colors, Tailwind's default palette, HeroUI v2 APIs, icon sets other than `@gravity-ui/icons`, icon-only buttons without `aria-label`. Warnings are design advice: drop shadows, gradients and blur, palette primitives in components, `onClick` on HeroUI controls, motion outside 150–320ms, more than one primary button or rufous accent. Change a warning, or keep it on purpose with a `// niltavi-ignore <rule>` comment on or above the line.
 

@@ -13,7 +13,7 @@ import {pages, parseRoute, routeHref, scrollToSection, type Page} from "./site/n
 import {editorialContent} from "./site/editorialContent";
 import {skillSections} from "./site/skillsContent";
 import {templateGroups} from "./templates/catalog";
-import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey} from "./product/theme";
+import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey, type ProductTheme} from "./product/theme";
 import {localeFromPath, localizedHref, siteDescriptions, siteOrigin, siteTitles} from "./site/localizedUrls";
 import {Editorial, Palette, Showcase, Skills, Templates} from "./site/pageModules";
 
@@ -35,10 +35,10 @@ function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
   return <Component aria-hidden="true" focusable="false" width={18} height={18} />;
 }
 
-function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: string) => void}) {
+function Site({locale, changeLocale, initialHash, initialMode}: {locale: Locale; changeLocale: (href: string) => void; initialHash: string; initialMode: ProductTheme}) {
   const text = useText();
-  const [mode, setMode] = useState(preferredTheme);
-  const [hash, setHash] = useState(window.location.hash);
+  const [mode, setMode] = useState(initialMode);
+  const [hash, setHash] = useState(initialHash);
   const route = parseRoute(hash);
   const isHome = hash === "";
   const [query, setQuery] = useState("");
@@ -57,6 +57,8 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
       setMode(next);
     };
     const onStorage = (event: StorageEvent) => { if (event.key === themeKey || event.key === null) update(); };
+    // A prerendered page starts in the light theme; switch to the stored preference once hydrated.
+    update();
     preference.addEventListener("change", update);
     window.addEventListener("storage", onStorage);
     return () => {
@@ -174,8 +176,9 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
   </>;
 }
 
-export default function App() {
-  const [locale, setLocale] = useState(() => localeFromPath(window.location.pathname));
+/** Location and theme are props so the server render and the first client render agree. */
+export default function App({pathname, hash, mode}: {pathname: string; hash: string; mode: ProductTheme}) {
+  const [locale, setLocale] = useState(() => localeFromPath(pathname));
   const syncLocale = () => startTransition(() => setLocale(localeFromPath(window.location.pathname)));
   useEffect(() => {
     window.addEventListener("popstate", syncLocale);
@@ -188,5 +191,5 @@ export default function App() {
     syncLocale();
     if (window.location.hash !== previousHash) window.dispatchEvent(new HashChangeEvent("hashchange"));
   };
-  return <LocaleContext.Provider value={locale}><I18nProvider locale={locale}><Site locale={locale} changeLocale={changeLocale} /></I18nProvider></LocaleContext.Provider>;
+  return <LocaleContext.Provider value={locale}><I18nProvider locale={locale}><Site locale={locale} changeLocale={changeLocale} initialHash={hash} initialMode={mode} /></I18nProvider></LocaleContext.Provider>;
 }

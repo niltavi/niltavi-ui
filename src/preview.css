@@ -99,6 +99,8 @@ body {
 .toc-heading:first-child { padding-top: 0; }
 .toc-links a[aria-current] { color: var(--accent-soft-foreground); background: var(--accent-soft); }
 .preview-controls { display: flex; flex-shrink: 0; align-items: center; gap: 4px; margin-left: auto; }
+.theme-icon--sun, .dark .theme-icon--moon { display: none; }
+.dark .theme-icon--sun { display: inline; }
 .toc-links a:focus-visible, .preview-brand:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .toc-mobile { display: none; }
 .preview-main { min-width: 0; padding-top: 32px; }

@@ -1,10 +1,21 @@
 import {EmptyState, Surface} from "@heroui/react";
-import {memo, useEffect} from "react";
+import {memo, useEffect, useSyncExternalStore, type ReactNode} from "react";
 import {useLocale, useText} from "../site/Locale";
 import {scrollToSection} from "../site/navigation";
 import {useCopy} from "./copy";
 import {matchesComponent} from "./catalog";
 import {components} from "./registry";
+
+/**
+ * Date and time examples format with the viewer's locale data and time zone, which the build server can't match.
+ * They render after hydration; everything else is in the prerendered HTML.
+ */
+const clientOnlyComponents = new Set(["date-field", "time-field", "calendar", "range-calendar", "date-picker", "date-range-picker"]);
+const subscribe = () => () => {};
+function ClientOnly({children}: {children: ReactNode}) {
+  const isClient = useSyncExternalStore(subscribe, () => true, () => false);
+  return isClient ? children : null;
+}
 
 function Showcase({query, section, isHome = false}: {query: string; section: string; isHome?: boolean}) {
   const text = useText();
@@ -24,7 +35,7 @@ function Showcase({query, section, isHome = false}: {query: string; section: str
         <div className="showcase-examples" data-wide={component.wide || undefined}>
           {component.examples.map(({name, Component}) => <div key={name} className="showcase-variant">
             <h3>{t(name)}</h3>
-            <Surface className="surface--example showcase-example"><Component /></Surface>
+            <Surface className="surface--example showcase-example">{clientOnlyComponents.has(component.id) ? <ClientOnly><Component /></ClientOnly> : <Component />}</Surface>
           </div>)}
         </div>
       </section>;

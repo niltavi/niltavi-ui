@@ -121,6 +121,7 @@ body {
 .site-intro { display: grid; justify-items: start; gap: calc(var(--spacing) * 3); padding-block: calc(var(--spacing) * 5) calc(var(--spacing) * 8); }
 .site-intro h1 { font-size: 1.5rem; font-weight: 600; }
 .site-intro a { text-decoration: underline; text-underline-offset: 0.2em; }
+html[data-deep-link] #root[data-ssr] { visibility: hidden; }
 .preview-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 32px 24px; font-size: .875rem; }
 
 /* Long-form pages use the existing typography and semantic theme. */

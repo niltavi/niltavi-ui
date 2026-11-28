@@ -1,6 +1,5 @@
-import {memo, useEffect} from "react";
+import {memo} from "react";
 import {swatchTextColor} from "./color";
-import {scrollToSection} from "./navigation";
 import {Card, Table, toast} from "@heroui/react";
 import tokens from "../theme/tokens.json";
 import {paletteScales, uiScales} from "./paletteCatalog";
@@ -172,11 +171,7 @@ function Audit({mode}: {mode: "light" | "dark"}) {
   );
 }
 
-function Palette({mode, section}: {mode: "light" | "dark"; section: string}) {
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => scrollToSection("palette", section));
-    return () => cancelAnimationFrame(frame);
-  }, [section]);
+function Palette({mode}: {mode: "light" | "dark"}) {
   const text = useText();
   return <div className="palette-page">
     <section id="palette-colors" className="palette-section palette-colors" aria-labelledby="palette-colors-title">

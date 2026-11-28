@@ -9,7 +9,7 @@
     "tokens": "python3 scripts/generate_tokens.py",
     "icons": "python3 scripts/generate_icons.py",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr && node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

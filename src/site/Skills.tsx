@@ -3,7 +3,7 @@ import {Button, Link, Typography, toast} from "@heroui/react";
 import {useEffect, useState, type ReactNode} from "react";
 import skillSource from "../../skills/niltavi-ui/SKILL.md?raw";
 import {useText} from "./Locale";
-import {scrollToSection, sectionId} from "./navigation";
+import {sectionId} from "./navigation";
 import {examplePrompts, installPrompt, invocations, readSkillVersion, repoUrl, skillName} from "./skillsContent";
 
 const skillVersion = readSkillVersion(skillSource);
@@ -48,12 +48,8 @@ function Section({id, title, children}: {id: string; title: string; children: Re
   </section>;
 }
 
-export default function Skills({section}: {section: string}) {
+export default function Skills() {
   const text = useText();
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => scrollToSection("skills", section));
-    return () => cancelAnimationFrame(frame);
-  }, [section]);
 
   return <article className="editorial-page skills-page" aria-labelledby="skills-title">
     <header className="editorial-header">

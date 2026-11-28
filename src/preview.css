@@ -99,6 +99,8 @@ body {
 .toc-heading:first-child { padding-top: 0; }
 .toc-links a[aria-current] { color: var(--accent-soft-foreground); background: var(--accent-soft); }
 .preview-controls { display: flex; flex-shrink: 0; align-items: center; gap: 4px; margin-left: auto; }
+.theme-icon--sun, .dark .theme-icon--moon { display: none; }
+.dark .theme-icon--sun { display: inline; }
 .toc-links a:focus-visible, .preview-brand:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .toc-mobile { display: none; }
 .preview-main { min-width: 0; padding-top: 32px; }
@@ -121,6 +123,7 @@ body {
 .site-intro { display: grid; justify-items: start; gap: calc(var(--spacing) * 3); padding-block: calc(var(--spacing) * 5) calc(var(--spacing) * 8); }
 .site-intro h1 { font-size: 1.5rem; font-weight: 600; }
 .site-intro a { text-decoration: underline; text-underline-offset: 0.2em; }
+html[data-deep-link] #root[data-ssr] { visibility: hidden; }
 .preview-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 32px 24px; font-size: .875rem; }
 
 /* Long-form pages use the existing typography and semantic theme. */

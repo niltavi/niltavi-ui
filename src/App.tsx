@@ -1,7 +1,7 @@
 import {ArrowUp, Globe, LogoGithub, Moon, Sun} from "@gravity-ui/icons";
 import {Button, Dropdown, Header, Label, Link, ListBox, SearchField, Select, Spinner, Surface, Tabs, Toast} from "@heroui/react";
 import {buttonVariants} from "@heroui/styles";
-import {Fragment, startTransition, Suspense, useEffect, useState, type MouseEvent} from "react";
+import {Activity, Fragment, startTransition, Suspense, useDeferredValue, useEffect, useState, type MouseEvent, type ReactNode} from "react";
 import {I18nProvider} from "react-aria";
 import {Link as ButtonLink} from "react-aria-components";
 
@@ -13,7 +13,7 @@ import {pages, parseRoute, routeHref, scrollToSection, type Page} from "./site/n
 import {editorialContent} from "./site/editorialContent";
 import {skillSections} from "./site/skillsContent";
 import {templateGroups} from "./templates/catalog";
-import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey} from "./product/theme";
+import {applyTheme, preferredTheme, saveTheme, systemDarkQuery, themeKey, type ProductTheme} from "./product/theme";
 import {localeFromPath, localizedHref, siteDescriptions, siteOrigin, siteTitles} from "./site/localizedUrls";
 import {Editorial, Palette, Showcase, Skills, Templates} from "./site/pageModules";
 
@@ -30,21 +30,31 @@ function groupEntries(entries: TocEntry[]) {
   return groups;
 }
 
-function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
+function Icon({name, className}: {name: "sun" | "moon" | "arrow-up"; className?: string}) {
   const Component = {sun: Sun, moon: Moon, "arrow-up": ArrowUp}[name];
-  return <Component aria-hidden="true" focusable="false" width={18} height={18} />;
+  return <Component className={className} aria-hidden="true" focusable="false" width={18} height={18} />;
 }
 
-function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: string) => void}) {
+/** Scrolls the page that just became visible to the section in the URL. */
+function SectionScroll({page, section}: {page: Page; section: string}) {
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => scrollToSection(page, section));
+    return () => cancelAnimationFrame(frame);
+  }, [page, section]);
+  return null;
+}
+
+function Site({locale, changeLocale, initialHash, initialMode}: {locale: Locale; changeLocale: (href: string) => void; initialHash: string; initialMode: ProductTheme}) {
   const text = useText();
-  const [mode, setMode] = useState(preferredTheme);
-  const [hash, setHash] = useState(window.location.hash);
+  const [mode, setMode] = useState(initialMode);
+  const [hash, setHash] = useState(initialHash);
   const route = parseRoute(hash);
   const isHome = hash === "";
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const onHashChange = () => startTransition(() => { setQuery(""); setHash(window.location.hash); });
+    // Navigation state updates right away so the tabs and contents respond to the click; the page itself is deferred below.
+    const onHashChange = () => { setQuery(""); setHash(window.location.hash); };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
@@ -57,6 +67,8 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
       setMode(next);
     };
     const onStorage = (event: StorageEvent) => { if (event.key === themeKey || event.key === null) update(); };
+    // A prerendered page starts in the light theme; switch to the stored preference once hydrated.
+    update();
     preference.addEventListener("change", update);
     window.addEventListener("storage", onStorage);
     return () => {
@@ -82,6 +94,30 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
       : (route.page === "skills" ? skillSections : editorialContent[route.page].sections).map((section) => ({id: section.id, label: text(section.title.en, section.title.zh)}));
 
   const currentSection = useActiveSection(route.page, entries.map((entry) => entry.id));
+
+  // Every page stays mounted. Hidden pages first render ahead of time inside a hidden Activity, at idle priority.
+  // Once warm, they switch to a visible Activity inside a hidden wrapper: their effects are mounted too,
+  // so changing pages only toggles the hidden attribute instead of re-mounting hundreds of examples.
+  const [warm, setWarm] = useState(false);
+  useEffect(() => {
+    const warmUp = () => startTransition(() => setWarm(true));
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(warmUp, {timeout: 4000});
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(warmUp, 2000);
+    return () => clearTimeout(id);
+  }, []);
+  const contentHash = useDeferredValue(hash);
+  const contentRoute = parseRoute(contentHash);
+  const contentIsHome = contentHash === "";
+  const views: Record<Page, ReactNode> = {
+    components: <Showcase query={query} isHome={contentIsHome} />,
+    templates: <Templates />,
+    palette: <Palette mode={mode} />,
+    skills: <Skills />,
+    philosophy: <Editorial page="philosophy" />,
+  };
 
   const navigate = (page: Page, section = "") => {
     const target = routeHref(page, section);
@@ -124,7 +160,10 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
             const next = mode === "light" ? "dark" : "light";
             saveTheme(next);
             setMode(next);
-          }}><Icon name={mode === "light" ? "moon" : "sun"} /></Button>
+          }}>
+            {/* Both icons render; the theme class on <html> picks one, so the prerendered page is right before hydration. */}
+            <Icon name="moon" className="theme-icon--moon" /><Icon name="sun" className="theme-icon--sun" />
+          </Button>
           <Dropdown>
             <Button isIconOnly size="sm" variant="ghost" aria-label={text("Language", "语言")}><Globe aria-hidden="true" width={18} height={18} /></Button>
             <Dropdown.Popover placement="bottom end">
@@ -158,13 +197,21 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
         </Select>
       </aside>
       <main id="main-content" tabIndex={-1} className="preview-main">
-        {isHome && <div className="site-intro">
+        {contentIsHome && <div className="site-intro">
           <h1>Niltavi UI</h1>
           <p>{siteDescriptions[locale]}</p>
         </div>}
-        <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
-          {route.page === "components" ? <Showcase query={query} section={route.section} isHome={isHome} /> : route.page === "templates" ? <Templates section={route.section} /> : route.page === "palette" ? <Palette mode={mode} section={route.section} /> : route.page === "skills" ? <Skills section={route.section} /> : <Editorial page={route.page} section={route.section} />}
-        </Suspense>
+        {pages.map(({id}) => {
+          const isActive = id === contentRoute.page;
+          return <div key={id} hidden={!isActive}>
+            <Activity mode={isActive || warm ? "visible" : "hidden"}>
+              <Suspense fallback={<Spinner aria-label={text("Loading", "加载中")} />}>
+                {views[id]}
+                {isActive && <SectionScroll page={id} section={id === "components" && query ? "" : contentRoute.section} />}
+              </Suspense>
+            </Activity>
+          </div>;
+        })}
         <footer className="preview-footer">
           <Link href="https://niltavi.com">niltavi.com</Link>
           <Button isIconOnly variant="ghost" aria-label={text("Back to top", "回到顶部")} onPress={() => {window.scrollTo({top: 0}); document.getElementById("page-top")?.focus({preventScroll: true});}}><Icon name="arrow-up" /></Button>
@@ -174,8 +221,9 @@ function Site({locale, changeLocale}: {locale: Locale; changeLocale: (href: stri
   </>;
 }
 
-export default function App() {
-  const [locale, setLocale] = useState(() => localeFromPath(window.location.pathname));
+/** Location and theme are props so the server render and the first client render agree. */
+export default function App({pathname, hash, mode}: {pathname: string; hash: string; mode: ProductTheme}) {
+  const [locale, setLocale] = useState(() => localeFromPath(pathname));
   const syncLocale = () => startTransition(() => setLocale(localeFromPath(window.location.pathname)));
   useEffect(() => {
     window.addEventListener("popstate", syncLocale);
@@ -188,5 +236,5 @@ export default function App() {
     syncLocale();
     if (window.location.hash !== previousHash) window.dispatchEvent(new HashChangeEvent("hashchange"));
   };
-  return <LocaleContext.Provider value={locale}><I18nProvider locale={locale}><Site locale={locale} changeLocale={changeLocale} /></I18nProvider></LocaleContext.Provider>;
+  return <LocaleContext.Provider value={locale}><I18nProvider locale={locale}><Site locale={locale} changeLocale={changeLocale} initialHash={hash} initialMode={mode} /></I18nProvider></LocaleContext.Provider>;
 }

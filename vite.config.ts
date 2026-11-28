@@ -17,6 +17,8 @@ function publicMetadata(): Plugin {
           html: html.replace("%SITE_DESCRIPTION%", description).replace("%INTRO_DESCRIPTION%", description).replace("%SITE_TITLE%", siteTitles[locale]),
           tags: [
             {tag: "script", injectTo: "head-prepend", children: themeInitialization},
+            // The prerendered HTML is the home page; hide it on deep links until the client renders the right page.
+            {tag: "script", injectTo: "head-prepend", children: 'if (location.hash.length > 1) document.documentElement.dataset.deepLink = "";'},
             {tag: "link", attrs: {rel: "canonical", href: siteOrigin + localizedHref(locale)}},
             {tag: "link", attrs: {rel: "alternate", hreflang: "en", href: siteOrigin + "/"}},
             {tag: "link", attrs: {rel: "alternate", hreflang: "zh-CN", href: siteOrigin + "/zh/"}},
@@ -28,9 +30,12 @@ function publicMetadata(): Plugin {
   };
 }
 
-const pageEntries = ["src/showcase/Showcase.tsx", "src/templates/Templates.tsx", "src/site/Palette.tsx", "src/site/Skills.tsx", "src/site/Editorial.tsx"];
+// The prerendered home page hydrates with the components page, so only that chunk is preloaded.
+// Other pages warm up after the first render (see preloadPages); preloading them here
+// competed with the render-blocking stylesheet and delayed the first paint.
+const pageEntries = ["src/showcase/Showcase.tsx"];
 
-/** Fetch every page chunk alongside the entry so no page waits on a second round trip. */
+/** Fetch the home page's chunk alongside the entry, behind the stylesheet, so hydration doesn't wait on a second round trip. */
 function preloadPageChunks(): Plugin {
   return {
     name: "niltavi-preload-page-chunks",
@@ -55,7 +60,7 @@ function preloadPageChunks(): Plugin {
           visit(chunk.fileName);
         }
         return [
-          ...[...files].map((fileName) => ({tag: "link", attrs: {rel: "modulepreload", crossorigin: true, href: "/" + fileName}, injectTo: "head" as const})),
+          ...[...files].map((fileName) => ({tag: "link", attrs: {rel: "modulepreload", crossorigin: true, fetchpriority: "low", href: "/" + fileName}, injectTo: "head" as const})),
           ...[...styles].map((fileName) => ({tag: "link", attrs: {rel: "preload", as: "style", href: "/" + fileName}, injectTo: "head" as const})),
         ];
       },

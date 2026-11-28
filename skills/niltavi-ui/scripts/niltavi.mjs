@@ -7,6 +7,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import vm from "node:vm";
+import zlib from "node:zlib";
 
 const REPO_URL = "https://github.com/niltavi/niltavi-ui.git";
 const SITE_URL = "https://ui.niltavi.com/";
@@ -28,6 +29,9 @@ Usage: node niltavi.mjs <command> [options]
   sizes [--json]         Print the recommended layout sizes
   check [paths...] [--json]
                          Check code against the Niltavi rules; exits 1 on errors
+  favicon                Print the favicon and app icon specification
+  favicon check [dir] [--json]
+                         Check a site's favicons, touch icon, and manifest; exits 1 on errors
 
 Common options:
   --source <dir>         Use this Niltavi UI checkout (or set NILTAVI_UI_DIR)
@@ -689,6 +693,183 @@ function cmdCheck(paths, flags) {
   process.exitCode = errors ? 1 : 0;
 }
 
+// ---------- favicon ----------
+
+const FAVICON_SPEC = "skills/niltavi-ui/references/favicon.md";
+
+/** Decode an 8-bit, non-interlaced PNG far enough to read its alpha channel. */
+function readPng(buffer) {
+  if (buffer.length < 33 || buffer.readUInt32BE(0) !== 0x89504e47) return null;
+  const width = buffer.readUInt32BE(16), height = buffer.readUInt32BE(20);
+  const depth = buffer[24], colorType = buffer[25], interlace = buffer[28];
+  const png = {width, height, colorType, alpha: null};
+  const channels = {0: 1, 2: 3, 4: 2, 6: 4}[colorType];
+  if (!channels || colorType === 0 || colorType === 2) { if (colorType === 0 || colorType === 2) png.alpha = () => 255; return png; }
+  if (depth !== 8 || interlace !== 0) return png;
+  const chunks = [];
+  for (let at = 8; at + 8 <= buffer.length;) {
+    const length = buffer.readUInt32BE(at), type = buffer.toString("latin1", at + 4, at + 8);
+    if (type === "IDAT") chunks.push(buffer.subarray(at + 8, at + 8 + length));
+    if (type === "IEND") break;
+    at += 12 + length;
+  }
+  let raw;
+  try { raw = zlib.inflateSync(Buffer.concat(chunks)); } catch { return png; }
+  const stride = width * channels, pixels = Buffer.alloc(stride * height);
+  for (let y = 0; y < height; y++) {
+    const filter = raw[y * (stride + 1)], line = raw.subarray(y * (stride + 1) + 1, (y + 1) * (stride + 1));
+    for (let x = 0; x < stride; x++) {
+      const a = x >= channels ? pixels[y * stride + x - channels] : 0;
+      const b = y > 0 ? pixels[(y - 1) * stride + x] : 0;
+      const c = x >= channels && y > 0 ? pixels[(y - 1) * stride + x - channels] : 0;
+      const p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
+      const predictor = [0, a, b, (a + b) >> 1, pa <= pb && pa <= pc ? a : pb <= pc ? b : c][filter] ?? 0;
+      pixels[y * stride + x] = (line[x] + predictor) & 0xff;
+    }
+  }
+  png.alpha = (x, y) => pixels[y * stride + x * channels + channels - 1];
+  return png;
+}
+
+function pngOpaque(png) {
+  for (let y = 0; y < png.height; y++) for (let x = 0; x < png.width; x++) if (png.alpha(x, y) !== 255) return false;
+  return true;
+}
+
+function icoSizes(buffer) {
+  if (buffer.length < 6 || buffer.readUInt16LE(0) !== 0 || buffer.readUInt16LE(2) !== 1) return null;
+  const sizes = [];
+  for (let i = 0; i < buffer.readUInt16LE(4); i++) sizes.push(buffer[6 + i * 16] || 256);
+  return sizes;
+}
+
+const attr = (tag, name) => tag.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, "i"))?.slice(1).find((v) => v !== undefined);
+
+function cmdFavicon(sub, rest, flags) {
+  if (sub !== "check") {
+    const source = resolveSource(flags);
+    console.log(fs.readFileSync(path.join(source, FAVICON_SPEC), "utf8"));
+    return;
+  }
+  const root = path.resolve(rest[0] ?? ".");
+  const publicDir = fs.existsSync(path.join(root, "public")) ? path.join(root, "public") : root;
+  const htmlFile = ["index.html", "public/index.html", "src/index.html"].map((f) => path.join(root, f)).find((f) => fs.existsSync(f));
+  const problems = [];
+  const report = (severity, rule, file, message) => problems.push({file: posix(path.relative(process.cwd(), file)), rule, severity, message});
+  const fileFor = (href) => path.join(publicDir, decodeURI(href.split(/[?#]/)[0]).replace(/^\/+/, ""));
+  const load = (href, html, rule) => {
+    if (/^[a-z]+:/i.test(href)) return null;
+    const file = fileFor(href);
+    if (!fs.existsSync(file)) { report("error", rule, html, `${href} does not exist at ${posix(path.relative(root, file))}`); return null; }
+    return {file, data: fs.readFileSync(file)};
+  };
+
+  // Root files that browsers and iOS request without any markup.
+  for (const name of ["favicon.ico", "apple-touch-icon.png"]) {
+    if (!fs.existsSync(path.join(publicDir, name))) report("error", "root-file", path.join(publicDir, name), `/${name} must exist at the site root`);
+  }
+
+  if (!htmlFile) {
+    report("error", "markup", root, "No index.html found; pass the folder that contains the site's HTML entry");
+  } else {
+    const html = fs.readFileSync(htmlFile, "utf8");
+    const head = html.match(/<head[\s>][\s\S]*?<\/head>/i)?.[0] ?? html;
+    const links = [...head.matchAll(/<link\b[^>]*>/gi)].map((m) => m[0]);
+    const rels = (tag) => (attr(tag, "rel") ?? "").toLowerCase().split(/\s+/);
+    const icons = links.filter((t) => rels(t).includes("icon"));
+
+    if (links.some((t) => /^shortcut\s+icon$/i.test((attr(t, "rel") ?? "").trim()))) report("error", "markup", htmlFile, 'rel="shortcut icon" is non-conforming; use rel="icon"');
+    for (const tag of [...icons, ...links.filter((t) => rels(t).includes("apple-touch-icon"))]) {
+      for (const size of (attr(tag, "sizes") ?? "").split(/\s+/).filter(Boolean)) {
+        if (size !== "any" && !/^[1-9]\d*x[1-9]\d*$/.test(size)) report("error", "markup", htmlFile, `sizes token "${size}" must be "any" or lowercase WxH without leading zeros`);
+      }
+    }
+
+    const svg = icons.find((t) => /\.svg(\?|#|$)/i.test(attr(t, "href") ?? "") || attr(t, "type") === "image/svg+xml");
+    if (!svg) report("error", "markup", htmlFile, 'Missing <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">');
+    else {
+      if (attr(svg, "type") !== "image/svg+xml") report("warning", "markup", htmlFile, 'Give the SVG icon type="image/svg+xml"');
+      if (attr(svg, "sizes") !== "any") report("warning", "markup", htmlFile, 'Give the SVG icon sizes="any"');
+      if (icons.indexOf(svg) !== icons.length - 1) report("warning", "markup", htmlFile, "Declare the SVG icon last so browsers that support it pick it on a tie");
+      const loaded = load(attr(svg, "href"), htmlFile, "favicon.svg");
+      if (loaded) {
+        const text = loaded.data.toString("utf8");
+        const box = text.match(/viewBox\s*=\s*["']\s*([-\d.]+)[\s,]+([-\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/i);
+        if (!box || Number(box[3]) !== Number(box[4])) report("error", "favicon.svg", loaded.file, "The SVG needs a square viewBox (0 0 1024 1024)");
+        if (!/prefers-color-scheme\s*:\s*dark/i.test(text)) report("warning", "favicon.svg", loaded.file, "Add the dark appearance with @media (prefers-color-scheme: dark)");
+        if (/<script\b|<image\b|xlink:href\s*=\s*["']https?:|\shref\s*=\s*["']https?:/i.test(text)) report("error", "favicon.svg", loaded.file, "The SVG favicon must be self-contained: no scripts, embedded images, or external references");
+      }
+    }
+
+    const ico = icons.find((t) => /\.ico(\?|#|$)/i.test(attr(t, "href") ?? ""));
+    if (!ico) report("warning", "markup", htmlFile, 'Add <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">');
+    const icoFile = path.join(publicDir, "favicon.ico");
+    if (fs.existsSync(icoFile)) {
+      const sizes = icoSizes(fs.readFileSync(icoFile));
+      if (!sizes) report("error", "favicon.ico", icoFile, "favicon.ico is not a valid ICO file");
+      else {
+        for (const need of [16, 32]) if (!sizes.includes(need)) report("error", "favicon.ico", icoFile, `favicon.ico must contain a ${need}×${need} entry`);
+        if (!sizes.includes(48)) report("warning", "favicon.ico", icoFile, "Add a 48×48 entry to favicon.ico");
+        const declared = (ico && attr(ico, "sizes") || "").split(/\s+/).filter(Boolean);
+        for (const size of declared) if (size !== "any" && !sizes.includes(Number(size.split("x")[0]))) report("error", "markup", htmlFile, `favicon.ico is declared with ${size} but does not contain it`);
+      }
+    }
+
+    const touch = links.find((t) => rels(t).includes("apple-touch-icon"));
+    if (!touch) report("warning", "markup", htmlFile, 'Add <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">');
+    const touchFile = touch ? load(attr(touch, "href"), htmlFile, "apple-touch-icon")?.file : path.join(publicDir, "apple-touch-icon.png");
+    if (touchFile && fs.existsSync(touchFile)) {
+      const png = readPng(fs.readFileSync(touchFile));
+      if (!png) report("error", "apple-touch-icon", touchFile, "apple-touch-icon must be a PNG");
+      else {
+        if (png.width !== 180 || png.height !== 180) report("error", "apple-touch-icon", touchFile, `apple-touch-icon must be 180×180, found ${png.width}×${png.height}`);
+        if (!png.alpha) report("warning", "apple-touch-icon", touchFile, "Could not read the alpha channel; export an 8-bit RGB PNG");
+        else if (!pngOpaque(png)) report("error", "apple-touch-icon", touchFile, "apple-touch-icon must be full-bleed and opaque: iOS applies the rounded mask and fills transparent pixels");
+      }
+    }
+
+    const manifestLink = links.find((t) => rels(t).includes("manifest"));
+    if (!manifestLink) report("error", "markup", htmlFile, 'Missing <link rel="manifest" href="/site.webmanifest">');
+    else {
+      const loaded = load(attr(manifestLink, "href"), htmlFile, "manifest");
+      let manifest = null;
+      if (loaded) { try { manifest = JSON.parse(loaded.data.toString("utf8")); } catch { report("error", "manifest", loaded.file, "The manifest is not valid JSON"); } }
+      if (manifest) {
+        for (const key of ["theme_color", "background_color"]) if (!manifest[key]) report("warning", "manifest", loaded.file, `Set ${key}`);
+        const list = Array.isArray(manifest.icons) ? manifest.icons : [];
+        const purposes = (icon) => (icon.purpose ?? "any").trim().split(/\s+/);
+        const has = (purpose, size) => list.find((i) => purposes(i).includes(purpose) && (i.sizes ?? "").split(/\s+/).includes(`${size}x${size}`));
+        for (const icon of list) if (purposes(icon).length > 1) report("error", "manifest", loaded.file, `${icon.src}: give each icon a single purpose, not "${icon.purpose}"`);
+        for (const [purpose, size, severity] of [["any", 192, "error"], ["any", 512, "error"], ["maskable", 512, "error"], ["monochrome", 512, "warning"]]) {
+          const icon = has(purpose, size);
+          if (!icon) { report(severity, "manifest", loaded.file, `Add a ${size}×${size} icon with purpose "${purpose}"`); continue; }
+          const image = load(new URL(icon.src, "https://site.invalid" + "/" + posix(path.relative(publicDir, loaded.file))).pathname, loaded.file, "manifest");
+          const png = image && readPng(image.data);
+          if (!image || !png) continue;
+          if (png.width !== size || png.height !== size) report("error", "manifest", image.file, `${icon.src} must be ${size}×${size}, found ${png.width}×${png.height}`);
+          if (!png.alpha) continue;
+          const corner = png.alpha(0, 0), center = png.alpha(png.width >> 1, png.height >> 1);
+          if (purpose === "maskable" && !pngOpaque(png)) report("error", "manifest", image.file, `${icon.src}: a maskable icon must be full-bleed and opaque`);
+          if (purpose === "any" && (corner !== 0 || center !== 255)) report("warning", "manifest", image.file, `${icon.src}: an "any" icon should be the rounded tile, with transparent corners`);
+          if (purpose === "monochrome" && corner !== 0) report("warning", "manifest", image.file, `${icon.src}: a monochrome icon should be the symbol on a transparent background`);
+        }
+      }
+    }
+
+    const themes = [...head.matchAll(/<meta\b[^>]*>/gi)].map((m) => m[0]).filter((t) => (attr(t, "name") ?? "").toLowerCase() === "theme-color");
+    if (!themes.length) report("warning", "markup", htmlFile, 'Add <meta name="theme-color"> for light and dark');
+  }
+
+  const errors = problems.filter((p) => p.severity === "error").length;
+  if (flags.json) console.log(JSON.stringify({root: posix(path.relative(process.cwd(), root)) || ".", errors, warnings: problems.length - errors, problems}, null, 2));
+  else {
+    for (const p of problems) console.log(`${p.file}  ${p.severity.padEnd(7)}  ${p.rule}  ${p.message}`);
+    if (problems.length) console.log("");
+    console.log(`Favicons checked: ${errors} error(s), ${problems.length - errors} warning(s). Spec: \`favicon\`.`);
+  }
+  process.exitCode = errors ? 1 : 0;
+}
+
 // ---------- main ----------
 
 const {positional, flags} = parseArgs(process.argv.slice(2));
@@ -703,6 +884,7 @@ switch (command) {
   case "tokens": cmdTokens(resolveSource(flags), rest[0], flags); break;
   case "sizes": cmdSizes(flags); break;
   case "check": cmdCheck(rest, flags); break;
+  case "favicon": cmdFavicon(rest[0], rest.slice(1), flags); break;
   case undefined: case "help": case "-h": console.log(HELP); break;
   default: fail(`unknown command "${command}"\n\n${HELP}`);
 }

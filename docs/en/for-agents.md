@@ -20,6 +20,10 @@ Use an authorized checkout of a specific Niltavi UI commit. Import [the theme en
 
 Use [EmailPasswordForm](../../src/product/EmailPasswordForm.tsx) on separate sign-in and registration routes. The form declares POST and stays disabled until its client submit handler is ready. It sends only the typed email and password to the callback. Handle server errors in the callback and navigate to any email verification step after registration. Keep account creation, verification, and authorization in the applicable production service.
 
+## Favicons and app icons
+
+Follow the [favicon and app icon specification](../../skills/niltavi-ui/references/favicon.md) for every product and website. It builds each icon from one layered `1024 × 1024` master, uses a full-bleed `apple-touch-icon.png` and maskable icon with a rounded tile everywhere else, and lists the required files and `<head>` markup. Run `node <skill>/scripts/niltavi.mjs favicon check` in the project before handing the change back.
+
 ## Verify a change
 
 ```sh

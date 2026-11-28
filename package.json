@@ -7,6 +7,7 @@
   "scripts": {
     "test": "python3 -m unittest discover -s scripts -p 'test_*.py' && node --test scripts/test_site.mjs scripts/test_skill_cli.mjs",
     "tokens": "python3 scripts/generate_tokens.py",
+    "icons": "python3 scripts/generate_icons.py",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"

@@ -30,9 +30,9 @@ function groupEntries(entries: TocEntry[]) {
   return groups;
 }
 
-function Icon({name}: {name: "sun" | "moon" | "arrow-up"}) {
+function Icon({name, className}: {name: "sun" | "moon" | "arrow-up"; className?: string}) {
   const Component = {sun: Sun, moon: Moon, "arrow-up": ArrowUp}[name];
-  return <Component aria-hidden="true" focusable="false" width={18} height={18} />;
+  return <Component className={className} aria-hidden="true" focusable="false" width={18} height={18} />;
 }
 
 function Site({locale, changeLocale, initialHash, initialMode}: {locale: Locale; changeLocale: (href: string) => void; initialHash: string; initialMode: ProductTheme}) {
@@ -126,7 +126,10 @@ function Site({locale, changeLocale, initialHash, initialMode}: {locale: Locale;
             const next = mode === "light" ? "dark" : "light";
             saveTheme(next);
             setMode(next);
-          }}><Icon name={mode === "light" ? "moon" : "sun"} /></Button>
+          }}>
+            {/* Both icons render; the theme class on <html> picks one, so the prerendered page is right before hydration. */}
+            <Icon name="moon" className="theme-icon--moon" /><Icon name="sun" className="theme-icon--sun" />
+          </Button>
           <Dropdown>
             <Button isIconOnly size="sm" variant="ghost" aria-label={text("Language", "语言")}><Globe aria-hidden="true" width={18} height={18} /></Button>
             <Dropdown.Popover placement="bottom end">
